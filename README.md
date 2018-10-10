@@ -21,7 +21,7 @@
 
 (ENGLISH VERSION)
 
-# DESING AND TESTING
+# Design and Testing
 
   This repository is intended to be for projects´ development from Acme Bussiness.
   
