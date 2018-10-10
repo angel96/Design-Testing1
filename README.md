@@ -19,8 +19,6 @@
   * Zeki (Mote, hay que poner nombre completo)
   * Alekx (Mote, hay que poner nombre completo)
 
-(ENGLISH VERSION)
-
 # Design and Testing
 
   This repository is intended to be for projects´ development from Acme Bussiness.
