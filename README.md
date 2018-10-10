@@ -11,6 +11,7 @@
   * Java Persistence Api (JPA)
   * VirtualBox (S.O virtual: Windows XP Profesional x64)
   * Astah
+  * Eclipse Indigo
   
   ## Componentes del grupo
   
@@ -32,6 +33,7 @@
   * Java Persistence Api (JPA)
   * VirtualBox (Virtual O.S: Windows XP Professional x64)
   * Astah
+  * Eclipse Indigo
   
   ## Members Team
   
