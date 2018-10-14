@@ -37,7 +37,7 @@
   
   ## Members Team
   
-  * Belén Garrido López
   * Ángel Delgado Luna
-  * Zeki (Mote, hay que poner nombre completo)
-  * Alekx (Mote, hay que poner nombre completo)
+  * Belén Garrido López
+  * Ezequiel Portillo Jurado
+  * Alejandro Rodríguez Díaz
