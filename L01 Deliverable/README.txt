@@ -1,5 +1,5 @@
-The following information is given for Desing and Testing Teachers 
-have access to our projects. 
+The following information is given to Desing and Testing Teachers 
+with the purpose of they get access into the project. 
 Other uses are not allowed.
 
 If you want to get in our project 
