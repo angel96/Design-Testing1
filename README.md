@@ -28,8 +28,8 @@
   This repository is intended to be for projects´ development from Acme Bussiness.
   
   ## Submission Date
-  * D01 - 19 de Octubre
-  * D02 - 31 de Octubre (Por hacer)
+  * D01 - October 19th
+  * D02 - October 31st (Must be done)
   
   ## Technologies used
   
