@@ -1,6 +1,9 @@
 # Diseño y Pruebas
 
   Desarrollo de una serie de proyectos de la empresa Acme.
+  ## Fecha de entregas
+  * D01 - 19 de Octubre
+  * D02 - 31 de Octubre (Por hacer)
   
   ## Tecnologías usadas
   
@@ -23,6 +26,10 @@
 # Design and Testing
 
   This repository is intended to be for projects´ development from Acme Bussiness.
+  
+  ## Submission Date
+  * D01 - 19 de Octubre
+  * D02 - 31 de Octubre (Por hacer)
   
   ## Technologies used
   
