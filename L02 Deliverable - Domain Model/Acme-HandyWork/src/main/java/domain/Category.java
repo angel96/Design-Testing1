@@ -13,7 +13,16 @@ public class Category extends DomainEntity {
 	private String					name;
 	private String					description;
 	private Collection<Category>	categories;
+	private FixUpTask				fixUpTask;		//????
 
+
+	public FixUpTask getFixUpTask() {
+		return this.fixUpTask;
+	}
+
+	public void setFixUpTask(final FixUpTask fixUpTask) {
+		this.fixUpTask = fixUpTask;
+	}
 
 	@NotBlank
 	public String getName() {

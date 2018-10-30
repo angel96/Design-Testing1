@@ -11,14 +11,16 @@ import org.hibernate.validator.constraints.NotBlank;
 @Entity
 public class FixUpTask extends DomainEntity {
 
-	private String					ticker;
-	private Date					moment;
-	private String					descrition;
-	private String					adress;
-	private double					maximumPrice;
-	private Date					start;
-	private Date					end;
-	private Collection<Workplan>	workplan;
+	private String				ticker;
+	private Date				moment;
+	private String				descrition;
+	private String				adress;
+	private double				maximumPrice;
+	private Date				start;
+	private Date				end;
+	private Collection<Phase>	phases;		//??
+	private SearchResult		searchResult;	//??
+	private Warranty			warranty;		//??
 
 
 	@NotBlank
@@ -78,11 +80,27 @@ public class FixUpTask extends DomainEntity {
 		this.end = end;
 	}
 
-	public Collection<Workplan> getWorkplan() {
-		return this.workplan;
+	public SearchResult getSearchResult() {
+		return this.searchResult;
 	}
 
-	public void setWorkplan(final Collection<Workplan> workplan) {
-		this.workplan = workplan;
+	public void setSearchResult(final SearchResult searchResult) {
+		this.searchResult = searchResult;
+	}
+
+	public Warranty getWarranty() {
+		return this.warranty;
+	}
+
+	public void setWarranty(final Warranty warranty) {
+		this.warranty = warranty;
+	}
+
+	public Collection<Phase> getPhases() {
+		return this.phases;
+	}
+
+	public void setPhases(final Collection<Phase> phases) {
+		this.phases = phases;
 	}
 }

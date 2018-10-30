@@ -16,6 +16,7 @@ public class Message extends DomainEntity {
 	private String				body;
 	private Collection<String>	tags;
 	private Priority			priority;
+	private Actor				recipient;	//??
 
 
 	@NotBlank

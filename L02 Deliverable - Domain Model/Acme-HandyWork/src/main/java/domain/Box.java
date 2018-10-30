@@ -10,6 +10,7 @@ public class Box extends DomainEntity {
 
 	private String	name;
 	private Boolean	fromSystem;
+	private Message	message;	//??????? Es asi
 
 
 	@NotBlank
@@ -27,6 +28,14 @@ public class Box extends DomainEntity {
 
 	public void setFromSystem(final Boolean fromSystem) {
 		this.fromSystem = fromSystem;
+	}
+
+	public Message getMessage() {
+		return this.message;
+	}
+
+	public void setMessage(final Message message) {
+		this.message = message;
 	}
 
 }

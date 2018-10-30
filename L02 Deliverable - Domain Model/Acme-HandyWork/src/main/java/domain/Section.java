@@ -14,6 +14,8 @@ public class Section extends DomainEntity {
 	private String				text;
 	private Integer				code;
 	private Collection<String>	pictures;
+	private int					order;		//? no le pongo setter
+	private Tutorial			tutorial;	//??
 
 
 	@NotBlank
@@ -47,6 +49,18 @@ public class Section extends DomainEntity {
 
 	public void setPictures(final Collection<String> pictures) {
 		this.pictures = pictures;
+	}
+
+	public int getOrder() {
+		return this.order;
+	}
+
+	public Tutorial getTutorial() {
+		return this.tutorial;
+	}
+
+	public void setTutorial(final Tutorial tutorial) {
+		this.tutorial = tutorial;
 	}
 
 }

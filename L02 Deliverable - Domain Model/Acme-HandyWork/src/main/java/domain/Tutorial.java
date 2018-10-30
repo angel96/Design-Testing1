@@ -15,6 +15,7 @@ public class Tutorial extends DomainEntity {
 	private Date				lastUpdate;
 	private String				summary;
 	private Collection<String>	pictures;
+	private Collection<Section>	sections;
 
 
 	@NotBlank
@@ -48,6 +49,14 @@ public class Tutorial extends DomainEntity {
 
 	public void setPictures(final Collection<String> pictures) {
 		this.pictures = pictures;
+	}
+
+	public Collection<Section> getSections() {
+		return this.sections;
+	}
+
+	public void setSections(final Collection<Section> sections) {
+		this.sections = sections;
 	}
 
 }

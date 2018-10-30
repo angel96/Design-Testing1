@@ -10,19 +10,20 @@ import org.hibernate.validator.constraints.NotBlank;
 @Entity
 public class Application extends DomainEntity {
 
-	private Date	moments;
-	private double	offeredPrice;
-	private String	comments;
-	private String	status;
+	private Date		moment;
+	private double		offeredPrice;
+	private String		comments;
+	private String		status;
+	private FixUpTask	fixUpTask;		//?????
 
 
 	@NotBlank
 	public Date getMoments() {
-		return this.moments;
+		return this.moment;
 	}
 
 	public void setMoments(final Date moments) {
-		this.moments = moments;
+		this.moment = moments;
 	}
 	@NotBlank
 	public double getOfferedPrice() {
@@ -47,5 +48,13 @@ public class Application extends DomainEntity {
 
 	public void setStatus(final String status) {
 		this.status = status;
+	}
+
+	public FixUpTask getFixUpTask() {
+		return this.fixUpTask;
+	}
+
+	public void setFixUpTask(final FixUpTask fixUpTask) {
+		this.fixUpTask = fixUpTask;
 	}
 }

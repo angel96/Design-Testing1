@@ -11,6 +11,8 @@ public class Referee extends Actor {
 	private Collection<Complaint>	complaints;
 
 
+	//no deberia ser una collecion de report y ya gracias a eso llegas a los complaint??
+
 	public Collection<Complaint> getComplaints() {
 		return this.complaints;
 	}

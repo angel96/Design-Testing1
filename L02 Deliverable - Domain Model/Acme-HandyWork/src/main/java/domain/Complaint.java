@@ -10,10 +10,12 @@ import org.hibernate.validator.constraints.NotBlank;
 @Entity
 public class Complaint extends DomainEntity {
 
-	private String	ticker;
-	private Date	moment;
-	private String	description;
-	private Integer	attachment;
+	private String		ticker;
+	private Date		moment;
+	private String		description;
+	private Integer		attachment;
+	private Report		report;		//????
+	private FixUpTask	fixUpTask;		//????
 
 
 	@NotBlank
@@ -47,5 +49,21 @@ public class Complaint extends DomainEntity {
 
 	public void setAttachment(final Integer attachment) {
 		this.attachment = attachment;
+	}
+
+	public Report getReport() {
+		return this.report;
+	}
+
+	public void setReport(final Report report) {
+		this.report = report;
+	}
+
+	public FixUpTask getFixUpTask() {
+		return this.fixUpTask;
+	}
+
+	public void setFixUpTask(final FixUpTask fixUpTask) {
+		this.fixUpTask = fixUpTask;
 	}
 }

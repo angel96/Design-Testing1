@@ -12,6 +12,7 @@ public class Sponsorship extends DomainEntity {
 	private String		urlBanner;
 	private String		linktpage;
 	private CreditCard	creditCard;
+	private Tutorial	tutorial;	//?
 
 
 	@URL
@@ -39,6 +40,14 @@ public class Sponsorship extends DomainEntity {
 
 	public void setCreditCard(final CreditCard creditCard) {
 		this.creditCard = creditCard;
+	}
+
+	public Tutorial getTutorial() {
+		return this.tutorial;
+	}
+
+	public void setTutorial(final Tutorial tutorial) {
+		this.tutorial = tutorial;
 	}
 
 }

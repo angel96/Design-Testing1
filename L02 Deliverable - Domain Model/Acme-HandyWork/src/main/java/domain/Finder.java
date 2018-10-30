@@ -6,8 +6,8 @@ import javax.persistence.Entity;
 @Entity
 public class Finder extends DomainEntity {
 
-	private Filter	filter;
-	private Stock	stock;
+	private Filter			filter;
+	private SearchResult	result;
 
 
 	public Filter getFilter() {
@@ -18,12 +18,12 @@ public class Finder extends DomainEntity {
 		this.filter = filter;
 	}
 
-	public Stock getStock() {
-		return this.stock;
+	public SearchResult getStock() {
+		return this.result;
 	}
 
-	public void setStock(final Stock stock) {
-		this.stock = stock;
+	public void setStock(final SearchResult stock) {
+		this.result = stock;
 	}
 
 }

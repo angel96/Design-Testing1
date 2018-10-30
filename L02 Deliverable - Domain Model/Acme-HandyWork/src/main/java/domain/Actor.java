@@ -18,8 +18,11 @@ public class Actor extends DomainEntity {
 	private String				photo;
 	private String				email;
 	private String				phone;
+	private String				adress;
 	private Integer				numberProfiles;
 	private Collection<Profile>	profiles;
+	private Message				message;		//??? Asi?
+	private boolean				ban;
 
 
 	@NotBlank
@@ -86,6 +89,31 @@ public class Actor extends DomainEntity {
 
 	public void setProfiles(final Collection<Profile> profiles) {
 		this.profiles = profiles;
+	}
+
+	public String getAdress() {
+		return this.adress;
+	}
+
+	public void setAdress(final String adress) {
+		this.adress = adress;
+	}
+
+	public Message getMessage() {
+		return this.message;
+	}
+
+	public void setMessage(final Message message) {
+		this.message = message;
+	}
+
+	@NotBlank
+	public boolean isBan() {
+		return this.ban;
+	}
+
+	public void setBan(final boolean ban) {
+		this.ban = ban;
 	}
 
 	@Override
