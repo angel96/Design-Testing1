@@ -8,6 +8,11 @@ import org.hibernate.validator.constraints.NotBlank;
 @Entity
 public class CustomisationSystem extends DomainEntity {
 
+	private String	systemName;
+	private String	banner;
+	private String	message;
+
+
 	@NotBlank
 	public String getSystemName() {
 		return this.systemName;
@@ -32,10 +37,4 @@ public class CustomisationSystem extends DomainEntity {
 	public void setMessage(final String message) {
 		this.message = message;
 	}
-
-
-	private String	systemName;
-	private String	banner;
-	private String	message;
-
 }

@@ -20,7 +20,7 @@ public class Priority extends DomainEntity {
 	public void setName(final String name) {
 		this.name = name;
 	}
-
+	@NotBlank
 	public String getDescription() {
 		return this.description;
 	}

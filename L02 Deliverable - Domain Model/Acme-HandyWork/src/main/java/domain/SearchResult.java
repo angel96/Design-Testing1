@@ -1,6 +1,7 @@
 
 package domain;
 
+import java.util.Collection;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -8,17 +9,17 @@ import javax.persistence.Entity;
 @Entity
 public class SearchResult extends DomainEntity {
 
-	private FixUpTask	fixuptask;
-	private Date		searchStart;
-	private Date		searchEnd;
+	private Collection<FixUpTask>	fixUpTask;
+	private Date					searchStart;
+	private Date					searchEnd;
 
 
-	public FixUpTask getFixuptask() {
-		return this.fixuptask;
+	public Collection<FixUpTask> getFixuptask() {
+		return this.fixUpTask;
 	}
 
-	public void setFixuptask(final FixUpTask fixuptask) {
-		this.fixuptask = fixuptask;
+	public void setFixuptask(final Collection<FixUpTask> fixuptask) {
+		this.fixUpTask = fixuptask;
 	}
 
 	public Date getSearchStart() {

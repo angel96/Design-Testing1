@@ -7,6 +7,7 @@ import java.util.Date;
 import javax.persistence.Entity;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.URL;
 
 @Entity
 public class Tutorial extends DomainEntity {
@@ -42,7 +43,7 @@ public class Tutorial extends DomainEntity {
 	public void setSummary(final String summary) {
 		this.summary = summary;
 	}
-
+	@URL
 	public Collection<String> getPictures() {
 		return this.pictures;
 	}

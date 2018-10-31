@@ -4,6 +4,7 @@ package domain;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -14,10 +15,11 @@ public class Complaint extends DomainEntity {
 	private Date		moment;
 	private String		description;
 	private Integer		attachment;
-	private Report		report;		//????
-	private FixUpTask	fixUpTask;		//????
+	private Report		report;
+	private FixUpTask	fixUpTask;
 
 
+	@Pattern(regexp = "^\\d{4}(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])-[\\w]{6}$")
 	@NotBlank
 	public String getTicker() {
 		return this.ticker;
@@ -42,7 +44,7 @@ public class Complaint extends DomainEntity {
 	public void setDescription(final String description) {
 		this.description = description;
 	}
-	@NotBlank
+
 	public Integer getAttachment() {
 		return this.attachment;
 	}

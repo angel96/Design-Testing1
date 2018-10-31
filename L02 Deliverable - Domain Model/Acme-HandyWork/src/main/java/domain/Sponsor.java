@@ -8,7 +8,7 @@ import javax.persistence.Entity;
 @Entity
 public class Sponsor extends Actor {
 
-	private Collection<Sponsorship>	sponsorships;	//??
+	private Collection<Sponsorship>	sponsorships;
 
 
 	public Collection<Sponsorship> getSponsorships() {

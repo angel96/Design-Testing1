@@ -1,6 +1,8 @@
 
 package domain;
 
+import java.util.Collection;
+
 import javax.persistence.Entity;
 
 import org.hibernate.validator.constraints.NotBlank;
@@ -8,9 +10,9 @@ import org.hibernate.validator.constraints.NotBlank;
 @Entity
 public class Box extends DomainEntity {
 
-	private String	name;
-	private Boolean	fromSystem;
-	private Message	message;	//??????? Es asi
+	private String				name;
+	private Boolean				fromSystem;
+	private Collection<Message>	message;
 
 
 	@NotBlank
@@ -30,11 +32,11 @@ public class Box extends DomainEntity {
 		this.fromSystem = fromSystem;
 	}
 
-	public Message getMessage() {
+	public Collection<Message> getMessage() {
 		return this.message;
 	}
 
-	public void setMessage(final Message message) {
+	public void setMessage(final Collection<Message> message) {
 		this.message = message;
 	}
 

@@ -1,29 +1,68 @@
 
 package domain;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
+
+import org.hibernate.validator.constraints.Range;
 
 @Entity
 public class Finder extends DomainEntity {
 
-	private Filter			filter;
+	private String			singleKey;
+	private String			category;
+	private String			warranty;
+	private Integer[]		rangeOfPrices;
+	private Date[]			rangeofDate;
 	private SearchResult	result;
 
 
-	public Filter getFilter() {
-		return this.filter;
+	public String getSingleKey() {
+		return this.singleKey;
 	}
 
-	public void setFilter(final Filter filter) {
-		this.filter = filter;
+	public void setSingleKey(final String singleKey) {
+		this.singleKey = singleKey;
 	}
 
-	public SearchResult getStock() {
+	public String getCategory() {
+		return this.category;
+	}
+
+	public void setCategory(final String category) {
+		this.category = category;
+	}
+
+	public String getWarranty() {
+		return this.warranty;
+	}
+
+	public void setWarranty(final String warranty) {
+		this.warranty = warranty;
+	}
+	@Range(min = 0, max = 200)
+	public Integer[] getRangeOfPrices() {
+		return this.rangeOfPrices;
+	}
+
+	public void setRangeOfPrices(final Integer[] rangeOfPrices) {
+		this.rangeOfPrices = rangeOfPrices;
+	}
+
+	public Date[] getRangeofDate() {
+		return this.rangeofDate;
+	}
+
+	public void setRangeofDate(final Date[] rangeofDate) {
+		this.rangeofDate = rangeofDate;
+	}
+
+	public SearchResult getResult() {
 		return this.result;
 	}
 
-	public void setStock(final SearchResult stock) {
-		this.result = stock;
+	public void setResult(final SearchResult result) {
+		this.result = result;
 	}
-
 }

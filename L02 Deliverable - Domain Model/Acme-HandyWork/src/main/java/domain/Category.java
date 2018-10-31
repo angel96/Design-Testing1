@@ -11,18 +11,8 @@ import org.hibernate.validator.constraints.NotBlank;
 public class Category extends DomainEntity {
 
 	private String					name;
-	private String					description;
 	private Collection<Category>	categories;
-	private FixUpTask				fixUpTask;		//????
 
-
-	public FixUpTask getFixUpTask() {
-		return this.fixUpTask;
-	}
-
-	public void setFixUpTask(final FixUpTask fixUpTask) {
-		this.fixUpTask = fixUpTask;
-	}
 
 	@NotBlank
 	public String getName() {
@@ -32,14 +22,7 @@ public class Category extends DomainEntity {
 	public void setName(final String name) {
 		this.name = name;
 	}
-	@NotBlank
-	public String getDescription() {
-		return this.description;
-	}
 
-	public void setDescription(final String description) {
-		this.description = description;
-	}
 	@NotBlank
 	public Collection<Category> getCategories() {
 		return this.categories;

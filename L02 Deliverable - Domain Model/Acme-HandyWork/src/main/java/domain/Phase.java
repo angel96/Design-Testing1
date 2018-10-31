@@ -10,6 +10,22 @@ import org.hibernate.validator.constraints.NotBlank;
 @Entity
 public class Phase extends DomainEntity {
 
+	private String	title;
+	private String	description;
+	private Date	startMoment;
+	private Date	endMoment;
+	private int		number;
+
+
+	@NotBlank
+	public int getNumber() {
+		return this.number;
+	}
+
+	public void setNumber(final int number) {
+		this.number = number;
+	}
+
 	@NotBlank
 	public String getTitle() {
 		return this.title;
@@ -42,11 +58,4 @@ public class Phase extends DomainEntity {
 	public void setEndMoment(final Date endMoment) {
 		this.endMoment = endMoment;
 	}
-
-
-	private String	title;
-	private String	description;
-	private Date	startMoment;
-	private Date	endMoment;
-
 }

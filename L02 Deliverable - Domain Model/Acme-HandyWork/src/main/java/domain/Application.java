@@ -14,16 +14,16 @@ public class Application extends DomainEntity {
 	private double		offeredPrice;
 	private String		comments;
 	private String		status;
-	private FixUpTask	fixUpTask;		//?????
+	private FixUpTask	fixUpTask;
 
 
 	@NotBlank
-	public Date getMoments() {
+	public Date getMoment() {
 		return this.moment;
 	}
 
-	public void setMoments(final Date moments) {
-		this.moment = moments;
+	public void setMoment(final Date moment) {
+		this.moment = moment;
 	}
 	@NotBlank
 	public double getOfferedPrice() {

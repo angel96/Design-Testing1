@@ -1,19 +1,19 @@
 
 package domain;
 
-import java.util.Collection;
-
 import javax.persistence.Entity;
+
+import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
 public class Warranty extends DomainEntity {
 
-	private String					title;
-	private String					terms;
-	private String					laws;
-	private Collection<FixUpTask>	fixUpTask;	//??
+	private String	title;
+	private String	terms;
+	private String	laws;
 
 
+	@NotBlank
 	public String getTitle() {
 		return this.title;
 	}
@@ -21,7 +21,7 @@ public class Warranty extends DomainEntity {
 	public void setTitle(final String title) {
 		this.title = title;
 	}
-
+	@NotBlank
 	public String getTerms() {
 		return this.terms;
 	}
@@ -29,7 +29,7 @@ public class Warranty extends DomainEntity {
 	public void setTerms(final String terms) {
 		this.terms = terms;
 	}
-
+	@NotBlank
 	public String getLaws() {
 		return this.laws;
 	}
@@ -37,13 +37,4 @@ public class Warranty extends DomainEntity {
 	public void setLaws(final String laws) {
 		this.laws = laws;
 	}
-
-	public Collection<FixUpTask> getFixUpTask() {
-		return this.fixUpTask;
-	}
-
-	public void setFixUpTask(final Collection<FixUpTask> fixUpTask) {
-		this.fixUpTask = fixUpTask;
-	}
-
 }

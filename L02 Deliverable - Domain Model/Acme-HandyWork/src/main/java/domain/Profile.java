@@ -3,6 +3,9 @@ package domain;
 
 import javax.persistence.Entity;
 
+import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.URL;
+
 @Entity
 public class Profile extends DomainEntity {
 
@@ -11,6 +14,7 @@ public class Profile extends DomainEntity {
 	private String	link;
 
 
+	@NotBlank
 	public String getNick() {
 		return this.nick;
 	}
@@ -18,7 +22,7 @@ public class Profile extends DomainEntity {
 	public void setNick(final String nick) {
 		this.nick = nick;
 	}
-
+	@NotBlank
 	public String getSocialNetworkName() {
 		return this.socialNetworkName;
 	}
@@ -26,7 +30,8 @@ public class Profile extends DomainEntity {
 	public void setSocialNetworkName(final String socialNetworkName) {
 		this.socialNetworkName = socialNetworkName;
 	}
-
+	@NotBlank
+	@URL
 	public String getLink() {
 		return this.link;
 	}

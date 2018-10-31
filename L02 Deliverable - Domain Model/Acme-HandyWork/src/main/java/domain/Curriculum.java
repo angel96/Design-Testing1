@@ -1,55 +1,57 @@
 
 package domain;
 
+import java.util.Collection;
+
 import javax.persistence.Entity;
 
 @Entity
 public class Curriculum extends DomainEntity {
 
-	private EducationRecord		educationRecord;
-	private EndorserRecord		endorserRecord;
-	private ProfessionalRecord	professionalRecord;
-	private MiscellaneousRecord	miscellaneousRecord;
-	private PersonalRecord		personalRecord;
+	private Collection<EducationRecord>		educationRecord;
+	private Collection<EndorserRecord>		endorserRecord;
+	private Collection<ProfessionalRecord>	professionalRecord;
+	private Collection<MiscellaneousRecord>	miscellaneousRecord;
+	private Collection<PersonalRecord>		personalRecord;
 
 
-	public EducationRecord getEducationRecord() {
+	public Collection<EducationRecord> getEducationRecord() {
 		return this.educationRecord;
 	}
 
-	public void setEducationRecord(final EducationRecord educationRecord) {
+	public void setEducationRecord(final Collection<EducationRecord> educationRecord) {
 		this.educationRecord = educationRecord;
 	}
 
-	public EndorserRecord getEndorserRecord() {
+	public Collection<EndorserRecord> getEndorserRecord() {
 		return this.endorserRecord;
 	}
 
-	public void setEndorserRecord(final EndorserRecord endorserRecord) {
+	public void setEndorserRecord(final Collection<EndorserRecord> endorserRecord) {
 		this.endorserRecord = endorserRecord;
 	}
 
-	public ProfessionalRecord getProfessionalRecord() {
+	public Collection<ProfessionalRecord> getProfessionalRecord() {
 		return this.professionalRecord;
 	}
 
-	public void setProfessionalRecord(final ProfessionalRecord professionalRecord) {
+	public void setProfessionalRecord(final Collection<ProfessionalRecord> professionalRecord) {
 		this.professionalRecord = professionalRecord;
 	}
 
-	public MiscellaneousRecord getMiscellaneousRecord() {
+	public Collection<MiscellaneousRecord> getMiscellaneousRecord() {
 		return this.miscellaneousRecord;
 	}
 
-	public void setMiscellaneousRecord(final MiscellaneousRecord miscellaneousRecord) {
+	public void setMiscellaneousRecord(final Collection<MiscellaneousRecord> miscellaneousRecord) {
 		this.miscellaneousRecord = miscellaneousRecord;
 	}
 
-	public PersonalRecord getPersonalRecord() {
+	public Collection<PersonalRecord> getPersonalRecord() {
 		return this.personalRecord;
 	}
 
-	public void setPersonalRecord(final PersonalRecord personalRecord) {
+	public void setPersonalRecord(final Collection<PersonalRecord> personalRecord) {
 		this.personalRecord = personalRecord;
 	}
 

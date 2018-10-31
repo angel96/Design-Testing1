@@ -8,16 +8,24 @@ import javax.persistence.Entity;
 @Entity
 public class Referee extends Actor {
 
-	private Collection<Complaint>	complaints;
+	private Collection<Report>	reports;
+	private Collection<Note>	notes;
 
 
-	//no deberia ser una collecion de report y ya gracias a eso llegas a los complaint??
-
-	public Collection<Complaint> getComplaints() {
-		return this.complaints;
+	public Collection<Report> getReports() {
+		return this.reports;
 	}
 
-	public void setComplaints(final Collection<Complaint> complaints) {
-		this.complaints = complaints;
+	public void setReports(final Collection<Report> reports) {
+		this.reports = reports;
 	}
+
+	public Collection<Note> getNotes() {
+		return this.notes;
+	}
+
+	public void setNotes(final Collection<Note> notes) {
+		this.notes = notes;
+	}
+
 }

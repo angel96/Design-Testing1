@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -18,12 +19,13 @@ public class FixUpTask extends DomainEntity {
 	private double				maximumPrice;
 	private Date				start;
 	private Date				end;
-	private Collection<Phase>	phases;		//??
-	private SearchResult		searchResult;	//??
-	private Warranty			warranty;		//??
+	private Collection<Phase>	phases;
+	private Warranty			warranty;
+	private Category			category;
 
 
 	@NotBlank
+	@Pattern(regexp = "^\\d{4}(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])-[\\w]{6}$")
 	public String getTicker() {
 		return this.ticker;
 	}
@@ -35,7 +37,7 @@ public class FixUpTask extends DomainEntity {
 	public Date getMoment() {
 		return this.moment;
 	}
-	@NotBlank
+
 	public void setMoment(final Date moment) {
 		this.moment = moment;
 	}
@@ -80,14 +82,6 @@ public class FixUpTask extends DomainEntity {
 		this.end = end;
 	}
 
-	public SearchResult getSearchResult() {
-		return this.searchResult;
-	}
-
-	public void setSearchResult(final SearchResult searchResult) {
-		this.searchResult = searchResult;
-	}
-
 	public Warranty getWarranty() {
 		return this.warranty;
 	}
@@ -103,4 +97,12 @@ public class FixUpTask extends DomainEntity {
 	public void setPhases(final Collection<Phase> phases) {
 		this.phases = phases;
 	}
+	public Category getCategory() {
+		return this.category;
+	}
+
+	public void setCategory(final Category category) {
+		this.category = category;
+	}
+
 }

@@ -6,6 +6,7 @@ import java.util.Collection;
 import javax.persistence.Entity;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.URL;
 
 @Entity
 public class Section extends DomainEntity {
@@ -14,8 +15,7 @@ public class Section extends DomainEntity {
 	private String				text;
 	private Integer				code;
 	private Collection<String>	pictures;
-	private int					order;		//? no le pongo setter
-	private Tutorial			tutorial;	//??
+	private int					number;
 
 
 	@NotBlank
@@ -42,7 +42,7 @@ public class Section extends DomainEntity {
 	public void setCode(final Integer code) {
 		this.code = code;
 	}
-
+	@URL
 	public Collection<String> getPictures() {
 		return this.pictures;
 	}
@@ -51,16 +51,12 @@ public class Section extends DomainEntity {
 		this.pictures = pictures;
 	}
 
-	public int getOrder() {
-		return this.order;
+	public int getNumber() {
+		return this.number;
 	}
 
-	public Tutorial getTutorial() {
-		return this.tutorial;
-	}
-
-	public void setTutorial(final Tutorial tutorial) {
-		this.tutorial = tutorial;
+	public void setNumber(final int number) {
+		this.number = number;
 	}
 
 }
