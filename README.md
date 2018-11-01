@@ -3,7 +3,8 @@
   Desarrollo de una serie de proyectos de la empresa Acme.
   ## Fecha de entregas
   * D01 - 19 de Octubre
-  * D02 - 31 de Octubre (Por hacer)
+  * D02 - 31 de Octubre
+  * D03 - 15 de Noviembre (Por hacer)
   
   ## Tecnologías usadas
   
@@ -29,8 +30,8 @@
   
   ## Submission Date
   * D01 - October 19th
-  * D02 - October 31st (Must be done)
-  
+  * D02 - October 31st
+  * D03 - November 15st (Must be done)
   ## Technologies used
   
   * Spring MVC 4.0.0
