@@ -419,6 +419,12 @@
 			</list>
 		</property>
 		<property name="ban" value="false" />
+		<property name="application">
+		<list>
+			<ref bean="application1"/>
+			<ref bean="application2"/>
+		</list>
+		</property>
 	</bean>
 	<!-- Customer Beans -->
 	<bean id="customer1" class="domain.Customer">
