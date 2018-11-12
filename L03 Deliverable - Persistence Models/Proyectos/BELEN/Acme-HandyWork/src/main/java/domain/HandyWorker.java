@@ -15,6 +15,7 @@ import javax.persistence.OneToMany;
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class HandyWorker extends Endorsable {
 	private Collection<Application> application;
+	private Collection<Phase> phase;
 	
 	@OneToMany
 	public Collection<Application> getApplication() {
@@ -23,6 +24,16 @@ public class HandyWorker extends Endorsable {
 
 	public void setApplication(Collection<Application> application) {
 		this.application = application;
+		
+	}
+	
+	@OneToMany
+	public Collection<Phase> getPhase() {
+		return phase;
+	}
+
+	public void setPhase(Collection<Phase> phase) {
+		this.phase = phase;
 	}
 
 	

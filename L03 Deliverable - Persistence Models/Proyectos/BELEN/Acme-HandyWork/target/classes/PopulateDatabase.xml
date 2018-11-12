@@ -425,6 +425,12 @@
 			<ref bean="application2"/>
 		</list>
 		</property>
+		<property name="phase">
+			<list>
+				<ref bean="phase1"></ref>
+				<ref bean="phase2"></ref>
+			</list>
+		</property>
 	</bean>
 	<!-- Customer Beans -->
 	<bean id="customer1" class="domain.Customer">
@@ -452,7 +458,13 @@
 			</list>
 		</property>
 		<property name="ban" value="false" />
-
+		<property name="fixUpTask">
+			<list>
+				<ref bean="fixuptask1"></ref>
+				<ref bean="fixuptask2"></ref>
+			</list>
+		
+		</property>
 	</bean>
 
 	<!-- Messages Beans -->
@@ -575,9 +587,9 @@
 				<constructor-arg value="2018/12/13" />
 			</bean>
 		</property>
-		<property name="descrition" value="descriptionfixuptask1" />
-		<property name="adress" value="addressfixuptask1" />
-		<property name="maximumPrice" value="10.0" />
+		<property name="description" value="descriptionfixuptask1" />
+		<property name="address" value="addressfixuptask1" />
+		<property name="maximumPrice" value="40.0" />
 		<property name="start">
 			<bean factory-bean="dateFormat" factory-method="parse">
 				<constructor-arg value="2018/12/15" />
@@ -600,6 +612,9 @@
 		<property name="category">
 			<ref bean="category1" />
 		</property>
+		<property name="complaint">
+			<ref bean="complaint1"/>
+		</property>
 	</bean>
 	<bean id="fixuptask2" class="domain.FixUpTask">
 		<property name="ticker" value="20181108-A32567" />
@@ -608,9 +623,9 @@
 				<constructor-arg value="2018/12/13" />
 			</bean>
 		</property>
-		<property name="descrition" value="descriptionfixuptask2" />
-		<property name="adress" value="addressfixuptask2" />
-		<property name="maximumPrice" value="10.0" />
+		<property name="description" value="descriptionfixuptask2" />
+		<property name="address" value="addressfixuptask2" />
+		<property name="maximumPrice" value="25.0" />
 		<property name="start">
 			<bean factory-bean="dateFormat" factory-method="parse">
 				<constructor-arg value="2018/12/15" />
@@ -632,6 +647,9 @@
 		<property name="category">
 			<ref bean="category1" />
 		</property>
+		<property name="complaint">
+			<ref bean="complaint1"/>
+		</property>
 	</bean>
 	<bean id="fixuptask3" class="domain.FixUpTask">
 		<property name="ticker" value="20181108-A32559" />
@@ -640,8 +658,8 @@
 				<constructor-arg value="2018/12/13" />
 			</bean>
 		</property>
-		<property name="descrition" value="descriptionfixuptask3" />
-		<property name="adress" value="addressfixuptask3" />
+		<property name="description" value="descriptionfixuptask3" />
+		<property name="address" value="addressfixuptask3" />
 		<property name="maximumPrice" value="10.0" />
 		<property name="start">
 			<bean factory-bean="dateFormat" factory-method="parse">
@@ -664,6 +682,9 @@
 		</property>
 		<property name="category">
 			<ref bean="category1" />
+		</property>
+		<property name="complaint">
+			<ref bean="complaint1"/>
 		</property>
 	</bean>
 	<!-- Credit Card Beans -->
@@ -718,4 +739,100 @@
 		<property name="banner" value="http://www.photobucket.com"/>
 		<property name="message" value="Message customisation 2 created."/>
 	</bean>
+	
+	<!-- Notes beans-->
+  <bean id="note1" class="domain.Note">
+    <property name="moment">
+      <bean factory-bean="dateFormat" factory-method="parse">
+        <constructor-arg value="2018/11/18" />
+      </bean>
+    </property>
+    <property name="comment" value="Notita simple">
+     </property>
+    <property name="otherComments">
+      <list>
+        <value>Comentario opcional 1</value>
+        <value>Comentario opcional 2</value>
+      </list>
+    </property>    
+  </bean>
+  <!-- Reports beans -->
+      <bean id="report1" class="domain.Report">
+    <property name="moment">
+      <bean factory-bean="dateFormat" factory-method="parse">
+        <constructor-arg value="2018/11/18" />
+      </bean>
+    </property>
+    <property name="description" value="Po toma report niño"></property>
+    <property name="attachments">
+      <list>
+      <value>Adjunto1</value>
+      <value>Adjunto2</value>
+      </list>
+    </property>
+    <property name="notes">
+      <list>
+        <ref bean="note1"/>
+      </list>
+    </property>
+      <property name="complaints">
+      <ref bean ="complaint1"/>
+    </property>
+        <property name="referee">
+       <ref bean="referee1"/> 
+    </property>
+      </bean>
+ <!-- Complaints beans --> 
+    <bean id="complaint1" class="domain.Complaint">
+    <property name="ticker" value="20181111-A32579"></property>
+    <property name="moment">
+      <bean factory-bean="dateFormat" factory-method="parse">
+        <constructor-arg value="2018/11/20" />
+      </bean>
+    </property>
+    <property name="description" value="Queja numelo 1"></property>
+    <property name="attachment" value="1"></property>
+    <property name="report">
+      <list>
+      <ref bean="report1"/>
+      </list>
+    </property>
+  </bean>
+
+  <!-- Referee -->
+    <bean id="referee1" class="domain.Referee">
+  <property name="name" value="Referee" />
+    <property name="middleName" value="Referee1Middle" />
+    <property name="surname" value="Referee1Surname" />
+    <property name="photo" value="https://www.photo.com" />
+    <property name="email" value="referee@us.es" />
+    <property name="phone" value="955482614" />
+    <property name="adress" value="C/Reina Mercedes" />
+    <property name="numberProfiles" value="1" />
+    <property name="account">
+      <ref bean="userAccount5" />
+    </property>
+    <property name="profiles">
+      <list>
+        <ref bean="profile3" />
+      </list>
+    </property>
+    <property name="message">
+      <list>
+      </list>
+    </property>
+    <property name="ban" value="false" />
+    
+    <property name="reports">
+      <list>
+        <ref bean="report1"/>
+      </list>
+    </property>
+    <property name="notes">
+      <list>
+        <ref bean="note1"/>
+      </list>
+    </property>
+  </bean>
+	
 </beans>

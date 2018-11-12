@@ -25,14 +25,15 @@ public class FixUpTask extends DomainEntity {
 
 	private String				ticker;
 	private Date				moment;
-	private String				descrition;
-	private String				adress;
+	private String				description;
+	private String				address;
 	private double				maximumPrice;
 	private Date				start;
 	private Date				end;
 	private Collection<Phase>	phases;
 	private Warranty			warranty;
 	private Category			category;
+	private Complaint			complaint;
 
 
 	@NotBlank
@@ -55,20 +56,20 @@ public class FixUpTask extends DomainEntity {
 		this.moment = moment;
 	}
 	@NotBlank
-	public String getDescrition() {
-		return this.descrition;
+	public String getDescription() {
+		return this.description;
 	}
 
-	public void setDescrition(final String descrition) {
-		this.descrition = descrition;
+	public void setDescription(final String description) {
+		this.description = description;
 	}
 	@NotBlank
-	public String getAdress() {
-		return this.adress;
+	public String getAddress() {
+		return this.address;
 	}
 
-	public void setAdress(final String adress) {
-		this.adress = adress;
+	public void setAddress(final String address) {
+		this.address = address;
 	}
 
 	public double getMaximumPrice() {
@@ -121,5 +122,15 @@ public class FixUpTask extends DomainEntity {
 	public void setCategory(final Category category) {
 		this.category = category;
 	}
+	@OneToMany
+	public Complaint getComplaint() {
+		return complaint;
+	}
+
+	public void setComplaint(Complaint complaint) {
+		this.complaint = complaint;
+	}
+	
+	
 
 }

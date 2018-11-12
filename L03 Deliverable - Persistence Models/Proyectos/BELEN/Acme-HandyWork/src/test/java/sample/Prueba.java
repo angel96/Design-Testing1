@@ -42,8 +42,8 @@ public class Prueba {
 		final FixUpTask fix = new FixUpTask();
 		fix.setTicker("181031-A8GT5G");
 		fix.setMoment(Date.valueOf("2018-10-30"));
-		fix.setDescrition("A FixUp description");
-		fix.setAdress("Random Street");
+		fix.setDescription("A FixUp description");
+		fix.setAddress("Random Street");
 		fix.setMaximumPrice(200);
 		fix.setStart(Date.valueOf("2018-10-24"));
 		fix.setEnd(Date.valueOf("2018-11-24"));
