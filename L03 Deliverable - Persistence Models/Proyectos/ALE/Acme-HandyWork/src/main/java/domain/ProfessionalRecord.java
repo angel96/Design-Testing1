@@ -8,12 +8,15 @@ import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.URL;
 
 @Entity
 @Access(AccessType.PROPERTY)
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class ProfessionalRecord extends DomainEntity {
 
 	private String				companyName;
@@ -32,7 +35,7 @@ public class ProfessionalRecord extends DomainEntity {
 	public void setCompanyName(final String companyName) {
 		this.companyName = companyName;
 	}
-	@NotBlank
+
 	public Date getStartWorking() {
 		return this.startWorking;
 	}
@@ -40,7 +43,7 @@ public class ProfessionalRecord extends DomainEntity {
 	public void setStartWorking(final Date startWorking) {
 		this.startWorking = startWorking;
 	}
-	@NotBlank
+
 	public Date getEndWorking() {
 		return this.endWorking;
 	}

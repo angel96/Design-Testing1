@@ -81,6 +81,8 @@
 			</list>
 		</property>
 	</bean>
+	
+	
 
 	<bean id="userAccount6" class="security.UserAccount">
 		<property name="username" value="sponsor" />
@@ -172,6 +174,11 @@
 		<property name="nick" value="DP2018" />
 		<property name="socialNetworkName" value="Facebook" />
 		<property name="link" value="https://www.facebook.com/DP2018" />
+	</bean>
+	<bean id="profile7" class="domain.Profile">
+		<property name="nick" value="ArbitroDP2018" />
+		<property name="socialNetworkName" value="VK.ru" />
+		<property name="link" value="https://www.vk.ru/DP2018" />
 	</bean>
 	<!-- Priority Beans -->
 
@@ -662,15 +669,15 @@
 				<ref bean="Note1"/>
 			</list>
 		</property>
-<!--  		<property name="complaints">
+  		<property name="complaints">
 			<ref bean ="Complaint1"/>
-		</property>-->
- <!--    		<property name="referee">
+		</property>
+    		<property name="referee">
  			<ref bean="Referee1"/> 
-		</property>-->
+		</property>
   		</bean>
-<!--  	 Complaints -->
-<!--  	<bean id="Complaint1" class="domain.Complaint">
+ <!--   	 Complaints --> 
+  	<bean id="Complaint1" class="domain.Complaint">
 		<property name="ticker" value="20181111-A32579"></property>
 		<property name="moment">
 			<bean factory-bean="dateFormat" factory-method="parse">
@@ -688,12 +695,12 @@
 			<ref bean="fixuptask1"/>
 		</property>
 	</bean>
-	-->
+
 		
 		
 	<!-- Referee -->
-<!--  	<bean id="Referee1" class="domain.Referee">
-		<property name="name" value="Referee" />
+  	<bean id="Referee1" class="domain.Referee">
+	<property name="name" value="Referee" />
 		<property name="middleName" value="Referee1Middle" />
 		<property name="surname" value="Referee1Surname" />
 		<property name="photo" value="https://www.photo.com" />
@@ -706,7 +713,7 @@
 		</property>
 		<property name="profiles">
 			<list>
-				<ref bean="profile1" />
+				<ref bean="profile7" />
 			</list>
 		</property>
 		<property name="message">
@@ -725,5 +732,89 @@
 				<ref bean="Note1"/>
 			</list>
 		</property>
-	</bean> -->
+	</bean> 
+	<bean id="ProfessionalRecord1" class="domain.ProfessionalRecord">
+	 <property name="companyName" value="ACME Shout"></property>
+	 <property name="startWorking">
+		<bean factory-bean="dateFormat" factory-method="parse">
+			<constructor-arg value="2018/11/20" />
+		</bean>
+	 </property>
+	 <property name="endWorking">
+	 		<bean factory-bean="dateFormat" factory-method="parse">
+	 			<constructor-arg value="2018/11/30" />
+	 		</bean>
+	 </property>
+	 <property name="role" value="Worker"></property>
+	 <property name="attachment" value="https://www.noseque.com"></property>
+	 <property name="comments">
+	 	<list>
+	 		<value>Prueba1</value>
+	 		<value>Prueba2</value>
+	 	</list>
+	 </property>	
+	 </bean>
+	 <bean id="EducationRecord1" class="domain.EducationRecord">
+	 	<property name="diplomaTitle" value="Ingüeniero informatico"></property>
+	 	<property name="startStudies">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2016/09/20" />
+			</bean>
+		</property>
+		<property name="endStudies">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2021/05/14" />
+			</bean>
+		</property>
+		<property name="institutionDiploma" value="ETSII-US"></property>
+		<property name="attachment" value="https://www.illo.es"></property>
+		<property name="comments">
+			<list>
+				<value>GG LSI</value>
+				<value>GG DTE</value>
+			</list>
+		</property>
+	 </bean>
+	 <bean id="EndorserRecord1" class="domain.EndorserRecord">
+	 <property name="fullNameEndorser" value="Periquito de los Palotes"></property>
+	 <property name="email" value="illokise@fo.es"></property>
+	 <property name="phone" value="612478954"></property>
+	 <property name="linkedin" value="https://suspenso@linkedin.com"></property>
+	 <property name="comments">
+	 	<list>
+	 		<value>5comentarios</value>
+	 	</list>
+	 </property>
+	 </bean>
+	 <bean id="MiscellaneousRecord1" class="domain.MiscellaneousRecord">
+	 	<property name="title" value="Ezto q es?"></property>
+	 	<property name="attachment" value="http://www.aburrido.org"></property>
+	 	<property name="comments">
+	 		<list>
+	 			<value>He dicho que nada</value>
+	 		</list>
+	 	</property>
+	 </bean>
+  	 <bean id="Curriculum1" class="domain.Curriculum">
+	 	<property name="educationRecord">
+	 		<list>
+	 			<ref bean="EducationRecord1"/>
+	 		</list>
+	 	</property>
+  	 	<property name="endorserRecord">
+	 		<list>
+	 			<ref bean="EndorserRecord1"/>
+	 		</list>
+	 	</property>
+  	 	<property name="professionalRecord">
+	 		<list>
+	 			<ref bean="ProfessionalRecord1"/>
+	 		</list>
+	 	</property>
+  	 	<property name="miscellaneousRecord">
+	 		<list>
+	 			<ref bean="MiscellaneousRecord1"/>
+	 		</list>
+	 	</property>
+	 </bean> 
 </beans>

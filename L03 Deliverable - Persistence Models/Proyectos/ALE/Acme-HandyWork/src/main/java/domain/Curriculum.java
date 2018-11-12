@@ -10,7 +10,6 @@ import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
 
 @Entity
 @Access(AccessType.PROPERTY)
@@ -22,8 +21,8 @@ public class Curriculum extends DomainEntity {
 	private Collection<ProfessionalRecord>	professionalRecord;
 	private Collection<MiscellaneousRecord>	miscellaneousRecord;
 
-	private Collection<PersonalRecord>		personalRecord;
 
+	//	private Collection<PersonalRecord>		personalRecord;
 
 	@ManyToMany(cascade = {
 		CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH
@@ -66,13 +65,14 @@ public class Curriculum extends DomainEntity {
 		this.miscellaneousRecord = miscellaneousRecord;
 	}
 
-	@OneToOne(optional = false, targetEntity = Curriculum.class)
-	public Collection<PersonalRecord> getPersonalRecord() {
-		return this.personalRecord;
-	}
-
-	public void setPersonalRecord(final Collection<PersonalRecord> personalRecord) {
-		this.personalRecord = personalRecord;
-	}
-
+	/*
+	 * @OneToOne(optional = false, targetEntity = Curriculum.class)
+	 * public Collection<PersonalRecord> getPersonalRecord() {
+	 * return this.personalRecord;
+	 * }
+	 * 
+	 * public void setPersonalRecord(final Collection<PersonalRecord> personalRecord) {
+	 * this.personalRecord = personalRecord;
+	 * }
+	 */
 }

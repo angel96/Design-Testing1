@@ -15,7 +15,6 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 import org.hibernate.validator.constraints.NotBlank;
-import org.hibernate.validator.constraints.URL;
 
 @Entity
 @Access(AccessType.PROPERTY)
@@ -54,9 +53,8 @@ public class Report extends DomainEntity {
 	public void setDescription(final String description) {
 		this.description = description;
 	}
-	@URL
+	//	@URL
 	@ElementCollection
-	@NotBlank
 	public Collection<String> getAttachments() {
 		return this.attachments;
 	}

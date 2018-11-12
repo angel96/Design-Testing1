@@ -3,12 +3,16 @@ package domain;
 
 import java.util.Date;
 
+import javax.persistence.Access;
+import javax.persistence.AccessType;
 import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.OneToOne;
 
-import org.hibernate.validator.constraints.Range;
-
 @Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@Access(AccessType.PROPERTY)
 public class Finder extends DomainEntity {
 
 	private String			singleKey;
@@ -42,7 +46,7 @@ public class Finder extends DomainEntity {
 	public void setWarranty(final String warranty) {
 		this.warranty = warranty;
 	}
-	@Range(min = 0, max = 200)
+	//	@Range(min = 0, max = 200)
 	public Integer[] getRangeOfPrices() {
 		return this.rangeOfPrices;
 	}
