@@ -14,6 +14,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Digits;
 import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.NotBlank;
@@ -23,16 +24,18 @@ import org.hibernate.validator.constraints.NotBlank;
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class FixUpTask extends DomainEntity {
 
-	private String				ticker;
-	private Date				moment;
-	private String				descrition;
-	private String				adress;
-	private double				maximumPrice;
-	private Date				start;
-	private Date				end;
-	private Collection<Phase>	phases;
-	private Warranty			warranty;
-	private Category			category;
+	private String					ticker;
+	private Date					moment;
+	private String					description;
+	private String					address;
+	private double					maximumPrice;
+	private Date					start;
+	private Date					end;
+	private Collection<Phase>		phases;
+	private Warranty				warranty;
+	private Category				category;
+	private Collection<Complaint>	complaint;
+	private Collection<Application>	application;
 
 
 	@NotBlank
@@ -55,22 +58,22 @@ public class FixUpTask extends DomainEntity {
 		this.moment = moment;
 	}
 	@NotBlank
-	public String getDescrition() {
-		return this.descrition;
+	public String getDescription() {
+		return this.description;
 	}
 
-	public void setDescrition(final String descrition) {
-		this.descrition = descrition;
+	public void setDescription(final String description) {
+		this.description = description;
 	}
 	@NotBlank
-	public String getAdress() {
-		return this.adress;
+	public String getAddress() {
+		return this.address;
 	}
 
-	public void setAdress(final String adress) {
-		this.adress = adress;
+	public void setAddress(final String address) {
+		this.address = address;
 	}
-
+	@Digits(integer = 3, fraction = 2)
 	public double getMaximumPrice() {
 		return this.maximumPrice;
 	}
@@ -120,6 +123,23 @@ public class FixUpTask extends DomainEntity {
 
 	public void setCategory(final Category category) {
 		this.category = category;
+	}
+	@OneToMany
+	public Collection<Complaint> getComplaint() {
+		return this.complaint;
+	}
+
+	public void setComplaint(final Collection<Complaint> complaint) {
+		this.complaint = complaint;
+	}
+
+	@OneToMany
+	public Collection<Application> getApplication() {
+		return this.application;
+	}
+
+	public void setApplication(final Collection<Application> application) {
+		this.application = application;
 	}
 
 }

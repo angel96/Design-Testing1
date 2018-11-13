@@ -8,9 +8,9 @@ import javax.persistence.AccessType;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Digits;
 
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -19,12 +19,13 @@ import org.hibernate.validator.constraints.NotBlank;
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Application extends DomainEntity {
 
-	private Date		moment;
-	private double		offeredPrice;
-	private String		comments;
-	private String		status;
-	private FixUpTask	fixUpTask;
+	private Date	moment;
+	private double	offeredPrice;
+	private String	comments;
+	private String	status;
 
+
+	//private FixUpTask	fixUpTask;
 
 	@Temporal(TemporalType.DATE)
 	public Date getMoment() {
@@ -34,7 +35,7 @@ public class Application extends DomainEntity {
 	public void setMoment(final Date moment) {
 		this.moment = moment;
 	}
-
+	@Digits(integer = 3, fraction = 2)
 	public double getOfferedPrice() {
 		return this.offeredPrice;
 	}
@@ -58,12 +59,16 @@ public class Application extends DomainEntity {
 	public void setStatus(final String status) {
 		this.status = status;
 	}
-	@OneToOne
-	public FixUpTask getFixUpTask() {
-		return this.fixUpTask;
-	}
 
-	public void setFixUpTask(final FixUpTask fixUpTask) {
-		this.fixUpTask = fixUpTask;
-	}
+	/**
+	 * @NotNull
+	 * @OneToOne
+	 *           public FixUpTask getFixUpTask() {
+	 *           return this.fixUpTask;
+	 *           }
+	 * 
+	 *           public void setFixUpTask(final FixUpTask fixUpTask) {
+	 *           this.fixUpTask = fixUpTask;
+	 *           }
+	 **/
 }
