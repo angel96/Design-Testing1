@@ -8,6 +8,7 @@ import javax.persistence.AccessType;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Digits;
@@ -19,13 +20,14 @@ import org.hibernate.validator.constraints.NotBlank;
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Application extends DomainEntity {
 
-	private Date	moment;
-	private double	offeredPrice;
-	private String	comments;
-	private String	status;
+	private Date		moment;
+	private double		offeredPrice;
+	private String		comments;
+	private String		status;
+	private FixUpTask	fixUpTask;
+	private Date		momentElapsed;
+	private boolean		elapsed;
 
-
-	//private FixUpTask	fixUpTask;
 
 	@Temporal(TemporalType.DATE)
 	public Date getMoment() {
@@ -60,15 +62,30 @@ public class Application extends DomainEntity {
 		this.status = status;
 	}
 
-	/**
-	 * @NotNull
-	 * @OneToOne
-	 *           public FixUpTask getFixUpTask() {
-	 *           return this.fixUpTask;
-	 *           }
-	 * 
-	 *           public void setFixUpTask(final FixUpTask fixUpTask) {
-	 *           this.fixUpTask = fixUpTask;
-	 *           }
-	 **/
+	@ManyToOne(optional = false)
+	public FixUpTask getFixUpTask() {
+		return this.fixUpTask;
+	}
+
+	public void setFixUpTask(final FixUpTask fixUpTask) {
+		this.fixUpTask = fixUpTask;
+	}
+
+	@Temporal(TemporalType.DATE)
+	public Date getMomentElapsed() {
+		return this.momentElapsed;
+	}
+
+	public void setMomentElapsed(final Date momentElapsed) {
+		this.momentElapsed = momentElapsed;
+	}
+
+	public boolean isElapsed() {
+		return this.elapsed;
+	}
+
+	public void setElapsed(final boolean elapsed) {
+		this.elapsed = elapsed;
+	}
+
 }

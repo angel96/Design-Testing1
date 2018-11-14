@@ -326,8 +326,6 @@
 	</bean>
 	<!-- Boxes Beans -->
 	<bean id="box1" class="domain.Box">
-		<!-- private String name; private boolean fromSystem; private Collection<Message> 
-			message; -->
 		<property name="name" value="entry" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
@@ -367,13 +365,22 @@
 	<bean id="application1" class="domain.Application">
 		<property name="moment">
 			<bean factory-bean="dateFormat" factory-method="parse">
-				<constructor-arg value="2018/12/13" />
+				<constructor-arg value="2018/11/13" />
 			</bean>
 		</property>
 		<property name="offeredPrice" value="14.0" />
 		<property name="comments" value="Screen was broken by a fall" />
 		<property name="status" value="accepted" />
-		<!-- <property name="fixUpTask"> <ref bean="fixuptask1"/> </property> -->
+		<property name="momentElapsed">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/12/14" />
+			</bean>
+		</property>
+
+		<property name="fixUpTask">
+			<ref bean="fixuptask1" />
+		</property>
+		<property name="elapsed" value="false" />
 	</bean>
 	<bean id="application2" class="domain.Application">
 		<property name="moment">
@@ -384,7 +391,15 @@
 		<property name="offeredPrice" value="19.0" />
 		<property name="comments" value="Screen was broken by water" />
 		<property name="status" value="in progress" />
-		<!-- <property name="fixUpTask"> <ref bean="fixuptask2"/> </property> -->
+		<property name="momentElapsed">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/12/28" />
+			</bean>
+		</property>
+		<property name="fixUpTask">
+			<ref bean="fixuptask2" />
+		</property>
+		<property name="elapsed" value="false" />
 	</bean>
 	<bean id="application3" class="domain.Application">
 		<property name="moment">
@@ -395,6 +410,15 @@
 		<property name="offeredPrice" value="25.0" />
 		<property name="comments" value="Screen was shining" />
 		<property name="status" value="rejected" />
+		<property name="momentElapsed">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/12/28" />
+			</bean>
+		</property>
+		<property name="fixUpTask">
+			<ref bean="fixuptask3" />
+		</property>
+		<property name="elapsed" value="false" />
 	</bean>
 	<bean id="application4" class="domain.Application">
 		<property name="moment">
@@ -405,7 +429,16 @@
 		<property name="offeredPrice" value="50.0" />
 		<property name="comments" value="Screen was broken by a fall..." />
 		<property name="status" value="accepted" />
-		<!-- <property name="fixUpTask"> <ref bean="fixuptask1"/> </property> -->
+		<property name="momentElapsed">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/12/27" />
+			</bean>
+		</property>
+		
+		<property name="fixUpTask">
+			<ref bean="fixuptask1" />
+		</property>
+		<property name="elapsed" value="false" />
 	</bean>
 	<bean id="application5" class="domain.Application">
 		<property name="moment">
@@ -416,6 +449,15 @@
 		<property name="offeredPrice" value="50.0" />
 		<property name="comments" value="Screen was broken by a fall..." />
 		<property name="status" value="accepted" />
+		<property name="momentElapsed">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/12/25" />
+			</bean>
+		</property>
+		<property name="fixUpTask">
+			<ref bean="fixuptask1" />
+		</property>
+		<property name = "elapsed" value = "false" />
 	</bean>
 	<!-- HandyWorker Beans -->
 	<bean id="handyworker1" class="domain.HandyWorker">
@@ -453,6 +495,44 @@
 			<list>
 				<ref bean="phase1"></ref>
 				<ref bean="phase2"></ref>
+			</list>
+		</property>
+	</bean>
+	<bean id="handyworker2" class="domain.HandyWorker">
+		<property name="name" value="handyworker2" />
+		<property name="middleName" value="handyworker1Middle" />
+		<property name="surname" value="handyworker1Surname" />
+		<property name="photo" value="https://www.photohandyworker.com" />
+		<property name="email" value="hw2@us.es" />
+		<property name="phone" value="953152639" />
+		<property name="adress" value="C/Canal" />
+
+		<property name="score" value="6.0" />
+		<property name="account">
+			<ref bean="userAccount1" />
+		</property>
+		<property name="profiles">
+			<list>
+				
+			</list>
+		</property>
+		<property name="message">
+			<list>
+
+			</list>
+		</property>
+		<property name="ban" value="false" />
+		<property name="application">
+			<list>
+				<ref bean="application3" />
+				<ref bean="application4" />
+				<ref bean="application5" />
+				
+			</list>
+		</property>
+		<property name="phase">
+			<list>
+				
 			</list>
 		</property>
 	</bean>
