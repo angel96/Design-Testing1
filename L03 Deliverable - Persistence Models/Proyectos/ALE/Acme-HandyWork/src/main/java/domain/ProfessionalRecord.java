@@ -10,6 +10,8 @@ import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.URL;
@@ -35,7 +37,7 @@ public class ProfessionalRecord extends DomainEntity {
 	public void setCompanyName(final String companyName) {
 		this.companyName = companyName;
 	}
-
+	@Temporal(TemporalType.DATE)
 	public Date getStartWorking() {
 		return this.startWorking;
 	}
@@ -43,7 +45,7 @@ public class ProfessionalRecord extends DomainEntity {
 	public void setStartWorking(final Date startWorking) {
 		this.startWorking = startWorking;
 	}
-
+	@Temporal(TemporalType.DATE)
 	public Date getEndWorking() {
 		return this.endWorking;
 	}

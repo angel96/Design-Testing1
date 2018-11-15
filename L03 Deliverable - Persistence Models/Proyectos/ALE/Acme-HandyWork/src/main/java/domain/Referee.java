@@ -19,8 +19,7 @@ public class Referee extends Actor {
 	private Collection<Note>	notes;
 
 
-	@OneToMany
-	//(mappedBy = "referee")
+	@OneToMany(mappedBy = "referee")
 	public Collection<Report> getReports() {
 		return this.reports;
 	}

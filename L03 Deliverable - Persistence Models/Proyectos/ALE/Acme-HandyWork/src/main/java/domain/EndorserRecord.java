@@ -9,6 +9,7 @@ import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
@@ -21,7 +22,7 @@ public class EndorserRecord extends DomainEntity {
 
 	private String				fullNameEndorser;
 	private String				email;
-	private Integer				phone;
+	private String				phone;
 	private String				linkedin;
 	private Collection<String>	comments;
 
@@ -36,10 +37,6 @@ public class EndorserRecord extends DomainEntity {
 	}
 	@NotBlank
 	@Email
-	//	@Pattern.List({
-	//		@Pattern(regexp = "^[a-zA-Z0-9_!#$%&’*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$"), @Pattern(regexp = "^[\\w\\s]+<[a-zA-Z0-9_!#$%&`+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+>$"), @Pattern(regexp = "^[0-9a-zA-Z]([-.\\\\w]*[0-9a-zA-Z])+@$"),
-	//		@Pattern(regexp = "[\\w\\s]+<[a-zA-Z0-9_!#$%&’*+/=?`{|}~^.-]+@>$")
-	//	})
 	public String getEmail() {
 		return this.email;
 	}
@@ -48,15 +45,12 @@ public class EndorserRecord extends DomainEntity {
 		this.email = email;
 	}
 
-	//	@Pattern.List({
-	//		@Pattern(regexp = "^\\+([1-9]|[1-9][0-9]|[1-9][0-9][0-9])\\s(\\(([1-9]|[1-9][0-9]|[1-9]|[1-9][1-9]\"{2}|9[0-8][0-9]|99[0-9]))\\)\\s\\d{4,9}$"), @Pattern(regexp = "^\\+([1-9]|[1-9][0-9]|[1-9][0-9][0-9])\\s\\d{4,9}$"),
-	//		@Pattern(regexp = "^\\d{4,9}$")
-	//	})
-	public Integer getPhone() {
+	@Pattern(regexp = "^(\\+([1-9]|[1-9][0-9]|[1-9][0-9][0-9])\\s\\(([1-9]|[1-9][0-9]|[1-9][0-9][0-9])\\)\\s\\d{4,9})|(\\+([1-9]|[1-9][0-9]|[1-9][0-9][0-9])\\s\\d{4,9})|(\\d{4,9})$")
+	public String getPhone() {
 		return this.phone;
 	}
 
-	public void setPhone(final Integer phone) {
+	public void setPhone(final String phone) {
 		this.phone = phone;
 	}
 	@NotBlank

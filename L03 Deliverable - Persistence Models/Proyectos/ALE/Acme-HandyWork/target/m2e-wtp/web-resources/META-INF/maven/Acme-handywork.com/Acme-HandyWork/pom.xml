@@ -244,7 +244,13 @@
 			<artifactId>hibernate-c3p0</artifactId>
 			<version>4.2.3.Final</version>
 		</dependency>
-
+		<!-- L03 A+ -->
+		<dependency>
+    		<groupId>org.hibernate</groupId>
+    		<artifactId>hibernate-search</artifactId>
+    		<version>5.0.1.Final</version>
+		</dependency>
+		
 		<!-- Javax -->
 
 		<dependency>
@@ -311,7 +317,8 @@
 			<artifactId>aspectjweaver</artifactId>
 			<version>1.7.4</version>
 		</dependency>
-		<!-- Gson, for A+ -->
+		
+		<!-- L02 A+ -->
 		<dependency>
   			<groupId>com.google.code.gson</groupId>
   			<artifactId>gson</artifactId>

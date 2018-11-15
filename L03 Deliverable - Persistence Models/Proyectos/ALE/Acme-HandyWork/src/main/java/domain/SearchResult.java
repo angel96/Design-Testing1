@@ -10,6 +10,8 @@ import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.OneToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 @Access(AccessType.PROPERTY)
@@ -29,7 +31,7 @@ public class SearchResult extends DomainEntity {
 	public void setFixuptask(final Collection<FixUpTask> fixuptask) {
 		this.fixUpTask = fixuptask;
 	}
-
+	@Temporal(TemporalType.DATE)
 	public Date getSearchStart() {
 		return this.searchStart;
 	}
@@ -37,7 +39,7 @@ public class SearchResult extends DomainEntity {
 	public void setSearchStart(final Date searchStart) {
 		this.searchStart = searchStart;
 	}
-
+	@Temporal(TemporalType.DATE)
 	public Date getSearchEnd() {
 		return this.searchEnd;
 	}

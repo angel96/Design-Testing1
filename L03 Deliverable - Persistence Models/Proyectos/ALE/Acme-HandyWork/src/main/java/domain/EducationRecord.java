@@ -10,6 +10,8 @@ import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.URL;
@@ -35,6 +37,7 @@ public class EducationRecord extends DomainEntity {
 	public void setDiplomaTitle(final String diplomaTitle) {
 		this.diplomaTitle = diplomaTitle;
 	}
+	@Temporal(TemporalType.DATE)
 	public Date getStartStudies() {
 		return this.startStudies;
 	}
@@ -42,7 +45,7 @@ public class EducationRecord extends DomainEntity {
 	public void setStartStudies(final Date startStudies) {
 		this.startStudies = startStudies;
 	}
-
+	@Temporal(TemporalType.DATE)
 	public Date getEndStudies() {
 		return this.endStudies;
 	}

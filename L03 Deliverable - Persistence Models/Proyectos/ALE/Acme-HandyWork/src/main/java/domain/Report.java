@@ -13,6 +13,8 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -37,7 +39,7 @@ public class Report extends DomainEntity {
 	public void setComplaints(final Complaint complaints) {
 		this.complaints = complaints;
 	}
-
+	@Temporal(TemporalType.DATE)
 	public Date getMoment() {
 		return this.moment;
 	}
@@ -53,7 +55,7 @@ public class Report extends DomainEntity {
 	public void setDescription(final String description) {
 		this.description = description;
 	}
-	//	@URL
+
 	@ElementCollection
 	public Collection<String> getAttachments() {
 		return this.attachments;

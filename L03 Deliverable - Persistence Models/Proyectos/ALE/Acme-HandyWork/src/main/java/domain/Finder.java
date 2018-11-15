@@ -46,7 +46,7 @@ public class Finder extends DomainEntity {
 	public void setWarranty(final String warranty) {
 		this.warranty = warranty;
 	}
-	//	@Range(min = 0, max = 200)
+
 	public Integer[] getRangeOfPrices() {
 		return this.rangeOfPrices;
 	}

@@ -10,6 +10,8 @@ import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -23,6 +25,7 @@ public class Note extends DomainEntity {
 	private Collection<String>	otherComments;
 
 
+	@Temporal(TemporalType.DATE)
 	public Date getMoment() {
 		return this.moment;
 	}
