@@ -96,11 +96,95 @@
 		<property name="isGood" value="true" />
 	</bean>
 	<bean id="word2" class="domain.Word">
+		<property name="word" value="fantastic" />
+		<property name="isGood" value="true" />
+	</bean>
+	<bean id="word3" class="domain.Word">
+		<property name="word" value="excellent" />
+		<property name="isGood" value="true" />
+	</bean>
+	<bean id="word4" class="domain.Word">
+		<property name="word" value="great" />
+		<property name="isGood" value="true" />
+	</bean>
+	<bean id="word5" class="domain.Word">
+		<property name="word" value="amazing" />
+		<property name="isGood" value="true" />
+	</bean>
+	<bean id="word6" class="domain.Word">
+		<property name="word" value="terrific" />
+		<property name="isGood" value="true" />
+	</bean>
+	<bean id="word7" class="domain.Word">
+		<property name="word" value="beatiful" />
+		<property name="isGood" value="true" />
+	</bean>
+	<bean id="word8" class="domain.Word">
+		<property name="word" value="bueno" />
+		<property name="isGood" value="true" />
+	</bean>
+	<bean id="word9" class="domain.Word">
+		<property name="word" value="fantastico" />
+		<property name="isGood" value="true" />
+	</bean>
+	<bean id="word10" class="domain.Word">
+		<property name="word" value="excelente" />
+		<property name="isGood" value="true" />
+	</bean>
+	<bean id="word11" class="domain.Word">
+		<property name="word" value="genial" />
+		<property name="isGood" value="true" />
+	</bean>
+	<bean id="word12" class="domain.Word">
+		<property name="word" value="asombroso" />
+		<property name="isGood" value="true" />
+	</bean>
+	<bean id="word13" class="domain.Word">
+		<property name="word" value="estupendo" />
+		<property name="isGood" value="true" />
+	</bean>
+	<bean id="word14" class="domain.Word">
+		<property name="word" value="bonito" />
+		<property name="isGood" value="true" />
+	</bean>
+	<bean id="word15" class="domain.Word">
+		<property name="word" value="not" />
+		<property name="isGood" value="false" />
+	</bean>
+	<bean id="word16" class="domain.Word">
 		<property name="word" value="bad" />
 		<property name="isGood" value="false" />
 	</bean>
-	<bean id="word3" class="domain.Word">
+	<bean id="word17" class="domain.Word">
+		<property name="word" value="horrible" />
+		<property name="isGood" value="false" />
+	</bean>
+	<bean id="word18" class="domain.Word">
 		<property name="word" value="average" />
+		<property name="isGood" value="false"/>
+	</bean>
+	<bean id="word19" class="domain.Word">
+		<property name="word" value="disaster" />
+		<property name="isGood" value="false" />
+	</bean>
+	<bean id="word20" class="domain.Word">
+		<property name="word" value="no" />
+		<property name="isGood" value="false" />
+	</bean>
+	<bean id="word21" class="domain.Word">
+		<property name="word" value="malo" />
+		<property name="isGood" value="false" />
+	</bean>
+	<bean id="word22" class="domain.Word">
+		<property name="word" value="horible" />
+		<property name="isGood" value="false" />
+	</bean>
+	<bean id="word23" class="domain.Word">
+		<property name="word" value="media" />
+		<property name="isGood" value="false" />
+	</bean>
+	<bean id="word24" class="domain.Word">
+		<property name="word" value="desstre" />
 		<property name="isGood" value="false" />
 	</bean>
 
@@ -1015,29 +1099,152 @@
 		<property name="name" value="Carprenty" />
 		<property name="categories">
 			<list>
-				<value>Not synchronized</value>
-				<value>Reforce Security</value>
 			</list>
 		</property>
 	</bean>
 	<bean id="category2" class="domain.Category">
-		<property name="name" value="Lamp repairs" />
+		<property name="name" value="Ceiling repairs" />
 		<property name="categories">
 			<list>
-				<value>Change lights</value>
 			</list>
 		</property>
 
 	</bean>
 	<bean id="category3" class="domain.Category">
-		<property name="name" value="Painting" />
+		<property name="name" value="Cleaning" />
 		<property name="categories">
 			<list>
-				<value>Outside</value>
-				<value>Inside</value>
 			</list>
 		</property>
 	</bean>
+	<bean id="category4" class="domain.Category">
+		<property name="name" value="Concrete Work" />
+		<property name="categories">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="category5" class="domain.Category">
+		<property name="name" value="Doors" />
+		<property name="categories">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="category6" class="domain.Category">
+		<property name="name" value="Electrical wiring" />
+		<property name="categories">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="category7" class="domain.Category">
+		<property name="name" value="Fan installation" />
+		<property name="categories">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="category8" class="domain.Category">
+		<property name="name" value="Fence Fixing" />
+		<property name="categories">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="category9" class="domain.Category">
+		<property name="name" value="Home security systems" />
+		<property name="categories">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="category10" class="domain.Category">
+		<property name="name" value="Insulation installation" />
+		<property name="categories">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="category11" class="domain.Category">
+		<property name="name" value="Lamp repairs" />
+		<property name="categories">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="category12" class="domain.Category">
+		<property name="name" value="Moving" />
+		<property name="categories">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="category13" class="domain.Category">
+		<property name="name" value="Painting" />
+		<property name="categories">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="category14" class="domain.Category">
+		<property name="name" value="Pest control" />
+		<property name="categories">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="category15" class="domain.Category">
+		<property name="name" value="Plumbing repairs" />
+		<property name="categories">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="category16" class="domain.Category">
+		<property name="name" value="Roofing" />
+		<property name="categories">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="category17" class="domain.Category">
+		<property name="name" value="Shelf installation" />
+		<property name="categories">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="category18" class="domain.Category">
+		<property name="name" value="Solar panels" />
+		<property name="categories">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="category19" class="domain.Category">
+		<property name="name" value="Soundproofing" />
+		<property name="categories">
+			<list>
+			</list>
+		</property>
+	</bean>
+		<bean id="category20" class="domain.Category">
+		<property name="name" value="Sprinkler repair" />
+		<property name="categories">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+		<bean id="category21" class="domain.Category">
+		<property name="name" value="Window repair" />
+		<property name="categories">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
 	<!-- FixUp Tasks - Beans -->
 	<bean id="fixuptask1" class="domain.FixUpTask">
 		<property name="ticker" value="20181108-A32569" />
@@ -1074,8 +1281,7 @@
 		<property name="complaint">
 			<list>
 				<ref bean="complaint1" />
-				<ref bean="complaint8" />
-				
+				<ref bean="complaint8" />				
 			</list>
 		</property>
 		<property name="application">
