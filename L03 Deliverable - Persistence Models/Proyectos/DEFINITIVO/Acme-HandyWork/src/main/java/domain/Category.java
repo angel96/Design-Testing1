@@ -3,15 +3,22 @@ package domain;
 
 import java.util.Collection;
 
+import javax.persistence.Access;
+import javax.persistence.AccessType;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 
 import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
+@Access(AccessType.PROPERTY)
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Category extends DomainEntity {
 
-	private String					name;
-	private Collection<Category>	categories;
+	private String				name;
+	private Collection<String>	categories;
 
 
 	@NotBlank
@@ -23,12 +30,12 @@ public class Category extends DomainEntity {
 		this.name = name;
 	}
 
-	@NotBlank
-	public Collection<Category> getCategories() {
+	@ElementCollection
+	public Collection<String> getCategories() {
 		return this.categories;
 	}
 
-	public void setCategories(final Collection<Category> categories) {
+	public void setCategories(final Collection<String> categories) {
 		this.categories = categories;
 	}
 

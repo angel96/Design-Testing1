@@ -14,30 +14,37 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Digits;
 import javax.validation.constraints.Pattern;
 
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Indexed;
 import org.hibernate.validator.constraints.NotBlank;
 
+@Indexed
 @Entity
 @Access(AccessType.PROPERTY)
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class FixUpTask extends DomainEntity {
 
-	private String				ticker;
-	private Date				moment;
-	private String				descrition;
-	private String				adress;
-	private double				maximumPrice;
-	private Date				start;
-	private Date				end;
-	private Collection<Phase>	phases;
-	private Warranty			warranty;
-	private Category			category;
+	private String					ticker;
+	private Date					moment;
+	private String					description;
+	private String					address;
+	private double					maximumPrice;
+	private Date					start;
+	private Date					end;
+	private Collection<Phase>		phases;
+	private Warranty				warranty;
+	private Category				category;
+	private Collection<Complaint>	complaint;
+	private Collection<Application>	application;
 
 
 	@NotBlank
 	@Column(unique = true)
 	@Pattern(regexp = "^\\d{4}(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])-[\\w]{6}$")
+	@Field
 	public String getTicker() {
 		return this.ticker;
 	}
@@ -55,22 +62,24 @@ public class FixUpTask extends DomainEntity {
 		this.moment = moment;
 	}
 	@NotBlank
-	public String getDescrition() {
-		return this.descrition;
+	@Field
+	public String getDescription() {
+		return this.description;
 	}
 
-	public void setDescrition(final String descrition) {
-		this.descrition = descrition;
+	public void setDescription(final String description) {
+		this.description = description;
 	}
 	@NotBlank
-	public String getAdress() {
-		return this.adress;
+	@Field
+	public String getAddress() {
+		return this.address;
 	}
 
-	public void setAdress(final String adress) {
-		this.adress = adress;
+	public void setAddress(final String address) {
+		this.address = address;
 	}
-
+	@Digits(integer = 3, fraction = 2)
 	public double getMaximumPrice() {
 		return this.maximumPrice;
 	}
@@ -120,6 +129,23 @@ public class FixUpTask extends DomainEntity {
 
 	public void setCategory(final Category category) {
 		this.category = category;
+	}
+	@OneToMany
+	public Collection<Complaint> getComplaint() {
+		return this.complaint;
+	}
+
+	public void setComplaint(final Collection<Complaint> complaint) {
+		this.complaint = complaint;
+	}
+
+	@OneToMany(mappedBy = "fixUpTask")
+	public Collection<Application> getApplication() {
+		return this.application;
+	}
+
+	public void setApplication(final Collection<Application> application) {
+		this.application = application;
 	}
 
 }

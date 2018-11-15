@@ -3,11 +3,21 @@ package domain;
 
 import java.util.Date;
 
+import javax.persistence.Access;
+import javax.persistence.AccessType;
 import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
+@Access(AccessType.PROPERTY)
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Phase extends DomainEntity {
 
 	private String	title;
@@ -17,7 +27,7 @@ public class Phase extends DomainEntity {
 	private int		number;
 
 
-	@NotBlank
+	@Min(1)
 	public int getNumber() {
 		return this.number;
 	}
@@ -42,7 +52,8 @@ public class Phase extends DomainEntity {
 	public void setDescription(final String description) {
 		this.description = description;
 	}
-	@NotBlank
+	@NotNull
+	@Temporal(TemporalType.DATE)
 	public Date getStartMoment() {
 		return this.startMoment;
 	}
@@ -50,7 +61,8 @@ public class Phase extends DomainEntity {
 	public void setStartMoment(final Date startMoment) {
 		this.startMoment = startMoment;
 	}
-	@NotBlank
+	@NotNull
+	@Temporal(TemporalType.DATE)
 	public Date getEndMoment() {
 		return this.endMoment;
 	}

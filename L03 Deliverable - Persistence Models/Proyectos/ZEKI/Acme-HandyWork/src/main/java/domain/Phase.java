@@ -10,6 +10,7 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
@@ -26,6 +27,7 @@ public class Phase extends DomainEntity {
 	private int		number;
 
 
+	@Min(1)
 	public int getNumber() {
 		return this.number;
 	}

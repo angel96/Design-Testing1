@@ -1,23 +1,28 @@
 
 package domain;
 
+import javax.persistence.Access;
+import javax.persistence.AccessType;
 import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.ManyToOne;
 
-import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.URL;
 
 @Entity
+@Access(AccessType.PROPERTY)
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Sponsorship extends DomainEntity {
 
 	private String		urlBanner;
-	private String		linktpage;
+	private String		linkTPage;
 	private CreditCard	creditCard;
+	private Sponsor		sponsor;
 	private Tutorial	tutorial;
-	private Sponsorship	sponsorship;
 
 
 	@URL
-	@NotBlank
 	public String getUrlBanner() {
 		return this.urlBanner;
 	}
@@ -25,24 +30,25 @@ public class Sponsorship extends DomainEntity {
 	public void setUrlBanner(final String urlBanner) {
 		this.urlBanner = urlBanner;
 	}
+
 	@URL
-	@NotBlank
-	public String getLinktpage() {
-		return this.linktpage;
+	public String getLinkTPage() {
+		return this.linkTPage;
+	}
+	public void setLinkTPage(final String linkTPage) {
+		this.linkTPage = linkTPage;
 	}
 
-	public void setLinktpage(final String linktpage) {
-		this.linktpage = linktpage;
+	@ManyToOne(optional = false)
+	public Sponsor getSponsor() {
+		return this.sponsor;
 	}
 
-	public CreditCard getCreditCard() {
-		return this.creditCard;
+	public void setSponsor(final Sponsor sponsor) {
+		this.sponsor = sponsor;
 	}
 
-	public void setCreditCard(final CreditCard creditCard) {
-		this.creditCard = creditCard;
-	}
-
+	@ManyToOne(optional = false)
 	public Tutorial getTutorial() {
 		return this.tutorial;
 	}
@@ -51,12 +57,12 @@ public class Sponsorship extends DomainEntity {
 		this.tutorial = tutorial;
 	}
 
-	public Sponsorship getSponsorship() {
-		return this.sponsorship;
+	public CreditCard getCreditCard() {
+		return this.creditCard;
 	}
 
-	public void setSponsorship(final Sponsorship sponsorship) {
-		this.sponsorship = sponsorship;
+	public void setCreditCard(final CreditCard creditCard) {
+		this.creditCard = creditCard;
 	}
 
 }

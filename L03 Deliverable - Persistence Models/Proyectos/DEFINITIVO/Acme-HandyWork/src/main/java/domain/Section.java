@@ -3,26 +3,31 @@ package domain;
 
 import java.util.Collection;
 
+import javax.persistence.Access;
+import javax.persistence.AccessType;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.validation.constraints.Min;
 
 import org.hibernate.validator.constraints.NotBlank;
-import org.hibernate.validator.constraints.URL;
 
 @Entity
+@Access(AccessType.PROPERTY)
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Section extends DomainEntity {
 
 	private String				title;
 	private String				text;
-	private Integer				code;
-	private Collection<String>	pictures;
-	private int					number;
+	private Collection<String>	picture;
+	private Integer				number;
 
 
 	@NotBlank
 	public String getTitle() {
 		return this.title;
 	}
-
 	public void setTitle(final String title) {
 		this.title = title;
 	}
@@ -30,32 +35,22 @@ public class Section extends DomainEntity {
 	public String getText() {
 		return this.text;
 	}
-
 	public void setText(final String text) {
 		this.text = text;
 	}
-	@NotBlank
-	public Integer getCode() {
-		return this.code;
-	}
 
-	public void setCode(final Integer code) {
-		this.code = code;
+	@ElementCollection
+	public Collection<String> getPicture() {
+		return this.picture;
 	}
-	@URL
-	public Collection<String> getPictures() {
-		return this.pictures;
+	public void setPicture(final Collection<String> picture) {
+		this.picture = picture;
 	}
-
-	public void setPictures(final Collection<String> pictures) {
-		this.pictures = pictures;
-	}
-
-	public int getNumber() {
+	@Min(1)
+	public Integer getNumber() {
 		return this.number;
 	}
-
-	public void setNumber(final int number) {
+	public void setNumber(final Integer number) {
 		this.number = number;
 	}
 

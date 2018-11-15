@@ -3,15 +3,24 @@ package domain;
 
 import java.util.Collection;
 
+import javax.persistence.Access;
+import javax.persistence.AccessType;
 import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.Pattern;
 
-import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.URL;
 
+import security.UserAccount;
+
 @Entity
-public class Actor extends DomainEntity {
+@Access(AccessType.PROPERTY)
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+public abstract class Actor extends DomainEntity {
 
 	private String				name;
 	private String				middleName;
@@ -21,6 +30,7 @@ public class Actor extends DomainEntity {
 	private String				phone;
 	private String				adress;
 	private Integer				numberProfiles;
+	private UserAccount			account;
 	private Collection<Profile>	profiles;
 	private Collection<Message>	message;
 	private boolean				ban;
@@ -34,7 +44,7 @@ public class Actor extends DomainEntity {
 	public void setName(final String name) {
 		this.name = name;
 	}
-	@NotBlank
+
 	public String getMiddleName() {
 		return this.middleName;
 	}
@@ -60,11 +70,7 @@ public class Actor extends DomainEntity {
 		this.photo = photo;
 	}
 	@NotBlank
-	@Email
-	@Pattern.List({
-		@Pattern(regexp = "^[a-zA-Z0-9_!#$%&’*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$"), @Pattern(regexp = "^[\\w\\s]+<[a-zA-Z0-9_!#$%&*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+>$"), @Pattern(regexp = "^[0-9a-zA-Z]([-.\\\\w]*[0-9a-zA-Z])+@$"),
-		@Pattern(regexp = "[\\w\\s]+<[a-zA-Z0-9_!#$%&’*+/=?`{|}~^.-]+@>$")
-	})
+	@Pattern(regexp = "^([a-zA-Z0-9_!#$%&’*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+)|([\\w\\s]+<[a-zA-Z0-9_!#$%&*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+>+)|([0-9a-zA-Z]([-.\\\\w]*[0-9a-zA-Z])+@+(?=\\?))|([\\w\\s]+<[a-zA-Z0-9_!#$%&’*+/=?`{|}~^.-]+@+>)$")
 	public String getEmail() {
 		return this.email;
 	}
@@ -72,10 +78,8 @@ public class Actor extends DomainEntity {
 	public void setEmail(final String email) {
 		this.email = email;
 	}
-	@Pattern.List({
-		@Pattern(regexp = "^\\+([1-9]|[1-9][0-9]|[1-9][0-9][0-9])\\s(\\(([1-9]|[1-9][0-9]|[1-9]|[1-9][1-9]\"{2}|9[0-8][0-9]|99[0-9]))\\)\\s\\d{4,9}$"), @Pattern(regexp = "^\\+([1-9]|[1-9][0-9]|[1-9][0-9][0-9])\\s\\d{4,9}$"),
-		@Pattern(regexp = "^\\d{4,9}$")
-	})
+
+	@Pattern(regexp = "^(\\+([1-9]|[1-9][0-9]|[1-9][0-9][0-9])\\s\\(([1-9]|[1-9][0-9]|[1-9][0-9][0-9])\\)\\s\\d{4,9})|(\\+([1-9]|[1-9][0-9]|[1-9][0-9][0-9])\\s\\d{4,9})|(\\d{4,9})$")
 	public String getPhone() {
 		return this.phone;
 	}
@@ -84,13 +88,7 @@ public class Actor extends DomainEntity {
 		this.phone = phone;
 	}
 
-	public Integer getNumberProfiles() {
-		return this.numberProfiles;
-	}
-
-	public void setNumberProfiles(final Integer numberProfiles) {
-		this.numberProfiles = numberProfiles;
-	}
+	@OneToMany
 	public Collection<Profile> getProfiles() {
 		return this.profiles;
 	}
@@ -106,7 +104,7 @@ public class Actor extends DomainEntity {
 	public void setAdress(final String adress) {
 		this.adress = adress;
 	}
-
+	@OneToMany
 	public Collection<Message> getMessage() {
 		return this.message;
 	}
@@ -115,7 +113,6 @@ public class Actor extends DomainEntity {
 		this.message = message;
 	}
 
-	@NotBlank
 	public boolean isBan() {
 		return this.ban;
 	}
@@ -123,9 +120,18 @@ public class Actor extends DomainEntity {
 	public void setBan(final boolean ban) {
 		this.ban = ban;
 	}
+	@OneToOne
+	public UserAccount getAccount() {
+		return this.account;
+	}
+
+	public void setAccount(final UserAccount account) {
+		this.account = account;
+	}
 
 	@Override
 	public String toString() {
 		return "Actor [name=" + this.name + ", middleName=" + this.middleName + ", surname=" + this.surname + ", photo=" + this.photo + ", email=" + this.email + ", phone=" + this.phone + ", numberProfiles=" + this.numberProfiles + "]";
 	}
+
 }

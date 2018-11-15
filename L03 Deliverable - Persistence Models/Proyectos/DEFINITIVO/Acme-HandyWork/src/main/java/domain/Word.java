@@ -1,15 +1,21 @@
 
 package domain;
 
+import javax.persistence.Access;
+import javax.persistence.AccessType;
 import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 
 import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
+@Access(AccessType.PROPERTY)
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Word extends DomainEntity {
 
 	private String	word;
-	private Boolean	isGood;
+	private boolean	isGood;
 
 
 	@NotBlank
@@ -20,12 +26,12 @@ public class Word extends DomainEntity {
 	public void setWord(final String word) {
 		this.word = word;
 	}
-	@NotBlank
-	public Boolean getIsGood() {
+
+	public boolean getIsGood() {
 		return this.isGood;
 	}
 
-	public void setIsGood(final Boolean isGood) {
+	public void setIsGood(final boolean isGood) {
 		this.isGood = isGood;
 	}
 }

@@ -44,7 +44,7 @@ public abstract class Actor extends DomainEntity {
 	public void setName(final String name) {
 		this.name = name;
 	}
-	@NotBlank
+
 	public String getMiddleName() {
 		return this.middleName;
 	}
@@ -88,13 +88,6 @@ public abstract class Actor extends DomainEntity {
 		this.phone = phone;
 	}
 
-	public Integer getNumberProfiles() {
-		return this.numberProfiles;
-	}
-
-	public void setNumberProfiles(final Integer numberProfiles) {
-		this.numberProfiles = numberProfiles;
-	}
 	@OneToMany
 	public Collection<Profile> getProfiles() {
 		return this.profiles;

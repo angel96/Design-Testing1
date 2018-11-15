@@ -3,11 +3,21 @@ package domain;
 
 import java.util.Date;
 
+import javax.persistence.Access;
+import javax.persistence.AccessType;
 import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.ManyToOne;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.Digits;
 
 import org.hibernate.validator.constraints.NotBlank;
 
 @Entity
+@Access(AccessType.PROPERTY)
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Application extends DomainEntity {
 
 	private Date		moment;
@@ -15,9 +25,10 @@ public class Application extends DomainEntity {
 	private String		comments;
 	private String		status;
 	private FixUpTask	fixUpTask;
+	private Date		momentElapsed;
 
 
-	@NotBlank
+	@Temporal(TemporalType.DATE)
 	public Date getMoment() {
 		return this.moment;
 	}
@@ -25,7 +36,7 @@ public class Application extends DomainEntity {
 	public void setMoment(final Date moment) {
 		this.moment = moment;
 	}
-	@NotBlank
+	@Digits(integer = 3, fraction = 2)
 	public double getOfferedPrice() {
 		return this.offeredPrice;
 	}
@@ -50,6 +61,7 @@ public class Application extends DomainEntity {
 		this.status = status;
 	}
 
+	@ManyToOne(optional = false)
 	public FixUpTask getFixUpTask() {
 		return this.fixUpTask;
 	}
@@ -57,4 +69,14 @@ public class Application extends DomainEntity {
 	public void setFixUpTask(final FixUpTask fixUpTask) {
 		this.fixUpTask = fixUpTask;
 	}
+
+	@Temporal(TemporalType.DATE)
+	public Date getMomentElapsed() {
+		return this.momentElapsed;
+	}
+
+	public void setMomentElapsed(final Date momentElapsed) {
+		this.momentElapsed = momentElapsed;
+	}
+
 }

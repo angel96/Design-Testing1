@@ -3,13 +3,17 @@ package domain;
 
 import java.util.Date;
 
-import javax.persistence.Entity;
+import javax.persistence.Access;
+import javax.persistence.AccessType;
+import javax.persistence.Embeddable;
 
+import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.Range;
 
-@Entity
-public class CreditCard extends DomainEntity {
+@Embeddable
+@Access(AccessType.PROPERTY)
+public class CreditCard {
 
 	private String	holderName;
 	private String	brandName;
@@ -21,12 +25,12 @@ public class CreditCard extends DomainEntity {
 
 
 	@NotBlank
-	public String getHoldeName() {
+	public String getHolderName() {
 		return this.holderName;
 	}
 
-	public void setHoldeName(final String holdeName) {
-		this.holderName = holdeName;
+	public void setHolderName(final String holderName) {
+		this.holderName = holderName;
 	}
 	@NotBlank
 	public String getBrandName() {
@@ -36,7 +40,7 @@ public class CreditCard extends DomainEntity {
 	public void setBrandName(final String brandName) {
 		this.brandName = brandName;
 	}
-	@NotBlank
+	@Length(min = 1, max = 16)
 	public int getNumber() {
 		return this.number;
 	}

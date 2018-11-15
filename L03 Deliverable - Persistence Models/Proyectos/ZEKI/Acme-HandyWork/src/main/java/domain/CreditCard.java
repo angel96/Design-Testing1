@@ -7,6 +7,7 @@ import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Embeddable;
 
+import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.Range;
 
@@ -39,7 +40,7 @@ public class CreditCard {
 	public void setBrandName(final String brandName) {
 		this.brandName = brandName;
 	}
-	@NotBlank
+	@Length(min = 1, max = 16)
 	public int getNumber() {
 		return this.number;
 	}
