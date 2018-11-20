@@ -29,9 +29,7 @@ public class SectionService {
 	public Section findById(final int id) {
 		return this.sectionRepository.findOne(id);
 	}
-	public Collection<Section> findAllByTutorial(final int id) {
-		return null;
-	}
+
 	public Collection<String> findPicturesBySection(final int id) {
 		return this.findById(id).getPicture();
 	}
@@ -58,7 +56,7 @@ public class SectionService {
 		return result;
 	}
 	public Section updateSection(final int id, final Section n) {
-		Section update;
+		Section update, saved;
 
 		update = this.sectionRepository.findOne(id);
 		Assert.notNull(update);
@@ -66,11 +64,11 @@ public class SectionService {
 		update.setId(id);
 		update.setTitle(n.getText());
 		update.setText(n.getText());
-		update.setVersion(update.getVersion() + 1);
 		update.setNumber(n.getNumber());
 		update.setPicture(n.getPicture());
-
-		return this.sectionRepository.save(update);
+		saved = this.sectionRepository.save(update);
+		Assert.notNull(saved);
+		return saved;
 	}
 
 	public void deleteSection(final Section s) {

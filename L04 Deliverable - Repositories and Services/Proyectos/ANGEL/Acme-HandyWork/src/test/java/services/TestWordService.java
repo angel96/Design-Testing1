@@ -9,6 +9,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
+import utilities.AbstractTest;
 import domain.Word;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -16,7 +17,7 @@ import domain.Word;
 	"classpath:spring/datasource.xml", "classpath:spring/config/packages.xml"
 })
 @Transactional
-public class TestWordService {
+public class TestWordService extends AbstractTest {
 
 	@Autowired
 	private WordService	wordService;
@@ -36,11 +37,12 @@ public class TestWordService {
 	}
 	@Test
 	public void testCreateWord() {
-		Word w;
+		Word w, saved;
 		w = this.wordService.create();
 		w.setIsGood(true);
 		w.setWord("Vida");
-		Assert.notNull(this.wordService.addWord(w));
+		saved = this.wordService.addWord(w);
+		Assert.isTrue(this.wordService.getAll().contains(saved));
 	}
 	@Test
 	public void testDeleteWord() {

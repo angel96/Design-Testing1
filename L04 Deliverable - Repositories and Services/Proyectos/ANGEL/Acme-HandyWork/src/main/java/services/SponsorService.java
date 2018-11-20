@@ -26,12 +26,23 @@ public class SponsorService {
 		return this.sponsorRepository.findAll();
 	}
 
-	public Collection<Sponsorship> getSponsorshipsBySponsor(final int id) {
-		return this.sponsorRepository.getSponsorshipsBySponsor(id);
+	public Collection<Sponsorship> getSponsorshipsBySponsor(final Sponsor s) {
+		Collection<Sponsorship> result;
+		Assert.notNull(s);
+		result = this.sponsorRepository.getSponsorshipsBySponsor(s.getId());
+		Assert.isTrue(result.size() >= 0);
+		return result;
 	}
 
 	public Sponsor findById(final int id) {
 		return this.sponsorRepository.findOne(id);
+	}
+	public Sponsor findByUserAccount(final UserAccount userAccount) {
+		Sponsor s;
+		Assert.notNull(userAccount);
+		s = this.sponsorRepository.findByUserAccountId(userAccount.getId());
+		Assert.notNull(s);
+		return s;
 	}
 	public Sponsor create() {
 		Sponsor w;
@@ -71,18 +82,20 @@ public class SponsorService {
 	}
 
 	public Sponsor addSponsor(final Sponsor s) {
+		Sponsor result;
 		Assert.notNull(s);
-		return this.sponsorRepository.save(s);
+		result = this.sponsorRepository.save(s);
+		Assert.notNull(result);
+		return result;
 	}
 
 	public Sponsor updateSponsor(final int id, final Sponsor s) {
+
 		Sponsor update;
 		update = this.findById(id);
 		Assert.notNull(update);
-		final int version = update.getVersion();
-
+		Assert.notNull(s);
 		update.setId(id);
-		update.setVersion(version + 1);
 		update.setName(s.getName());
 		update.setMiddleName(s.getMiddleName());
 		update.setSurname(s.getSurname());
@@ -93,6 +106,7 @@ public class SponsorService {
 		update.setMessage(s.getMessage());
 		update.setAdress(s.getAdress());
 		update.setAccount(s.getAccount());
+		update.setSponsorship(s.getSponsorship());
 
 		return this.sponsorRepository.save(update);
 	}

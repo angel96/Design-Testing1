@@ -202,7 +202,8 @@
 		<property name="terms" value="TerminosPredeterminadosADDA234587" />
 		<property name="laws"
 			value="Lorem Ipsum is simply dummy text of the printing and typesetting industry. " />
-	</bean>
+			<property name = "draftMode" value = "true" />
+ 	</bean>
 	
 	<bean id="warranty3" class="domain.Warranty">
 		<property name="title" value="Decreto Ley 2016/13" />
@@ -216,6 +217,7 @@
 		<property name="terms" value="TerminosPredeterminadosDP123456" />
 		<property name="laws"
 			value="Lorem Ipsum is simply dummy text of the printing and typesetting industry." />
+			<property name = "draftMode" value = "true" />
 	</bean>
 
 	<bean id="warranty5" class="domain.Warranty">
@@ -223,6 +225,7 @@
 		<property name="terms" value="TerminosPredeterminadosIISSI1415" />
 		<property name="laws"
 			value="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard" />
+			<property name = "draftMode" value = "true" />
 	</bean>
 
 	<!-- SpamWords Beans -->

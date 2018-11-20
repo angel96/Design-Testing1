@@ -13,6 +13,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
+import utilities.AbstractTest;
 import domain.Section;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -20,7 +21,7 @@ import domain.Section;
 	"classpath:spring/datasource.xml", "classpath:spring/config/packages.xml"
 })
 @Transactional
-public class TestSectionService {
+public class TestSectionService extends AbstractTest {
 
 	@Autowired
 	private SectionService	sectionService;
@@ -33,7 +34,7 @@ public class TestSectionService {
 
 	@Test
 	public void testCreateOnDatabase2() {
-		Section s;
+		Section s, saved;
 		s = this.sectionService.create();
 		s.setTitle("Section Test 1");
 		s.setText("Section Test 1 Texto");
@@ -44,7 +45,8 @@ public class TestSectionService {
 		picture.add("Image 2");
 		picture.add("Image 3");
 		s.setPicture(picture);
-		Assert.notNull(this.sectionService.addSection(s));
+		saved = this.sectionService.addSection(s);
+		Assert.isTrue(this.sectionService.findAll().contains(saved));
 	}
 	@Test
 	public void testGetById3() {

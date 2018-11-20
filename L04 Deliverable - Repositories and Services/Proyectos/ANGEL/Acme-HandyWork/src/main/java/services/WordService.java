@@ -42,19 +42,21 @@ public class WordService {
 		return w;
 	}
 	public Word addWord(final Word d) {
+		Word word;
 		Assert.notNull(d);
-		return this.wordRepository.save(d);
+		word = this.wordRepository.save(d);
+		Assert.notNull(word);
+		return word;
 	}
 	public Word updateWord(final int id, final Word d) {
-		Word update;
+		Word update, saved;
 		update = this.findById(id);
-		final int version = update.getVersion();
 		Assert.notNull(d);
-		update.setVersion(version + 1);
 		update.setWord(d.getWord());
 		update.setIsGood(d.getIsGood());
-
-		return this.wordRepository.save(update);
+		saved = this.wordRepository.save(update);
+		Assert.notNull(saved);
+		return saved;
 	}
 	public void deleteWord(final int id) {
 		Assert.notNull(this.wordRepository.findOne(id));
