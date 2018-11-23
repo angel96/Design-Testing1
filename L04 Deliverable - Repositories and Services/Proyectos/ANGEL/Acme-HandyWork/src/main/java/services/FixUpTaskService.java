@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import repositories.FixUpTaskRepository;
+import security.LoginService;
 import security.UserAccount;
 import utilities.Utiles;
 import domain.Application;
@@ -27,6 +28,8 @@ public class FixUpTaskService {
 
 	@Autowired
 	private FixUpTaskRepository	fixUpTaskRepository;
+
+	@Autowired
 	private CustomerService		serviceCustomer;
 
 
@@ -40,10 +43,8 @@ public class FixUpTaskService {
 	public FixUpTask findOne(final int id) {
 		return this.fixUpTaskRepository.findOne(id);
 	}
-	public FixUpTask create(final Customer c) {
-		UserAccount user;
-		user = this.serviceCustomer.findByUserAccount(c.getId()).getAccount();
-		Assert.notNull(user);
+	public FixUpTask create() {
+
 		FixUpTask fut;
 		fut = new FixUpTask();
 		fut.setAddress("");
@@ -60,8 +61,28 @@ public class FixUpTaskService {
 		return fut;
 	}
 	public FixUpTask save(final FixUpTask f) {
+
+		UserAccount user;
+		user = LoginService.getPrincipal();
+		Assert.notNull(user);
+		System.out.println(user.getId());
+		Customer c;
+		c = this.serviceCustomer.findByUserAccount(user.getId());
+		System.out.println(c);
+		Collection<FixUpTask> fixUpTaskCustomer;
+		fixUpTaskCustomer = this.getFixUpTasksByCustomer(c);
+
+		FixUpTask saved;
 		Assert.notNull(f);
-		return this.fixUpTaskRepository.save(f);
+		saved = this.fixUpTaskRepository.save(f);
+
+		fixUpTaskCustomer.add(saved);
+
+		c.setFixUpTask(fixUpTaskCustomer);
+
+		this.serviceCustomer.update(c);
+
+		return saved;
 	}
 	public FixUpTask update(final int id, final FixUpTask newer) {
 		FixUpTask old;
@@ -78,12 +99,30 @@ public class FixUpTaskService {
 		old.setTicker(newer.getTicker());
 		old.setWarranty(newer.getWarranty());
 		old.setPhases(newer.getPhases());
-		saved = this.fixUpTaskRepository.save(old);
+
+		UserAccount userLogged;
+		userLogged = LoginService.getPrincipal();
+
+		if (userLogged.equals(this.fixUpTaskRepository.findCustomerByFixUpTask(id).getAccount()))
+			saved = this.fixUpTaskRepository.save(old);
+		else
+			throw new IllegalAccessError("A task which doesn´t belong to the customer logged can not be modified");
+
 		Assert.notNull(saved);
 		return saved;
 	}
 	public void delete(final int id) {
-		Assert.notNull(this.findOne(id));
-		this.fixUpTaskRepository.delete(id);
+
+		UserAccount user;
+		user = LoginService.getPrincipal();
+
+		Customer c;
+		c = this.serviceCustomer.findByUserAccount(user.getId());
+
+		if (c.equals(this.fixUpTaskRepository.findCustomerByFixUpTask(id)))
+			this.fixUpTaskRepository.delete(id);
+		else
+			throw new IllegalAccessError("A task which doesn´t belong to the customer logged can not be deleted");
+
 	}
 }

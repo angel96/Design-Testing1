@@ -19,14 +19,13 @@ public class CustomerService {
 
 	public Customer findByUserAccount(final int userAccount) {
 
-		Customer c;
+		return this.customerRepository.findByUserAccount(userAccount);
 
-		c = this.customerRepository.findByUserAccount(userAccount);
+	}
 
+	public Customer update(final Customer c) {
 		Assert.notNull(c);
-
-		return c;
-
+		return this.customerRepository.save(c);
 	}
 
 }

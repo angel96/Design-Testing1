@@ -2,11 +2,11 @@
 package repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.transaction.annotation.Transactional;
+import org.springframework.stereotype.Repository;
 
 import domain.Warranty;
 
-@Transactional
+@Repository
 public interface WarrantyRepository extends JpaRepository<Warranty, Integer> {
 
 }
