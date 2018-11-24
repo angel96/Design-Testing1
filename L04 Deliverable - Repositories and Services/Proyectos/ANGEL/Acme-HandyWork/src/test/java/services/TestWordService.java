@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import utilities.AbstractTest;
+import utilities.Utiles;
 import domain.Word;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -38,7 +39,7 @@ public class TestWordService extends AbstractTest {
 	@Test
 	public void testCreateWord() {
 		Word w, saved;
-		w = this.wordService.create();
+		w = Utiles.createWord();
 		w.setIsGood(true);
 		w.setWord("Vida");
 		saved = this.wordService.addWord(w);

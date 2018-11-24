@@ -27,18 +27,6 @@ public class WarrantyService {
 		return this.repositoryWarranty.findOne(id);
 	}
 
-	public Warranty create() {
-
-		Warranty w;
-		w = new Warranty();
-
-		w.setTitle("");
-		w.setLaws("");
-		w.setTerms("");
-		w.setDraftMode(true);
-
-		return w;
-	}
 	public Warranty addWarranty(final Warranty w) {
 		Warranty result;
 		Assert.notNull(w);

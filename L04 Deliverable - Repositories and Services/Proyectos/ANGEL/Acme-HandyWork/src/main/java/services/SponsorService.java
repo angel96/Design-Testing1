@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import repositories.SponsorRepository;
-import security.Authority;
+import security.LoginService;
 import security.UserAccount;
 import domain.Sponsor;
 import domain.Sponsorship;
@@ -44,42 +44,6 @@ public class SponsorService {
 		Assert.notNull(s);
 		return s;
 	}
-	public Sponsor create() {
-		Sponsor w;
-
-		w = new Sponsor();
-
-		w.setName("");
-		w.setMiddleName("");
-		w.setSurname("");
-		w.setEmail("");
-		w.setAdress("");
-		w.setBan(false);
-		w.setPhoto("");
-
-		//		final Collection<Message> message;
-		//		w.setMessage(message);
-		//		final Collection<Sponsorship> sponsorship;
-		//		w.setSponsorship(sponsorship);
-		//		final Collection<Profile> profile;
-		//		w.setProfiles(profile);
-
-		UserAccount user;
-		user = new UserAccount();
-		user.setUsername("");
-		user.setPassword("");
-
-		Authority authority;
-		authority = new Authority();
-
-		authority.setAuthority(Authority.SPONSOR);
-
-		user.addAuthority(authority);
-
-		w.setAccount(user);
-
-		return w;
-	}
 
 	public Sponsor addSponsor(final Sponsor s) {
 		Sponsor result;
@@ -91,29 +55,41 @@ public class SponsorService {
 
 	public Sponsor updateSponsor(final int id, final Sponsor s) {
 
-		Sponsor update;
+		UserAccount user;
+		user = LoginService.getPrincipal();
+		Sponsor update, saved;
 		update = this.findById(id);
-		Assert.notNull(update);
-		Assert.notNull(s);
-		update.setId(id);
-		update.setName(s.getName());
-		update.setMiddleName(s.getMiddleName());
-		update.setSurname(s.getSurname());
-		update.setEmail(s.getEmail());
-		update.setPhone(s.getPhone());
-		update.setPhoto(s.getPhoto());
-		update.setProfiles(s.getProfiles());
-		update.setMessage(s.getMessage());
-		update.setAdress(s.getAdress());
-		update.setAccount(s.getAccount());
-		update.setSponsorship(s.getSponsorship());
 
-		return this.sponsorRepository.save(update);
+		if (update != null && s != null && user.equals(update.getAccount())) {
+			update.setName(s.getName());
+			update.setMiddleName(s.getMiddleName());
+			update.setSurname(s.getSurname());
+			update.setEmail(s.getEmail());
+			update.setPhone(s.getPhone());
+			update.setPhoto(s.getPhoto());
+			update.setProfiles(s.getProfiles());
+			update.setMessage(s.getMessage());
+			update.setAdress(s.getAdress());
+			update.setAccount(s.getAccount());
+			update.setSponsorship(s.getSponsorship());
+			saved = this.sponsorRepository.save(update);
+		} else
+			throw new IllegalAccessError("Trying to modify a Sponsor which is not the same as the logged");
+
+		return saved;
 	}
-
 	public void deleteSponsor(final int id) {
-		Assert.notNull(this.findById(id));
-		this.sponsorRepository.delete(id);
+
+		UserAccount user;
+		user = LoginService.getPrincipal();
+
+		Sponsor s;
+		s = this.findById(id);
+
+		if (s != null && user.equals(s.getAccount()))
+			this.sponsorRepository.delete(id);
+		else
+			throw new IllegalAccessError("Trying to delete a sponsor which is not the same as logged");
 	}
 
 }

@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import utilities.AbstractTest;
+import utilities.Utiles;
 import domain.Warranty;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -43,7 +44,7 @@ public class TestWarrrantyService extends AbstractTest {
 		Warranty w, saved;
 		Collection<Warranty> warranties;
 
-		w = this.serviceWarranty.create();
+		w = Utiles.createWarranty();
 		w.setTitle("Ley 1933/2018");
 		w.setLaws("Real decreto ley 1998/2001");
 		w.setDraftMode(true);

@@ -34,13 +34,6 @@ public class WordService {
 		return this.wordRepository.getBadWords();
 	}
 
-	public Word create() {
-		Word w;
-		w = new Word();
-		w.setWord("");
-		w.setIsGood(true);
-		return w;
-	}
 	public Word addWord(final Word d) {
 		Word word;
 		Assert.notNull(d);

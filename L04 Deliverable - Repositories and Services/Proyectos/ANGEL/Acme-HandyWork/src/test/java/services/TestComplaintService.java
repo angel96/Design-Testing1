@@ -1,47 +1,42 @@
 
 package services;
 
+import java.util.Date;
+
+import javax.transaction.Transactional;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import utilities.AbstractTest;
-import utilities.Utiles;
-import domain.Sponsor;
+import domain.Complaint;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
 	"classpath:spring/datasource.xml", "classpath:spring/config/packages.xml"
 })
 @Transactional
-public class TestSponsorService extends AbstractTest {
+public class TestComplaintService extends AbstractTest {
 
 	@Autowired
-	private SponsorService	serviceSponsor;
+	private ComplaintService	complaintService;
 
 
 	@Test
-	public void testGetAllSponsors() {
-		Assert.isTrue(this.serviceSponsor.findAll().size() >= 1);
+	public void testCreateComplaints() {
+		super.authenticate("customer2");
+		final Complaint c = new Complaint();
+		c.setAttachment(12);
+		c.setDescription("a ver");
+		c.setMoment(new Date(2018, 11, 29, 16, 0));
+		c.setReport(null);
+		final Complaint saved = this.complaintService.save(c);
+		Assert.notNull(saved);
+		super.unauthenticate();
 	}
 
-	public void testCreateSponsor() {
-
-		Sponsor s, saved;
-		s = Utiles.createSponsor();
-		saved = this.serviceSponsor.addSponsor(s);
-
-	}
-	@Test
-	public void testUpdateSponsor() {
-
-	}
-	@Test
-	public void testDeleteSponsor() {
-
-	}
 }

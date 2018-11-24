@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import domain.Section;
+import domain.Sponsorship;
 import domain.Tutorial;
 
 @Repository
@@ -18,4 +19,7 @@ public interface TutorialRepository extends JpaRepository<Tutorial, Integer> {
 
 	@Query("select t.section from Tutorial t where t.id = ?1")
 	Collection<Section> getSectionsByTutorial(int id);
+
+	@Query("select t.sponsorship from Tutorial t where s.id = ?1")
+	Collection<Sponsorship> getSponsorshipsByTutorial(int id);
 }

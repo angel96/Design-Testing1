@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import utilities.AbstractTest;
+import utilities.Utiles;
 import domain.Section;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -35,7 +36,7 @@ public class TestSectionService extends AbstractTest {
 	@Test
 	public void testCreateOnDatabase2() {
 		Section s, saved;
-		s = this.sectionService.create();
+		s = Utiles.createSection();
 		s.setTitle("Section Test 1");
 		s.setText("Section Test 1 Texto");
 		s.setNumber(1);
@@ -50,12 +51,12 @@ public class TestSectionService extends AbstractTest {
 	}
 	@Test
 	public void testGetById3() {
-		Assert.notNull(this.sectionService.findById(1223));
+		Assert.notNull(this.sectionService.findById(1247));
 	}
 	@Test
 	public void testDeleteSection4() {
 		Section s;
-		s = this.sectionService.findById(1223);
+		s = this.sectionService.findById(1247);
 		final int id = s.getId();
 		this.sectionService.deleteSection(s);
 		Assert.isNull(this.sectionService.findById(id));
@@ -63,9 +64,9 @@ public class TestSectionService extends AbstractTest {
 	@Test
 	public void testUpdateSection5() {
 		Section nonUpdate;
-		nonUpdate = this.sectionService.findById(1225);
+		nonUpdate = this.sectionService.findById(1247);
 		Section update;
-		update = this.sectionService.create();
+		update = Utiles.createSection();
 		update.setTitle("parteTest2");
 		update.setText("parteTest2Text");
 		Collection<String> pictures;

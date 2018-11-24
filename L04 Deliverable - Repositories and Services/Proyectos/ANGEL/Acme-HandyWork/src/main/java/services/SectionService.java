@@ -1,7 +1,6 @@
 
 package services;
 
-import java.util.ArrayList;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,19 +32,7 @@ public class SectionService {
 	public Collection<String> findPicturesBySection(final int id) {
 		return this.findById(id).getPicture();
 	}
-	public Section create() {
 
-		Section s;
-
-		s = new Section();
-
-		s.setTitle("");
-		s.setText("");
-		s.setNumber(1);
-		s.setPicture(new ArrayList<String>());
-
-		return s;
-	}
 	public Section addSection(final Section s) {
 
 		Section result;
@@ -61,7 +48,6 @@ public class SectionService {
 		update = this.sectionRepository.findOne(id);
 		Assert.notNull(update);
 
-		update.setId(id);
 		update.setTitle(n.getText());
 		update.setText(n.getText());
 		update.setNumber(n.getNumber());

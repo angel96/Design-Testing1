@@ -2,6 +2,7 @@
 package utilities;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
@@ -13,9 +14,21 @@ import org.hibernate.jpa.HibernatePersistenceProvider;
 import org.hibernate.search.jpa.FullTextEntityManager;
 import org.hibernate.search.query.dsl.QueryBuilder;
 
-import utilities.internal.ConsoleReader;
+import security.Authority;
+import security.UserAccount;
 import utilities.internal.SchemaPrinter;
+import domain.CreditCard;
+import domain.Endorsable;
+import domain.Endorsement;
 import domain.FixUpTask;
+import domain.Message;
+import domain.Profile;
+import domain.Section;
+import domain.Sponsor;
+import domain.Sponsorship;
+import domain.Tutorial;
+import domain.Warranty;
+import domain.Word;
 
 public class Utiles {
 
@@ -59,9 +72,116 @@ public class Utiles {
 		em.getTransaction().commit();
 		em.close();
 	}
-	public static void main(final String[] args) throws Throwable {
-		System.out.println("Full-Text Search: Test");
-		final ConsoleReader r = new ConsoleReader();
-		Utiles.fullTextSearch(r.readLine());
+
+	public static Sponsor createSponsor() {
+		Sponsor w;
+
+		w = new Sponsor();
+
+		w.setName("");
+		w.setMiddleName("");
+		w.setSurname("");
+		w.setEmail("");
+		w.setAdress("");
+		w.setBan(false);
+		w.setPhoto("");
+		w.setMessage(new ArrayList<Message>());
+		w.setSponsorship(new ArrayList<Sponsorship>());
+		w.setProfiles(new ArrayList<Profile>());
+
+		UserAccount user;
+		user = new UserAccount();
+		user.setUsername("");
+		user.setPassword("");
+
+		Authority authority;
+		authority = new Authority();
+
+		authority.setAuthority(Authority.SPONSOR);
+
+		user.addAuthority(authority);
+
+		w.setAccount(user);
+
+		return w;
+	}
+	public static Tutorial createTutorial() {
+		Tutorial t;
+		t = new Tutorial();
+		t.setTitle("");
+		t.setSummary("");
+		t.setSection(new ArrayList<Section>());
+		t.setPicture(new ArrayList<String>());
+		t.setLastUpdate(new Date());
+		t.setSponsorship(new ArrayList<Sponsorship>());
+		return t;
+	}
+	public static Section createSection() {
+
+		Section s;
+
+		s = new Section();
+
+		s.setTitle("");
+		s.setText("");
+		s.setNumber(1);
+		s.setPicture(new ArrayList<String>());
+
+		return s;
+	}
+	public static Warranty createWarranty() {
+
+		Warranty w;
+		w = new Warranty();
+
+		w.setTitle("");
+		w.setLaws("");
+		w.setTerms("");
+		w.setDraftMode(true);
+
+		return w;
+	}
+	public static Word createWord() {
+		Word w;
+		w = new Word();
+		w.setWord("");
+		w.setIsGood(true);
+		return w;
+	}
+	//Authenticated as Customer or HandyWorker
+	public static Endorsement create(final Endorsable send, final Endorsable receive) {
+		Endorsement e;
+		e = new Endorsement();
+		e.setMoment(new Date());
+		e.setUserReceived(receive);
+		e.setUserSended(send);
+		e.setComments(new ArrayList<String>());
+		return e;
+	}
+	public static Sponsorship create() {
+		Sponsorship result;
+		result = new Sponsorship();
+
+		result.setUrlBanner("");
+		result.setCreditCard(Utiles.createCreditCard());
+		result.setLinkTPage("");
+		result.setSponsor(Utiles.createSponsor());
+		result.setTutorial(Utiles.createTutorial());
+
+		return result;
+	}
+	public static CreditCard createCreditCard() {
+		CreditCard result;
+
+		result = new CreditCard();
+		result.setBrandName("");
+		result.setNumber(0);
+		result.setCodeCVV(1);
+		result.setExpirationMonth(new Date());
+		result.setExpirationYear(new Date());
+		result.setType("");
+		result.setHolderName("");
+
+		return result;
 	}
 }

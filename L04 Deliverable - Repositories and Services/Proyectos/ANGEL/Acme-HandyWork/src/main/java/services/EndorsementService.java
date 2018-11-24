@@ -1,9 +1,7 @@
 
 package services;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,8 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import repositories.EndorsementRepository;
-import security.UserAccount;
-import domain.Endorsable;
 import domain.Endorsement;
 
 @Service
@@ -30,21 +26,9 @@ public class EndorsementService {
 		return this.repositoryEndorsement.findOne(id);
 	}
 
-	//Authenticated as Customer or HandyWorker
-	public Endorsement create(final Endorsable send, final Endorsable receive) {
-		UserAccount user;
-		user = send.getAccount();
-		Assert.notNull(user);
-		Endorsement e;
-		e = new Endorsement();
-		e.setMoment(new Date());
-		e.setUserReceived(receive);
-		e.setUserSended(send);
-		e.setComments(new ArrayList<String>());
-		return e;
-	}
-	//Authenticated as Customer or HandyWorker
+	//Authenticated as Customer or HandyWorker. It´s taken from Endorsable.
 	public Endorsement add(final Endorsement e) {
+
 		Assert.notNull(e);
 		return this.repositoryEndorsement.save(e);
 	}
