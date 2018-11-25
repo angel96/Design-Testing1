@@ -1,6 +1,7 @@
 
 package services;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import javax.transaction.Transactional;
@@ -14,6 +15,7 @@ import org.springframework.util.Assert;
 
 import utilities.AbstractTest;
 import domain.Complaint;
+import domain.Report;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
@@ -29,12 +31,13 @@ public class TestComplaintService extends AbstractTest {
 	@Test
 	public void testCreateComplaints() {
 		super.authenticate("customer2");
-		final Complaint c = new Complaint();
+		Complaint c, saved;
+		c = new Complaint();
 		c.setAttachment(12);
 		c.setDescription("a ver");
 		c.setMoment(new Date(2018, 11, 29, 16, 0));
-		c.setReport(null);
-		final Complaint saved = this.complaintService.save(c);
+		c.setReport(new ArrayList<Report>());
+		saved = this.complaintService.save(c);
 		Assert.notNull(saved);
 		super.unauthenticate();
 	}

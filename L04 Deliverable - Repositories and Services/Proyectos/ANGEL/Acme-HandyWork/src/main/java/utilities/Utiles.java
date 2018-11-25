@@ -34,11 +34,15 @@ import domain.Word;
 public class Utiles {
 
 	public static String generateTicker() {
-		final SimpleDateFormat formato = new SimpleDateFormat("yyyyMMdd");
+		SimpleDateFormat formato;
+		formato = new SimpleDateFormat("yyyyMMdd");
 
-		final Date d = new Date();
+		Date d;
+		d = new Date();
 
-		final String formated = formato.format(d);
+		String formated;
+
+		formated = formato.format(d);
 
 		final Character[] ch = {
 			'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
@@ -46,7 +50,9 @@ public class Utiles {
 
 		String c = "";
 
-		final Random random = new Random();
+		Random random;
+
+		random = new Random();
 
 		for (int i = 0; i < 6; i++)
 			c += ch[random.nextInt(ch.length)];
