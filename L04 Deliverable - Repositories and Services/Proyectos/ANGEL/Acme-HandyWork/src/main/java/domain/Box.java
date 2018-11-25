@@ -16,6 +16,7 @@ public class Box extends DomainEntity {
 
 	private String				name;
 	private boolean				fromSystem;
+
 	private Collection<Message>	message;
 
 

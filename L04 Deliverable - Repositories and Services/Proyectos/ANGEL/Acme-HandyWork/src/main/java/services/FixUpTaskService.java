@@ -65,10 +65,10 @@ public class FixUpTaskService {
 		UserAccount user;
 		user = LoginService.getPrincipal();
 		Assert.notNull(user);
-		System.out.println(user.getId());
+
 		Customer c;
 		c = this.serviceCustomer.findByUserAccount(user.getId());
-		System.out.println(c);
+
 		Collection<FixUpTask> fixUpTaskCustomer;
 		fixUpTaskCustomer = this.getFixUpTasksByCustomer(c);
 
@@ -85,8 +85,8 @@ public class FixUpTaskService {
 		return saved;
 	}
 	public FixUpTask update(final int id, final FixUpTask newer) {
-		FixUpTask old;
-		final FixUpTask saved;
+		FixUpTask old, saved;
+
 		old = this.findOne(id);
 		old.setAddress(newer.getAddress());
 		old.setApplication(newer.getApplication());

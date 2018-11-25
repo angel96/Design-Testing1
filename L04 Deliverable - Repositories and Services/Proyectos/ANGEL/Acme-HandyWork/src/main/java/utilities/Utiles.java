@@ -17,6 +17,7 @@ import org.hibernate.search.query.dsl.QueryBuilder;
 import security.Authority;
 import security.UserAccount;
 import utilities.internal.SchemaPrinter;
+import domain.Box;
 import domain.CreditCard;
 import domain.Endorsable;
 import domain.Endorsement;
@@ -88,7 +89,7 @@ public class Utiles {
 		w.setMessage(new ArrayList<Message>());
 		w.setSponsorship(new ArrayList<Sponsorship>());
 		w.setProfiles(new ArrayList<Profile>());
-
+		w.setBoxes(new ArrayList<Box>());
 		UserAccount user;
 		user = new UserAccount();
 		user.setUsername("");

@@ -29,9 +29,9 @@ public abstract class Actor extends DomainEntity {
 	private String				email;
 	private String				phone;
 	private String				adress;
-	private Integer				numberProfiles;
 	private UserAccount			account;
 	private Collection<Profile>	profiles;
+	private Collection<Box>		boxes;
 	private Collection<Message>	message;
 	private boolean				ban;
 
@@ -131,7 +131,15 @@ public abstract class Actor extends DomainEntity {
 
 	@Override
 	public String toString() {
-		return "Actor [name=" + this.name + ", middleName=" + this.middleName + ", surname=" + this.surname + ", photo=" + this.photo + ", email=" + this.email + ", phone=" + this.phone + ", numberProfiles=" + this.numberProfiles + "]";
+		return "Actor [name=" + this.name + ", middleName=" + this.middleName + ", surname=" + this.surname + ", photo=" + this.photo + ", email=" + this.email + ", phone=" + this.phone + "]";
+	}
+	@OneToMany
+	public Collection<Box> getBoxes() {
+		return this.boxes;
+	}
+
+	public void setBoxes(final Collection<Box> boxes) {
+		this.boxes = boxes;
 	}
 
 }

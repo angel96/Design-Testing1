@@ -50,6 +50,15 @@
 				<bean class="security.Authority">
 					<property name="authority" value="CUSTOMER" />
 				</bean>
+				<bean class="security.Authority">
+					<property name="authority" value="SPONSOR" />
+				</bean>
+				<bean class="security.Authority">
+					<property name="authority" value="REFEREE" />
+				</bean>
+				<bean class="security.Authority">
+					<property name="authority" value="HANDY_WORKER" />
+				</bean>
 			</list>
 		</property>
 	</bean>
@@ -490,6 +499,11 @@
 
 			</list>
 		</property>
+		<property name="boxes">
+			<list>
+
+			</list>
+		</property>
 		<property name="ban" value="false" />
 	</bean>
 	
@@ -501,7 +515,11 @@
 		<property name="email" value="hw1@us.es" />
 		<property name="phone" value="954152639" />
 		<property name="adress" value="C/Canal" />
+		<property name="boxes">
+			<list>
 
+			</list>
+		</property>
 		<property name="score" value="5.0" />
 		<property name="account">
 			<ref bean="userAccount4" />
@@ -547,7 +565,11 @@
 		<property name="email" value="hw1@us.es" />
 		<property name="phone" value="954152639" />
 		<property name="adress" value="C/Canal" />
+		<property name="boxes">
+			<list>
 
+			</list>
+		</property>
 		<property name="score" value="5.0" />
 		<property name="account">
 			<ref bean="userAccount4" />
@@ -583,7 +605,11 @@
 		<property name="email" value="hw1@us.es" />
 		<property name="phone" value="954152639" />
 		<property name="adress" value="C/Canal" />
+		<property name="boxes">
+			<list>
 
+			</list>
+		</property>
 		<property name="score" value="5.0" />
 		<property name="account">
 			<ref bean="userAccount4" />
@@ -620,7 +646,11 @@
 		<property name="email" value="referee@us.es" />
 		<property name="phone" value="955482614" />
 		<property name="adress" value="C/Reina Mercedes" />
+		<property name="boxes">
+			<list>
 
+			</list>
+		</property>
 		<property name="account">
 			<ref bean="userAccount5" />
 		</property>
@@ -655,7 +685,11 @@
 		<property name="email" value="referee2@acme.es" />
 		<property name="phone" value="955892114" />
 		<property name="adress" value="Av/Reina Mercedes" />
+		<property name="boxes">
+			<list>
 
+			</list>
+		</property>
 		<property name="account">
 			<ref bean="userAccount5" />
 		</property>
@@ -689,7 +723,11 @@
 		<property name="email" value="customer@us.es" />
 		<property name="phone" value="954152634" />
 		<property name="adress" value="Avenida de Andalucia" />
+		<property name="boxes">
+			<list>
 
+			</list>
+		</property>
 		<property name="score" value="6.0" />
 		<property name="account">
 			<ref bean="userAccount2" />
@@ -726,7 +764,11 @@
 		<property name="email" value="customer2@us.es" />
 		<property name="phone" value="954152555" />
 		<property name="adress" value="Avenida de España" />
+		<property name="boxes">
+			<list>
 
+			</list>
+		</property>
 		<property name="score" value="6.0" />
 		<property name="account">
 			<ref bean="userAccount7" />
@@ -764,7 +806,11 @@
 		<property name="email" value="customer3@us.es" />
 		<property name="phone" value="954152553" />
 		<property name="adress" value="Avenida de España" />
+		<property name="boxes">
+			<list>
 
+			</list>
+		</property>
 		<property name="score" value="6.0" />
 		<property name="account">
 			<ref bean="userAccount8" />
@@ -801,7 +847,11 @@
 		<property name="email" value="customer4@us.es" />
 		<property name="phone" value="951245378" />
 		<property name="adress" value="Avenida de Andalucía" />
+		<property name="boxes">
+			<list>
 
+			</list>
+		</property>
 		<property name="score" value="8.0" />
 		<property name="account">
 			<ref bean="userAccount2" />
@@ -837,7 +887,11 @@
 		<property name="email" value="customer5@acme.com" />
 		<property name="phone" value="954151469" />
 		<property name="adress" value="Avenida del Guadalquivir" />
+		<property name="boxes">
+			<list>
 
+			</list>
+		</property>
 		<property name="score" value="4.0" />
 		<property name="account">
 			<ref bean="userAccount2" />
@@ -878,6 +932,11 @@
 		<property name="adress" value="Calle Barcelona" />
 		<property name="account">
 			<ref bean="userAccount6" />
+		</property>
+				<property name="boxes">
+			<list>
+
+			</list>
 		</property>
 		<property name="profiles">
 			<list>
