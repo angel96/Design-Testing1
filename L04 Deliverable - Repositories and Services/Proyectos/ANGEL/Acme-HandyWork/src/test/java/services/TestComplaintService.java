@@ -2,7 +2,6 @@
 package services;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 import javax.transaction.Transactional;
 
@@ -14,6 +13,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.util.Assert;
 
 import utilities.AbstractTest;
+import utilities.Utiles;
 import domain.Complaint;
 import domain.Report;
 
@@ -35,7 +35,8 @@ public class TestComplaintService extends AbstractTest {
 		c = new Complaint();
 		c.setAttachment(12);
 		c.setDescription("a ver");
-		c.setMoment(new Date(2018, 11, 29, 16, 0));
+		c.setMoment(Utiles.convertDate(2018, 12, 29));
+		System.out.println(c.getMoment());
 		c.setReport(new ArrayList<Report>());
 		saved = this.complaintService.save(c);
 		Assert.notNull(saved);

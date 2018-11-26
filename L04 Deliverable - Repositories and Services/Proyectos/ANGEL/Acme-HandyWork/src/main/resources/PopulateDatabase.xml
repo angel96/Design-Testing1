@@ -120,6 +120,28 @@
 			</list>
 		</property>
 	</bean>
+	<bean id="userAccount9" class="security.UserAccount">
+		<property name="username" value="handyworker2" />
+		<property name="password" value="24da2ce4fb8a46c3d44d2c72305a31a2" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="HANDY_WORKER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	<bean id="userAccount10" class="security.UserAccount">
+		<property name="username" value="handyworker3" />
+		<property name="password" value="24da2ce4fb8a46c3d44d2c72305a31a2" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="HANDY_WORKER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
 	<!-- Word Beans -->
 	<bean id="word1" class="domain.Word">
 		<property name="word" value="good" />
@@ -572,7 +594,7 @@
 		</property>
 		<property name="score" value="5.0" />
 		<property name="account">
-			<ref bean="userAccount4" />
+			<ref bean="userAccount8" />
 		</property>
 		<property name="profiles">
 			<list>
@@ -612,7 +634,7 @@
 		</property>
 		<property name="score" value="5.0" />
 		<property name="account">
-			<ref bean="userAccount4" />
+			<ref bean="userAccount9" />
 		</property>
 		<property name="profiles">
 			<list>

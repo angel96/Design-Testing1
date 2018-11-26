@@ -11,7 +11,6 @@ import org.springframework.util.Assert;
 import repositories.TutorialRepository;
 import security.LoginService;
 import security.UserAccount;
-import domain.HandyWorker;
 import domain.Section;
 import domain.Sponsorship;
 import domain.Tutorial;
@@ -30,8 +29,8 @@ public class TutorialService {
 	private SponsorshipService	serviceSponsorship;
 
 
-	public Collection<Tutorial> getTutorialsByHandyWorker(final HandyWorker worker) {
-		return this.repositoryTutorial.getTutorialsByHandyWorker(worker.getId());
+	public Collection<Tutorial> getTutorialsByHandyWorker(final int userAccount) {
+		return this.repositoryTutorial.getTutorialsByHandyWorker(userAccount);
 	}
 
 	public Collection<Tutorial> findAll() {
@@ -48,15 +47,21 @@ public class TutorialService {
 		return this.repositoryTutorial.findOne(id);
 	}
 
-	public Tutorial save(final HandyWorker worker, final Tutorial t) {
+	public Tutorial save(final Tutorial t) {
 
 		UserAccount user;
 		user = LoginService.getPrincipal();
+		Assert.notNull(user);
+		Collection<Tutorial> tutorialesDelUsuario;
+		tutorialesDelUsuario = this.repositoryTutorial.getTutorialsByHandyWorker(user.getId());
 
 		Tutorial saved;
-		if (user.equals(worker.getAccount()))
+
+		if (t != null) {
 			saved = this.repositoryTutorial.save(t);
-		else
+			tutorialesDelUsuario.add(t);
+			//Necesito el update HandyWorker
+		} else
 			throw new IllegalAccessError();
 
 		return saved;
@@ -116,7 +121,27 @@ public class TutorialService {
 		this.repositoryTutorial.save(t);
 	}
 	public Tutorial update(final int id, final Tutorial modify) {
-		return null;
+
+		UserAccount user;
+		user = LoginService.getPrincipal();
+
+		Tutorial tutorialOld;
+		final Tutorial saved;
+		tutorialOld = this.findOne(id);
+
+		tutorialOld.setSponsorship(modify.getSponsorship());
+		tutorialOld.setSummary(modify.getSummary());
+		tutorialOld.setSection(modify.getSection());
+		tutorialOld.setTitle(modify.getTitle());
+		tutorialOld.setPicture(modify.getPicture());
+		tutorialOld.setLastUpdate(modify.getLastUpdate());
+
+		if (user.getAuthorities().contains("HANDY_WORKER"))
+			saved = this.repositoryTutorial.save(modify);
+		//TODO: FALTA PERSISTIR EL HANDYWORKER
+		else
+			throw new IllegalAccessError();
+		return saved;
 	}
 
 	public void delete(final int id) {
