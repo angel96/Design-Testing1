@@ -1,7 +1,9 @@
 
 package services;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,8 +13,14 @@ import org.springframework.util.Assert;
 import repositories.FixUpTaskRepository;
 import security.LoginService;
 import security.UserAccount;
+import utilities.Utiles;
+import domain.Application;
+import domain.Category;
+import domain.Complaint;
 import domain.Customer;
 import domain.FixUpTask;
+import domain.Phase;
+import domain.Warranty;
 
 @Service
 @Transactional
@@ -35,7 +43,23 @@ public class FixUpTaskService {
 	public FixUpTask findOne(final int id) {
 		return this.fixUpTaskRepository.findOne(id);
 	}
+	public FixUpTask create() {
 
+		FixUpTask fut;
+		fut = new FixUpTask();
+		fut.setAddress("");
+		fut.setApplication(new ArrayList<Application>());
+		fut.setCategory(new Category());
+		fut.setComplaint(new ArrayList<Complaint>());
+		fut.setDescription("");
+		fut.setEnd(new Date());
+		fut.setMaximumPrice(0.0);
+		fut.setMoment(new Date());
+		fut.setPhases(new ArrayList<Phase>());
+		fut.setWarranty(new Warranty());
+		fut.setTicker(Utiles.generateTicker());
+		return fut;
+	}
 	public FixUpTask save(final FixUpTask f) {
 
 		UserAccount user;

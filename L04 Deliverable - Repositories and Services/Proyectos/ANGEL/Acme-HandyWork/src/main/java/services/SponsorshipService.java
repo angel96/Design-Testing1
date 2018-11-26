@@ -9,9 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import repositories.SponsorshipRepository;
-import security.LoginService;
-import security.UserAccount;
-import domain.Sponsor;
 import domain.Sponsorship;
 
 @Service
@@ -20,9 +17,6 @@ public class SponsorshipService {
 
 	@Autowired
 	private SponsorshipRepository	sponsorshipRepository;
-
-	@Autowired
-	private SponsorService			serviceSponsor;
 
 
 	public Collection<Sponsorship> findAll() {
@@ -35,49 +29,10 @@ public class SponsorshipService {
 
 	public Sponsorship add(final Sponsorship sponsorship) {
 
-		UserAccount login;
-		login = LoginService.getPrincipal();
-
-		Sponsor logged;
-		logged = this.serviceSponsor.findByUserAccount(login);
-
-		Collection<Sponsorship> sponsorShipsFromSponsor;
-		sponsorShipsFromSponsor = logged.getSponsorship();
-
-		Assert.notNull(logged);
-
-		Sponsorship saved;
-
-		saved = this.sponsorshipRepository.save(sponsorship);
-
-		sponsorShipsFromSponsor.add(sponsorship);
-		logged.setSponsorship(sponsorShipsFromSponsor);
-
-		this.serviceSponsor.updateSponsor(logged.getId(), logged);
-
-		return saved;
+		return null;
 	}
 	public Sponsorship update(final int id, final Sponsorship newer) {
-
-		Sponsorship old, saved;
-
-		old = this.findOne(id);
-
-		old.setSponsor(newer.getSponsor());
-		old.setCreditCard(newer.getCreditCard());
-		old.setLinkTPage(newer.getLinkTPage());
-		old.setTutorial(newer.getTutorial());
-		old.setUrlBanner(newer.getUrlBanner());
-
-		UserAccount logged;
-		logged = LoginService.getPrincipal();
-
-		if (logged.equals(old.getSponsor().getAccount()))
-			saved = this.sponsorshipRepository.save(old);
-		else
-			throw new IllegalAccessError();
-
-		return saved;
+		return null;
 	}
 	public void delete(final int id) {
 		Assert.notNull(this.findOne(id));
