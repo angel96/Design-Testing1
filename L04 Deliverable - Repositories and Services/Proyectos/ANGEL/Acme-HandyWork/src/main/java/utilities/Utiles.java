@@ -17,12 +17,16 @@ import org.hibernate.search.query.dsl.QueryBuilder;
 import security.Authority;
 import security.UserAccount;
 import utilities.internal.SchemaPrinter;
+import domain.Application;
 import domain.Box;
+import domain.Category;
+import domain.Complaint;
 import domain.CreditCard;
 import domain.Endorsable;
 import domain.Endorsement;
 import domain.FixUpTask;
 import domain.Message;
+import domain.Phase;
 import domain.Profile;
 import domain.Section;
 import domain.Sponsor;
@@ -60,6 +64,12 @@ public class Utiles {
 		return formated + c;
 	}
 
+	public static Date convertDate(final int year, final int month, final int day) {
+		Date d;
+		d = new Date(year - 1900, month - 1, day);
+		return d;
+	}
+
 	public static void fullTextSearch(final String s) {
 		final HibernatePersistenceProvider provider = new HibernatePersistenceProvider();
 		final EntityManagerFactory entityManagerFactory = provider.createEntityManagerFactory("Acme-HandyWork", null);
@@ -79,7 +89,54 @@ public class Utiles {
 		em.getTransaction().commit();
 		em.close();
 	}
+	public static FixUpTask createFixUpTask() {
 
+		FixUpTask fut;
+		fut = new FixUpTask();
+		fut.setAddress("");
+		fut.setApplication(new ArrayList<Application>());
+		fut.setCategory(new Category());
+		fut.setComplaint(new ArrayList<Complaint>());
+		fut.setDescription("");
+		fut.setEnd(new Date());
+		fut.setMaximumPrice(0.0);
+		fut.setMoment(new Date());
+		fut.setPhases(new ArrayList<Phase>());
+		fut.setWarranty(new Warranty());
+		fut.setTicker(Utiles.generateTicker());
+		return fut;
+	}
+	public static UserAccount createUserAccount(final String role) {
+		UserAccount user;
+		user = new UserAccount();
+		user.setUsername("");
+		user.setPassword("");
+
+		Authority authority;
+		authority = new Authority();
+
+		switch (role) {
+		case "ADMIN":
+			authority.setAuthority(Authority.ADMIN);
+			break;
+		case "CUSTOMER":
+			authority.setAuthority(Authority.CUSTOMER);
+			break;
+		case "SPONSOR":
+			authority.setAuthority(Authority.SPONSOR);
+			break;
+		case "REFEREE":
+			authority.setAuthority(Authority.REFEREE);
+			break;
+		case "HANDY_WORKER":
+			authority.setAuthority(Authority.HANDY_WORKER);
+			break;
+
+		}
+
+		user.addAuthority(authority);
+		return user;
+	}
 	public static Sponsor createSponsor() {
 		Sponsor w;
 
@@ -96,19 +153,8 @@ public class Utiles {
 		w.setSponsorship(new ArrayList<Sponsorship>());
 		w.setProfiles(new ArrayList<Profile>());
 		w.setBoxes(new ArrayList<Box>());
-		UserAccount user;
-		user = new UserAccount();
-		user.setUsername("");
-		user.setPassword("");
 
-		Authority authority;
-		authority = new Authority();
-
-		authority.setAuthority(Authority.SPONSOR);
-
-		user.addAuthority(authority);
-
-		w.setAccount(user);
+		w.setAccount(Utiles.createUserAccount("SPONSOR"));
 
 		return w;
 	}
@@ -156,7 +202,7 @@ public class Utiles {
 		return w;
 	}
 	//Authenticated as Customer or HandyWorker
-	public static Endorsement create(final Endorsable send, final Endorsable receive) {
+	public static Endorsement createEndorsement(final Endorsable send, final Endorsable receive) {
 		Endorsement e;
 		e = new Endorsement();
 		e.setMoment(new Date());

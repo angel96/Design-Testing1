@@ -29,10 +29,6 @@ public class SectionService {
 		return this.sectionRepository.findOne(id);
 	}
 
-	public Collection<String> findPicturesBySection(final int id) {
-		return this.findById(id).getPicture();
-	}
-
 	public Section addSection(final Section s) {
 
 		Section result;

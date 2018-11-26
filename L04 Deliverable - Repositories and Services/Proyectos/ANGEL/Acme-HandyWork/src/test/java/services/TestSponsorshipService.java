@@ -1,6 +1,7 @@
 
 package services;
 
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -18,4 +19,26 @@ public class TestSponsorshipService extends AbstractTest {
 
 	@Autowired
 	private SponsorshipService	serviceSponsorship;
+
+
+	@Test
+	public void testGetAll() {
+
+	}
+	@Test
+	public void testGetOne() {
+
+	}
+	@Test
+	public void testCreateSponsorship() {
+
+	}
+	@Test
+	public void testUpdateSponsorship() {
+
+	}
+	@Test
+	public void testDeleteSponsorship() {
+
+	}
 }
