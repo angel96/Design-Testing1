@@ -37,6 +37,10 @@ public class ApplicationService {
 		return this.applicationRepository.getCustomerByApplication(id);
 	}
 	
+	public Application getApplicationAcceptedByPhase(final int id) {
+		return this.applicationRepository.getApplicationAceptedByPhase(id);
+	}
+	
 	public Application findOne(final int id) {
 		Application a = this.applicationRepository.findOne(id);
 		return a;

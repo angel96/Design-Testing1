@@ -64,7 +64,7 @@
 	</bean>
 
 	<bean id="userAccount4" class="security.UserAccount">
-		<property name="username" value="handyworker" />
+		<property name="username" value="handyworker1" />
 		<property name="password" value="24da2ce4fb8a46c3d44d2c72305a31a2" />
 		<property name="authorities">
 			<list>
@@ -98,28 +98,31 @@
 			</list>
 		</property>
 	</bean>
-<bean id="userAccount7" class="security.UserAccount">
-		<property name="username" value="customer2" />
-		<property name="password" value="91ec1f9324753048c0096d036a694f86" />
+	
+	<bean id="userAccount7" class="security.UserAccount">
+		<property name="username" value="handyworker2" />
+		<property name="password" value="24da2ce4fb8a46c3d44d2c72305a31a2" />
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">
-					<property name="authority" value="CUSTOMER" />
+					<property name="authority" value="HANDY_WORKER" />
 				</bean>
 			</list>
 		</property>
 	</bean>
+	
 	<bean id="userAccount8" class="security.UserAccount">
-		<property name="username" value="customer3" />
-		<property name="password" value="91ec1f9324753048c0096d036a694f86" />
+		<property name="username" value="handyworker3" />
+		<property name="password" value="24da2ce4fb8a46c3d44d2c72305a31a2" />
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">
-					<property name="authority" value="CUSTOMER" />
+					<property name="authority" value="HANDY_WORKER" />
 				</bean>
 			</list>
 		</property>
 	</bean>
+
 	<!-- Word Beans -->
 	<bean id="word1" class="domain.Word">
 		<property name="word" value="good" />
@@ -572,7 +575,7 @@
 		</property>
 		<property name="score" value="5.0" />
 		<property name="account">
-			<ref bean="userAccount4" />
+			<ref bean="userAccount7" />
 		</property>
 		<property name="profiles">
 			<list>
@@ -612,7 +615,7 @@
 		</property>
 		<property name="score" value="5.0" />
 		<property name="account">
-			<ref bean="userAccount4" />
+			<ref bean="userAccount8" />
 		</property>
 		<property name="profiles">
 			<list>
