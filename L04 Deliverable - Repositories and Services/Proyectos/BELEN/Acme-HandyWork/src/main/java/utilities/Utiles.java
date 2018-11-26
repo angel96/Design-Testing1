@@ -3,6 +3,7 @@ package utilities;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
@@ -184,5 +185,15 @@ public class Utiles {
 		result.setHolderName("");
 
 		return result;
+	}
+	
+	public static Boolean findAuthority(Collection<Authority> comp, String a) {
+		Boolean res = false;
+		for (Authority authority : comp) {
+			if(authority.toString().equals(a)) {
+				res = true;
+			}
+		}
+		return res;
 	}
 }

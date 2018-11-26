@@ -120,6 +120,17 @@
 			</list>
 		</property>
 	</bean>
+	<bean id="userAccount9" class="security.UserAccount">
+		<property name="username" value="referee2" />
+		<property name="password" value="4f200dd50f7bcac8a64683b771700afb" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="REFEREE" />
+				</bean>
+			</list>
+		</property>
+	</bean>
 	<!-- Word Beans -->
 	<bean id="word1" class="domain.Word">
 		<property name="word" value="good" />
@@ -691,7 +702,7 @@
 			</list>
 		</property>
 		<property name="account">
-			<ref bean="userAccount5" />
+			<ref bean="userAccount9" />
 		</property>
 		<property name="profiles">
 			<list>
@@ -752,6 +763,11 @@
 			<list>
 				<ref bean="complaint1" />
 				<ref bean="complaint2" />
+			</list>
+		</property>
+		<property name="notes">
+			<list>
+				<ref bean="note1"/>
 			</list>
 		</property>
 	</bean>

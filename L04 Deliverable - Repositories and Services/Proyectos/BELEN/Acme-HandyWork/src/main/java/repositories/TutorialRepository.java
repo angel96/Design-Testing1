@@ -20,6 +20,6 @@ public interface TutorialRepository extends JpaRepository<Tutorial, Integer> {
 	@Query("select t.section from Tutorial t where t.id = ?1")
 	Collection<Section> getSectionsByTutorial(int id);
 
-	@Query("select t.sponsorship from Tutorial t where s.id = ?1")
+	@Query("select t.sponsorship from Tutorial t where t.id = ?1")
 	Collection<Sponsorship> getSponsorshipsByTutorial(int id);
 }
