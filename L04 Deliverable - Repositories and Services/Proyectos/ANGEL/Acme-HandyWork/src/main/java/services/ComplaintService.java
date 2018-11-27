@@ -63,21 +63,13 @@ public class ComplaintService {
 		return saved;
 	}
 
-	public Complaint update(final int idComplaint, final Complaint comp) {
-		Complaint c;
-		c = this.findOne(idComplaint);
-		c.setAttachment(comp.getAttachment());
-		c.setDescription(comp.getDescription());
-		c.setMoment(comp.getMoment());
-		c.setTicker(comp.getTicker());
-		c.setReport(comp.getReport());
-
+	public Complaint update(final Complaint comp) {
 		UserAccount user;
 		user = LoginService.getPrincipal();
 
 		Complaint saved = null;
-		if (user.equals(this.complaintRepository.findCustomerByComplaintId(idComplaint)))
-			saved = this.complaintRepository.save(c);
+		if (user.equals(this.complaintRepository.findCustomerByComplaintId(comp.getId())))
+			saved = this.complaintRepository.save(comp);
 		else
 			throw new IllegalAccessError("A complaint which doesn't belong to the customer logged can't be modified");
 		Assert.notNull(saved);

@@ -63,7 +63,7 @@ public class TestWarrrantyService extends AbstractTest {
 		Warranty w;
 		w = this.serviceWarranty.findOne(1129);
 		w.setTitle("Testeando garantia");
-		Assert.notNull(this.serviceWarranty.updateWarranty(1129, w));
+		Assert.notNull(this.serviceWarranty.updateWarranty(w));
 	}
 
 	@Test
@@ -79,7 +79,7 @@ public class TestWarrrantyService extends AbstractTest {
 		w = this.serviceWarranty.findOne(1128);
 		w.setTitle("Testeando garantia");
 		this.exception.expect(IllegalAccessError.class);
-		Assert.notNull(this.serviceWarranty.updateWarranty(1128, w));
+		Assert.notNull(this.serviceWarranty.updateWarranty(w));
 	}
 	@Test
 	public void testDelete2() {

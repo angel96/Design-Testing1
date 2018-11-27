@@ -32,16 +32,10 @@ public class EndorsementService {
 		Assert.notNull(e);
 		return this.repositoryEndorsement.save(e);
 	}
-	public Endorsement update(final int id, final Endorsement e) {
-		Endorsement taken, saved;
-		taken = this.findOne(id);
-		Assert.notNull(e);
-		taken.setMoment(e.getMoment());
-		taken.setUserSended(e.getUserSended());
-		taken.setUserReceived(e.getUserReceived());
-		taken.setComments(e.getComments());
-		saved = this.repositoryEndorsement.save(taken);
-		Assert.notNull(taken);
+	public Endorsement update(final Endorsement e) {
+		Endorsement saved;
+		saved = this.repositoryEndorsement.save(e);
+		Assert.notNull(saved);
 		return saved;
 	}
 
@@ -53,7 +47,7 @@ public class EndorsementService {
 		if (comment != "" || comment != null)
 			comments.add(comment);
 		taken.setComments(comments);
-		this.update(e.getId(), taken);
+		this.update(taken);
 	}
 	public void removeComment(final String comment, final Endorsement e) {
 		Collection<String> comments;
@@ -63,7 +57,7 @@ public class EndorsementService {
 		if (comments.contains(comment))
 			comments.remove(comment);
 		taken.setComments(comments);
-		this.update(e.getId(), taken);
+		this.update(taken);
 	}
 	public void delete(final int id) {
 		Assert.notNull(this.findOne(id));

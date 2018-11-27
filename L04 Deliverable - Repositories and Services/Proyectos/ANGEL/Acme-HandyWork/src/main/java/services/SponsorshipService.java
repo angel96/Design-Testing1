@@ -53,7 +53,7 @@ public class SponsorshipService {
 		sponsorShipsFromSponsor.add(sponsorship);
 		logged.setSponsorship(sponsorShipsFromSponsor);
 
-		this.serviceSponsor.updateSponsor(logged.getId(), logged);
+		this.serviceSponsor.updateSponsor(logged);
 
 		return saved;
 	}

@@ -38,17 +38,10 @@ public class SectionService {
 
 		return result;
 	}
-	public Section updateSection(final int id, final Section n) {
-		Section update, saved;
+	public Section updateSection(final Section n) {
+		Section saved;
 
-		update = this.sectionRepository.findOne(id);
-		Assert.notNull(update);
-
-		update.setTitle(n.getText());
-		update.setText(n.getText());
-		update.setNumber(n.getNumber());
-		update.setPicture(n.getPicture());
-		saved = this.sectionRepository.save(update);
+		saved = this.sectionRepository.save(n);
 		Assert.notNull(saved);
 		return saved;
 	}

@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import repositories.WarrantyRepository;
+import utilities.Utiles;
 import domain.Warranty;
 
 @Service
@@ -37,18 +38,19 @@ public class WarrantyService {
 
 	//Update or Delete can only be done when Warranty is on draft mode.
 
-	public Warranty updateWarranty(final int id, final Warranty newer) {
+	public Warranty updateWarranty(final Warranty newer) {
 
-		Warranty w;
-		w = this.findOne(id);
+		Warranty w, saved;
+		w = Utiles.createWarranty();
 		if (w.isDraftMode()) {
 			w.setTitle(newer.getTitle());
 			w.setTerms(newer.getTerms());
 			w.setLaws(newer.getLaws());
+			saved = this.repositoryWarranty.save(w);
 		} else
 			throw new IllegalAccessError();
 
-		return this.repositoryWarranty.save(w);
+		return saved;
 	}
 
 	public void deleteWarranty(final int id) {

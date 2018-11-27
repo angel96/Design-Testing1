@@ -13,10 +13,10 @@ import domain.Customer;
 public interface ComplaintRepository extends JpaRepository<Complaint, Integer>{
 	
 	@Query("select c from Customer c join c.complaint x where x.id = ?1")
-	Customer findCustomerByComplaintId(Integer complaintId);
+	Customer findCustomerByComplaintId(int complaintId);
 	
 	@Query("select c.complaint from Customer c where c.id = ?1")
-	Collection<Complaint> findComplaintByCustomerId(Integer customerId);
+	Collection<Complaint> findComplaintByCustomerId(int customerId);
 
 	@Query("select min(f.complaint.size) from FixUpTask f")
 	double findMinimumOfComplaintsPerFixUpTask();

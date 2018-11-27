@@ -26,6 +26,7 @@ public class Application extends DomainEntity {
 	private String		status;
 	private FixUpTask	fixUpTask;
 	private Date		momentElapsed;
+	private CreditCard	creditCard;
 
 
 	@Temporal(TemporalType.DATE)
@@ -77,6 +78,20 @@ public class Application extends DomainEntity {
 
 	public void setMomentElapsed(final Date momentElapsed) {
 		this.momentElapsed = momentElapsed;
+	}
+
+	public CreditCard getCreditCard() {
+		return this.creditCard;
+	}
+
+	public void setCreditCard(final CreditCard creditCard) {
+		this.creditCard = creditCard;
+	}
+
+	@Override
+	public String toString() {
+		return "Application [moment=" + this.moment + ", offeredPrice=" + this.offeredPrice + ", comments=" + this.comments + ", status=" + this.status + ", fixUpTask=" + this.fixUpTask + ", momentElapsed=" + this.momentElapsed + ", creditCard="
+			+ this.creditCard + "]";
 	}
 
 }

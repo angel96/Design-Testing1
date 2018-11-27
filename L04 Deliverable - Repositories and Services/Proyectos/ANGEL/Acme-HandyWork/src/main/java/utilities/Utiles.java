@@ -89,6 +89,36 @@ public class Utiles {
 		em.getTransaction().commit();
 		em.close();
 	}
+	public static Phase createPhase() {
+		Phase p;
+		p = new Phase();
+		p.setDescription("");
+		p.setEndMoment(new Date());
+		p.setNumber(0);
+		p.setStartMoment(new Date());
+		p.setTitle("");
+		return p;
+	}
+	public static Category createCategory() {
+		Category c;
+		c = new Category();
+
+		c.setName("");
+		c.setCategories(new ArrayList<String>());
+
+		return c;
+	}
+	public static Application createApplication() {
+		Application a;
+		a = new Application();
+		a.setFixUpTask(new FixUpTask());
+		a.setMoment(new Date());
+		a.setMomentElapsed(new Date());
+		a.setOfferedPrice(0.0);
+		a.setStatus("pending");
+
+		return a;
+	}
 	public static FixUpTask createFixUpTask() {
 
 		FixUpTask fut;
@@ -228,8 +258,8 @@ public class Utiles {
 
 		result = new CreditCard();
 		result.setBrandName("");
-		result.setNumber(0);
-		result.setCodeCVV(1);
+		result.setNumber(1);
+		result.setCodeCVV(100);
 		result.setExpirationMonth(new Date());
 		result.setExpirationYear(new Date());
 		result.setType("");
