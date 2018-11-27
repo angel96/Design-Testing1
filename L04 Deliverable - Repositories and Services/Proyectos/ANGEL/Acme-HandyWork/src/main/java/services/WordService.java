@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import repositories.WordRepository;
+import utilities.Utiles;
 import domain.Word;
 
 @Service
@@ -41,9 +42,9 @@ public class WordService {
 		Assert.notNull(word);
 		return word;
 	}
-	public Word updateWord(final int id, final Word d) {
+	public Word updateWord(final Word d) {
 		Word update, saved;
-		update = this.findById(id);
+		update = Utiles.createWord();
 		Assert.notNull(d);
 		update.setWord(d.getWord());
 		update.setIsGood(d.getIsGood());

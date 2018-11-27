@@ -53,27 +53,15 @@ public class SponsorService {
 		return result;
 	}
 
-	public Sponsor updateSponsor(final int id, final Sponsor s) {
+	public Sponsor updateSponsor(final Sponsor s) {
 
 		UserAccount user;
 		user = LoginService.getPrincipal();
-		Sponsor update, saved;
-		update = this.findById(id);
+		Sponsor saved;
 
-		if (update != null && s != null && user.equals(update.getAccount())) {
-			update.setName(s.getName());
-			update.setMiddleName(s.getMiddleName());
-			update.setSurname(s.getSurname());
-			update.setEmail(s.getEmail());
-			update.setPhone(s.getPhone());
-			update.setPhoto(s.getPhoto());
-			update.setProfiles(s.getProfiles());
-			update.setMessage(s.getMessage());
-			update.setAdress(s.getAdress());
-			update.setAccount(s.getAccount());
-			update.setSponsorship(s.getSponsorship());
-			saved = this.sponsorRepository.save(update);
-		} else
+		if (user.equals(s.getAccount()))
+			saved = this.sponsorRepository.save(s);
+		else
 			throw new IllegalAccessError("Trying to modify a Sponsor which is not the same as the logged");
 
 		return saved;

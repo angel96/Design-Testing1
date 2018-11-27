@@ -76,7 +76,7 @@ public class TestSectionService extends AbstractTest {
 		for (final String s : pictures)
 			auxiliarPictures.add(s + "TestUpdate");
 		update.setPicture(pictures);
-		final Section s = this.sectionService.updateSection(nonUpdate.getId(), update);
+		final Section s = this.sectionService.updateSection(update);
 		Assert.notNull(s);
 	}
 

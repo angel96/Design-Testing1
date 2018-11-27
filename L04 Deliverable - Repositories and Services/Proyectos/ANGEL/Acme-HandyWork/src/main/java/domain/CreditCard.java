@@ -81,4 +81,11 @@ public class CreditCard {
 	public void setType(final String type) {
 		this.type = type;
 	}
+
+	@Override
+	public String toString() {
+		return "CreditCard [holderName=" + this.holderName + ", brandName=" + this.brandName + ", number=" + this.number + ", expirationMonth=" + this.expirationMonth + ", expirationYear=" + this.expirationYear + ", codeCVV=" + this.codeCVV + ", type="
+			+ this.type + "]";
+	}
+
 }
