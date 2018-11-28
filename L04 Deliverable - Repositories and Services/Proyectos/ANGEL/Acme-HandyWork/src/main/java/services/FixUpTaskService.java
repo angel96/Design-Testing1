@@ -2,6 +2,7 @@
 package services;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,10 +10,15 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import repositories.FixUpTaskRepository;
+import repositories.PhasesRepository;
+import security.Authority;
 import security.LoginService;
 import security.UserAccount;
+import utilities.Utiles;
+import domain.Application;
 import domain.Customer;
 import domain.FixUpTask;
+import domain.Phase;
 
 @Service
 @Transactional
@@ -23,6 +29,9 @@ public class FixUpTaskService {
 
 	@Autowired
 	private CustomerService		serviceCustomer;
+
+	@Autowired
+	private PhasesRepository	repositoryPhase;
 
 
 	public Collection<FixUpTask> findAll() {
@@ -87,5 +96,22 @@ public class FixUpTaskService {
 		else
 			throw new IllegalAccessError("A task which doesn´t belong to the customer logged can not be deleted");
 
+	}
+	public boolean createWorkPlan(final Collection<Phase> planPhases, final Application a) {
+		System.out.println(a);
+		Assert.isTrue(a.getStatus().equals("accepted"));
+		UserAccount userLogged;
+		userLogged = LoginService.getPrincipal();
+		Assert.isTrue(Utiles.findAuthority(userLogged.getAuthorities(), Authority.HANDY_WORKER));
+
+		final List<Phase> phases = this.repositoryPhase.save(planPhases);
+		FixUpTask fixup;
+		fixup = a.getFixUpTask();
+		fixup.setPhases(phases);
+
+		FixUpTask update;
+		update = this.fixUpTaskRepository.save(fixup);
+		System.out.println(update);
+		return update != null;
 	}
 }

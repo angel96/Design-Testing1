@@ -3,6 +3,7 @@ package services;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.junit.Rule;
 import org.junit.Test;
@@ -32,7 +33,8 @@ public class TestFixUpTaskService extends AbstractTest {
 
 	@Autowired
 	private FixUpTaskService		fixUpTaskService;
-
+	@Autowired
+	private ApplicationService		applicationService;
 	@Rule
 	public final ExpectedException	exception	= ExpectedException.none();
 
@@ -145,5 +147,35 @@ public class TestFixUpTaskService extends AbstractTest {
 		this.fixUpTaskService.delete(1248);
 		Assert.isNull(this.fixUpTaskService.findOne(1248));
 		super.authenticate(null);
+	}
+
+	@Test
+	public void testCreateWorkPlan() {
+		super.authenticate("handyworker1");
+
+		Phase p1;
+		p1 = Utiles.createPhase();
+		p1.setNumber(1);
+		p1.setTitle("Fase 1");
+		p1.setDescription("Des 1");
+		p1.setStartMoment(new Date());
+		p1.setEndMoment(Utiles.convertDate(2018, 12, 3));
+
+		Phase p2;
+		p2 = Utiles.createPhase();
+		p2.setNumber(2);
+		p2.setTitle("Fase 2");
+		p2.setDescription("Des 2");
+		p2.setStartMoment(new Date());
+		p2.setEndMoment(Utiles.convertDate(2028, 12, 3));
+
+		List<Phase> phases;
+		phases = new ArrayList<Phase>();
+
+		phases.add(p1);
+		phases.add(p2);
+
+		Assert.isTrue(this.fixUpTaskService.createWorkPlan(phases, this.applicationService.findOne(3054)));
+
 	}
 }

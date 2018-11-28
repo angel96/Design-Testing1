@@ -11,6 +11,7 @@ import org.springframework.util.Assert;
 import repositories.TutorialRepository;
 import security.LoginService;
 import security.UserAccount;
+import domain.HandyWorker;
 import domain.Section;
 import domain.Sponsorship;
 import domain.Tutorial;
@@ -27,6 +28,9 @@ public class TutorialService {
 
 	@Autowired
 	private SponsorshipService	serviceSponsorship;
+
+	@Autowired
+	private HandyWorkerService	serviceHandyWorker;
 
 
 	public Collection<Tutorial> getTutorialsByHandyWorker(final int userAccount) {
@@ -120,31 +124,32 @@ public class TutorialService {
 		t.setSponsorship(sponsorshipsFromTutorial);
 		this.repositoryTutorial.save(t);
 	}
-	public Tutorial update(final int id, final Tutorial modify) {
+	public Tutorial update(final Tutorial modify) {
 
 		UserAccount user;
 		user = LoginService.getPrincipal();
 
-		Tutorial tutorialOld;
-		final Tutorial saved;
-		tutorialOld = this.findOne(id);
+		HandyWorker w;
+		w = this.serviceHandyWorker.findByUserAccount(user.getId());
 
-		tutorialOld.setSponsorship(modify.getSponsorship());
-		tutorialOld.setSummary(modify.getSummary());
-		tutorialOld.setSection(modify.getSection());
-		tutorialOld.setTitle(modify.getTitle());
-		tutorialOld.setPicture(modify.getPicture());
-		tutorialOld.setLastUpdate(modify.getLastUpdate());
+		Assert.notNull(w);
 
-		if (user.getAuthorities().contains("HANDY_WORKER"))
-			saved = this.repositoryTutorial.save(modify);
-		//TODO: FALTA PERSISTIR EL HANDYWORKER
-		else
-			throw new IllegalAccessError();
+		Tutorial saved;
+
+		saved = this.repositoryTutorial.save(modify);
+
+		Assert.notNull(saved);
+
 		return saved;
 	}
 
 	public void delete(final int id) {
+		UserAccount user;
+		user = LoginService.getPrincipal();
+
+		HandyWorker w;
+		w = this.serviceHandyWorker.findByUserAccount(user.getId());
+		Assert.notNull(w);
 		Assert.notNull(this.findOne(id));
 		this.repositoryTutorial.delete(id);
 	}

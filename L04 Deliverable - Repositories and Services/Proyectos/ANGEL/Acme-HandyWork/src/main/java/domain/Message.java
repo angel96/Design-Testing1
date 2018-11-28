@@ -10,6 +10,7 @@ import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -29,6 +30,7 @@ public class Message extends DomainEntity {
 	private String				body;
 	private Collection<String>	tags;
 	private Priority			priority;
+	private Collection<Box> 	box;
 
 
 	@ManyToOne(optional = false)
@@ -87,5 +89,13 @@ public class Message extends DomainEntity {
 
 	public void setPriority(final Priority priority) {
 		this.priority = priority;
+	}
+	@ManyToMany
+	public Collection<Box> getBox() {
+		return box;
+	}
+
+	public void setBox(Collection<Box> box) {
+		this.box = box;
 	}
 }

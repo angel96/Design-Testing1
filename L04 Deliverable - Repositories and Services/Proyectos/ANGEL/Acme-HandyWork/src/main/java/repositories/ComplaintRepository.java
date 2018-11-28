@@ -12,11 +12,23 @@ import domain.Customer;
 @Repository
 public interface ComplaintRepository extends JpaRepository<Complaint, Integer>{
 	
+	@Query("select f.complaint from HandyWorker h join h.application a join a.fixUpTask f where h.id = ?1")
+	Collection<Complaint> findComplaintByHandyWorkerId(int handyWId);
+	
+	@Query("select c from Complaint c join c.report f where f.referee is empty")
+	Collection<Complaint> findComplaintNoRefereeAssigned();
+	
+	@Query("select c from Complaint c join c.report f where f.referee is not empty")
+	Collection<Complaint> findComplaintRefereeAssigned();
+	
+	@Query("select c from Complaint c join c.report f join f.referee r where r.id = ?1")
+	Collection<Complaint> findComplaintByRefereeId(int refereeId);
+	
 	@Query("select c from Customer c join c.complaint x where x.id = ?1")
-	Customer findCustomerByComplaintId(Integer complaintId);
+	Customer findCustomerByComplaintId(int complaintId);
 	
 	@Query("select c.complaint from Customer c where c.id = ?1")
-	Collection<Complaint> findComplaintByCustomerId(Integer customerId);
+	Collection<Complaint> findComplaintByCustomerId(int customerId);
 
 	@Query("select min(f.complaint.size) from FixUpTask f")
 	double findMinimumOfComplaintsPerFixUpTask();

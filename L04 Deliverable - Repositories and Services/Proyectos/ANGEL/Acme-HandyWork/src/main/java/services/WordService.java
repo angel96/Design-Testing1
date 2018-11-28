@@ -9,7 +9,9 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import repositories.WordRepository;
-import utilities.Utiles;
+import security.LoginService;
+import security.UserAccount;
+import domain.Administrator;
 import domain.Word;
 
 @Service
@@ -17,7 +19,10 @@ import domain.Word;
 public class WordService {
 
 	@Autowired
-	private WordRepository	wordRepository;
+	private WordRepository			wordRepository;
+
+	@Autowired
+	private AdministratorService	serviceAdministrator;
 
 
 	public Word findById(final int id) {
@@ -36,6 +41,13 @@ public class WordService {
 	}
 
 	public Word addWord(final Word d) {
+
+		UserAccount user;
+		user = LoginService.getPrincipal();
+		Administrator admin;
+		admin = this.serviceAdministrator.findByUserAccount(user.getId());
+		Assert.notNull(admin);
+
 		Word word;
 		Assert.notNull(d);
 		word = this.wordRepository.save(d);
@@ -43,17 +55,26 @@ public class WordService {
 		return word;
 	}
 	public Word updateWord(final Word d) {
-		Word update, saved;
-		update = Utiles.createWord();
+
+		UserAccount user;
+		user = LoginService.getPrincipal();
+		Administrator admin;
+		admin = this.serviceAdministrator.findByUserAccount(user.getId());
+		Assert.notNull(admin);
+
+		Word saved;
 		Assert.notNull(d);
-		update.setWord(d.getWord());
-		update.setIsGood(d.getIsGood());
-		saved = this.wordRepository.save(update);
+		saved = this.wordRepository.save(d);
 		Assert.notNull(saved);
 		return saved;
 	}
 	public void deleteWord(final int id) {
 		Assert.notNull(this.wordRepository.findOne(id));
+		UserAccount user;
+		user = LoginService.getPrincipal();
+		Administrator admin;
+		admin = this.serviceAdministrator.findByUserAccount(user.getId());
+		Assert.notNull(admin);
 		this.wordRepository.delete(id);
 	}
 }

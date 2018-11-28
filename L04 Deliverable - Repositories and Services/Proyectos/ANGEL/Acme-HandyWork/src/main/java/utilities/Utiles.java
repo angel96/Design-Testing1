@@ -3,6 +3,7 @@ package utilities;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
@@ -16,7 +17,6 @@ import org.hibernate.search.query.dsl.QueryBuilder;
 
 import security.Authority;
 import security.UserAccount;
-import utilities.internal.SchemaPrinter;
 import domain.Application;
 import domain.Box;
 import domain.Category;
@@ -25,7 +25,6 @@ import domain.CreditCard;
 import domain.Endorsable;
 import domain.Endorsement;
 import domain.FixUpTask;
-import domain.Message;
 import domain.Phase;
 import domain.Profile;
 import domain.Section;
@@ -70,7 +69,7 @@ public class Utiles {
 		return d;
 	}
 
-	public static void fullTextSearch(final String s) {
+	public static List<?> fullTextSearch(final String s) {
 		final HibernatePersistenceProvider provider = new HibernatePersistenceProvider();
 		final EntityManagerFactory entityManagerFactory = provider.createEntityManagerFactory("Acme-HandyWork", null);
 		final EntityManager em = entityManagerFactory.createEntityManager();
@@ -83,11 +82,14 @@ public class Utiles {
 		// From Lucene query to Javax query
 		final javax.persistence.Query jpaQuery = fullTextEntityManager.createFullTextQuery(luceneQuery, FixUpTask.class);
 
-		final List<?> result = jpaQuery.getResultList();
-		SchemaPrinter.print(result);
+		List<?> result;
+		result = jpaQuery.getResultList();
+		//SchemaPrinter.print(result);
 
 		em.getTransaction().commit();
 		em.close();
+
+		return result;
 	}
 	public static Phase createPhase() {
 		Phase p;
@@ -179,7 +181,6 @@ public class Utiles {
 		w.setAdress("");
 		w.setBan(false);
 		w.setPhoto("");
-		w.setMessage(new ArrayList<Message>());
 		w.setSponsorship(new ArrayList<Sponsorship>());
 		w.setProfiles(new ArrayList<Profile>());
 		w.setBoxes(new ArrayList<Box>());
@@ -241,7 +242,7 @@ public class Utiles {
 		e.setComments(new ArrayList<String>());
 		return e;
 	}
-	public static Sponsorship create() {
+	public static Sponsorship createSponsorship() {
 		Sponsorship result;
 		result = new Sponsorship();
 
@@ -266,5 +267,19 @@ public class Utiles {
 		result.setHolderName("");
 
 		return result;
+	}
+	public static Boolean findAuthority(final Collection<Authority> comp, final String a) {
+		Boolean res = false;
+		if (comp.size() > 1) {
+			Authority aut;
+			aut = new Authority();
+			aut.setAuthority(a);
+			res = comp.contains(aut);
+		} else
+			for (final Authority authority : comp)
+				if (authority.toString().equals(a))
+					res = true;
+
+		return res;
 	}
 }
