@@ -189,11 +189,18 @@ public class Utiles {
 	
 	public static Boolean findAuthority(Collection<Authority> comp, String a) {
 		Boolean res = false;
-		for (Authority authority : comp) {
-			if(authority.toString().equals(a)) {
+		if (comp.size() > 1) {
+			Authority aut = new Authority();
+			aut.setAuthority(a);
+			res = comp.contains(aut);
+		} else {
+			for (Authority authority : comp) {
+				if(authority.toString().equals(a)) {
 				res = true;
+				}
 			}
 		}
+		
 		return res;
 	}
 }

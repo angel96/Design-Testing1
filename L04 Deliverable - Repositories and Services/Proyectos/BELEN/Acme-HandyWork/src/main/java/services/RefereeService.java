@@ -12,6 +12,7 @@ import repositories.RefereeRepository;
 import security.Authority;
 import security.LoginService;
 import security.UserAccount;
+import utilities.Utiles;
 import domain.Box;
 import domain.Message;
 import domain.Note;
@@ -40,6 +41,9 @@ public class RefereeService {
 	}
 	
 	public Referee create() {
+		UserAccount creator;
+		creator = LoginService.getPrincipal();
+		Assert.isTrue(Utiles.findAuthority(creator.getAuthorities(), Authority.ADMIN));
 		Referee r;
 		r = new Referee();
 		UserAccount user;
@@ -75,29 +79,10 @@ public class RefereeService {
 	}
 	
 	public Referee update(final Referee ref) {
-		Referee old, saved;
-		old = this.refereeRepository.findByUserAccount(ref.getId());
-		old.setAdress(ref.getAdress());
-		old.setBan(ref.isBan());
-		old.setBoxes(ref.getBoxes());
-		old.setEmail(ref.getEmail());
-		old.setMessage(ref.getMessage());
-		old.setMiddleName(ref.getMiddleName());
-		old.setName(ref.getName());
-		old.setNotes(ref.getNotes());
-		old.setPhone(ref.getPhone());
-		old.setPhoto(ref.getPhoto());
-		old.setSurname(ref.getSurname());
+		Assert.notNull(ref);
+		Referee saved;
 		
-		UserAccount user;
-		user = LoginService.getPrincipal();
-
-		if (user.equals(this.refereeRepository.findByUserAccount(ref.getId()).getAccount())) {
-			saved = this.refereeRepository.save(old);
-		} else {
-			throw new IllegalAccessError("A referee which doesn´t belong to the referee logged can not be modified");
-		}
-		Assert.notNull(saved);
+		saved = this.refereeRepository.save(ref);
 		return saved;
 		
 		

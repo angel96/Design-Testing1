@@ -42,6 +42,11 @@ public class NoteService {
 	}
 	
 	public Note create() {
+		UserAccount user;
+		user = LoginService.getPrincipal();
+		Assert.isTrue((Utiles.findAuthority(user.getAuthorities(), Authority.CUSTOMER)||
+				Utiles.findAuthority(user.getAuthorities(), Authority.HANDY_WORKER) ||
+				Utiles.findAuthority(user.getAuthorities(), Authority.REFEREE)));
 		Note res;
 		res = new Note();
 		res.setMoment(new Date());
@@ -75,6 +80,7 @@ public class NoteService {
 			h.setNotes(notesPerHandyWorker);
 			this.handyWorkerService.update(h);
 		} else if (this.refereeService.findByUserAccount(user.getId()) != null) {
+			Assert.isTrue(this.noteRepository.findReportByNoteId(note.getId()).getFinalMode(), "Report hasn't been saved in final mode");
 			Referee r;
 			r = this.refereeService.findByUserAccount(user.getId());
 			Collection<Note> notesPerReferee;
@@ -96,16 +102,13 @@ public class NoteService {
 		toAddComments = this.findOne(n.getId());
 		comments = toAddComments.getOtherComments();
 		if (comment.equals("") == false || comment != null){
-			if (Utiles.findAuthority(user.getAuthorities(), Authority.CUSTOMER) == true ||
-					Utiles.findAuthority(user.getAuthorities(), Authority.HANDY_WORKER) == true ||
-					Utiles.findAuthority(user.getAuthorities(), Authority.REFEREE) == true) {
+			Assert.isTrue((Utiles.findAuthority(user.getAuthorities(), Authority.CUSTOMER))||
+					(Utiles.findAuthority(user.getAuthorities(), Authority.HANDY_WORKER))||
+					(Utiles.findAuthority(user.getAuthorities(), Authority.REFEREE)), "An actor with authority " + user.getAuthorities() + " can't add comments"); 
 			comments.add(comment);
-			} else {
-				throw new IllegalArgumentException("An actor with authority " + user.getAuthorities() + " can't add comments");
-			}
 		}
 		toAddComments.setOtherComments(comments);
-		this.noteRepository.save(toAddComments);
+		this.save(toAddComments);
 	}
 	
 	public Double min() {

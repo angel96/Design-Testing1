@@ -29,7 +29,7 @@ public class Report extends DomainEntity {
 	private Collection<Note>	notes;
 	private Complaint			complaints;
 	private Referee				referee;
-
+	private Boolean finalMode;
 
 	@ManyToOne(optional = false)
 	public Complaint getComplaints() {
@@ -81,6 +81,14 @@ public class Report extends DomainEntity {
 
 	public void setReferee(final Referee referee) {
 		this.referee = referee;
+	}
+
+	public Boolean getFinalMode() {
+		return finalMode;
+	}
+
+	public void setFinalMode(Boolean finalMode) {
+		this.finalMode = finalMode;
 	}
 
 }

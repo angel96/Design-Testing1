@@ -1,8 +1,7 @@
 package services;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
+import java.util.GregorianCalendar;
 
 import javax.transaction.Transactional;
 
@@ -29,11 +28,11 @@ public class TestNoteService extends AbstractTest{
 	
 	@Test //TEST FOR CREATE
 	public void testCreateNote() {
-		super.authenticate("customer2");
+		super.authenticate("referee1");
 		Note n;
 		n = new Note();
-		n.setId(1248); // if the note doesn't is regarding any of the reports, failed
-		n.setMoment(new Date(2018, 11, 28, 17, 0));
+		n.setId(2989); // if the note doesn't is regarding any of the reports, failed
+		n.setMoment(new GregorianCalendar(2018, 11, 28, 17, 0, 0).getTime());
 		n.setComment("Comentario 1");
 		n.setOtherComments(new ArrayList<String>());
 		Note saved;
@@ -44,13 +43,11 @@ public class TestNoteService extends AbstractTest{
 	
 	@Test //TEST FOR WRITE COMMENTS
 	public void testAddComments() {
-		super.authenticate("referee");
+		super.authenticate("super");
 		Note n;
-		n = this.noteService.findOne(1248);
+		n = this.noteService.findOne(2989);
 		String c = "Comentario extra";
 		this.noteService.addCommentToNote(c, n);
 		super.unauthenticate(); 
 	}
-	
-
 }

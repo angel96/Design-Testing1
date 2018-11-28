@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
 import repositories.ComplaintRepository;
+import security.Authority;
 import security.LoginService;
 import security.UserAccount;
 import utilities.Utiles;
@@ -31,14 +32,47 @@ public class ComplaintService {
 
 
 	public Collection<Complaint> findAll() {
+		UserAccount user;
+		user = LoginService.getPrincipal();
+		Assert.isTrue(Utiles.findAuthority(user.getAuthorities(), Authority.CUSTOMER));
 		return this.complaintRepository.findAll();
 	}
 
 	public Complaint findOne(final int id) {
+		UserAccount user;
+		user = LoginService.getPrincipal();
+		Assert.isTrue(Utiles.findAuthority(user.getAuthorities(), Authority.CUSTOMER));
 		return this.complaintRepository.findOne(id);
 	}
-
+	
+	public Collection<Complaint> findComplaintByHandyWorkerId(final int handyWId) {
+		UserAccount user;
+		user = LoginService.getPrincipal();
+		Assert.isTrue(Utiles.findAuthority(user.getAuthorities(), Authority.HANDY_WORKER));
+		return this.complaintRepository.findComplaintByHandyWorkerId(handyWId);
+	}
+	
+	public Collection<Complaint> findComplaintByReferee(final int refereeId) {
+		UserAccount user;
+		user = LoginService.getPrincipal();
+		Assert.isTrue(Utiles.findAuthority(user.getAuthorities(), Authority.REFEREE));
+		return this.complaintRepository.findComplaintByRefereeId(refereeId);
+	}
+	public Collection<Complaint> findComplaintNoRefereeAssigned() {
+		UserAccount user;
+		user = LoginService.getPrincipal();
+		Assert.isTrue(Utiles.findAuthority(user.getAuthorities(), Authority.REFEREE));
+		return this.complaintRepository.findComplaintNoRefereeAssigned();
+	}
+	
+	public Collection<Complaint> findComplaintRefereeAssigned() {
+		return this.complaintRepository.findComplaintRefereeAssigned();
+	}
+	
 	public Complaint create() {
+		UserAccount user;
+		user = LoginService.getPrincipal();
+		Assert.isTrue(Utiles.findAuthority(user.getAuthorities(), Authority.CUSTOMER));
 		Complaint res;
 		res = new Complaint();
 		res.setTicker(Utiles.generateTicker());
@@ -63,24 +97,11 @@ public class ComplaintService {
 		return saved;
 	}
 
-	public Complaint update(final int idComplaint, final Complaint comp) {
-		Complaint c;
-		c = this.findOne(idComplaint);
-		c.setAttachment(comp.getAttachment());
-		c.setDescription(comp.getDescription());
-		c.setMoment(comp.getMoment());
-		c.setTicker(comp.getTicker());
-		c.setReport(comp.getReport());
-
-		UserAccount user;
-		user = LoginService.getPrincipal();
-
-		Complaint saved = null;
-		if (user.equals(this.complaintRepository.findCustomerByComplaintId(idComplaint)))
-			saved = this.complaintRepository.save(c);
-		else
-			throw new IllegalAccessError("A complaint which doesn't belong to the customer logged can't be modified");
-		Assert.notNull(saved);
+	public Complaint update(final Complaint comp) {
+		Assert.notNull(comp);
+		Complaint saved;
+		
+		saved = this.complaintRepository.save(comp);
 		return saved;
 	}
 

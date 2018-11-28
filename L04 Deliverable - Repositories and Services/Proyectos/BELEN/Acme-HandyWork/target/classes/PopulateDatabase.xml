@@ -14,32 +14,7 @@
 		<constructor-arg value="yyyy/MM/dd" />
 	</bean>
 	<!-- User accounts -->
-
-	<bean id="userAccount1" class="security.UserAccount">
-		<property name="username" value="admin" />
-		<property name="password" value="21232f297a57a5a743894a0e4a801fc3" />
-		<property name="authorities">
-			<list>
-				<bean class="security.Authority">
-					<property name="authority" value="ADMIN" />
-				</bean>
-			</list>
-		</property>
-	</bean>
-
-	<bean id="userAccount2" class="security.UserAccount">
-		<property name="username" value="customer" />
-		<property name="password" value="91ec1f9324753048c0096d036a694f86" />
-		<property name="authorities">
-			<list>
-				<bean class="security.Authority">
-					<property name="authority" value="CUSTOMER" />
-				</bean>
-			</list>
-		</property>
-	</bean>
-
-	<bean id="userAccount3" class="security.UserAccount">
+	<bean id="userAccount0" class="security.UserAccount">
 		<property name="username" value="super" />
 		<property name="password" value="1b3231655cebb7a1f783eddf27d254ca" />
 		<property name="authorities">
@@ -62,10 +37,110 @@
 			</list>
 		</property>
 	</bean>
-
-	<bean id="userAccount4" class="security.UserAccount">
-		<property name="username" value="handyworker" />
-		<property name="password" value="24da2ce4fb8a46c3d44d2c72305a31a2" />
+	<bean id="userAccount1" class="security.UserAccount">
+		<property name="username" value="admin1" />
+		<property name="password" value="21232f297a57a5a743894a0e4a801fc3" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="ADMIN" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+	<bean id="userAccount2" class="security.UserAccount">
+		<property name="username" value="admin2" />
+		<property name="password" value="21232f297a57a5a743894a0e4a801fc3" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="ADMIN" />
+				</bean>
+			</list>
+		</property>
+	</bean><bean id="userAccount3" class="security.UserAccount">
+		<property name="username" value="admin3" />
+		<property name="password" value="21232f297a57a5a743894a0e4a801fc3" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="ADMIN" />
+				</bean>
+			</list>
+		</property>
+	</bean><bean id="userAccount4" class="security.UserAccount">
+		<property name="username" value="admin4" />
+		<property name="password" value="21232f297a57a5a743894a0e4a801fc3" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="ADMIN" />
+				</bean>
+			</list>
+		</property>
+	</bean><bean id="userAccount5" class="security.UserAccount">
+		<property name="username" value="admin5" />
+		<property name="password" value="21232f297a57a5a743894a0e4a801fc3" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="ADMIN" />
+				</bean>
+			</list>
+		</property>
+	</bean><bean id="userAccount6" class="security.UserAccount">
+		<property name="username" value="customer1" />
+		<property name="password" value="21232f297a57a5a743894a0e4a801fc3" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="CUSTOMER" />
+				</bean>
+			</list>
+		</property>
+	</bean><bean id="userAccount7" class="security.UserAccount">
+		<property name="username" value="customer2" />
+		<property name="password" value="21232f297a57a5a743894a0e4a801fc3" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="CUSTOMER" />
+				</bean>
+			</list>
+		</property>
+	</bean><bean id="userAccount8" class="security.UserAccount">
+		<property name="username" value="customer3" />
+		<property name="password" value="21232f297a57a5a743894a0e4a801fc3" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="CUSTOMER" />
+				</bean>
+			</list>
+		</property>
+	</bean><bean id="userAccount9" class="security.UserAccount">
+		<property name="username" value="customer4" />
+		<property name="password" value="21232f297a57a5a743894a0e4a801fc3" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="CUSTOMER" />
+				</bean>
+			</list>
+		</property>
+	</bean><bean id="userAccount10" class="security.UserAccount">
+		<property name="username" value="customer5" />
+		<property name="password" value="21232f297a57a5a743894a0e4a801fc3" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="CUSTOMER" />
+				</bean>
+			</list>
+		</property>
+	</bean><bean id="userAccount11" class="security.UserAccount">
+		<property name="username" value="handyworker1" />
+		<property name="password" value="21232f297a57a5a743894a0e4a801fc3" />
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">
@@ -73,11 +148,49 @@
 				</bean>
 			</list>
 		</property>
-	</bean>
-
-	<bean id="userAccount5" class="security.UserAccount">
-		<property name="username" value="referee" />
-		<property name="password" value="4f200dd50f7bcac8a64683b771700afb" />
+	</bean><bean id="userAccount12" class="security.UserAccount">
+		<property name="username" value="handyworker2" />
+		<property name="password" value="21232f297a57a5a743894a0e4a801fc3" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="HANDY_WORKER" />
+				</bean>
+			</list>
+		</property>
+	</bean><bean id="userAccount13" class="security.UserAccount">
+		<property name="username" value="handyworker3" />
+		<property name="password" value="21232f297a57a5a743894a0e4a801fc3" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="HANDY_WORKER" />
+				</bean>
+			</list>
+		</property>
+	</bean><bean id="userAccount14" class="security.UserAccount">
+		<property name="username" value="handyworker4" />
+		<property name="password" value="21232f297a57a5a743894a0e4a801fc3" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="HANDY_WORKER" />
+				</bean>
+			</list>
+		</property>
+	</bean><bean id="userAccount15" class="security.UserAccount">
+		<property name="username" value="handyworker5" />
+		<property name="password" value="21232f297a57a5a743894a0e4a801fc3" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="HANDY_WORKER" />
+				</bean>
+			</list>
+		</property>
+	</bean><bean id="userAccount16" class="security.UserAccount">
+		<property name="username" value="referee1" />
+		<property name="password" value="21232f297a57a5a743894a0e4a801fc3" />
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">
@@ -85,11 +198,89 @@
 				</bean>
 			</list>
 		</property>
-	</bean>
-
-	<bean id="userAccount6" class="security.UserAccount">
-		<property name="username" value="sponsor" />
-		<property name="password" value="08391c959fc8bd0b672c596c4d6bcdcd" />
+	</bean><bean id="userAccount17" class="security.UserAccount">
+		<property name="username" value="referee2" />
+		<property name="password" value="21232f297a57a5a743894a0e4a801fc3" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="REFEREE" />
+				</bean>
+			</list>
+		</property>
+	</bean><bean id="userAccount18" class="security.UserAccount">
+		<property name="username" value="referee3" />
+		<property name="password" value="21232f297a57a5a743894a0e4a801fc3" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="REFEREE" />
+				</bean>
+			</list>
+		</property>
+	</bean><bean id="userAccount19" class="security.UserAccount">
+		<property name="username" value="referee4" />
+		<property name="password" value="21232f297a57a5a743894a0e4a801fc3" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="REFEREE" />
+				</bean>
+			</list>
+		</property>
+	</bean><bean id="userAccount20" class="security.UserAccount">
+		<property name="username" value="referee5" />
+		<property name="password" value="21232f297a57a5a743894a0e4a801fc3" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="REFEREE" />
+				</bean>
+			</list>
+		</property>
+	</bean><bean id="userAccount21" class="security.UserAccount">
+		<property name="username" value="sponsor1" />
+		<property name="password" value="21232f297a57a5a743894a0e4a801fc3" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="SPONSOR" />
+				</bean>
+			</list>
+		</property>
+	</bean><bean id="userAccount22" class="security.UserAccount">
+		<property name="username" value="sponsor2" />
+		<property name="password" value="21232f297a57a5a743894a0e4a801fc3" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="SPONSOR" />
+				</bean>
+			</list>
+		</property>
+	</bean><bean id="userAccount23" class="security.UserAccount">
+		<property name="username" value="sponsor3" />
+		<property name="password" value="21232f297a57a5a743894a0e4a801fc3" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="SPONSOR" />
+				</bean>
+			</list>
+		</property>
+	</bean><bean id="userAccount24" class="security.UserAccount">
+		<property name="username" value="sponsor4" />
+		<property name="password" value="21232f297a57a5a743894a0e4a801fc3" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="SPONSOR" />
+				</bean>
+			</list>
+		</property>
+	</bean><bean id="userAccount25" class="security.UserAccount">
+		<property name="username" value="sponsor5" />
+		<property name="password" value="21232f297a57a5a743894a0e4a801fc3" />
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">
@@ -98,40 +289,143 @@
 			</list>
 		</property>
 	</bean>
-<bean id="userAccount7" class="security.UserAccount">
-		<property name="username" value="customer2" />
-		<property name="password" value="91ec1f9324753048c0096d036a694f86" />
-		<property name="authorities">
-			<list>
-				<bean class="security.Authority">
-					<property name="authority" value="CUSTOMER" />
-				</bean>
-			</list>
-		</property>
+	<!-- beans profile -->
+	<bean id="profile1" class="domain.Profile">
+		<property name="nick" value="DP1010" />
+		<property name="socialNetworkName" value="LinkedIn" />
+		<property name="link" value="https://www.linkedin/DP1010" />
 	</bean>
-	<bean id="userAccount8" class="security.UserAccount">
-		<property name="username" value="customer3" />
-		<property name="password" value="91ec1f9324753048c0096d036a694f86" />
-		<property name="authorities">
-			<list>
-				<bean class="security.Authority">
-					<property name="authority" value="CUSTOMER" />
-				</bean>
-			</list>
-		</property>
+	<bean id="profile2" class="domain.Profile">
+		<property name="nick" value="DP1011" />
+		<property name="socialNetworkName" value="Tuenti" />
+		<property name="link" value="https://www.tuenti/DP1011" />
 	</bean>
-	<bean id="userAccount9" class="security.UserAccount">
-		<property name="username" value="referee2" />
-		<property name="password" value="4f200dd50f7bcac8a64683b771700afb" />
-		<property name="authorities">
-			<list>
-				<bean class="security.Authority">
-					<property name="authority" value="REFEREE" />
-				</bean>
-			</list>
-		</property>
+	<bean id="profile3" class="domain.Profile">
+		<property name="nick" value="DP1012" />
+		<property name="socialNetworkName" value="Facebook" />
+		<property name="link" value="https://www.facebook.com/DP1012" />
 	</bean>
-	<!-- Word Beans -->
+	<bean id="profile4" class="domain.Profile">
+		<property name="nick" value="DP1013" />
+		<property name="socialNetworkName" value="Facebook" />
+		<property name="link" value="https://www.facebook.com/DP1013" />
+	</bean>
+	<bean id="profile5" class="domain.Profile">
+		<property name="nick" value="DP1014" />
+		<property name="socialNetworkName" value="Facebook" />
+		<property name="link" value="https://www.facebook.com/DP1014" />
+	</bean>
+	<bean id="profile6" class="domain.Profile">
+		<property name="nick" value="DP1015" />
+		<property name="socialNetworkName" value="Facebook" />
+		<property name="link" value="https://www.facebook.com/DP1015" />
+	</bean>
+	<bean id="profile7" class="domain.Profile">
+		<property name="nick" value="DP1016" />
+		<property name="socialNetworkName" value="Twitter" />
+		<property name="link" value="https://www.twitter.com/DP1016" />
+	</bean>
+	
+	<bean id="profile8" class="domain.Profile">
+		<property name="nick" value="DP1017" />
+		<property name="socialNetworkName" value="Instagram" />
+		<property name="link" value="https://www.instagram.com/DP1017" />
+	</bean>
+	
+	<bean id="profile9" class="domain.Profile">
+		<property name="nick" value="DP1018" />
+		<property name="socialNetworkName" value="Instagram" />
+		<property name="link" value="https://www.instagram.com/DP1018" />
+	</bean>
+	
+	<bean id="profile10" class="domain.Profile">
+		<property name="nick" value="DP1019" />
+		<property name="socialNetworkName" value="Twitter" />
+		<property name="link" value="https://www.instagram.com/DP1019" />
+	</bean>
+	
+	<bean id="profile11" class="domain.Profile">
+		<property name="nick" value="DP1020" />
+		<property name="socialNetworkName" value="LinkedIn" />
+		<property name="link" value="https://www.linkedin/DP1020" />
+	</bean>
+	<bean id="profile12" class="domain.Profile">
+		<property name="nick" value="DP1021" />
+		<property name="socialNetworkName" value="Tuenti" />
+		<property name="link" value="https://www.tuenti/DP1021" />
+	</bean>
+	<bean id="profile13" class="domain.Profile">
+		<property name="nick" value="DP1022" />
+		<property name="socialNetworkName" value="Facebook" />
+		<property name="link" value="https://www.facebook.com/DP1022" />
+	</bean>
+	<bean id="profile14" class="domain.Profile">
+		<property name="nick" value="DP1023" />
+		<property name="socialNetworkName" value="Facebook" />
+		<property name="link" value="https://www.facebook.com/DP1023" />
+	</bean>
+	<bean id="profile15" class="domain.Profile">
+		<property name="nick" value="DP1024" />
+		<property name="socialNetworkName" value="Facebook" />
+		<property name="link" value="https://www.facebook.com/DP1024" />
+	</bean>
+	<bean id="profile16" class="domain.Profile">
+		<property name="nick" value="DP1025" />
+		<property name="socialNetworkName" value="Facebook" />
+		<property name="link" value="https://www.facebook.com/DP1025" />
+	</bean>
+	<bean id="profile17" class="domain.Profile">
+		<property name="nick" value="DP1026" />
+		<property name="socialNetworkName" value="Twitter" />
+		<property name="link" value="https://www.twitter.com/DP1026" />
+	</bean>
+	
+	<bean id="profile18" class="domain.Profile">
+		<property name="nick" value="DP1027" />
+		<property name="socialNetworkName" value="Instagram" />
+		<property name="link" value="https://www.instagram.com/DP1027" />
+	</bean>
+	
+	<bean id="profile19" class="domain.Profile">
+		<property name="nick" value="DP1028" />
+		<property name="socialNetworkName" value="Instagram" />
+		<property name="link" value="https://www.instagram.com/DP1028" />
+	</bean>
+	
+	<bean id="profile20" class="domain.Profile">
+		<property name="nick" value="DP1029" />
+		<property name="socialNetworkName" value="Twitter" />
+		<property name="link" value="https://www.instagram.com/DP1029" />
+	</bean>
+	<bean id="profile21" class="domain.Profile">
+		<property name="nick" value="DP1035" />
+		<property name="socialNetworkName" value="Facebook" />
+		<property name="link" value="https://www.facebook.com/DP1035" />
+	</bean>
+	<bean id="profile22" class="domain.Profile">
+		<property name="nick" value="DP1036" />
+		<property name="socialNetworkName" value="Twitter" />
+		<property name="link" value="https://www.twitter.com/DP1036" />
+	</bean>
+	
+	<bean id="profile23" class="domain.Profile">
+		<property name="nick" value="DP1037" />
+		<property name="socialNetworkName" value="Instagram" />
+		<property name="link" value="https://www.instagram.com/DP1037" />
+	</bean>
+	
+	<bean id="profile24" class="domain.Profile">
+		<property name="nick" value="DP1038" />
+		<property name="socialNetworkName" value="Instagram" />
+		<property name="link" value="https://www.instagram.com/DP1038" />
+	</bean>
+	
+	<bean id="profile25" class="domain.Profile">
+		<property name="nick" value="DP1039" />
+		<property name="socialNetworkName" value="Twitter" />
+		<property name="link" value="https://www.instagram.com/DP1039" />
+	</bean>
+	<!--  beans word -->
 	<bean id="word1" class="domain.Word">
 		<property name="word" value="good" />
 		<property name="isGood" value="true" />
@@ -228,170 +522,8 @@
 		<property name="word" value="desstre" />
 		<property name="isGood" value="false" />
 	</bean>
-
-	<!-- Warranty Beans -->
-
-	<bean id="warranty1" class="domain.Warranty">
-		<property name="title" value="Decreto Ley 2014/13" />
-		<property name="terms" value="TerminosPredeterminadosFP123456" />
-		<property name="laws"
-			value="Lorem Ipsum is simply dummy text of the printing and typesetting industry." />
-	</bean>
-
-	<bean id="warranty2" class="domain.Warranty">
-		<property name="title" value="Decreto Ley 2015/14" />
-		<property name="terms" value="TerminosPredeterminadosADDA234587" />
-		<property name="laws"
-			value="Lorem Ipsum is simply dummy text of the printing and typesetting industry. " />
-			<property name = "draftMode" value = "true" />
- 	</bean>
 	
-	<bean id="warranty3" class="domain.Warranty">
-		<property name="title" value="Decreto Ley 2016/13" />
-		<property name="terms" value="TerminosPredeterminadosAISS147" />
-		<property name="laws"
-			value="Lorem Ipsum is simply dummy text of the printing and typesetting industry." />
-	</bean>
-	
-	<bean id="warranty4" class="domain.Warranty">
-		<property name="title" value="Decreto Ley 2017/13" />
-		<property name="terms" value="TerminosPredeterminadosDP123456" />
-		<property name="laws"
-			value="Lorem Ipsum is simply dummy text of the printing and typesetting industry." />
-			<property name = "draftMode" value = "true" />
-	</bean>
-
-	<bean id="warranty5" class="domain.Warranty">
-		<property name="title" value="Decreto Ley 2018/11" />
-		<property name="terms" value="TerminosPredeterminadosIISSI1415" />
-		<property name="laws"
-			value="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard" />
-			<property name = "draftMode" value = "true" />
-	</bean>
-
-	<!-- SpamWords Beans -->
-
-	<bean id="spamWord1" class="domain.SpamWord">
-		<property name="word" value="sex"></property>
-	</bean>
-	
-	<bean id="spamWord2" class="domain.SpamWord">
-		<property name="word" value="viagra"></property>
-	</bean>
-	
-	<bean id="spamWord3" class="domain.SpamWord">
-		<property name="word" value="cialis"></property>
-	</bean>
-	
-	<bean id="spamWord4" class="domain.SpamWord">
-		<property name="word" value="cialis"></property>
-	</bean>
-	
-	<bean id="spamWord5" class="domain.SpamWord">
-		<property name="word" value="one millon"></property>
-	</bean>
-	
-	<bean id="spamWord6" class="domain.SpamWord">
-		<property name="word" value="you've been selected"></property>
-	</bean>
-	
-	<bean id="spamWord7" class="domain.SpamWord">
-		<property name="word" value="Nigeria"></property>
-	</bean>
-	
-	<bean id="spamWord8" class="domain.SpamWord">
-		<property name="word" value="sexo"></property>
-	</bean>
-	
-	<bean id="spamWord10" class="domain.SpamWord">
-		<property name="word" value="un millón"></property>
-	</bean>
-	
-	<bean id="spamWord11" class="domain.SpamWord">
-		<property name="word" value="ha sido seleccionado"></property>
-	</bean>
-	
-	<!-- Profile Beans -->
-	<bean id="profile1" class="domain.Profile">
-		<property name="nick" value="DP1718" />
-		<property name="socialNetworkName" value="LinkedIn" />
-		<property name="link" value="https://www.linkedin/DP1718" />
-	</bean>
-	<bean id="profile2" class="domain.Profile">
-		<property name="nick" value="DP1719" />
-		<property name="socialNetworkName" value="Tuenti" />
-		<property name="link" value="https://www.tuenti/DP1719" />
-	</bean>
-	<bean id="profile3" class="domain.Profile">
-		<property name="nick" value="DP2018" />
-		<property name="socialNetworkName" value="Facebook" />
-		<property name="link" value="https://www.facebook.com/DP2018" />
-	</bean>
-	<bean id="profile4" class="domain.Profile">
-		<property name="nick" value="DP2018" />
-		<property name="socialNetworkName" value="Facebook" />
-		<property name="link" value="https://www.facebook.com/DP2018" />
-	</bean>
-	<bean id="profile5" class="domain.Profile">
-		<property name="nick" value="DP2018" />
-		<property name="socialNetworkName" value="Facebook" />
-		<property name="link" value="https://www.facebook.com/DP2018" />
-	</bean>
-	<bean id="profile6" class="domain.Profile">
-		<property name="nick" value="DP2040" />
-		<property name="socialNetworkName" value="Facebook" />
-		<property name="link" value="https://www.facebook.com/DP2040" />
-	</bean>
-	<bean id="profile7" class="domain.Profile">
-		<property name="nick" value="DP2022" />
-		<property name="socialNetworkName" value="Twitter" />
-		<property name="link" value="https://www.twitter.com/DP2022" />
-	</bean>
-	
-	<bean id="profile8" class="domain.Profile">
-		<property name="nick" value="DP2024" />
-		<property name="socialNetworkName" value="Instagram" />
-		<property name="link" value="https://www.instagram.com/DP2024" />
-	</bean>
-	
-	<bean id="profile9" class="domain.Profile">
-		<property name="nick" value="DP1-2018" />
-		<property name="socialNetworkName" value="Instagram" />
-		<property name="link" value="https://www.instagram.com/DP1-2018" />
-	</bean>
-	
-	<bean id="profile10" class="domain.Profile">
-		<property name="nick" value="DP1-2018" />
-		<property name="socialNetworkName" value="Twitter" />
-		<property name="link" value="https://www.instagram.com/DP1-2018" />
-	</bean>
-	
-	<bean id="profile11" class="domain.Profile">
-		<property name="nick" value="DT-2018" />
-		<property name="socialNetworkName" value="AcmeShout" />
-		<property name="link" value="https://www.acme-shout.com/DT-2018" />
-	</bean>
-	<!-- Priority Beans -->
-
-	<bean id="priority1" class="domain.Priority">
-		<property name="name" value="HIGH" />
-		<property name="description"
-			value="High priority is used for important messages." />
-	</bean>
-
-	<bean id="priority2" class="domain.Priority">
-		<property name="name" value="NEUTRAL" />
-		<property name="description" value="High priority is used for common messages." />
-	</bean>
-
-	<bean id="priority3" class="domain.Priority">
-		<property name="name" value="LOW" />
-		<property name="description"
-			value="High priority is used for non important messages." />
-	</bean>
-
-	<!-- Phase Beans -->
-
+	<!--  bean phase -->
 	<bean id="phase1" class="domain.Phase">
 		<property name="title" value="Phase 1" />
 		<property name="description" value="Let´s start populating database" />
@@ -452,7 +584,7 @@
 				<constructor-arg value="2018/11/22" />
 			</bean>
 		</property>
-		<property name="number" value="3" />
+		<property name="number" value="4" />
 	</bean>
 	<bean id="phase5" class="domain.Phase">
 		<property name="title" value="Phase 5" />
@@ -467,7 +599,7 @@
 				<constructor-arg value="2018/11/22" />
 			</bean>
 		</property>
-		<property name="number" value="3" />
+		<property name="number" value="5" />
 	</bean>
 	<bean id="phase6" class="domain.Phase">
 		<property name="title" value="Phase 6" />
@@ -482,10 +614,1332 @@
 				<constructor-arg value="2018/11/22" />
 			</bean>
 		</property>
+		<property name="number" value="6" />
+	</bean>
+	
+	<!--  bean category -->
+	<bean id="category1" class="domain.Category">
+		<property name="name" value="Carprenty" />
+		<property name="categories">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="category2" class="domain.Category">
+		<property name="name" value="Ceiling repairs" />
+		<property name="categories">
+			<list>
+			</list>
+		</property>
+
+	</bean>
+	<bean id="category3" class="domain.Category">
+		<property name="name" value="Cleaning" />
+		<property name="categories">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="category4" class="domain.Category">
+		<property name="name" value="Concrete Work" />
+		<property name="categories">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="category5" class="domain.Category">
+		<property name="name" value="Doors" />
+		<property name="categories">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="category6" class="domain.Category">
+		<property name="name" value="Electrical wiring" />
+		<property name="categories">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="category7" class="domain.Category">
+		<property name="name" value="Fan installation" />
+		<property name="categories">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="category8" class="domain.Category">
+		<property name="name" value="Fence Fixing" />
+		<property name="categories">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="category9" class="domain.Category">
+		<property name="name" value="Home security systems" />
+		<property name="categories">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="category10" class="domain.Category">
+		<property name="name" value="Insulation installation" />
+		<property name="categories">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="category11" class="domain.Category">
+		<property name="name" value="Lamp repairs" />
+		<property name="categories">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="category12" class="domain.Category">
+		<property name="name" value="Moving" />
+		<property name="categories">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="category13" class="domain.Category">
+		<property name="name" value="Painting" />
+		<property name="categories">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="category14" class="domain.Category">
+		<property name="name" value="Pest control" />
+		<property name="categories">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="category15" class="domain.Category">
+		<property name="name" value="Plumbing repairs" />
+		<property name="categories">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="category16" class="domain.Category">
+		<property name="name" value="Roofing" />
+		<property name="categories">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="category17" class="domain.Category">
+		<property name="name" value="Shelf installation" />
+		<property name="categories">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="category18" class="domain.Category">
+		<property name="name" value="Solar panels" />
+		<property name="categories">
+			<list>
+			</list>
+		</property>
+	</bean>
+	<bean id="category19" class="domain.Category">
+		<property name="name" value="Soundproofing" />
+		<property name="categories">
+			<list>
+			</list>
+		</property>
+	</bean>
+		<bean id="category20" class="domain.Category">
+		<property name="name" value="Sprinkler repair" />
+		<property name="categories">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+		<bean id="category21" class="domain.Category">
+		<property name="name" value="Window repair" />
+		<property name="categories">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- Warranty -->
+	
+	<bean id="warranty1" class="domain.Warranty">
+		<property name="title" value="Decreto Ley 2014/13" />
+		<property name="terms" value="TerminosPredeterminadosFP123456" />
+		<property name="laws"
+			value="Lorem Ipsum is simply dummy text of the printing and typesetting industry." />
+			<property name = "draftMode" value = "false" />
+	</bean>
+
+	<bean id="warranty2" class="domain.Warranty">
+		<property name="title" value="Decreto Ley 2015/14" />
+		<property name="terms" value="TerminosPredeterminadosADDA234587" />
+		<property name="laws"
+			value="Lorem Ipsum is simply dummy text of the printing and typesetting industry. " />
+			<property name = "draftMode" value = "true" />
+ 	</bean>
+	
+	<bean id="warranty3" class="domain.Warranty">
+		<property name="title" value="Decreto Ley 2016/13" />
+		<property name="terms" value="TerminosPredeterminadosAISS147" />
+		<property name="laws"
+			value="Lorem Ipsum is simply dummy text of the printing and typesetting industry." />
+			<property name = "draftMode" value = "false" />
+	</bean>
+	
+	<bean id="warranty4" class="domain.Warranty">
+		<property name="title" value="Decreto Ley 2017/13" />
+		<property name="terms" value="TerminosPredeterminadosDP123456" />
+		<property name="laws"
+			value="Lorem Ipsum is simply dummy text of the printing and typesetting industry." />
+			<property name = "draftMode" value = "true" />
+	</bean>
+
+	<bean id="warranty5" class="domain.Warranty">
+		<property name="title" value="Decreto Ley 2018/11" />
+		<property name="terms" value="TerminosPredeterminadosIISSI1415" />
+		<property name="laws"
+			value="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard" />
+			<property name = "draftMode" value = "true" />
+	</bean>
+	<!-- beans customitationsSystem -->
+	<bean id="customisationsys1" class="domain.CustomisationSystem">
+		<property name="systemName" value="PC1" />
+		<property name="banner" value="http://www.tumblr.com" />
+		<property name="message" value="Message created." />
+	</bean>
+	<bean id="customisationsys2" class="domain.CustomisationSystem">
+		<property name="systemName" value="PC2" />
+		<property name="banner" value="http://www.flickr.com" />
+		<property name="message" value="Message of cutomisation created." />
+	</bean>
+	<bean id="customisationsys3" class="domain.CustomisationSystem">
+		<property name="systemName" value="PC3" />
+		<property name="banner" value="http://www.photobucket.com" />
+		<property name="message" value="Message customisation 2 created." />
+	</bean>
+	<!--  bean creditCrad -->
+	<bean id="creditcard1" class="domain.CreditCard">
+		<property name="holderName" value="John Doe" />
+		<property name="brandName" value="EEUU Express" />
+		<property name="number" value="13" />
+		<property name="expirationMonth">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/12/15" />
+			</bean>
+		</property>
+		<property name="expirationYear">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/12/15" />
+			</bean>
+		</property>
+		<property name="codeCVV" value="134" />
+		<property name="type" value="VISA" />
+	</bean>
+	<bean id="creditcard2" class="domain.CreditCard">
+		<property name="holderName" value="Alice Jackson" />
+		<property name="brandName" value="UK Express" />
+		<property name="number" value="13" />
+		<property name="expirationMonth">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/12/19" />
+			</bean>
+		</property>
+		<property name="expirationYear">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/12/19" />
+			</bean>
+		</property>
+		<property name="codeCVV" value="136" />
+		<property name="type" value="MASTER"></property>
+	</bean>
+	<bean id="creditcard3" class="domain.CreditCard">
+		<property name="holderName" value="Alice Jackson" />
+		<property name="brandName" value="UK Express" />
+		<property name="number" value="13" />
+		<property name="expirationMonth">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/12/19" />
+			</bean>
+		</property>
+		<property name="expirationYear">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/12/19" />
+			</bean>
+		</property>
+		<property name="codeCVV" value="136" />
+		<property name="type" value="DINNERS"></property>
+	</bean>
+	<bean id="creditcard4" class="domain.CreditCard">
+		<property name="holderName" value="John Doe" />
+		<property name="brandName" value="UK Express" />
+		<property name="number" value="13" />
+		<property name="expirationMonth">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/12/19" />
+			</bean>
+		</property>
+		<property name="expirationYear">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/12/19" />
+			</bean>
+		</property>
+		<property name="codeCVV" value="136" />
+		<property name="type" value="AMEX"></property>
+	</bean>
+	<bean id="creditcard5" class="domain.CreditCard">
+		<property name="holderName" value="John Doeeee" />
+		<property name="brandName" value="Spain Express" />
+		<property name="number" value="9" />
+		<property name="expirationMonth">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/12/19" />
+			</bean>
+		</property>
+		<property name="expirationYear">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/12/19" />
+			</bean>
+		</property>
+		<property name="codeCVV" value="136" />
+		<property name="type" value="AMEX"></property>
+	</bean>
+	
+	<!-- bean spanword -->
+	<bean id="spamWord1" class="domain.SpamWord">
+		<property name="word" value="sex"></property>
+	</bean>
+	
+	<bean id="spamWord2" class="domain.SpamWord">
+		<property name="word" value="viagra"></property>
+	</bean>
+	
+	<bean id="spamWord3" class="domain.SpamWord">
+		<property name="word" value="cialis"></property>
+	</bean>
+	
+	<bean id="spamWord4" class="domain.SpamWord">
+		<property name="word" value="cialis"></property>
+	</bean>
+	
+	<bean id="spamWord5" class="domain.SpamWord">
+		<property name="word" value="one millon"></property>
+	</bean>
+	
+	<bean id="spamWord6" class="domain.SpamWord">
+		<property name="word" value="you've been selected"></property>
+	</bean>
+	
+	<bean id="spamWord7" class="domain.SpamWord">
+		<property name="word" value="Nigeria"></property>
+	</bean>
+	
+	<bean id="spamWord8" class="domain.SpamWord">
+		<property name="word" value="sexo"></property>
+	</bean>
+	
+	<bean id="spamWord10" class="domain.SpamWord">
+		<property name="word" value="un millón"></property>
+	</bean>
+	
+	<bean id="spamWord11" class="domain.SpamWord">
+		<property name="word" value="ha sido seleccionado"></property>
+	</bean>
+	<!-- beans priority -->
+	<bean id="priority1" class="domain.Priority">
+		<property name="name" value="HIGH" />
+		<property name="description"
+			value="High priority is used for important messages." />
+	</bean>
+
+	<bean id="priority2" class="domain.Priority">
+		<property name="name" value="NEUTRAL" />
+		<property name="description" value="High priority is used for common messages." />
+	</bean>
+
+	<bean id="priority3" class="domain.Priority">
+		<property name="name" value="LOW" />
+		<property name="description"
+			value="High priority is used for non important messages." />
+	</bean>
+	<!-- beans box -->
+	<bean id="box1" class="domain.Box">
+		<property name="name" value="entry" />
+		<property name="fromSystem" value="true" />
+		<property name="message">
+			<list>
+		 <ref bean="message1" />
+		 <ref bean="message2" />
+		 <ref bean="message3" />
+			</list>
+		</property>
+	</bean>
+	<bean id="box2" class="domain.Box">
+		<property name="name" value="sended" />
+		<property name="fromSystem" value="true" />
+		<property name="message">
+			<list>
+			<ref bean="message4" />
+			<ref bean="message5" />
+			<ref bean="message6" />
+			</list>
+		</property>
+	</bean>
+	<bean id="box3" class="domain.Box">
+		<property name="name" value="spam" />
+		<property name="fromSystem" value="true" />
+		<property name="message">
+			<list>
+			<ref bean="message7" />
+			<ref bean="message8" />
+			<ref bean="message9" />
+			</list>
+		</property>
+	</bean>
+	<bean id="box4" class="domain.Box">
+		<property name="name" value="trash" />
+		<property name="fromSystem" value="true" />
+		<property name="message">
+			<list>
+		  <ref bean="message10"/> 
+			</list>
+		</property>
+	</bean>
+	<!-- beans message -->
+	<bean id="message1" class="domain.Message">
+
+ 		<property name="sender">
+			<ref bean="referee1" />
+		</property>
+		<property name="receiver">
+			<ref bean="referee1" />
+		</property> 
+		<property name="moment">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/11/14" />
+			</bean>
+		</property>
+		<property name="subject" value="subjectMessage1" />
+		<property name="body" value="bodyMessage1" />
+		<property name="tags">
+			<list>
+				<value>etiqueta1</value>
+				<value>etiqueta2</value>
+				<value>etiqueta3</value>
+			</list>
+		</property>
+		<property name="box">
+			<ref bean="box1"/>
+		</property>
+		<property name="priority">
+			<ref bean="priority1" />
+		</property>
+	</bean>
+	<bean id="message2" class="domain.Message">
+
+ 		<property name="sender">
+			<ref bean="referee1"/>
+		</property>
+		<property name="receiver">
+			<ref bean="referee1" />
+		</property> 
+		<property name="moment">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/11/14" />
+			</bean>
+		</property>
+		<property name="subject" value="subjectMessage2" />
+		<property name="body" value="bodyMessage2" />
+		<property name="tags">
+			<list>
+				<value>etiqueta1</value>
+				<value>etiqueta2</value>
+				<value>etiqueta3</value>
+			</list>
+		</property>
+		<property name="box">
+			<ref bean="box1"/>
+		</property>
+		<property name="priority">
+			<ref bean="priority2" />
+		</property>
+	</bean>
+	<bean id="message3" class="domain.Message">
+
+ 		<property name="sender">
+			<ref bean="referee1" />
+		</property>
+		<property name="receiver">
+			<ref bean="referee1" />
+		</property> 
+		<property name="moment">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/12/14" />
+			</bean>
+		</property>
+		<property name="subject" value="subjectMessage3" />
+		<property name="body" value="bodyMessage3" />
+		<property name="tags">
+			<list>
+				<value>etiqueta1</value>
+				<value>etiqueta2</value>
+				<value>etiqueta3</value>
+			</list>
+		</property>
+		<property name="box">
+			<ref bean="box1"/>
+		</property>
+		<property name="priority">
+			<ref bean="priority3" />
+		</property>
+
+	</bean>
+	
+	<bean id="message4" class="domain.Message">
+
+ 		<property name="sender">
+			<ref bean="referee1" />
+		</property>
+		<property name="receiver">
+			<ref bean="referee1" />
+		</property> 
+		<property name="moment">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/11/14" />
+			</bean>
+		</property>
+		<property name="subject" value="subjectMessage4" />
+		<property name="body" value="bodyMessage4" />
+		<property name="tags">
+			<list>
+				<value>etiqueta1</value>
+				<value>etiqueta2</value>
+				<value>etiqueta3</value>
+			</list>
+		</property>
+		<property name="box">
+			<ref bean="box2"/>
+		</property>
+		<property name="priority">
+			<ref bean="priority1" />
+		</property>
+	</bean>
+	<bean id="message5" class="domain.Message">
+
+ 		<property name="sender">
+			<ref bean="referee1" />
+		</property>
+		<property name="receiver">
+			<ref bean="referee1" />
+		</property> 
+		<property name="moment">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/10/14" />
+			</bean>
+		</property>
+		<property name="subject" value="subjectMessage5" />
+		<property name="body" value="bodyMessage5" />
+		<property name="tags">
+			<list>
+				<value>etiqueta1</value>
+				<value>etiqueta2</value>
+				<value>etiqueta3</value>
+			</list>
+		</property>
+		<property name="box">
+			<ref bean="box2"/>
+		</property>
+		<property name="priority">
+			<ref bean="priority1" />
+		</property>
+	</bean>
+	<bean id="message6" class="domain.Message">
+
+ 		<property name="sender">
+			<ref bean="referee1" />
+		</property>
+		<property name="receiver">
+			<ref bean="referee1" />
+		</property> 
+		<property name="moment">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/11/12" />
+			</bean>
+		</property>
+		<property name="subject" value="subjectMessage6" />
+		<property name="body" value="bodyMessage6" />
+		<property name="tags">
+			<list>
+				<value>etiqueta1</value>
+				<value>etiqueta2</value>
+				<value>etiqueta3</value>
+			</list>
+		</property>
+		<property name="box">
+			<ref bean="box2"/>
+		</property>
+		<property name="priority">
+			<ref bean="priority2" />
+		</property>
+	</bean>
+	<bean id="message7" class="domain.Message">
+
+ 		<property name="sender">
+			<ref bean="referee1" />
+		</property>
+		<property name="receiver">
+			<ref bean="referee1" />
+		</property> 
+		<property name="moment">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/11/14" />
+			</bean>
+		</property>
+		<property name="subject" value="subjectMessage7" />
+		<property name="body" value="bodyMessage7" />
+		<property name="tags">
+			<list>
+				<value>etiqueta1</value>
+				<value>etiqueta2</value>
+				<value>etiqueta3</value>
+			</list>
+		</property>
+		<property name="box">
+			<ref bean="box3"/>
+		</property>
+		<property name="priority">
+			<ref bean="priority3" />
+		</property>
+	</bean>
+	<bean id="message8" class="domain.Message">
+
+ 		<property name="sender">
+			<ref bean="referee1" />
+		</property>
+		<property name="receiver">
+			<ref bean="referee1" />
+		</property> 
+		<property name="moment">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/11/10" />
+			</bean>
+		</property>
+		<property name="subject" value="subjectMessage8" />
+		<property name="body" value="bodyMessage8" />
+		<property name="tags">
+			<list>
+				<value>etiqueta1</value>
+				<value>etiqueta2</value>
+				<value>etiqueta3</value>
+			</list>
+		</property>
+		<property name="box">
+			<ref bean="box3"/>
+		</property>
+		<property name="priority">
+			<ref bean="priority3" />
+		</property>
+	</bean>
+	
+	<bean id="message9" class="domain.Message">
+
+ 		<property name="sender">
+			<ref bean="referee1" />
+		</property>
+		<property name="receiver">
+			<ref bean="referee1" />
+		</property> 
+		<property name="moment">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/11/14" />
+			</bean>
+		</property>
+		<property name="subject" value="subjectMessage9" />
+		<property name="body" value="bodyMessage9" />
+		<property name="tags">
+			<list>
+				<value>etiqueta1</value>
+				<value>etiqueta2</value>
+				<value>etiqueta3</value>
+			</list>
+		</property>
+		<property name="box">
+			<ref bean="box3"/>
+		</property>
+		<property name="priority">
+			<ref bean="priority1" />
+		</property>
+	</bean>
+	<bean id="message10" class="domain.Message">
+
+ 		<property name="sender">
+			<ref bean="referee1" />
+		</property>
+		<property name="receiver">
+			<ref bean="referee1" />
+		</property> 
+		<property name="moment">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/11/14" />
+			</bean>
+		</property>
+		<property name="subject" value="subjectMessage10" />
+		<property name="body" value="bodyMessage10" />
+		<property name="tags">
+			<list>
+				<value>etiqueta1</value>
+				<value>etiqueta2</value>
+				<value>etiqueta3</value>
+			</list>
+		</property>
+		<property name="box">
+			<ref bean="box4"/>
+		</property>
+		<property name="priority">
+			<ref bean="priority2" />
+		</property>
+	</bean>
+	
+	<!--  bean notes -->
+	<bean id="note1" class="domain.Note">
+		<property name="moment">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/11/18" />
+			</bean>
+		</property>
+		<property name="comment" value="Notita simple">
+		</property>
+		<property name="otherComments">
+			<list>
+				<value>Comentario opcional 1</value>
+				<value>Comentario opcional 2</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="note2" class="domain.Note">
+		<property name="moment">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/11/18" />
+			</bean>
+		</property>
+		<property name="comment" value="What a note!">
+		</property>
+		<property name="otherComments">
+			<list>
+				<value>Comentario opcional 3</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="note3" class="domain.Note">
+		<property name="moment">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/10/18" />
+			</bean>
+		</property>
+		<property name="comment" value="Notita simple">
+		</property>
+		<property name="otherComments">
+			<list>
+				<value>Comentario opcional 1</value>
+				<value>Comentario opcional 4</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="note4" class="domain.Note">
+		<property name="moment">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/11/13" />
+			</bean>
+		</property>
+		<property name="comment" value="Notita simple">
+		</property>
+		<property name="otherComments">
+			<list>
+				<value>Comentario opcional 1</value>
+				<value>Comentario opcional 2</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="note5" class="domain.Note">
+		<property name="moment">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/11/18" />
+			</bean>
+		</property>
+		<property name="comment" value="Notita simple">
+		</property>
+		<property name="otherComments">
+			<list>
+				<value>Comentario opcional 2</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="note6" class="domain.Note">
+		<property name="moment">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/11/18" />
+			</bean>
+		</property>
+		<property name="comment" value="Note">
+		</property>
+		<property name="otherComments">
+			<list>
+				<value>Comentario opcional 1</value>
+				<value>Comentario opcional 2</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="note7" class="domain.Note">
+		<property name="moment">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/12/18" />
+			</bean>
+		</property>
+		<property name="comment" value="Note">
+		</property>
+		<property name="otherComments">
+			<list>
+				<value>Comentario opcional 4</value>
+				<value>Comentario opcional 2</value>
+			</list>
+		</property>
+	</bean>
+	<!-- beans section -->
+	<bean id="section1" class="domain.Section">
+		<property name="title" value="parte1" />
+		<property name="text" value="textsection" />
+		<property name="picture">
+			<list>
+				<value>picture1</value>
+				<value>picture2</value>
+				<value>picture3</value>
+			</list>
+		</property>
+		<property name="number" value="1" />
+	</bean>
+
+	<bean id="section2" class="domain.Section">
+		<property name="title" value="parte2" />
+		
+		<property name="text" value="textsection" />
+		<property name="picture">
+			<list>
+				<value>picture1</value>
+				<value>picture2</value>
+			</list>
+		</property>
+		<property name="number" value="2" />
+	</bean>
+	
+	<bean id="section3" class="domain.Section">
+		<property name="title" value="parte3" />
+		<property name="text" value="textsection" />
+		<property name="picture">
+			<list>
+				<value>picture1</value>
+				<value>picture2</value>
+				<value>picture3</value>
+			</list>
+		</property>
 		<property name="number" value="3" />
 	</bean>
-	<!-- Actors Beans -->
+	
+	<bean id="section4" class="domain.Section">
+		<property name="title" value="parte4" />
+		<property name="text" value="textsection" />
+		<property name="picture">
+			<list>
+				<value>picture3</value>
+			</list>
+		</property>
+		<property name="number" value="4" />
+	</bean>
+	
+	<bean id="section5" class="domain.Section">
+		<property name="title" value="parte5" />
+		<property name="text" value="textsection" />
+		<property name="picture">
+			<list>
+				<value>picture1</value>
+				<value>picture3</value>
+			</list>
+		</property>
+		<property name="number" value="5" />
+	</bean>
+	
+	<bean id="section6" class="domain.Section">
+		<property name="title" value="parte6" />
+		<property name="text" value="textsection" />
+		<property name="picture">
+			<list>
+				<value>picture1</value>
+				<value>picture2</value>
+				<value>picture3</value>
+			</list>
+		</property>
+		<property name="number" value="6" />
+	</bean>
+	
+	<bean id="section7" class="domain.Section">
+		<property name="title" value="parte7" />
+		<property name="text" value="textsection" />
+		<property name="picture">
+			<list>
+				<value>picture1</value>
+				<value>picture2</value>
+				<value>picture3</value>
+			</list>
+		</property>
+		<property name="number" value="7" />
+	</bean>
+	
+	<bean id="section8" class="domain.Section">
+		<property name="title" value="parte8" />
+		<property name="text" value="textsection" />
+		<property name="picture">
+			<list>
+			</list>
+		</property>
+		<property name="number" value="8" />
+	</bean>
+	
+	<bean id="section9" class="domain.Section">
+		<property name="title" value="parte9" />
+		<property name="text" value="textsection" />
+		<property name="picture">
+			<list>
+				<value>picture1</value>
+				<value>picture3</value>
+			</list>
+		</property>
+		<property name="number" value="9" />
+	</bean>
+	
+	<bean id="section10" class="domain.Section">
+		<property name="title" value="parte10" />
+		<property name="text" value="textsection" />
+		<property name="picture">
+			<list>
+				<value>picture1</value>
+				<value>picture2</value>
+			</list>
+		</property>
+		<property name="number" value="10" />
+	</bean>
+	
+	<bean id="section11" class="domain.Section">
+		<property name="title" value="parte11" />
+		<property name="text" value="textsection" />
+		<property name="picture">
+			<list>
+				<value>picture1</value>
+				<value>picture2</value>
+				<value>picture3</value>
+			</list>
+		</property>
+		<property name="number" value="11" />
+	</bean>
+	<!-- beans tutorial -->
+	<bean id="tutorial1" class="domain.Tutorial">
 
+		<property name="title" value="tutorial1" />
+		<property name="lastUpdate">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/11/13" />
+			</bean>
+		</property>
+		<property name="summary" value="summaryTutorial" />
+		<property name="picture">
+			<list>
+				<value>picture1</value>
+				<value>picture2</value>
+				<value>picture3</value>
+			</list>
+		</property>
+		<property name="sponsorship">
+			<ref bean="sponsorship1" />
+		</property>
+		<property name="section">
+		<list>
+			<ref bean="section1" />
+			<ref bean="section10" />
+			<ref bean="section11" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="tutorial2" class="domain.Tutorial">
+
+		<property name="title" value="tutorial2" />
+		<property name="lastUpdate">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/10/13" />
+			</bean>
+		</property>
+		<property name="summary" value="summaryTutorial" />
+		<property name="picture">
+			<list>
+				<value>picture4</value>
+				<value>picture5</value>
+			</list>
+		</property>
+		<property name="sponsorship">
+			<ref bean="sponsorship2" />
+		</property>
+		<property name="section">
+		<list>
+			<ref bean="section2" />
+			<ref bean="section7" />
+			<ref bean="section8" />
+			<ref bean="section9" />
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="tutorial3" class="domain.Tutorial">
+
+		<property name="title" value="tutorial3" />
+		<property name="lastUpdate">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/11/13" />
+			</bean>
+		</property>
+		<property name="summary" value="summaryTutorial" />
+		<property name="picture">
+			<list>
+				<value>picture4</value>
+				<value>picture5</value>
+			</list>
+		</property>
+		<property name="sponsorship">
+			<ref bean="sponsorship3" />
+		</property>
+		<property name="section">
+			<ref bean="section3" />
+		</property>
+	</bean>
+	
+	<bean id="tutorial4" class="domain.Tutorial">
+
+		<property name="title" value="tutorial4" />
+		<property name="lastUpdate">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/10/11" />
+			</bean>
+		</property>
+		<property name="summary" value="summaryTutorial" />
+		<property name="picture">
+			<list>
+				<value>picture4</value>
+				<value>picture5</value>
+			</list>
+		</property>
+		<property name="sponsorship">
+			<ref bean="sponsorship4" />
+		</property>
+		<property name="section">
+		<list>
+			<ref bean="section4" />
+			<ref bean="section6" />
+		</list>
+		</property>
+	</bean>
+	
+	<bean id="tutorial5" class="domain.Tutorial">
+
+		<property name="title" value="tutorial5" />
+		<property name="lastUpdate">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/10/13" />
+			</bean>
+		</property>
+		<property name="summary" value="summaryTutorial" />
+		<property name="picture">
+			<list>
+				<value>picture4</value>
+				<value>picture5</value>
+			</list>
+		</property>
+		<property name="sponsorship">
+			<ref bean="sponsorship5" />
+		</property>
+		<property name="section">
+			<ref bean="section5" />
+		</property>
+	</bean>
+	<!-- beans sponsorship -->
+	<bean id="sponsorship1" class="domain.Sponsorship">
+
+		<property name="urlBanner" value="https://www.bannersponsor.com" />
+		<property name="linkTPage" value="https://www.targetsponsor.com" />
+		<property name="creditCard">
+			<ref bean="creditcard1" />
+		</property>
+		<property name="sponsor">
+			<ref bean="sponsor1" />
+		</property>
+		<property name="tutorial">
+			<ref bean="tutorial1" />
+		</property>
+	</bean>
+
+	<bean id="sponsorship2" class="domain.Sponsorship">
+
+		<property name="urlBanner" value="https://www.bannersponsor.com" />
+		<property name="linkTPage" value="https://www.targetsponsor.com" />
+		<property name="creditCard">
+			<ref bean="creditcard2" />
+		</property>
+		<property name="sponsor">
+			<ref bean="sponsor2" />
+		</property>
+		<property name="tutorial">
+			<ref bean="tutorial2" />
+		</property>
+	</bean>
+	<bean id="sponsorship3" class="domain.Sponsorship">
+
+		<property name="urlBanner" value="https://www.bannersponsor.com" />
+		<property name="linkTPage" value="https://www.targetsponsor.com" />
+		<property name="creditCard">
+			<ref bean="creditcard3" />
+		</property>
+		<property name="sponsor">
+			<ref bean="sponsor3" />
+		</property>
+		<property name="tutorial">
+			<ref bean="tutorial3" />
+		</property>
+	</bean>
+
+	<bean id="sponsorship4" class="domain.Sponsorship">
+
+		<property name="urlBanner" value="https://www.bannersponsor.com" />
+		<property name="linkTPage" value="https://www.targetsponsor.com" />
+		<property name="creditCard">
+			<ref bean="creditcard4" />
+		</property>
+		<property name="sponsor">
+			<ref bean="sponsor4" />
+		</property>
+		<property name="tutorial">
+			<ref bean="tutorial4" />
+		</property>
+	</bean>
+	
+	<bean id="sponsorship5" class="domain.Sponsorship">
+
+		<property name="urlBanner" value="https://www.bannersponsor.com" />
+		<property name="linkTPage" value="https://www.targetsponsor.com" />
+		<property name="creditCard">
+			<ref bean="creditcard5" />
+		</property>
+		<property name="sponsor">
+			<ref bean="sponsor5" />
+		</property>
+		<property name="tutorial">
+			<ref bean="tutorial5" />
+		</property>
+	</bean>
+	<!-- beans sponsor -->
+	<bean id="sponsor1" class="domain.Sponsor">
+
+		<property name="name" value="sponsor1" />
+		<property name="middleName" value="sponsor1Middle" />
+		<property name="surname" value="sponsor1Surname" />
+		<property name="photo" value="https://www.photosponsor.com" />
+		<property name="email" value="sponsor@us.es" />
+		<property name="phone" value="957986437" />
+		<property name="adress" value="Calle Barcelona" />
+		<property name="account">
+			<ref bean="userAccount21" />
+		</property>
+				<property name="boxes">
+			<list>
+				<ref bean="box1" />
+			</list>
+		</property>
+		<property name="profiles">
+			<list>
+				<ref bean="profile21" />
+			</list>
+		</property>
+		<property name="message">
+			<list>
+			</list>
+		</property>
+		<property name="ban" value="false" />
+		<property name="sponsorship">
+			<list>
+				<ref bean="sponsorship1" />
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="sponsor2" class="domain.Sponsor">
+
+		<property name="name" value="sponsor2" />
+		<property name="middleName" value="sponsor2Middle" />
+		<property name="surname" value="sponsor2Surname" />
+		<property name="photo" value="https://www.photosponsor.com" />
+		<property name="email" value="sponsor@us.es" />
+		<property name="phone" value="957986437" />
+		<property name="adress" value="Calle Barcelona" />
+		<property name="account">
+			<ref bean="userAccount22" />
+		</property>
+				<property name="boxes">
+			<list>
+				<ref bean="box1" />
+				<ref bean="box2" />
+				<ref bean="box3" />
+				<ref bean="box4" />
+			</list>
+		</property>
+		<property name="profiles">
+			<list>
+				<ref bean="profile22" />
+			</list>
+		</property>
+		<property name="message">
+			<list>
+			</list>
+		</property>
+		<property name="ban" value="false" />
+		<property name="sponsorship">
+			<list>
+
+				<ref bean="sponsorship2" />
+
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="sponsor3" class="domain.Sponsor">
+
+		<property name="name" value="sponsor3" />
+		<property name="middleName" value="sponsor3Middle" />
+		<property name="surname" value="sponsor3Surname" />
+		<property name="photo" value="https://www.photosponsor.com" />
+		<property name="email" value="sponsor@us.es" />
+		<property name="phone" value="957986437" />
+		<property name="adress" value="Calle Barcelona" />
+		<property name="account">
+			<ref bean="userAccount23" />
+		</property>
+				<property name="boxes">
+			<list>
+				<ref bean="box1" />
+				<ref bean="box2" />
+				<ref bean="box3" />
+				<ref bean="box4" />
+			</list>
+		</property>
+		<property name="profiles">
+			<list>
+				<ref bean="profile23" />
+			</list>
+		</property>
+		<property name="message">
+			<list>
+			</list>
+		</property>
+		<property name="ban" value="false" />
+		<property name="sponsorship">
+			<list>
+				<ref bean="sponsorship3" />
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="sponsor4" class="domain.Sponsor">
+
+		<property name="name" value="sponsor4" />
+		<property name="middleName" value="sponsor4Middle" />
+		<property name="surname" value="sponsor4Surname" />
+		<property name="photo" value="https://www.photosponsor.com" />
+		<property name="email" value="sponsor@us.es" />
+		<property name="phone" value="957986437" />
+		<property name="adress" value="Calle Barcelona" />
+		<property name="account">
+			<ref bean="userAccount24" />
+		</property>
+				<property name="boxes">
+			<list>
+				<ref bean="box1" />
+				<ref bean="box2" />
+				<ref bean="box3" />
+				<ref bean="box4" />
+			</list>
+		</property>
+		<property name="profiles">
+			<list>
+				<ref bean="profile24" />
+			</list>
+		</property>
+		<property name="message">
+			<list>
+			</list>
+		</property>
+		<property name="ban" value="false" />
+		<property name="sponsorship">
+			<list>
+				<ref bean="sponsorship4" />
+
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="sponsor5" class="domain.Sponsor">
+
+		<property name="name" value="sponsor5" />
+		<property name="middleName" value="sponsor5Middle" />
+		<property name="surname" value="sponsor5Surname" />
+		<property name="photo" value="https://www.photosponsor.com" />
+		<property name="email" value="sponsor@us.es" />
+		<property name="phone" value="957986437" />
+		<property name="adress" value="Calle Barcelona" />
+		<property name="account">
+			<ref bean="userAccount25" />
+		</property>
+				<property name="boxes">
+			<list>
+				<ref bean="box1" />
+				<ref bean="box2" />
+				<ref bean="box3" />
+				<ref bean="box4" />
+			</list>
+		</property>
+		<property name="profiles">
+			<list>
+				<ref bean="profile25" />
+			</list>
+		</property>
+		<property name="message">
+			<list>
+			</list>
+		</property>
+		<property name="ban" value="false" />
+		<property name="sponsorship">
+			<list>
+				<ref bean="sponsorship5" />
+			</list>
+		</property>
+	</bean>
+	<!-- beans administrator -->
 	<bean id="administrator1" class="domain.Administrator">
 
 		<property name="name" value="Administrator1" />
@@ -501,8 +1955,7 @@
 		</property>
 		<property name="profiles">
 			<list>
-				<ref bean="profile1" />
-				<ref bean="profile2" />
+				<ref bean="profile16" />
 			</list>
 		</property>
 		<property name="message">
@@ -512,12 +1965,2309 @@
 		</property>
 		<property name="boxes">
 			<list>
-
+				<ref bean="box1" />
+				<ref bean="box2" />
+				<ref bean="box3" />
+				<ref bean="box4" />
 			</list>
 		</property>
 		<property name="ban" value="false" />
 	</bean>
 	
+	<bean id="administrator2" class="domain.Administrator">
+
+		<property name="name" value="Administrator2" />
+		<property name="middleName" value="Administrator2Middle" />
+		<property name="surname" value="Administrator2Surname" />
+		<property name="photo" value="https://www.photo.com" />
+		<property name="email" value="administrator@us.es" />
+		<property name="phone" value="954152635" />
+		<property name="adress" value="C/Reina Mercedes" />
+
+		<property name="account">
+			<ref bean="userAccount2" />
+		</property>
+		<property name="profiles">
+			<list>
+				<ref bean="profile17" />
+			</list>
+		</property>
+		<property name="message">
+			<list>
+
+			</list>
+		</property>
+		<property name="boxes">
+			<list>
+				<ref bean="box1" />
+				<ref bean="box2" />
+				<ref bean="box3" />
+				<ref bean="box4" />
+			</list>
+		</property>
+		<property name="ban" value="false" />
+	</bean>
+	
+	<bean id="administrator3" class="domain.Administrator">
+
+		<property name="name" value="Administrator3" />
+		<property name="middleName" value="Administrator3Middle" />
+		<property name="surname" value="Administrator1Surname" />
+		<property name="photo" value="https://www.photo.com" />
+		<property name="email" value="administrator@us.es" />
+		<property name="phone" value="954152635" />
+		<property name="adress" value="C/Reina Mercedes" />
+
+		<property name="account">
+			<ref bean="userAccount3" />
+		</property>
+		<property name="profiles">
+			<list>
+				<ref bean="profile18" />
+			</list>
+		</property>
+		<property name="message">
+			<list>
+
+			</list>
+		</property>
+		<property name="boxes">
+			<list>
+				<ref bean="box1" />
+				<ref bean="box2" />
+				<ref bean="box3" />
+				<ref bean="box4" />
+			</list>
+		</property>
+		<property name="ban" value="false" />
+	</bean>
+	
+	<bean id="administrator4" class="domain.Administrator">
+
+		<property name="name" value="Administrator4" />
+		<property name="middleName" value="Administrator4Middle" />
+		<property name="surname" value="Administrator4Surname" />
+		<property name="photo" value="https://www.photo.com" />
+		<property name="email" value="administrator@us.es" />
+		<property name="phone" value="954152635" />
+		<property name="adress" value="C/Reina Mercedes" />
+
+		<property name="account">
+			<ref bean="userAccount4" />
+		</property>
+		<property name="profiles">
+			<list>
+				<ref bean="profile19" />
+			</list>
+		</property>
+		<property name="message">
+			<list>
+
+			</list>
+		</property>
+		<property name="boxes">
+			<list>
+				<ref bean="box1" />
+				<ref bean="box2" />
+				<ref bean="box3" />
+				<ref bean="box4" />
+			</list>
+		</property>
+		<property name="ban" value="false" />
+	</bean>
+	
+	<bean id="administrator5" class="domain.Administrator">
+
+		<property name="name" value="Administrator5" />
+		<property name="middleName" value="Administrator5Middle" />
+		<property name="surname" value="Administrator5Surname" />
+		<property name="photo" value="https://www.photo.com" />
+		<property name="email" value="administrator@us.es" />
+		<property name="phone" value="954152635" />
+		<property name="adress" value="C/Reina Mercedes" />
+
+		<property name="account">
+			<ref bean="userAccount5" />
+		</property>
+		<property name="profiles">
+			<list>
+				<ref bean="profile20" />
+			</list>
+		</property>
+		<property name="message">
+			<list>
+
+			</list>
+		</property>
+		<property name="boxes">
+			<list>
+				<ref bean="box1" />
+				<ref bean="box2" />
+				<ref bean="box3" />
+				<ref bean="box4" />
+			</list>
+		</property>
+		<property name="ban" value="false" />
+	</bean>
+	<!--  beans report -->
+	<bean id="report1" class="domain.Report">
+		<property name="moment">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/11/18" />
+			</bean>
+		</property>
+		<property name="description" value="reportdescription1"></property>
+		<property name="attachments">
+			<list>
+				<value>Adjunto1</value>
+				<value>Adjunto2</value>
+			</list>
+		</property>
+		<property name="finalMode" value="true"/>
+		<property name="notes">
+			<list>
+				<ref bean="note1" />
+				<ref bean="note2"/>
+			</list>
+		</property>
+		<property name="complaints">
+			<ref bean="complaint1" />
+		</property>
+		<property name="referee">
+			<ref bean="referee1" />
+		</property>
+	</bean>
+	
+	<bean id="report2" class="domain.Report">
+		<property name="moment">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/11/18" />
+			</bean>
+		</property>
+		<property name="description" value="reportdescription2"></property>
+		<property name="attachments">
+			<list>
+				<value>Adjunto4</value>
+			</list>
+		</property>
+		<property name="finalMode" value="true"/>
+		<property name="notes">
+			<list>
+				<ref bean="note3" />
+			</list>
+		</property>
+		<property name="complaints">
+			<ref bean="complaint2" />
+		</property>
+		<property name="referee">
+			<ref bean="referee2" />
+		</property>
+	</bean>
+	
+	<bean id="report3" class="domain.Report">
+		<property name="moment">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/11/18" />
+			</bean>
+		</property>
+		<property name="description" value="reportdescription3"></property>
+		<property name="attachments">
+			<list>
+				<value>Adjunto1</value>
+				<value>Adjunto2</value>
+			</list>
+		</property>
+		<property name="finalMode" value="false"/>
+		<property name="notes">
+			<list>
+				<ref bean="note4" />
+				<ref bean="note5"/>
+			</list>
+		</property>
+		<property name="complaints">
+			<ref bean="complaint3" />
+		</property>
+		<property name="referee">
+			<ref bean="referee3" />
+		</property>
+	</bean>
+	
+	<bean id="report4" class="domain.Report">
+		<property name="moment">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/11/18" />
+			</bean>
+		</property>
+		<property name="description" value="reportdescription4"></property>
+		<property name="attachments">
+			<list>
+				<value>Adjunto4</value>
+			</list>
+		</property>
+		<property name="finalMode" value="false"/>
+		<property name="notes">
+			<list>
+				<ref bean="note6" />
+			</list>
+		</property>
+		<property name="complaints">
+			<ref bean="complaint4" />
+		</property>
+		<property name="referee">
+			<ref bean="referee4" />
+		</property>
+	</bean>
+	<!-- beans complaint -->
+	<bean id="complaint1" class="domain.Complaint">
+		<property name="ticker" value="20181111-A32579"></property>
+		<property name="moment">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/10/20" />
+			</bean>
+		</property>
+		<property name="description" value="Queja numelo 1"></property>
+		<property name="attachment" value="1"></property>
+		<property name="report">
+			<list>
+				<ref bean="report1" />
+			</list>
+		</property>
+	</bean>
+	<bean id="complaint2" class="domain.Complaint">
+		<property name="ticker" value="20181111-A32580"></property>
+		<property name="moment">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/11/27" />
+			</bean>
+		</property>
+		<property name="description" value="Queja numero 2"></property>
+		<property name="attachment" value="2"></property>
+		<property name="report">
+			<list>
+				<ref bean="report2" />
+			</list>
+		</property>
+	</bean>
+	<bean id="complaint3" class="domain.Complaint">
+		<property name="ticker" value="20181111-A32581"></property>
+		<property name="moment">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/11/29" />
+			</bean>
+		</property>
+		<property name="description" value="Queja numero 3"></property>
+		<property name="attachment" value="3"></property>
+		<property name="report">
+			<list>
+				<ref bean="report3" />
+			</list>
+		</property>
+	</bean>
+	<bean id="complaint4" class="domain.Complaint">
+		<property name="ticker" value="20181111-A32591"></property>
+		<property name="moment">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/11/29" />
+			</bean>
+		</property>
+		<property name="description" value="Queja numero 4"></property>
+		<property name="attachment" value="4"></property>
+		<property name="report">
+			<list>
+				<ref bean="report4" />
+			</list>
+		</property>
+	</bean>
+	<bean id="complaint5" class="domain.Complaint">
+		<property name="ticker" value="20181111-A31583"></property>
+		<property name="moment">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/11/29" />
+			</bean>
+		</property>
+		<property name="description" value="Queja numero 5"></property>
+		<property name="attachment" value="6"></property>
+		<property name="report">
+			<list>
+			<!-- 	<ref bean="report1" /> -->
+			</list>
+		</property>
+	</bean>
+	<bean id="complaint6" class="domain.Complaint">
+		<property name="ticker" value="20181111-A32581"></property>
+		<property name="moment">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/11/29" />
+			</bean>
+		</property>
+		<property name="description" value="Queja numero 6"></property>
+		<property name="attachment" value="6"></property>
+		<property name="report">
+			<list>
+			<!-- 	<ref bean="report1" /> -->
+			</list>
+		</property>
+	</bean>
+	<!--  beans referee -->
+	<bean id="referee1" class="domain.Referee">
+		<property name="name" value="Referee1" />
+		<property name="middleName" value="Referee1Middle" />
+		<property name="surname" value="Referee1Surname" />
+		<property name="photo" value="https://www.flickr.com" />
+		<property name="email" value="referee2@acme.es" />
+		<property name="phone" value="955892114" />
+		<property name="adress" value="Av/Reina Mercedes" />
+		<property name="boxes">
+			<list>
+				<ref bean="box1" />
+				<ref bean="box2" />
+				<ref bean="box3" />
+				<ref bean="box4" />
+			</list>
+		</property>
+		<property name="account">
+			<ref bean="userAccount16" />
+		</property>
+		<property name="profiles">
+			<list>
+				<ref bean="profile11" />
+			</list>
+		</property>
+		<property name="message">
+			<list>
+			</list>
+		</property>
+		<property name="ban" value="false" />
+
+		<property name="reports">
+			<list>
+			<ref bean="report1"/>
+			</list>
+		</property>
+		<property name="notes">
+			<list>
+			<ref bean="note1" />
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="referee2" class="domain.Referee">
+		<property name="name" value="Referee2" />
+		<property name="middleName" value="Referee2Middle" />
+		<property name="surname" value="Referee2Surname" />
+		<property name="photo" value="https://www.flickr.com" />
+		<property name="email" value="referee2@acme.es" />
+		<property name="phone" value="955892114" />
+		<property name="adress" value="Av/Reina Mercedes" />
+		<property name="boxes">
+			<list>
+				<ref bean="box1" />
+				<ref bean="box2" />
+				<ref bean="box3" />
+				<ref bean="box4" />
+			</list>
+		</property>
+		<property name="account">
+			<ref bean="userAccount17" />
+		</property>
+		<property name="profiles">
+			<list>
+				<ref bean="profile12" />
+			</list>
+		</property>
+		<property name="message">
+			<list>
+			</list>
+		</property>
+		<property name="ban" value="false" />
+
+		<property name="reports">
+			<list>
+			<ref bean="report2"/>
+			</list>
+		</property>
+		<property name="notes">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="referee3" class="domain.Referee">
+		<property name="name" value="Referee3" />
+		<property name="middleName" value="Referee3Middle" />
+		<property name="surname" value="Referee3Surname" />
+		<property name="photo" value="https://www.flickr.com" />
+		<property name="email" value="referee2@acme.es" />
+		<property name="phone" value="955892114" />
+		<property name="adress" value="Av/Reina Mercedes" />
+		<property name="boxes">
+			<list>
+				<ref bean="box1" />
+				<ref bean="box2" />
+				<ref bean="box3" />
+				<ref bean="box4" />
+			</list>
+		</property>
+		<property name="account">
+			<ref bean="userAccount18" />
+		</property>
+		<property name="profiles">
+			<list>
+				<ref bean="profile13" />
+			</list>
+		</property>
+		<property name="message">
+			<list>
+			</list>
+		</property>
+		<property name="ban" value="false" />
+
+		<property name="reports">
+			<list>
+			<ref bean="report3"/>
+			</list>
+		</property>
+		<property name="notes">
+			<list>
+			<ref bean="note2" />
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="referee4" class="domain.Referee">
+		<property name="name" value="Referee4" />
+		<property name="middleName" value="Referee4Middle" />
+		<property name="surname" value="Referee4Surname" />
+		<property name="photo" value="https://www.flickr.com" />
+		<property name="email" value="referee2@acme.es" />
+		<property name="phone" value="955892114" />
+		<property name="adress" value="Av/Reina Mercedes" />
+		<property name="boxes">
+			<list>
+				<ref bean="box1" />
+				<ref bean="box2" />
+				<ref bean="box3" />
+				<ref bean="box4" />
+			</list>
+		</property>
+		<property name="account">
+			<ref bean="userAccount19" />
+		</property>
+		<property name="profiles">
+			<list>
+				<ref bean="profile14" />
+			</list>
+		</property>
+		<property name="message">
+			<list>
+			</list>
+		</property>
+		<property name="ban" value="false" />
+
+		<property name="reports">
+			<list>
+			<ref bean="report4"/>
+			</list>
+		</property>
+		<property name="notes">
+			<list>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="referee5" class="domain.Referee">
+		<property name="name" value="Referee5" />
+		<property name="middleName" value="Referee5Middle" />
+		<property name="surname" value="Referee5Surname" />
+		<property name="photo" value="https://www.flickr.com" />
+		<property name="email" value="referee2@acme.es" />
+		<property name="phone" value="955892114" />
+		<property name="adress" value="Av/Reina Mercedes" />
+		<property name="boxes">
+			<list>
+				<ref bean="box1" />
+				<ref bean="box2" />
+				<ref bean="box3" />
+				<ref bean="box4" />
+			</list>
+		</property>
+		<property name="account">
+			<ref bean="userAccount20" />
+		</property>
+		<property name="profiles">
+			<list>
+				<ref bean="profile15" />
+			</list>
+		</property>
+		<property name="message">
+			<list>
+			</list>
+		</property>
+		<property name="ban" value="false" />
+
+		<property name="reports">
+			<list>
+			</list>
+		</property>
+		<property name="notes">
+			<list>
+			<ref bean="note3" />
+			</list>
+		</property>
+	</bean>
+ <!-- beans professionalRecord -->
+	<bean id="ProfessionalRecord1" class="domain.ProfessionalRecord">
+	 <property name="companyName" value="ACME Shout"></property>
+	 <property name="startWorking">
+		<bean factory-bean="dateFormat" factory-method="parse">
+			<constructor-arg value="2018/11/20" />
+		</bean>
+	 </property>
+	 <property name="endWorking">
+	 		<bean factory-bean="dateFormat" factory-method="parse">
+	 			<constructor-arg value="2018/11/30" />
+	 		</bean>
+	 </property>
+	 <property name="role" value="Worker"></property>
+	 <property name="attachment" value="https://www.record1.com"></property>
+	 <property name="comments">
+	 	<list>
+	 		<value>Prueba1</value>
+	 		<value>Prueba2</value>
+	 	</list>
+	 </property>	
+	 </bean>
+	 <!-- beans educationRecord -->
+	 <bean id="EducationRecord1" class="domain.EducationRecord">
+	 	<property name="diplomaTitle" value="Ingeniero informatico"></property>
+	 	<property name="startStudies">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2016/09/20" />
+			</bean>
+		</property>
+		<property name="endStudies">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2021/05/14" />
+			</bean>
+		</property>
+		<property name="institutionDiploma" value="ETSII-US"></property>
+		<property name="attachment" value="https://www.ints.es"></property>
+		<property name="comments">
+	 	<list>
+				<value>picture1</value>
+				<value>picture2</value>
+		</list>
+		</property>
+	</bean>
+	<!-- beans endorserRecord -->
+	<bean id="EndorserRecord1" class="domain.EndorserRecord">
+	 <property name="fullNameEndorser" value="EndorserFullName"></property>
+	 <property name="email" value="endorser@fo.es"></property>
+	 <property name="phone" value="612478954"></property>
+	 <property name="linkedin" value="https://endorser@linkedin.com"></property>
+	 <property name="comments">
+	 	<list>
+	 		<value>5comentarios</value>
+	 	</list>
+	 </property>
+	 </bean>
+<!-- beans mescellaneosRecord -->
+	 <bean id="MiscellaneousRecord1" class="domain.MiscellaneousRecord">
+	 	<property name="title" value="miscellaneous"></property>
+	 	<property name="attachment" value="http://www.busca.org"></property>
+	 	<property name="comments">
+	 		<list>
+	 			<value>He dicho que nada</value>
+	 		</list>
+	 	</property>
+	 </bean>
+<!--	 beans curriculum -->
+  	 <bean id="Curriculum1" class="domain.Curriculum">
+  	 <property name="ticker" value="20181111-A74561"></property>
+	 	<property name="educationRecord">
+	 		<list>
+	 			<ref bean="EducationRecord1"/>
+	 		</list>
+	 	</property>
+  	 	<property name="endorserRecord">
+	 		<list>
+	 			<ref bean="EndorserRecord1"/>
+	 		</list>
+	 	</property>
+  	 	<property name="professionalRecord">
+	 		<list>
+	 			<ref bean="ProfessionalRecord1"/>
+	 		</list>
+	 	</property>
+  	 	<property name="miscellaneousRecord">
+	 		<list>
+	 			<ref bean="MiscellaneousRecord1"/>
+	 		</list>
+	 	</property>
+	 </bean> 
+	 <!-- bean fixUpTask -->
+	 <bean id="fixuptask1" class="domain.FixUpTask">
+		<property name="ticker" value="20181108-A32569" />
+		<property name="moment">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/12/13" />
+			</bean>
+		</property>
+		<property name="description" value="descriptionfixuptask1" />
+		<property name="address" value="addressfixuptask1" />
+		<property name="maximumPrice" value="40.0" />
+		<property name="start">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/12/15" />
+			</bean>
+		</property>
+		<property name="end">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/12/15" />
+			</bean>
+		</property>
+		<property name="phases">
+			<list>
+		
+			</list>
+		</property>
+		<property name="warranty">
+			<ref bean="warranty1" />
+		</property>
+		<property name="category">
+			<ref bean="category1" />
+		</property>
+		<property name="complaint">
+			<list>
+				<ref bean="complaint1"/>
+				<ref bean="complaint6"/>		
+			</list>
+		</property>
+		<property name="application">
+		<list>
+			<ref bean="application1" />
+		</list>
+		</property>
+	</bean>
+	<bean id="fixuptask2" class="domain.FixUpTask">
+		<property name="ticker" value="20181108-A32567" />
+		<property name="moment">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/12/13" />
+			</bean>
+		</property>
+		<property name="description" value="descriptionfixuptask2" />
+		<property name="address" value="addressfixuptask2" />
+		<property name="maximumPrice" value="25.0" />
+		<property name="start">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/12/15" />
+			</bean>
+		</property>
+		<property name="end">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/12/15" />
+			</bean>
+		</property>
+		<property name="phases">
+			<list>
+			
+			</list>
+		</property>
+		<property name="warranty">
+			<ref bean="warranty2" />
+		</property>
+		<property name="category">
+			<ref bean="category2" />
+		</property>
+		<property name="complaint">
+			<list>
+				<ref bean="complaint2"/>
+			</list>
+		</property>
+		<property name="application">
+			<list>
+			<ref bean="application2" />
+		</list>
+		</property>
+	</bean>
+	<bean id="fixuptask3" class="domain.FixUpTask">
+		<property name="ticker" value="20181108-A32559" />
+		<property name="moment">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/12/13" />
+			</bean>
+		</property>
+		<property name="description" value="descriptionfixuptask3" />
+		<property name="address" value="addressfixuptask3" />
+		<property name="maximumPrice" value="10.0" />
+		<property name="start">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/12/15" />
+			</bean>
+		</property>
+		<property name="end">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/12/15" />
+			</bean>
+		</property>
+		<property name="phases">
+			<list>
+		
+			</list>
+		</property>
+		<property name="warranty">
+			<ref bean="warranty3" />
+		</property>
+		<property name="category">
+			<ref bean="category3" />
+		</property>
+		<property name="complaint">
+			<list>
+			<ref bean="complaint3"/>
+			</list>
+		</property>
+		<property name="application">
+			<list>
+			<ref bean="application3" />
+			<ref bean="application16" />
+		</list>
+		</property>
+	</bean>
+	<bean id="fixuptask4" class="domain.FixUpTask">
+		<property name="ticker" value="20181110-A32759" />
+		<property name="moment">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/12/13" />
+			</bean>
+		</property>
+		<property name="description" value="descriptionfixuptask4" />
+		<property name="address" value="addressfixuptask4" />
+		<property name="maximumPrice" value="2.0" />
+		<property name="start">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/12/15" />
+			</bean>
+		</property>
+		<property name="end">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/12/15" />
+			</bean>
+		</property>
+		<property name="phases">
+			<list>
+
+			</list>
+		</property>
+		<property name="warranty">
+			<ref bean="warranty4" />
+		</property>
+		<property name="category">
+			<ref bean="category4" />
+		</property>
+		<property name="complaint">
+			<list>
+			<ref bean="complaint4"/>
+			</list>
+		</property>
+		<property name="application">
+			<list>
+			<ref bean="application4" />
+		</list>
+		</property>
+	</bean>
+	
+	<bean id="fixuptask5" class="domain.FixUpTask">
+		<property name="ticker" value="20281108-A32469" />
+		<property name="moment">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/12/13" />
+			</bean>
+		</property>
+		<property name="description" value="descriptionfixuptask5" />
+		<property name="address" value="addressfixuptask5" />
+		<property name="maximumPrice" value="6.0" />
+		<property name="start">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/12/15" />
+			</bean>
+		</property>
+		<property name="end">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/12/15" />
+			</bean>
+		</property>
+		<property name="phases">
+			<list>
+		
+			</list>
+		</property>
+		<property name="warranty">
+			<ref bean="warranty5" />
+		</property>
+		<property name="category">
+			<ref bean="category5" />
+		</property>
+		<property name="complaint">
+			<list>
+		<ref bean="complaint5"/>
+			</list>
+		</property>
+		<property name="application">
+			<list>
+			<ref bean="application5" />
+			<ref bean="application17" />
+		</list>
+		</property>
+	</bean>
+	
+	<bean id="fixuptask6" class="domain.FixUpTask">
+		<property name="ticker" value="20181108-A32329" />
+		<property name="moment">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/12/13" />
+			</bean>
+		</property>
+		<property name="description" value="descriptionfixuptask6" />
+		<property name="address" value="addressfixuptask6" />
+		<property name="maximumPrice" value="8.0" />
+		<property name="start">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/12/15" />
+			</bean>
+		</property>
+		<property name="end">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/12/15" />
+			</bean>
+		</property>
+		<property name="phases">
+			<list>
+			
+			</list>
+		</property>
+		<property name="warranty">
+			<ref bean="warranty1" />
+		</property>
+		<property name="category">
+			<ref bean="category6" />
+		</property>
+		<property name="complaint">
+			<list>
+			
+			</list>
+		</property>
+		<property name="application">
+			<list>
+			<ref bean="application6" />
+		</list>
+		</property>
+	</bean>
+	
+	<bean id="fixuptask7" class="domain.FixUpTask">
+		<property name="ticker" value="20171108-A32571" />
+		<property name="moment">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/12/13" />
+			</bean>
+		</property>
+		<property name="description" value="descriptionfixuptask7" />
+		<property name="address" value="addressfixuptask7" />
+		<property name="maximumPrice" value="4.0" />
+		<property name="start">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/12/15" />
+			</bean>
+		</property>
+		<property name="end">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/12/15" />
+			</bean>
+		</property>
+		<property name="phases">
+			<list>
+			
+			</list>
+		</property>
+		<property name="warranty">
+			<ref bean="warranty2" />
+		</property>
+		<property name="category">
+			<ref bean="category7" />
+		</property>
+		<property name="complaint">
+			<list>
+				
+			</list>
+		</property>
+		<property name="application">
+			<list>
+			<ref bean="application7" />
+			<ref bean="application18" />
+		</list>
+		</property>
+	</bean>
+	
+	<bean id="fixuptask8" class="domain.FixUpTask">
+		<property name="ticker" value="20181118-A24559" />
+		<property name="moment">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/12/13" />
+			</bean>
+		</property>
+		<property name="description" value="descriptionfixuptask8" />
+		<property name="address" value="addressfixuptask8" />
+		<property name="maximumPrice" value="3.0" />
+		<property name="start">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/12/15" />
+			</bean>
+		</property>
+		<property name="end">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/12/15" />
+			</bean>
+		</property>
+		<property name="phases">
+			<list>
+		
+			</list>
+		</property>
+		<property name="warranty">
+			<ref bean="warranty3" />
+		</property>
+		<property name="category">
+			<ref bean="category8" />
+		</property>
+		<property name="complaint">
+			<list>
+			</list>
+		</property>
+		<property name="application">
+			<list>
+			<ref bean="application8" />
+		</list>
+		</property>
+	</bean>
+	
+	<bean id="fixuptask9" class="domain.FixUpTask">
+		<property name="ticker" value="20180108-A32559" />
+		<property name="moment">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/12/13" />
+			</bean>
+		</property>
+		<property name="description" value="descriptionfixuptask9" />
+		<property name="address" value="addressfixuptask9" />
+		<property name="maximumPrice" value="10.0" />
+		<property name="start">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/12/15" />
+			</bean>
+		</property>
+		<property name="end">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/12/15" />
+			</bean>
+		</property>
+		<property name="phases">
+			<list>
+
+			</list>
+		</property>
+		<property name="warranty">
+			<ref bean="warranty4" />
+		</property>
+		<property name="category">
+			<ref bean="category9" />
+		</property>
+		<property name="complaint">
+			<list>
+			</list>
+		</property>
+		<property name="application">
+			<list>
+			<ref bean="application9" />
+			<ref bean="application19" />
+		</list>
+		</property>
+	</bean>
+	
+	<bean id="fixuptask10" class="domain.FixUpTask">
+		<property name="ticker" value="20181108-A32248" />
+		<property name="moment">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/12/13" />
+			</bean>
+		</property>
+		<property name="description" value="descriptionfixuptask10" />
+		<property name="address" value="addressfixuptask10" />
+		<property name="maximumPrice" value="40.0" />
+		<property name="start">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/12/15" />
+			</bean>
+		</property>
+		<property name="end">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/12/15" />
+			</bean>
+		</property>
+		<property name="phases">
+			<list>
+		
+			</list>
+		</property>
+		<property name="warranty">
+			<ref bean="warranty5" />
+		</property>
+		<property name="category">
+			<ref bean="category10" />
+		</property>
+		<property name="complaint">
+			<list>
+						
+			</list>
+		</property>
+		<property name="application">
+		<list>
+			<ref bean="application10" />
+		</list>
+		</property>
+	</bean>
+	
+	<bean id="fixuptask11" class="domain.FixUpTask">
+		<property name="ticker" value="20181108-A34609" />
+		<property name="moment">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/12/13" />
+			</bean>
+		</property>
+		<property name="description" value="descriptionfixuptask11" />
+		<property name="address" value="addressfixuptask11" />
+		<property name="maximumPrice" value="23.0" />
+		<property name="start">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/12/15" />
+			</bean>
+		</property>
+		<property name="end">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/12/15" />
+			</bean>
+		</property>
+		<property name="phases">
+			<list>
+		
+			</list>
+		</property>
+		<property name="warranty">
+			<ref bean="warranty1" />
+		</property>
+		<property name="category">
+			<ref bean="category11" />
+		</property>
+		<property name="complaint">
+			<list>
+					
+			</list>
+		</property>
+		<property name="application">
+	<list>
+			<ref bean="application11" />
+		</list>
+		</property>
+	</bean>
+	
+	<bean id="fixuptask12" class="domain.FixUpTask">
+		<property name="ticker" value="20181108-A92569" />
+		<property name="moment">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/12/13" />
+			</bean>
+		</property>
+		<property name="description" value="descriptionfixuptask12" />
+		<property name="address" value="addressfixuptask12" />
+		<property name="maximumPrice" value="7.0" />
+		<property name="start">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/12/15" />
+			</bean>
+		</property>
+		<property name="end">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/12/15" />
+			</bean>
+		</property>
+		<property name="phases">
+			<list>
+		
+			</list>
+		</property>
+		<property name="warranty">
+			<ref bean="warranty2" />
+		</property>
+		<property name="category">
+			<ref bean="category12" />
+		</property>
+		<property name="complaint">
+			<list>
+						
+			</list>
+		</property>
+		<property name="application">
+		<list>
+			<ref bean="application12" />
+		</list>
+		</property>
+	</bean>
+	
+	<bean id="fixuptask13" class="domain.FixUpTask">
+		<property name="ticker" value="20181108-A98769" />
+		<property name="moment">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/12/13" />
+			</bean>
+		</property>
+		<property name="description" value="descriptionfixuptask13" />
+		<property name="address" value="addressfixuptask13" />
+		<property name="maximumPrice" value="41.0" />
+		<property name="start">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/12/15" />
+			</bean>
+		</property>
+		<property name="end">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/12/15" />
+			</bean>
+		</property>
+		<property name="phases">
+			<list>
+			<ref bean="phase1"/>
+			<ref bean="phase2"/>
+			</list>
+		</property>
+		<property name="warranty">
+			<ref bean="warranty3" />
+		</property>
+		<property name="category">
+			<ref bean="category13" />
+		</property>
+		<property name="complaint">
+			<list>
+							
+			</list>
+		</property>
+		<property name="application">
+	<list>
+			<ref bean="application13" />
+		</list>
+		</property>
+	</bean>
+	
+	<bean id="fixuptask14" class="domain.FixUpTask">
+		<property name="ticker" value="20181108-A30899" />
+		<property name="moment">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/12/13" />
+			</bean>
+		</property>
+		<property name="description" value="descriptionfixuptask14" />
+		<property name="address" value="addressfixuptask14" />
+		<property name="maximumPrice" value="50.0" />
+		<property name="start">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/12/15" />
+			</bean>
+		</property>
+		<property name="end">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/12/15" />
+			</bean>
+		</property>
+		<property name="phases">
+			<list>
+			<ref bean="phase3"/>
+			<ref bean="phase4"/>
+			</list>
+		</property>
+		<property name="warranty">
+			<ref bean="warranty4" />
+		</property>
+		<property name="category">
+			<ref bean="category14" />
+		</property>
+		<property name="complaint">
+			<list>
+						
+			</list>
+		</property>
+		<property name="application">
+	<list>
+			<ref bean="application14" />
+		</list>
+		</property>
+	</bean>
+	
+	<bean id="fixuptask15" class="domain.FixUpTask">
+		<property name="ticker" value="20181108-A37519" />
+		<property name="moment">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/12/13" />
+			</bean>
+		</property>
+		<property name="description" value="descriptionfixuptask15" />
+		<property name="address" value="addressfixuptask15" />
+		<property name="maximumPrice" value="23.0" />
+		<property name="start">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/12/15" />
+			</bean>
+		</property>
+		<property name="end">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/12/15" />
+			</bean>
+		</property>
+		<property name="phases">
+			<list>
+			<ref bean="phase5"/>
+			<ref bean="phase6"/>
+			</list>
+		</property>
+		<property name="warranty">
+			<ref bean="warranty5" />
+		</property>
+		<property name="category">
+			<ref bean="category15" />
+		</property>
+		<property name="complaint">
+			<list>
+								
+			</list>
+		</property>
+		<property name="application">
+		<list>
+			<ref bean="application15" />
+		</list>
+		</property>
+	</bean>
+	
+	<bean id="fixuptask16" class="domain.FixUpTask">
+		<property name="ticker" value="20181108-A37909" />
+		<property name="moment">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/12/13" />
+			</bean>
+		</property>
+		<property name="description" value="descriptionfixuptask16" />
+		<property name="address" value="addressfixuptask16" />
+		<property name="maximumPrice" value="29.0" />
+		<property name="start">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/12/15" />
+			</bean>
+		</property>
+		<property name="end">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/12/15" />
+			</bean>
+		</property>
+		<property name="phases">
+			<list>
+		
+			</list>
+		</property>
+		<property name="warranty">
+			<ref bean="warranty1" />
+		</property>
+		<property name="category">
+			<ref bean="category1" />
+		</property>
+		<property name="complaint">
+			<list>
+								
+			</list>
+		</property>
+		<property name="application">
+		<list>
+			
+		</list>
+		</property>
+	</bean>
+	
+	<!-- beans application -->
+	
+	<bean id="application1" class="domain.Application">
+		<property name="moment">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/11/13" />
+			</bean>
+		</property>
+		<property name="offeredPrice" value="14.0" />
+		<property name="comments" value="Screen was broken by a fall" />
+		<property name="status" value="pending" />
+		<property name="momentElapsed">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/12/14" />
+			</bean>
+		</property>
+
+		<property name="fixUpTask">
+			<ref bean="fixuptask1" />
+		</property>
+	</bean>
+	<bean id="application2" class="domain.Application">
+		<property name="moment">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/12/10" />
+			</bean>
+		</property>
+		<property name="offeredPrice" value="19.0" />
+		<property name="comments" value="Screen was broken by water" />
+		<property name="status" value="pending" />
+		<property name="momentElapsed">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/11/14" />
+			</bean>
+		</property>
+		<property name="fixUpTask">
+			<ref bean="fixuptask2" />
+		</property>
+	</bean>
+	<bean id="application3" class="domain.Application">
+		<property name="moment">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/12/04" />
+			</bean>
+		</property>
+		<property name="offeredPrice" value="25.0" />
+		<property name="comments" value="Screen was shining" />
+		<property name="status" value="pending" />
+		<property name="momentElapsed">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/12/28" />
+			</bean>
+		</property>
+		<property name="fixUpTask">
+			<ref bean="fixuptask3" />
+		</property>
+	</bean>
+	<bean id="application4" class="domain.Application">
+		<property name="moment">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/12/25" />
+			</bean>
+		</property>
+		<property name="offeredPrice" value="50.0" />
+		<property name="comments" value="Screen was broken by a fall..." />
+		<property name="status" value="pending" />
+		<property name="momentElapsed">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/12/27" />
+			</bean>
+		</property>
+		
+		<property name="fixUpTask">
+			<ref bean="fixuptask4" />
+		</property>
+	</bean>
+	<bean id="application5" class="domain.Application">
+		<property name="moment">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/12/25" />
+			</bean>
+		</property>
+		<property name="offeredPrice" value="50.0" />
+		<property name="comments" value="Screen was broken by a fall..." />
+		<property name="status" value="pending" />
+		<property name="momentElapsed">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/12/25" />
+			</bean>
+		</property>
+		<property name="fixUpTask">
+			<ref bean="fixuptask5" />
+		</property>
+	</bean>
+	
+	<bean id="application6" class="domain.Application">
+		<property name="moment">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/12/25" />
+			</bean>
+		</property>
+		<property name="offeredPrice" value="90.0" />
+		<property name="comments" value="10 Windows broken in a flat" />
+		<property name="status" value="pending" />
+		<property name="momentElapsed">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/12/25" />
+			</bean>
+		</property>
+		<property name="fixUpTask">
+			<ref bean="fixuptask6" />
+		</property>
+	</bean>
+	
+	<bean id="application7" class="domain.Application">
+		<property name="moment">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/11/13" />
+			</bean>
+		</property>
+		<property name="offeredPrice" value="14.0" />
+		<property name="comments" value="Screen was broken by a fall" />
+		<property name="status" value="pending" />
+		<property name="momentElapsed">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/12/14" />
+			</bean>
+		</property>
+
+		<property name="fixUpTask">
+			<ref bean="fixuptask7" />
+		</property>
+	</bean>
+	
+	<bean id="application8" class="domain.Application">
+		<property name="moment">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/11/13" />
+			</bean>
+		</property>
+		<property name="offeredPrice" value="14.0" />
+		<property name="comments" value="Screen was broken by a fall" />
+		<property name="status" value="pending" />
+		<property name="momentElapsed">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/12/14" />
+			</bean>
+		</property>
+
+		<property name="fixUpTask">
+			<ref bean="fixuptask8" />
+		</property>
+	</bean>
+	
+	<bean id="application9" class="domain.Application">
+		<property name="moment">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/11/13" />
+			</bean>
+		</property>
+		<property name="offeredPrice" value="14.0" />
+		<property name="comments" value="Screen was broken by a fall" />
+		<property name="status" value="pending" />
+		<property name="momentElapsed">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/12/14" />
+			</bean>
+		</property>
+
+		<property name="fixUpTask">
+			<ref bean="fixuptask9" />
+		</property>
+	</bean>
+	
+	<bean id="application10" class="domain.Application">
+		<property name="moment">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/11/13" />
+			</bean>
+		</property>
+		<property name="offeredPrice" value="11.0" />
+		<property name="comments" value="Screen was broken by a fall" />
+		<property name="status" value="pending" />
+		<property name="momentElapsed">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/12/14" />
+			</bean>
+		</property>
+
+		<property name="fixUpTask">
+			<ref bean="fixuptask10" />
+		</property>
+	</bean>
+	
+	<bean id="application11" class="domain.Application">
+		<property name="moment">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/11/13" />
+			</bean>
+		</property>
+		<property name="offeredPrice" value="34.0" />
+		<property name="comments" value="Screen was broken by a fall" />
+		<property name="status" value="pending" />
+		<property name="momentElapsed">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/12/14" />
+			</bean>
+		</property>
+
+		<property name="fixUpTask">
+			<ref bean="fixuptask11" />
+		</property>
+	</bean>
+	
+	<bean id="application12" class="domain.Application">
+		<property name="moment">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/11/13" />
+			</bean>
+		</property>
+		<property name="offeredPrice" value="67.0" />
+		<property name="comments" value="Screen was broken by a fall" />
+		<property name="status" value="pending" />
+		<property name="momentElapsed">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/12/14" />
+			</bean>
+		</property>
+
+		<property name="fixUpTask">
+			<ref bean="fixuptask12" />
+		</property>
+	</bean>
+	
+	<bean id="application13" class="domain.Application">
+		<property name="moment">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/11/13" />
+			</bean>
+		</property>
+		<property name="offeredPrice" value="19.0" />
+		<property name="comments" value="Screen was broken by a fall" />
+		<property name="status" value="accepted" />
+		<property name="momentElapsed">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/12/14" />
+			</bean>
+		</property>
+
+		<property name="fixUpTask">
+			<ref bean="fixuptask13" />
+		</property>
+	</bean>
+	
+	<bean id="application14" class="domain.Application">
+		<property name="moment">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/11/13" />
+			</bean>
+		</property>
+		<property name="offeredPrice" value="23.0" />
+		<property name="comments" value="Screen was broken by a fall" />
+		<property name="status" value="accepted" />
+		<property name="momentElapsed">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/12/14" />
+			</bean>
+		</property>
+
+		<property name="fixUpTask">
+			<ref bean="fixuptask14" />
+		</property>
+	</bean>
+	
+	<bean id="application15" class="domain.Application">
+		<property name="moment">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/11/13" />
+			</bean>
+		</property>
+		<property name="offeredPrice" value="64.0" />
+		<property name="comments" value="Screen was broken by a fall" />
+		<property name="status" value="accepted" />
+		<property name="momentElapsed">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/12/14" />
+			</bean>
+		</property>
+
+		<property name="fixUpTask">
+			<ref bean="fixuptask15" />
+		</property>
+	</bean>
+	
+	<bean id="application16" class="domain.Application">
+		<property name="moment">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/11/13" />
+			</bean>
+		</property>
+		<property name="offeredPrice" value="144.0" />
+		<property name="comments" value="Screen was broken by a fall" />
+		<property name="status" value="rejected" />
+		<property name="momentElapsed">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/12/14" />
+			</bean>
+		</property>
+
+		<property name="fixUpTask">
+			<ref bean="fixuptask3" />
+		</property>
+	</bean>
+	
+	<bean id="application17" class="domain.Application">
+		<property name="moment">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/11/13" />
+			</bean>
+		</property>
+		<property name="offeredPrice" value="124.0" />
+		<property name="comments" value="Screen was broken by a fall" />
+		<property name="status" value="rejected" />
+		<property name="momentElapsed">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/12/14" />
+			</bean>
+		</property>
+
+		<property name="fixUpTask">
+			<ref bean="fixuptask5" />
+		</property>
+	</bean>
+	
+	<bean id="application18" class="domain.Application">
+		<property name="moment">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/11/13" />
+			</bean>
+		</property>
+		<property name="offeredPrice" value="78.0" />
+		<property name="comments" value="Screen was broken by a fall" />
+		<property name="status" value="rejected" />
+		<property name="momentElapsed">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/12/14" />
+			</bean>
+		</property>
+
+		<property name="fixUpTask">
+			<ref bean="fixuptask7" />
+		</property>
+	</bean>
+	
+	<bean id="application19" class="domain.Application">
+		<property name="moment">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/11/13" />
+			</bean>
+		</property>
+		<property name="offeredPrice" value="99.0" />
+		<property name="comments" value="Screen was broken by a fall" />
+		<property name="status" value="rejected" />
+		<property name="momentElapsed">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/12/14" />
+			</bean>
+		</property>
+
+		<property name="fixUpTask">
+			<ref bean="fixuptask9" />
+		</property>
+	</bean>
+	
+	<!--  beans customer -->
+	<bean id="customer1" class="domain.Customer">
+
+		<property name="name" value="customer1" />
+		<property name="middleName" value="customer1Middle" />
+		<property name="surname" value="customer1Surname" />
+		<property name="photo" value="https://www.photocustomer.com" />
+		<property name="email" value="customer@us.es" />
+		<property name="phone" value="954152634" />
+		<property name="adress" value="Avenida de Andalucia" />
+		<property name="boxes">
+			<list>
+				<ref bean="box1" />
+				<ref bean="box2" />
+				<ref bean="box3" />
+				<ref bean="box4" />
+			</list>
+		</property>
+		<property name="score" value="6.0" />
+		<property name="account">
+			<ref bean="userAccount6" />
+		</property>
+		<property name="profiles">
+			<list>
+			<ref bean="profile6"/>
+			</list>
+		</property>
+		<property name="message">
+			<list>
+
+			</list>
+		</property>
+		<property name="ban" value="false" />
+		<property name="fixUpTask">
+			<list>
+			<ref bean="fixuptask1" />
+			<ref bean="fixuptask2" />
+			<ref bean="fixuptask3" />
+			<ref bean="fixuptask4" />
+			</list>
+		</property>
+		<property name="complaint">
+			<list>
+			<ref bean="complaint1"/>
+			</list>
+		</property>
+	</bean>
+	<bean id="customer2" class="domain.Customer">
+
+		<property name="name" value="customer2" />
+		<property name="middleName" value="customer2Middle" />
+		<property name="surname" value="customer2Surname" />
+		<property name="photo" value="https://www.photocustomer2.com" />
+		<property name="email" value="customer2@us.es" />
+		<property name="phone" value="954152555" />
+		<property name="adress" value="Avenida de España" />
+		<property name="boxes">
+			<list>
+				<ref bean="box1" />
+				<ref bean="box2" />
+				<ref bean="box3" />
+				<ref bean="box4" />
+			</list>
+		</property>
+		<property name="score" value="6.0" />
+		<property name="account">
+			<ref bean="userAccount7" />
+		</property>
+		<property name="profiles">
+			<list>
+			<ref bean="profile7"/>
+			</list>
+		</property>
+		<property name="message">
+			<list>
+
+			</list>
+		</property>
+		<property name="ban" value="false" />
+		<property name="fixUpTask">
+			<list>
+				<ref bean="fixuptask5" />
+			<ref bean="fixuptask6" />
+			<ref bean="fixuptask7" />
+			<ref bean="fixuptask8" />
+			</list>
+		</property>
+		<property name="complaint">
+			<list>
+				<ref bean="complaint2"/>
+			</list>
+		</property>
+	</bean>
+	<bean id="customer3" class="domain.Customer">
+
+		<property name="name" value="customer3" />
+		<property name="middleName" value="customer3Middle" />
+		<property name="surname" value="customer3Surname" />
+		<property name="photo" value="https://www.photocustomer3.com" />
+		<property name="email" value="customer3@us.es" />
+		<property name="phone" value="954152553" />
+		<property name="adress" value="Avenida de España" />
+		<property name="boxes">
+			<list>
+				<ref bean="box1" />
+				<ref bean="box2" />
+				<ref bean="box3" />
+				<ref bean="box4" />
+			</list>
+		</property>
+		<property name="score" value="6.0" />
+		<property name="account">
+			<ref bean="userAccount8" />
+		</property>
+		<property name="profiles">
+			<list>
+			<ref bean="profile8"/>
+			</list>
+		</property>
+		<property name="message">
+			<list>
+
+			</list>
+		</property>
+		<property name="ban" value="false" />
+		<property name="fixUpTask">
+			<list>
+			<ref bean="fixuptask9" />
+			<ref bean="fixuptask10" />
+			<ref bean="fixuptask11" />
+			<ref bean="fixuptask12" />
+			</list>
+		</property>
+		<property name="complaint">
+			<list>
+			<ref bean="complaint3"/>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="customer4" class="domain.Customer">
+
+		<property name="name" value="customer4" />
+		<property name="middleName" value="customer4Middle" />
+		<property name="surname" value="customer4Surname" />
+		<property name="photo" value="https://www.photocustomer4.com" />
+		<property name="email" value="customer4@us.es" />
+		<property name="phone" value="951245378" />
+		<property name="adress" value="Avenida de Andalucía" />
+		<property name="boxes">
+			<list>
+				<ref bean="box1" />
+				<ref bean="box2" />
+				<ref bean="box3" />
+				<ref bean="box4" />
+			</list>
+		</property>
+		<property name="score" value="8.0" />
+		<property name="account">
+			<ref bean="userAccount9" />
+		</property>
+		<property name="profiles">
+			<list>
+			<ref bean="profile9"/>
+			</list>
+		</property>
+		<property name="message">
+			<list>
+
+			</list>
+		</property>
+		<property name="ban" value="false" />
+		<property name="fixUpTask">
+			<list>
+			<ref bean="fixuptask13" />
+			<ref bean="fixuptask14" />
+			</list>
+		</property>
+		<property name="complaint">
+			<list>
+			<ref bean="complaint4"/>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="customer5" class="domain.Customer">
+
+		<property name="name" value="customer5" />
+		<property name="middleName" value="customer5Middle" />
+		<property name="surname" value="customer5Surname" />
+		<property name="photo" value="https://www.photocustomer5.com" />
+		<property name="email" value="customer5@acme.com" />
+		<property name="phone" value="954151469" />
+		<property name="adress" value="Avenida del Guadalquivir" />
+		<property name="boxes">
+			<list>
+				<ref bean="box1" />
+				<ref bean="box2" />
+				<ref bean="box3" />
+				<ref bean="box4" />
+			</list>
+		</property>
+		<property name="score" value="4.0" />
+		<property name="account">
+			<ref bean="userAccount10" />
+		</property>
+		<property name="profiles">
+			<list>
+			<ref bean="profile10"/>
+			</list>
+		</property>
+		<property name="message">
+			<list>
+				
+			</list>
+		</property>
+		<property name="ban" value="false" />
+		<property name="fixUpTask">
+			<list>
+			<ref bean="fixuptask15" />
+			<ref bean="fixuptask16" />
+			</list>
+		</property>
+		<property name="complaint">
+			<list>
+			<ref bean="complaint5"/>
+			<ref bean="complaint6"/>
+				</list>
+		</property>
+	</bean>
+	
+	<!--  beans handyworker -->
+	 <bean id="handyworker1" class="domain.HandyWorker">
+		<property name="name" value="handyworker1" />
+		<property name="middleName" value="handyworker1Middle" />
+		<property name="surname" value="handyworker1Surname" />
+		<property name="photo" value="https://www.photohandyworker.com" />
+		<property name="email" value="hw1@us.es" />
+		<property name="phone" value="954152639" />
+		<property name="adress" value="C/Canal" />
+		<property name="boxes">
+			<list>
+			<ref bean="box1" />
+				<ref bean="box2" />
+				<ref bean="box3" />
+				<ref bean="box4" />
+			</list>
+		</property>
+		<property name="score" value="5.0" />
+		<property name="account">
+			<ref bean="userAccount11" />
+		</property>
+		<property name="profiles">
+			<list>
+			<ref bean="profile1"/>
+			</list>
+		</property>
+		<property name="message">
+			<list>
+
+			</list>
+		</property>
+		<property name="ban" value="false" />
+		<property name="application">
+			<list>
+			<ref bean="application1"/>
+			<ref bean="application2"/>
+			<ref bean="application3"/>
+			</list>
+		</property>
+		<property name="phase">
+			<list>
+
+			</list>
+		</property>
+		<property name = "tutoriales">
+			<list>
+			<ref bean="tutorial1"/>
+			<ref bean="tutorial2"/>
+			</list>
+		</property>
+		<property name="curriculum">
+		<ref bean="Curriculum1"/>
+		</property>
+	</bean>
+	
+	<bean id="handyworker2" class="domain.HandyWorker">
+		<property name="name" value="handyworker2" />
+		<property name="middleName" value="handyworker2Middle" />
+		<property name="surname" value="handyworker2Surname" />
+		<property name="photo" value="https://www.photohandyworker.com" />
+		<property name="email" value="hw1@us.es" />
+		<property name="phone" value="954152639" />
+		<property name="adress" value="C/Canal" />
+		<property name="boxes">
+			<list>
+			<ref bean="box1" />
+				<ref bean="box2" />
+				<ref bean="box3" />
+				<ref bean="box4" />
+			</list>
+		</property>
+		<property name="score" value="5.0" />
+		<property name="account">
+			<ref bean="userAccount12" />
+		</property>
+		<property name="profiles">
+			<list>
+			<ref bean="profile2"/>
+			</list>
+		</property>
+		<property name="message">
+			<list>
+
+			</list>
+		</property>
+		<property name="ban" value="false" />
+		<property name="application">
+			<list>
+				
+			</list>
+		</property>
+		<property name="phase">
+			<list>
+			
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="handyworker3" class="domain.HandyWorker">
+		<property name="name" value="handyworker3" />
+		<property name="middleName" value="handyworker3Middle" />
+		<property name="surname" value="handyworker3Surname" />
+		<property name="photo" value="https://www.photohandyworker.com" />
+		<property name="email" value="hw1@us.es" />
+		<property name="phone" value="954152639" />
+		<property name="adress" value="C/Canal" />
+		<property name="boxes">
+			<list>
+			<ref bean="box1" />
+				<ref bean="box2" />
+				<ref bean="box3" />
+				<ref bean="box4" />
+			</list>
+		</property>
+		<property name="score" value="5.0" />
+		<property name="account">
+			<ref bean="userAccount13" />
+		</property>
+		<property name="profiles">
+			<list>
+			<ref bean="profile3"/>
+			</list>
+		</property>
+		<property name="message">
+			<list>
+
+			</list>
+		</property>
+		<property name="ban" value="false" />
+		<property name="application">
+			<list>
+			<ref bean="application4"/>
+			<ref bean="application5"/>
+			<ref bean="application6"/>
+			<ref bean="application7"/>
+			<ref bean="application8"/>
+			<ref bean="application9"/>
+			</list>
+		</property>
+		<property name="phase">
+			<list>
+			<ref bean="phase1"/>
+			<ref bean="phase2"/>
+			<ref bean="phase3"/>
+			<ref bean="phase4"/>
+			<ref bean="phase5"/>
+			<ref bean="phase6"/>
+			</list>
+		</property>
+		<property name = "tutoriales">
+			<list>
+			<ref bean="tutorial3"/>
+			</list>
+			</property>
+	</bean>
+	
+	<bean id="handyworker4" class="domain.HandyWorker">
+		<property name="name" value="handyworker4" />
+		<property name="middleName" value="handyworker4Middle" />
+		<property name="surname" value="handyworker4Surname" />
+		<property name="photo" value="https://www.photohandyworker.com" />
+		<property name="email" value="hw1@us.es" />
+		<property name="phone" value="954152639" />
+		<property name="adress" value="C/Canal" />
+		<property name="boxes">
+			<list>
+			<ref bean="box1" />
+				<ref bean="box2" />
+				<ref bean="box3" />
+				<ref bean="box4" />
+			</list>
+		</property>
+		<property name="score" value="6.0" />
+		<property name="account">
+			<ref bean="userAccount14" />
+		</property>
+		<property name="profiles">
+			<list>
+			<ref bean="profile4"/>
+			</list>
+		</property>
+		<property name="message">
+			<list>
+
+			</list>
+		</property>
+		<property name="ban" value="false" />
+		<property name="application">
+			<list>
+			<ref bean="application10"/>
+			<ref bean="application11"/>
+			<ref bean="application12"/>
+			<ref bean="application13"/>
+			<ref bean="application14"/>
+			<ref bean="application15"/>
+			</list>
+		</property>
+		<property name="phase">
+			<list>
+
+			</list>
+		</property>
+		<property name = "tutoriales">
+			<list>
+			<ref bean="tutorial4"/>
+			</list>
+			</property>
+	</bean>
+	
+	<bean id="handyworker5" class="domain.HandyWorker">
+		<property name="name" value="handyworker5" />
+		<property name="middleName" value="handyworker5Middle" />
+		<property name="surname" value="handyworker5Surname" />
+		<property name="photo" value="https://www.photohandyworker.com" />
+		<property name="email" value="hw1@us.es" />
+		<property name="phone" value="954152639" />
+		<property name="adress" value="C/Canal" />
+		<property name="boxes">
+			<list>
+				<ref bean="box1" />
+				<ref bean="box2" />
+				<ref bean="box3" />
+				<ref bean="box4" />
+			</list>
+		</property>
+		<property name="score" value="1.0" />
+		<property name="account">
+			<ref bean="userAccount15" />
+		</property>
+		<property name="profiles">
+			<list>
+				<ref bean="profile5"/>
+			</list>
+		</property>
+		<property name="message">
+			<list>
+
+			</list>
+		</property>
+		<property name="ban" value="false" />
+		<property name="application">
+			<list>
+			<ref bean="application16"/>
+			<ref bean="application17"/>
+			<ref bean="application18"/>
+			<ref bean="application19"/>
+			</list>
+		</property>
+		<property name="phase">
+			<list>
+
+			</list>
+		</property>
+		<property name = "tutoriales">
+			<list>
+			<ref bean="tutorial5"/>
+			</list>
+			</property>
+	</bean>
+	
+	<bean id="endorsement1" class="domain.Endorsement">
+		<property name="moment">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/11/13" />
+			</bean>
+		</property>
+		<property name="comments">
+			<list>
+				<value>comment1</value>
+				<value>comment2</value>
+				<value>comment3</value>
+			</list>
+		</property>
+		<property name="userReceived">
+			<ref bean="customer1" />
+		</property>
+		<property name="userSended">
+			<ref bean="handyworker1" />
+		</property>
+	</bean>
+	
+	<bean id="endorsement2" class="domain.Endorsement">
+		<property name="moment">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/11/13" />
+			</bean>
+		</property>
+		<property name="comments">
+			<list>
+				<value>comment1</value>
+				<value>comment2</value>
+				<value>comment3</value>
+			</list>
+		</property>
+		<property name="userReceived">
+			<ref bean="customer2" />
+		</property>
+		<property name="userSended">
+			<ref bean="handyworker2" />
+		</property>
+	</bean>
+	
+	<bean id="endorsement3" class="domain.Endorsement">
+		<property name="moment">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/11/13" />
+			</bean>
+		</property>
+		<property name="comments">
+			<list>
+				<value>comment1</value>
+				<value>comment2</value>
+				<value>comment3</value>
+			</list>
+		</property>
+		<property name="userReceived">
+			<ref bean="customer3" />
+		</property>
+		<property name="userSended">
+			<ref bean="handyworker3" />
+		</property>
+	</bean>
+	
+	<bean id="endorsement4" class="domain.Endorsement">
+		<property name="moment">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/11/13" />
+			</bean>
+		</property>
+		<property name="comments">
+			<list>
+				<value>comment1</value>
+				<value>comment2</value>
+				<value>comment3</value>
+			</list>
+		</property>
+		<property name="userReceived">
+			<ref bean="customer4" />
+		</property>
+		<property name="userSended">
+			<ref bean="handyworker4" />
+		</property>
+	</bean>
+	
+	<bean id="endorsement5" class="domain.Endorsement">
+		<property name="moment">
+			<bean factory-bean="dateFormat" factory-method="parse">
+				<constructor-arg value="2018/11/13" />
+			</bean>
+		</property>
+		<property name="comments">
+			<list>
+				<value>comment1</value>
+				<value>comment2</value>
+				<value>comment3</value>
+			</list>
+		</property>
+		<property name="userReceived">
+			<ref bean="customer5" />
+		</property>
+		<property name="userSended">
+			<ref bean="handyworker5" />
+		</property>
+	</bean>
+	<!--
+	Actors Bean
 	<bean id="handyworker1" class="domain.HandyWorker">
 		<property name="name" value="handyworker1" />
 		<property name="middleName" value="handyworker1Middle" />
@@ -583,7 +4333,7 @@
 		</property>
 		<property name="score" value="5.0" />
 		<property name="account">
-			<ref bean="userAccount4" />
+			<ref bean="userAccount7" />
 		</property>
 		<property name="profiles">
 			<list>
@@ -623,7 +4373,7 @@
 		</property>
 		<property name="score" value="5.0" />
 		<property name="account">
-			<ref bean="userAccount4" />
+			<ref bean="userAccount8" />
 		</property>
 		<property name="profiles">
 			<list>
@@ -649,81 +4399,6 @@
 	
 	
 	
-	<bean id="referee1" class="domain.Referee">
-		<property name="name" value="Referee" />
-		<property name="middleName" value="Referee1Middle" />
-		<property name="surname" value="Referee1Surname" />
-		<property name="photo" value="https://www.photo.com" />
-		<property name="email" value="referee@us.es" />
-		<property name="phone" value="955482614" />
-		<property name="adress" value="C/Reina Mercedes" />
-		<property name="boxes">
-			<list>
-
-			</list>
-		</property>
-		<property name="account">
-			<ref bean="userAccount5" />
-		</property>
-		<property name="profiles">
-			<list>
-				<ref bean="profile7" />
-			</list>
-		</property>
-		<property name="message">
-			<list>
-			</list>
-		</property>
-		<property name="ban" value="false" />
-
-		<property name="reports">
-			<list>
-				<ref bean="report1" />
-			</list>
-		</property>
-		<property name="notes">
-			<list>
-				<ref bean="note1" />
-			</list>
-		</property>
-	</bean>
-	
-	<bean id="referee2" class="domain.Referee">
-		<property name="name" value="Referee2" />
-		<property name="middleName" value="Referee2Middle" />
-		<property name="surname" value="Referee2Surname" />
-		<property name="photo" value="https://www.flickr.com" />
-		<property name="email" value="referee2@acme.es" />
-		<property name="phone" value="955892114" />
-		<property name="adress" value="Av/Reina Mercedes" />
-		<property name="boxes">
-			<list>
-
-			</list>
-		</property>
-		<property name="account">
-			<ref bean="userAccount9" />
-		</property>
-		<property name="profiles">
-			<list>
-				<ref bean="profile10" />
-			</list>
-		</property>
-		<property name="message">
-			<list>
-			</list>
-		</property>
-		<property name="ban" value="false" />
-
-		<property name="reports">
-			<list>
-			</list>
-		</property>
-		<property name="notes">
-			<list>
-			</list>
-		</property>
-	</bean>
 	
 	<bean id="customer1" class="domain.Customer">
 
@@ -763,11 +4438,6 @@
 			<list>
 				<ref bean="complaint1" />
 				<ref bean="complaint2" />
-			</list>
-		</property>
-		<property name="notes">
-			<list>
-				<ref bean="note1"/>
 			</list>
 		</property>
 	</bean>
@@ -937,77 +4607,10 @@
 		</property>
 	</bean>
 	
-	<bean id="sponsor1" class="domain.Sponsor">
-
-		<property name="name" value="sponsor1" />
-		<property name="middleName" value="sponsor1Middle" />
-		<property name="surname" value="sponsor1Surname" />
-		<property name="photo" value="https://www.photosponsor.com" />
-		<property name="email" value="sponsor@us.es" />
-		<property name="phone" value="957986437" />
-		<property name="adress" value="Calle Barcelona" />
-		<property name="account">
-			<ref bean="userAccount6" />
-		</property>
-				<property name="boxes">
-			<list>
-
-			</list>
-		</property>
-		<property name="profiles">
-			<list>
-
-			</list>
-		</property>
-		<property name="message">
-			<list>
-			</list>
-		</property>
-		<property name="ban" value="false" />
-		<property name="sponsorship">
-			<list>
-				<ref bean="sponsorship1" />
-			</list>
-		</property>
-	</bean>
-	<!-- Boxes Beans -->
-	<bean id="box1" class="domain.Box">
-		<property name="name" value="entry" />
-		<property name="fromSystem" value="true" />
-		<property name="message">
-			<list>
-				<ref bean="message1" />
-			</list>
-		</property>
-	</bean>
-	<bean id="box2" class="domain.Box">
-		<property name="name" value="sended" />
-		<property name="fromSystem" value="true" />
-		<property name="message">
-			<list>
-
-			</list>
-		</property>
-	</bean>
-	<bean id="box3" class="domain.Box">
-		<property name="name" value="spam" />
-		<property name="fromSystem" value="true" />
-		<property name="message">
-			<list>
-
-			</list>
-		</property>
-	</bean>
-	<bean id="box4" class="domain.Box">
-		<property name="name" value="trash" />
-		<property name="fromSystem" value="true" />
-		<property name="message">
-			<list>
-
-			</list>
-		</property>
-	</bean>
-	<!-- Application Beans -->
+	
+	Boxes Beans
+	
+	Application Beans
 	<bean id="application1" class="domain.Application">
 		<property name="moment">
 			<bean factory-bean="dateFormat" factory-method="parse">
@@ -1120,238 +4723,11 @@
 		</property>
 	</bean>
 
-	<!-- Messages Beans -->
-	<bean id="message1" class="domain.Message">
-
-		<property name="sender">
-			<ref bean="administrator1" />
-		</property>
-		<property name="receiver">
-			<ref bean="customer1" />
-		</property>
-		<property name="moment">
-			<bean factory-bean="dateFormat" factory-method="parse">
-				<constructor-arg value="2018/11/14" />
-			</bean>
-		</property>
-		<property name="subject" value="subjectMessage1" />
-		<property name="body" value="bodyMessage1" />
-		<property name="tags">
-			<list>
-				<value>etiqueta1</value>
-				<value>etiqueta2</value>
-				<value>etiqueta3</value>
-			</list>
-		</property>
-		<property name="priority">
-			<ref bean="priority1" />
-		</property>
-	</bean>
-	<bean id="message2" class="domain.Message">
-
-		<property name="sender">
-			<ref bean="handyworker1" />
-		</property>
-		<property name="receiver">
-			<ref bean="customer1" />
-		</property>
-		<property name="moment">
-			<bean factory-bean="dateFormat" factory-method="parse">
-				<constructor-arg value="2018/11/14" />
-			</bean>
-		</property>
-		<property name="subject" value="subjectMessage2" />
-		<property name="body" value="bodyMessage2" />
-		<property name="tags">
-			<list>
-				<value>etiqueta1</value>
-				<value>etiqueta2</value>
-				<value>etiqueta3</value>
-			</list>
-		</property>
-		<property name="priority">
-			<ref bean="priority1" />
-		</property>
-	</bean>
-	<bean id="message3" class="domain.Message">
-
-		<property name="sender">
-			<ref bean="administrator1" />
-		</property>
-		<property name="receiver">
-			<ref bean="handyworker1" />
-		</property>
-		<property name="moment">
-			<bean factory-bean="dateFormat" factory-method="parse">
-				<constructor-arg value="2018/12/14" />
-			</bean>
-		</property>
-		<property name="subject" value="subjectMessage3" />
-		<property name="body" value="bodyMessage3" />
-		<property name="tags">
-			<list>
-				<value>etiqueta1</value>
-				<value>etiqueta2</value>
-				<value>etiqueta3</value>
-			</list>
-		</property>
-		<property name="priority">
-			<ref bean="priority1" />
-		</property>
-
-	</bean>
-	<!-- Categories -->
-	<bean id="category1" class="domain.Category">
-		<property name="name" value="Carprenty" />
-		<property name="categories">
-			<list>
-			</list>
-		</property>
-	</bean>
-	<bean id="category2" class="domain.Category">
-		<property name="name" value="Ceiling repairs" />
-		<property name="categories">
-			<list>
-			</list>
-		</property>
-
-	</bean>
-	<bean id="category3" class="domain.Category">
-		<property name="name" value="Cleaning" />
-		<property name="categories">
-			<list>
-			</list>
-		</property>
-	</bean>
-	<bean id="category4" class="domain.Category">
-		<property name="name" value="Concrete Work" />
-		<property name="categories">
-			<list>
-			</list>
-		</property>
-	</bean>
-	<bean id="category5" class="domain.Category">
-		<property name="name" value="Doors" />
-		<property name="categories">
-			<list>
-			</list>
-		</property>
-	</bean>
-	<bean id="category6" class="domain.Category">
-		<property name="name" value="Electrical wiring" />
-		<property name="categories">
-			<list>
-			</list>
-		</property>
-	</bean>
-	<bean id="category7" class="domain.Category">
-		<property name="name" value="Fan installation" />
-		<property name="categories">
-			<list>
-			</list>
-		</property>
-	</bean>
-	<bean id="category8" class="domain.Category">
-		<property name="name" value="Fence Fixing" />
-		<property name="categories">
-			<list>
-			</list>
-		</property>
-	</bean>
-	<bean id="category9" class="domain.Category">
-		<property name="name" value="Home security systems" />
-		<property name="categories">
-			<list>
-			</list>
-		</property>
-	</bean>
-	<bean id="category10" class="domain.Category">
-		<property name="name" value="Insulation installation" />
-		<property name="categories">
-			<list>
-			</list>
-		</property>
-	</bean>
-	<bean id="category11" class="domain.Category">
-		<property name="name" value="Lamp repairs" />
-		<property name="categories">
-			<list>
-			</list>
-		</property>
-	</bean>
-	<bean id="category12" class="domain.Category">
-		<property name="name" value="Moving" />
-		<property name="categories">
-			<list>
-			</list>
-		</property>
-	</bean>
-	<bean id="category13" class="domain.Category">
-		<property name="name" value="Painting" />
-		<property name="categories">
-			<list>
-			</list>
-		</property>
-	</bean>
-	<bean id="category14" class="domain.Category">
-		<property name="name" value="Pest control" />
-		<property name="categories">
-			<list>
-			</list>
-		</property>
-	</bean>
-	<bean id="category15" class="domain.Category">
-		<property name="name" value="Plumbing repairs" />
-		<property name="categories">
-			<list>
-			</list>
-		</property>
-	</bean>
-	<bean id="category16" class="domain.Category">
-		<property name="name" value="Roofing" />
-		<property name="categories">
-			<list>
-			</list>
-		</property>
-	</bean>
-	<bean id="category17" class="domain.Category">
-		<property name="name" value="Shelf installation" />
-		<property name="categories">
-			<list>
-			</list>
-		</property>
-	</bean>
-	<bean id="category18" class="domain.Category">
-		<property name="name" value="Solar panels" />
-		<property name="categories">
-			<list>
-			</list>
-		</property>
-	</bean>
-	<bean id="category19" class="domain.Category">
-		<property name="name" value="Soundproofing" />
-		<property name="categories">
-			<list>
-			</list>
-		</property>
-	</bean>
-		<bean id="category20" class="domain.Category">
-		<property name="name" value="Sprinkler repair" />
-		<property name="categories">
-			<list>
-			</list>
-		</property>
-	</bean>
 	
-		<bean id="category21" class="domain.Category">
-		<property name="name" value="Window repair" />
-		<property name="categories">
-			<list>
-			</list>
-		</property>
-	</bean>
+	Categories
 	
-	<!-- FixUp Tasks - Beans -->
+	
+	FixUp Tasks - Beans
 	<bean id="fixuptask1" class="domain.FixUpTask">
 		<property name="ticker" value="20181108-A32569" />
 		<property name="moment">
@@ -1732,94 +5108,13 @@
 		</property>
 	</bean>
 	
-	<!-- Credit Card Beans -->
-	<bean id="creditcard1" class="domain.CreditCard">
-		<property name="holderName" value="John Doe" />
-		<property name="brandName" value="EEUU Express" />
-		<property name="number" value="13" />
-		<property name="expirationMonth">
-			<bean factory-bean="dateFormat" factory-method="parse">
-				<constructor-arg value="2018/12/15" />
-			</bean>
-		</property>
-		<property name="expirationYear">
-			<bean factory-bean="dateFormat" factory-method="parse">
-				<constructor-arg value="2018/12/15" />
-			</bean>
-		</property>
-		<property name="codeCVV" value="134" />
-		<property name="type" value="VISA" />
-	</bean>
-	<bean id="creditcard2" class="domain.CreditCard">
-		<property name="holderName" value="Alice Jackson" />
-		<property name="brandName" value="UK Express" />
-		<property name="number" value="13" />
-		<property name="expirationMonth">
-			<bean factory-bean="dateFormat" factory-method="parse">
-				<constructor-arg value="2018/12/19" />
-			</bean>
-		</property>
-		<property name="expirationYear">
-			<bean factory-bean="dateFormat" factory-method="parse">
-				<constructor-arg value="2018/12/19" />
-			</bean>
-		</property>
-		<property name="codeCVV" value="136" />
-		<property name="type" value="MASTER"></property>
-	</bean>
-	<bean id="creditcard3" class="domain.CreditCard">
-		<property name="holderName" value="Alice Jackson" />
-		<property name="brandName" value="UK Express" />
-		<property name="number" value="13" />
-		<property name="expirationMonth">
-			<bean factory-bean="dateFormat" factory-method="parse">
-				<constructor-arg value="2018/12/19" />
-			</bean>
-		</property>
-		<property name="expirationYear">
-			<bean factory-bean="dateFormat" factory-method="parse">
-				<constructor-arg value="2018/12/19" />
-			</bean>
-		</property>
-		<property name="codeCVV" value="136" />
-		<property name="type" value="DINNERS"></property>
-	</bean>
-	<bean id="creditcard5" class="domain.CreditCard">
-		<property name="holderName" value="John Doe" />
-		<property name="brandName" value="UK Express" />
-		<property name="number" value="13" />
-		<property name="expirationMonth">
-			<bean factory-bean="dateFormat" factory-method="parse">
-				<constructor-arg value="2018/12/19" />
-			</bean>
-		</property>
-		<property name="expirationYear">
-			<bean factory-bean="dateFormat" factory-method="parse">
-				<constructor-arg value="2018/12/19" />
-			</bean>
-		</property>
-		<property name="codeCVV" value="136" />
-		<property name="type" value="AMEX"></property>
-	</bean>
+	Credit Card Beans
+	
 
-	<!-- Customisation System beans -->
-	<bean id="customisationsys1" class="domain.CustomisationSystem">
-		<property name="systemName" value="PC1" />
-		<property name="banner" value="http://www.tumblr.com" />
-		<property name="message" value="Message created." />
-	</bean>
-	<bean id="customisationsys2" class="domain.CustomisationSystem">
-		<property name="systemName" value="PC2" />
-		<property name="banner" value="http://www.flickr.com" />
-		<property name="message" value="Message of cutomisation created." />
-	</bean>
-	<bean id="customisationsys3" class="domain.CustomisationSystem">
-		<property name="systemName" value="PC3" />
-		<property name="banner" value="http://www.photobucket.com" />
-		<property name="message" value="Message customisation 2 created." />
-	</bean>
+	Customisation System beans
+	
 
-	<!-- Notes beans -->
+	Notes beans
 	<bean id="note1" class="domain.Note">
 		<property name="moment">
 			<bean factory-bean="dateFormat" factory-method="parse">
@@ -1850,59 +5145,9 @@
 			</list>
 		</property>
 	</bean>
-	<!-- Reports beans -->
-	<bean id="report1" class="domain.Report">
-		<property name="moment">
-			<bean factory-bean="dateFormat" factory-method="parse">
-				<constructor-arg value="2018/11/18" />
-			</bean>
-		</property>
-		<property name="description" value="reportdescription1"></property>
-		<property name="attachments">
-			<list>
-				<value>Adjunto1</value>
-				<value>Adjunto2</value>
-			</list>
-		</property>
-		<property name="notes">
-			<list>
-				<ref bean="note1" />
-				<ref bean="note2"/>
-			</list>
-		</property>
-		<property name="complaints">
-			<ref bean="complaint1" />
-		</property>
-		<property name="referee">
-			<ref bean="referee1" />
-		</property>
-	</bean>
+	Reports beans
 	
-	<bean id="report2" class="domain.Report">
-		<property name="moment">
-			<bean factory-bean="dateFormat" factory-method="parse">
-				<constructor-arg value="2018/11/18" />
-			</bean>
-		</property>
-		<property name="description" value="reportdescription2"></property>
-		<property name="attachments">
-			<list>
-				<value>Adjunto4</value>
-			</list>
-		</property>
-		<property name="notes">
-			<list>
-				<ref bean="note2" />
-			</list>
-		</property>
-		<property name="complaints">
-			<ref bean="complaint7" />
-		</property>
-		<property name="referee">
-			<ref bean="referee2" />
-		</property>
-	</bean>
-	<!-- Complaints beans -->
+	Complaints beans
 	<bean id="complaint1" class="domain.Complaint">
 		<property name="ticker" value="20181111-A32579"></property>
 		<property name="moment">
@@ -2025,112 +5270,14 @@
 			</list>
 		</property>
 	</bean>
-	<!-- Referee -->
+	Referee
 	
-	<bean id="sponsorship1" class="domain.Sponsorship">
+	
+	tutorial beans
+	
+	
 
-		<property name="urlBanner" value="https://www.bannersponsor.com" />
-		<property name="linkTPage" value="https://www.targetsponsor.com" />
-		<property name="creditCard">
-			<ref bean="creditcard1" />
-		</property>
-		<property name="sponsor">
-			<ref bean="sponsor1" />
-		</property>
-		<property name="tutorial">
-			<ref bean="tutorial1" />
-		</property>
-	</bean>
-
-	<bean id="sponsorship2" class="domain.Sponsorship">
-
-		<property name="urlBanner" value="https://www.bannersponsor.com" />
-		<property name="linkTPage" value="https://www.targetsponsor.com" />
-		<property name="creditCard">
-			<ref bean="creditcard1" />
-		</property>
-		<property name="sponsor">
-			<ref bean="sponsor1" />
-		</property>
-		<property name="tutorial">
-			<ref bean="tutorial2" />
-		</property>
-	</bean>
-	<!-- tutorial beans -->
-	<bean id="tutorial1" class="domain.Tutorial">
-
-		<property name="title" value="tutorial1" />
-		<property name="lastUpdate">
-			<bean factory-bean="dateFormat" factory-method="parse">
-				<constructor-arg value="2018/11/13" />
-			</bean>
-		</property>
-		<property name="summary" value="summaryTutorial" />
-		<property name="picture">
-			<list>
-				<value>picture1</value>
-				<value>picture2</value>
-				<value>picture3</value>
-			</list>
-		</property>
-		<property name="sponsorship">
-			<ref bean="sponsorship1" />
-		</property>
-		<property name="section">
-			<ref bean="section1" />
-		</property>
-	</bean>
-
-	<bean id="tutorial2" class="domain.Tutorial">
-
-		<property name="title" value="tutorial2" />
-		<property name="lastUpdate">
-			<bean factory-bean="dateFormat" factory-method="parse">
-				<constructor-arg value="2018/10/13" />
-			</bean>
-		</property>
-		<property name="summary" value="summaryTutorial" />
-		<property name="picture">
-			<list>
-				<value>picture4</value>
-				<value>picture5</value>
-			</list>
-		</property>
-		<property name="sponsorship">
-			<ref bean="sponsorship2" />
-		</property>
-		<property name="section">
-			<ref bean="section2" />
-		</property>
-	</bean>
-	<!-- Section beans -->
-	<bean id="section1" class="domain.Section">
-		<property name="title" value="parte1" />
-		<property name="text" value="textsection" />
-		<property name="picture">
-			<list>
-				<value>picture1</value>
-				<value>picture2</value>
-				<value>picture3</value>
-			</list>
-		</property>
-		<property name="number" value="1" />
-	</bean>
-
-	<bean id="section2" class="domain.Section">
-		<property name="title" value="parte2" />
-		
-		<property name="text" value="textsection" />
-		<property name="picture">
-			<list>
-				<value>picture1</value>
-				<value>picture2</value>
-			</list>
-		</property>
-		<property name="number" value="2" />
-	</bean>
-
-	<!-- endorsement beans -->
+	endorsement beans
 	<bean id="endorsement1" class="domain.Endorsement">
 		<property name="moment">
 			<bean factory-bean="dateFormat" factory-method="parse">
@@ -2150,5 +5297,5 @@
 		<property name="userSended">
 			<ref bean="handyworker1" />
 		</property>
-	</bean>
+	</bean> -->
 </beans>

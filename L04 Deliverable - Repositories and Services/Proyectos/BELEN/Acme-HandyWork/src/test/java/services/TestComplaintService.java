@@ -2,7 +2,7 @@
 package services;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.GregorianCalendar;
 
 import javax.transaction.Transactional;
 
@@ -30,12 +30,16 @@ public class TestComplaintService extends AbstractTest {
 
 	@Test //TEST FOR LISTING COMPLAINTS
 	public void testGetAllComplaints() {
+		super.authenticate("customer2");
 		Assert.isTrue(this.complaintService.findAll().size() >= 1);
+		super.unauthenticate();
 	}
 	
 	@Test //TEST FOR SHOWING COMPLAINTS
 	public void testGetComplaint() {
-		Assert.notNull(this.complaintService.findOne(1238));
+		super.authenticate("customer2");
+		Assert.notNull(this.complaintService.findOne(3022));
+		super.unauthenticate();
 	}
 	@Test //TEST FOR CREATING COMPLAINTS
 	public void testCreateComplaints() {
@@ -44,12 +48,39 @@ public class TestComplaintService extends AbstractTest {
 		c = new Complaint();
 		c.setAttachment(12);
 		c.setDescription("a ver");
-		c.setMoment(new Date(2018, 11, 29, 16, 0));
+		c.setMoment(new GregorianCalendar(2018, 11, 29, 16, 0, 0).getTime());
 		c.setReport(new ArrayList<Report>());
 		Complaint saved;
 		saved = this.complaintService.save(c);
 		Assert.notNull(saved);
 		super.unauthenticate();
 	}
-
+	
+	@Test //TEST FOR LISTING COMPLAINTS THAT NO REFEREE ASSIGNED
+	public void testListNoReferee() {
+		super.authenticate("referee1");
+		Assert.notNull(this.complaintService.findComplaintNoRefereeAssigned());
+		super.unauthenticate();
+	}
+	
+	@Test //TEST FOR LISTING COMPLAINTS THAT REFEREE ASSIGNED
+	public void testListReferee() {
+		super.authenticate("referee1");
+		Assert.notNull(this.complaintService.findComplaintRefereeAssigned());
+		super.unauthenticate();
+	}
+	
+	@Test //TEST FOR LISTING COMPLAINTS THAT OWN REFEREE ASSIGNED
+	public void testListComplaintByReferee() {
+		super.authenticate("referee2");
+		Assert.notNull(this.complaintService.findComplaintByReferee(1236));
+		super.unauthenticate();
+	}
+	
+	@Test //TEST FOR LISTING AND SHOWING COMPLAINTS BY HANDY WORKER ID
+	public void testListComplaintByHandy() {
+		super.authenticate("handyworker1");
+		Assert.notNull(this.complaintService.findComplaintByHandyWorkerId(3078));
+		super.unauthenticate();
+	}
 }

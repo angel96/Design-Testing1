@@ -32,10 +32,8 @@ public class HandyWorkerService {
 
 
 	public HandyWorker findByUserAccount(final int userAccount) {
-		HandyWorker result;
-		result = this.repositoryHandyWorker.findByUserAccount(userAccount);
-		Assert.notNull(result);
-		return result;
+		Assert.notNull(userAccount);
+		return this.repositoryHandyWorker.findByUserAccount(userAccount);
 	}
 	public HandyWorker create() {
 		HandyWorker handyWorker;
@@ -84,21 +82,10 @@ public class HandyWorkerService {
 
 	  public HandyWorker update(final HandyWorker newHw) {
 	    Assert.notNull(newHw);
-	    HandyWorker old;
-	    old = this.repositoryHandyWorker.findByUserAccount(newHw.getId());
-	    old.setAdress(newHw.getAdress());
-	    old.setBan(newHw.isBan());
-	    old.setEmail(newHw.getEmail());
-	    old.setMessage(newHw.getMessage());
-	    old.setMiddleName(newHw.getMiddleName());
-	    old.setName(newHw.getName());
-	    old.setPhone(newHw.getPhone());
-	    old.setPhoto(newHw.getPhoto());
-	    old.setProfiles(newHw.getProfiles());
-	    old.setScore(newHw.getScore());
-	    old.setSurname(newHw.getSurname());
-	    this.repositoryHandyWorker.save(old);
-	    return old;
+	    HandyWorker saved;
+	    
+	    saved  = this.repositoryHandyWorker.save(newHw);
+	    return saved;
 	  }
 
 	public Message sendMessage(final HandyWorker sender, final HandyWorker recipient, final Message message) {
