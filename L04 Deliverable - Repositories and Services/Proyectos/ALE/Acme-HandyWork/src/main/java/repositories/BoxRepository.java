@@ -5,9 +5,11 @@ import java.util.Collection;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 
 import domain.Box;
 
+@Repository
 public interface BoxRepository extends JpaRepository<Box, Integer> {
 
 	@Query("select b from Actor a join a.boxes b where a.id = ?1 and b.name= 'entry'")

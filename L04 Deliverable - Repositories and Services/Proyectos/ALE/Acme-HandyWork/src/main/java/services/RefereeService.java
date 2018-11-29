@@ -37,6 +37,8 @@ public class RefereeService {
 	private SponsorService			sponsorService;
 	@Autowired
 	private BoxService				boxService;
+	@Autowired
+	private MessageService			messageService;
 
 
 	public Collection<Referee> findAll() {
@@ -58,7 +60,11 @@ public class RefereeService {
 		Assert.isTrue(Utiles.findAuthority(sender.getAccount().getAuthorities(), Authority.REFEREE));
 		Assert.isTrue(Utiles.findAuthority(recipient.getAccount().getAuthorities(), Authority.ADMIN));
 		Assert.notNull(m);
-		Utiles.sendIndividualMessage(sender, recipient, m);
+		m.setSender(sender);
+		m.setReceiver(recipient);
+		Collection<Message> received;
+		received = this.messageService.findAllMessagesReceivedBy(recipient.getAccount().getId());
+		Utiles.sendIndividualMessage(recipient, received, m);
 		this.adminService.save(recipient);
 	}
 
@@ -67,7 +73,11 @@ public class RefereeService {
 		Assert.isTrue(Utiles.findAuthority(sender.getAccount().getAuthorities(), Authority.REFEREE));
 		Assert.isTrue(Utiles.findAuthority(recipient.getAccount().getAuthorities(), Authority.SPONSOR));
 		Assert.notNull(m);
-		Utiles.sendIndividualMessage(sender, recipient, m);
+		m.setSender(sender);
+		m.setReceiver(recipient);
+		Collection<Message> received;
+		received = this.messageService.findAllMessagesReceivedBy(recipient.getAccount().getId());
+		Utiles.sendIndividualMessage(recipient, received, m);
 		this.sponsorService.addSponsor(recipient);
 	}
 
@@ -76,7 +86,11 @@ public class RefereeService {
 		Assert.isTrue(Utiles.findAuthority(sender.getAccount().getAuthorities(), Authority.REFEREE));
 		Assert.isTrue(Utiles.findAuthority(recipient.getAccount().getAuthorities(), Authority.REFEREE));
 		Assert.notNull(m);
-		Utiles.sendIndividualMessage(sender, recipient, m);
+		m.setSender(sender);
+		m.setReceiver(recipient);
+		Collection<Message> received;
+		received = this.messageService.findAllMessagesReceivedBy(recipient.getAccount().getId());
+		Utiles.sendIndividualMessage(recipient, received, m);
 		this.refereeRepository.save(recipient);
 	}
 
@@ -85,7 +99,11 @@ public class RefereeService {
 		Assert.isTrue(Utiles.findAuthority(sender.getAccount().getAuthorities(), Authority.REFEREE));
 		Assert.isTrue(Utiles.findAuthority(recipient.getAccount().getAuthorities(), Authority.CUSTOMER));
 		Assert.notNull(m);
-		Utiles.sendIndividualMessage(sender, recipient, m);
+		m.setSender(sender);
+		m.setReceiver(recipient);
+		Collection<Message> received;
+		received = this.messageService.findAllMessagesReceivedBy(recipient.getAccount().getId());
+		Utiles.sendIndividualMessage(recipient, received, m);
 		this.customerService.save(recipient);
 	}
 
@@ -94,7 +112,11 @@ public class RefereeService {
 		Assert.isTrue(Utiles.findAuthority(sender.getAccount().getAuthorities(), Authority.REFEREE));
 		Assert.isTrue(Utiles.findAuthority(recipient.getAccount().getAuthorities(), Authority.HANDY_WORKER));
 		Assert.notNull(m);
-		Utiles.sendIndividualMessage(sender, recipient, m);
+		m.setSender(sender);
+		m.setReceiver(recipient);
+		Collection<Message> received;
+		received = this.messageService.findAllMessagesReceivedBy(recipient.getAccount().getId());
+		Utiles.sendIndividualMessage(recipient, received, m);
 		this.hwService.save(recipient);
 	}
 

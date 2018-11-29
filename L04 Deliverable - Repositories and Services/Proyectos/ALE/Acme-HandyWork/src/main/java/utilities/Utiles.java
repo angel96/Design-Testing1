@@ -81,18 +81,18 @@ public class Utiles {
 		}
 	}
 
-	public static void sendIndividualMessage(final Actor sender, final Actor recipient, final Message m) {
-		Collection<Message> existing;
-		existing = new ArrayList<>();
-		m.setSender(sender);
-		m.setReceiver(recipient);
-		for (final Box b : recipient.getBoxes())
+	public static void sendIndividualMessage(/* final Actor sender, */final Actor recipient, final Collection<Message> received, final Message send) {
+		Collection<Box> boxes;
+		Collection<Message> total;
+		boxes = recipient.getBoxes();
+		received.add(send);
+		for (final Box b : boxes)
 			if (b.getName().equals("entry")) {
-				existing = b.getMessage();
-				existing.add(m);
-				b.setMessage(existing);
+				total = b.getMessage();
+				total.addAll(received);
 			}
 	}
+
 	public static Boolean checkCollectionsSpam(final List<SpamWord> spam, final String[]... fields) {
 		Boolean res = false;
 		for (final String[] s : fields)

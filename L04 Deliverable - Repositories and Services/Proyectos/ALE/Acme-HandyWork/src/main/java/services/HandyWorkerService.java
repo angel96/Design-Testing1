@@ -45,6 +45,8 @@ public class HandyWorkerService {
 	private SponsorService			sponsorService;
 	@Autowired
 	private BoxService				boxService;
+	@Autowired
+	private MessageService			messageService;
 
 
 	public Collection<HandyWorker> findAll() {
@@ -98,8 +100,6 @@ public class HandyWorkerService {
 
 	public HandyWorker update(final HandyWorker newHw) {
 		Assert.notNull(newHw);
-		Assert.isTrue(Utiles.findAuthority(LoginService.getPrincipal().getAuthorities(), Authority.HANDY_WORKER));
-		Assert.isTrue(newHw.getAccount().getId() == this.repositoryHandyWorker.findByUserAccount(LoginService.getPrincipal().getId()).getId());
 		HandyWorker saved;
 		saved = this.save(newHw);
 		Assert.notNull(saved);
@@ -117,7 +117,11 @@ public class HandyWorkerService {
 		Assert.isTrue(Utiles.findAuthority(sender.getAccount().getAuthorities(), Authority.HANDY_WORKER));
 		Assert.isTrue(Utiles.findAuthority(recipient.getAccount().getAuthorities(), Authority.ADMIN));
 		Assert.notNull(m);
-		Utiles.sendIndividualMessage(sender, recipient, m);
+		m.setSender(sender);
+		m.setReceiver(recipient);
+		Collection<Message> received;
+		received = this.messageService.findAllMessagesReceivedBy(recipient.getAccount().getId());
+		Utiles.sendIndividualMessage(recipient, received, m);
 		this.adminService.save(recipient);
 	}
 
@@ -126,7 +130,11 @@ public class HandyWorkerService {
 		Assert.isTrue(Utiles.findAuthority(sender.getAccount().getAuthorities(), Authority.HANDY_WORKER));
 		Assert.isTrue(Utiles.findAuthority(recipient.getAccount().getAuthorities(), Authority.SPONSOR));
 		Assert.notNull(m);
-		Utiles.sendIndividualMessage(sender, recipient, m);
+		m.setSender(sender);
+		m.setReceiver(recipient);
+		Collection<Message> received;
+		received = this.messageService.findAllMessagesReceivedBy(recipient.getAccount().getId());
+		Utiles.sendIndividualMessage(recipient, received, m);
 		this.sponsorService.addSponsor(recipient);
 	}
 
@@ -135,7 +143,11 @@ public class HandyWorkerService {
 		Assert.isTrue(Utiles.findAuthority(sender.getAccount().getAuthorities(), Authority.HANDY_WORKER));
 		Assert.isTrue(Utiles.findAuthority(recipient.getAccount().getAuthorities(), Authority.REFEREE));
 		Assert.notNull(m);
-		Utiles.sendIndividualMessage(sender, recipient, m);
+		m.setSender(sender);
+		m.setReceiver(recipient);
+		Collection<Message> received;
+		received = this.messageService.findAllMessagesReceivedBy(recipient.getAccount().getId());
+		Utiles.sendIndividualMessage(recipient, received, m);
 		this.refereeService.save(recipient);
 	}
 
@@ -144,7 +156,11 @@ public class HandyWorkerService {
 		Assert.isTrue(Utiles.findAuthority(sender.getAccount().getAuthorities(), Authority.HANDY_WORKER));
 		Assert.isTrue(Utiles.findAuthority(recipient.getAccount().getAuthorities(), Authority.CUSTOMER));
 		Assert.notNull(m);
-		Utiles.sendIndividualMessage(sender, recipient, m);
+		m.setSender(sender);
+		m.setReceiver(recipient);
+		Collection<Message> received;
+		received = this.messageService.findAllMessagesReceivedBy(recipient.getAccount().getId());
+		Utiles.sendIndividualMessage(recipient, received, m);
 		this.customerService.save(recipient);
 	}
 
@@ -153,7 +169,11 @@ public class HandyWorkerService {
 		Assert.isTrue(Utiles.findAuthority(sender.getAccount().getAuthorities(), Authority.HANDY_WORKER));
 		Assert.isTrue(Utiles.findAuthority(recipient.getAccount().getAuthorities(), Authority.HANDY_WORKER));
 		Assert.notNull(m);
-		Utiles.sendIndividualMessage(sender, recipient, m);
+		m.setSender(sender);
+		m.setReceiver(recipient);
+		Collection<Message> received;
+		received = this.messageService.findAllMessagesReceivedBy(recipient.getAccount().getId());
+		Utiles.sendIndividualMessage(recipient, received, m);
 		this.repositoryHandyWorker.save(recipient);
 	}
 }

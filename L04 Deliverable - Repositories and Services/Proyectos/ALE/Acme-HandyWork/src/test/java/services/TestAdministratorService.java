@@ -54,18 +54,18 @@ public class TestAdministratorService extends AbstractTest {
 		super.unauthenticate();
 		super.authenticate("admin1");
 		Administrator sender;
-		sender = this.adminService.createAnotherAdministrator();
+		sender = this.adminService.findOne(3017);
 		sender.setName("sender");
 		Administrator recipient;
-		recipient = this.adminService.createAnotherAdministrator();
+		recipient = this.adminService.findOne(3018);
 		recipient.setName("recipient");
 
 		Message stock;
 		stock = new Message();
-		stock.setBody("body mensaje inicial");
+		stock.setBody("starter body");
 		Message newer;
 		newer = new Message();
-		newer.setBody("body del nuevo mensaje");
+		newer.setBody("new body");
 
 		this.adminService.sendMessage(sender, recipient, newer);
 		for (final Box b : recipient.getBoxes())
@@ -87,10 +87,23 @@ public class TestAdministratorService extends AbstractTest {
 
 		Message stock;
 		stock = new Message();
-		stock.setBody("body mensaje inicial");
+		stock.setBody("starter body");
 		Message newer;
 		newer = new Message();
-		newer.setBody("body del nuevo mensaje");
+		newer.setBody("new body");
+		for (final Box b : sender.getBoxes())
+			if (b.getName().equals("entry")) {
+				Collection<Message> mes;
+				mes = b.getMessage();
+				mes.add(stock);
+			}
+
+		for (final Box b : recipient.getBoxes())
+			if (b.getName().equals("entry")) {
+				Collection<Message> mes;
+				mes = b.getMessage();
+				mes.add(stock);
+			}
 
 		this.adminService.sendMessage(sender, recipient, newer);
 		for (final Box b : recipient.getBoxes())
@@ -129,12 +142,13 @@ public class TestAdministratorService extends AbstractTest {
 		admin = this.adminService.findOne(3017);
 		Message m;
 		m = new Message();
-		m.setBody("body del nuevo mensaje");
+		m.setBody("new message body");
 		this.adminService.broadcastMessage(admin, m);
 		final Administrator prueba = this.adminService.findOne(3018);
 		for (final Box b : prueba.getBoxes())
-			for (final Message me : b.getMessage())
-				System.out.println(me.getBody());
+			if (b.getName().equals("entry"))
+				for (final Message me : b.getMessage())
+					System.out.println(me.getBody());
 	}
 
 	@Test

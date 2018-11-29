@@ -20,13 +20,19 @@ public class MessageService {
 	private MessageRepository	messageRepository;
 
 
-	public Collection<Message> findAllMessagesSendedBy(final Integer actorId) {
-		Assert.isTrue(actorId instanceof Integer);
-		return this.messageRepository.findAllMessagesSendedByAnActor(actorId);
+	public Collection<Message> findAllMessagesSendedBy(final int id) {
+		Assert.notNull(id);
+		Collection<Message> m;
+		m = this.messageRepository.findAllMessagesSendedByAnActor(id);
+		Assert.notNull(m);
+		return m;
 	}
 
-	public Collection<Message> findAllMessagesReceivedBy(final Integer actorId) {
-		Assert.isTrue(actorId instanceof Integer);
-		return this.messageRepository.findAllMessagesReceivedByAnActor(actorId);
+	public Collection<Message> findAllMessagesReceivedBy(final int id) {
+		Assert.notNull(id);
+		Collection<Message> m;
+		m = this.messageRepository.findAllMessagesReceivedByAnActor(id);
+		Assert.notNull(m);
+		return m;
 	}
 }

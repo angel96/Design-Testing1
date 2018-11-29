@@ -42,6 +42,8 @@ public class AdministratorService {
 	private RefereeService			refereeService;
 	@Autowired
 	private BoxService				boxService;
+	@Autowired
+	private MessageService			messageService;
 
 
 	public Administrator createAnotherAdministrator() {
@@ -88,8 +90,7 @@ public class AdministratorService {
 	}
 
 	public Administrator save(final Administrator admin) {
-		//	Assert.isTrue(admin.getAccount().getId() == this.adminRepository.findAdministratorByUserAccountId(LoginService.getPrincipal().getId()).getId());
-		//Entonces me va a petar el guardar al admin si le envio un mensaje		Assert.isTrue(Utiles.findAuthority(LoginService.getPrincipal().getAuthorities(), Authority.ADMIN));
+		Assert.isTrue(admin.getAccount().getId() == this.adminRepository.findAdministratorByUserAccountId(admin.getAccount().getId()).getAccount().getId());
 		Assert.notNull(admin);
 		return this.adminRepository.save(admin);
 	}
@@ -97,8 +98,7 @@ public class AdministratorService {
 	public Administrator update(final Administrator admin) {
 		Assert.notNull(admin);
 		Assert.isTrue(Utiles.findAuthority(LoginService.getPrincipal().getAuthorities(), Authority.ADMIN));
-		System.out.println(LoginService.getPrincipal().getId());
-		//		Assert.isTrue(admin.getAccount().getId() == this.adminRepository.findAdministratorByUserAccountId(LoginService.getPrincipal().getId()).getId());
+		Assert.isTrue(admin.getAccount().getId() == this.adminRepository.findAdministratorByUserAccountId(admin.getAccount().getId()).getAccount().getId());
 		Administrator saved;
 		saved = this.save(admin);
 		Assert.notNull(saved);
@@ -276,7 +276,11 @@ public class AdministratorService {
 		Assert.isTrue(Utiles.findAuthority(sender.getAccount().getAuthorities(), Authority.ADMIN));
 		Assert.isTrue(Utiles.findAuthority(recipient.getAccount().getAuthorities(), Authority.ADMIN));
 		Assert.notNull(m);
-		Utiles.sendIndividualMessage(sender, recipient, m);
+		m.setSender(sender);
+		m.setReceiver(recipient);
+		Collection<Message> received;
+		received = this.messageService.findAllMessagesReceivedBy(recipient.getAccount().getId());
+		Utiles.sendIndividualMessage(recipient, received, m);
 		this.adminRepository.save(recipient);
 	}
 
@@ -285,8 +289,11 @@ public class AdministratorService {
 		Assert.isTrue(Utiles.findAuthority(sender.getAccount().getAuthorities(), Authority.ADMIN));
 		Assert.isTrue(Utiles.findAuthority(recipient.getAccount().getAuthorities(), Authority.SPONSOR));
 		Assert.notNull(m);
-		Utiles.sendIndividualMessage(sender, recipient, m);
-
+		m.setSender(sender);
+		m.setReceiver(recipient);
+		Collection<Message> received;
+		received = this.messageService.findAllMessagesReceivedBy(recipient.getAccount().getId());
+		Utiles.sendIndividualMessage(recipient, received, m);
 		this.sponsorService.addSponsor(recipient);
 	}
 
@@ -295,8 +302,11 @@ public class AdministratorService {
 		Assert.isTrue(Utiles.findAuthority(sender.getAccount().getAuthorities(), Authority.ADMIN));
 		Assert.isTrue(Utiles.findAuthority(recipient.getAccount().getAuthorities(), Authority.REFEREE));
 		Assert.notNull(m);
-		Utiles.sendIndividualMessage(sender, recipient, m);
-
+		m.setSender(sender);
+		m.setReceiver(recipient);
+		Collection<Message> received;
+		received = this.messageService.findAllMessagesReceivedBy(recipient.getAccount().getId());
+		Utiles.sendIndividualMessage(recipient, received, m);
 		this.refereeService.save(recipient);
 	}
 
@@ -305,7 +315,11 @@ public class AdministratorService {
 		Assert.isTrue(Utiles.findAuthority(sender.getAccount().getAuthorities(), Authority.ADMIN));
 		Assert.isTrue(Utiles.findAuthority(recipient.getAccount().getAuthorities(), Authority.CUSTOMER));
 		Assert.notNull(m);
-		Utiles.sendIndividualMessage(sender, recipient, m);
+		m.setSender(sender);
+		m.setReceiver(recipient);
+		Collection<Message> received;
+		received = this.messageService.findAllMessagesReceivedBy(recipient.getAccount().getId());
+		Utiles.sendIndividualMessage(recipient, received, m);
 
 		this.customerService.save(recipient);
 	}
@@ -315,7 +329,11 @@ public class AdministratorService {
 		Assert.isTrue(Utiles.findAuthority(sender.getAccount().getAuthorities(), Authority.ADMIN));
 		Assert.isTrue(Utiles.findAuthority(recipient.getAccount().getAuthorities(), Authority.HANDY_WORKER));
 		Assert.notNull(m);
-		Utiles.sendIndividualMessage(sender, recipient, m);
+		m.setSender(sender);
+		m.setReceiver(recipient);
+		Collection<Message> received;
+		received = this.messageService.findAllMessagesReceivedBy(recipient.getAccount().getId());
+		Utiles.sendIndividualMessage(recipient, received, m);
 
 		this.hwService.save(recipient);
 	}
