@@ -69,6 +69,19 @@ public class FixUpTaskService {
 
 		return saved;
 	}
+	public FixUpTask updateApplications(final FixUpTask newer) {
+		FixUpTask saved;
+
+		UserAccount user;
+		user = LoginService.getPrincipal();
+
+		Assert.isTrue(Utiles.findAuthority(user.getAuthorities(), Authority.HANDY_WORKER));
+
+		saved = this.fixUpTaskRepository.save(newer);
+
+		Assert.notNull(saved);
+		return saved;
+	}
 	public FixUpTask update(final FixUpTask newer) {
 		FixUpTask saved;
 

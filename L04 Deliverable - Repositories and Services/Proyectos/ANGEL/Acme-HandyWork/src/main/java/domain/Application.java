@@ -26,10 +26,8 @@ public class Application extends DomainEntity {
 	private String		status;
 	private FixUpTask	fixUpTask;
 	private Date		momentElapsed;
-	private CreditCard  creditCard;
+	private CreditCard	creditCard;
 
-
-	
 
 	@Temporal(TemporalType.DATE)
 	public Date getMoment() {
@@ -81,7 +79,7 @@ public class Application extends DomainEntity {
 	public void setMomentElapsed(final Date momentElapsed) {
 		this.momentElapsed = momentElapsed;
 	}
-	
+
 	public CreditCard getCreditCard() {
 		return this.creditCard;
 	}

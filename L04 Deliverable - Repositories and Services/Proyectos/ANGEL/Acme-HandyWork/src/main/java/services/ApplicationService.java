@@ -16,6 +16,7 @@ import utilities.Utiles;
 import domain.Application;
 import domain.CreditCard;
 import domain.Customer;
+import domain.FixUpTask;
 
 @Service
 @Transactional
@@ -26,6 +27,9 @@ public class ApplicationService {
 
 	@Autowired
 	private HandyWorkerService		serviceHWorker;
+
+	@Autowired
+	private FixUpTaskService		fixUpTaskService;
 
 
 	public Collection<Application> getApplicationsByCustomer(final Customer c) {
@@ -49,7 +53,7 @@ public class ApplicationService {
 		return this.applicationRepository.findAll();
 	}
 
-	public Application save(final Application a) {
+	public Application save(final FixUpTask f, final Application a) {
 
 		UserAccount user;
 		user = LoginService.getPrincipal();
@@ -58,10 +62,19 @@ public class ApplicationService {
 		Assert.isTrue(user.equals(this.serviceHWorker.findByUserAccount(user.getId()).getAccount()));
 		Assert.isTrue(Utiles.findAuthority(user.getAuthorities(), Authority.HANDY_WORKER));
 		Assert.notNull(a);
+		Assert.notNull(f);
 
 		Application saved;
 
 		saved = this.applicationRepository.save(a);
+
+		Collection<Application> apps;
+		apps = f.getApplication();
+
+		apps.add(saved);
+		f.setApplication(apps);
+
+		this.fixUpTaskService.updateApplications(f);
 
 		return saved;
 	}
@@ -71,10 +84,10 @@ public class ApplicationService {
 		userLogged = LoginService.getPrincipal();
 
 		Assert.isTrue(Utiles.findAuthority(userLogged.getAuthorities(), Authority.HANDY_WORKER));
-		if (userLogged.equals(this.serviceHWorker.findByUserAccount(newer.getId()).getAccount()))
+		if (userLogged.equals(this.serviceHWorker.findByUserAccount(userLogged.getId()).getAccount()))
 			saved = this.applicationRepository.save(newer);
 		else
-			throw new IllegalAccessError("An application which doesn´t belong to the customer logged can not be modified");
+			throw new IllegalAccessError("An application which doesn´t belong to the HandyWorker logged can not be modified");
 		Assert.notNull(saved);
 		return saved;
 	}
@@ -95,33 +108,16 @@ public class ApplicationService {
 	}
 
 	public void addComment(final String comment, final Application a) {
-		String comments;
 		Application taken;
-		taken = this.findOne(a.getId());
-		comments = taken.getComments();
 		UserAccount userLogged;
 		userLogged = LoginService.getPrincipal();
 		Assert.isTrue(Utiles.findAuthority(userLogged.getAuthorities(), Authority.CUSTOMER));
 		Assert.isTrue(userLogged.equals(this.applicationRepository.getCustomerByApplication(a.getId()).getAccount()));
 		if (comment.equals("") == false || !comment.equals(null) == false) {
-			taken.setComments(comments);
-			this.updateComment(a.getId(), taken);
+			a.setComments(comment);
+			taken = this.applicationRepository.save(a);
+			System.out.println(taken.getComments());
 		}
 	}
 
-	public Application updateComment(final int id, final Application a) {
-
-		UserAccount userLogged;
-		userLogged = LoginService.getPrincipal();
-		Assert.isTrue(Utiles.findAuthority(userLogged.getAuthorities(), Authority.CUSTOMER));
-		Assert.isTrue(userLogged.equals(this.applicationRepository.getCustomerByApplication(a.getId()).getAccount()));
-
-		Application taken, saved;
-		taken = this.findOne(id);
-		Assert.notNull(a);
-		taken.setComments(a.getComments());
-		saved = this.applicationRepository.save(taken);
-		Assert.notNull(taken);
-		return saved;
-	}
 }

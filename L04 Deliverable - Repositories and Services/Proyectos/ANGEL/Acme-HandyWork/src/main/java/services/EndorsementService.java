@@ -39,26 +39,6 @@ public class EndorsementService {
 		return saved;
 	}
 
-	public void addComment(final String comment, final Endorsement e) {
-		Collection<String> comments;
-		Endorsement taken;
-		taken = this.findOne(e.getId());
-		comments = taken.getComments();
-		if (comment != "" || comment != null)
-			comments.add(comment);
-		taken.setComments(comments);
-		this.update(taken);
-	}
-	public void removeComment(final String comment, final Endorsement e) {
-		Collection<String> comments;
-		Endorsement taken;
-		taken = this.findOne(e.getId());
-		comments = taken.getComments();
-		if (comments.contains(comment))
-			comments.remove(comment);
-		taken.setComments(comments);
-		this.update(taken);
-	}
 	public void delete(final int id) {
 		Assert.notNull(this.findOne(id));
 		this.repositoryEndorsement.delete(id);

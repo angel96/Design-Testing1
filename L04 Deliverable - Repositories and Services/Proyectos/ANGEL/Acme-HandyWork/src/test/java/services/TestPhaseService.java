@@ -46,7 +46,7 @@ public class TestPhaseService extends AbstractTest {
 	public void testUpdatePhase() {
 		super.authenticate("handyworker3");
 		Phase p, saved;
-		p = this.phaseService.findOne(1182);
+		p = this.phaseService.findOne(2940);
 		p.setDescription("Parte 1 plus");
 		p.setTitle("Phase 1 plus");
 		saved = this.phaseService.update(p);
@@ -58,9 +58,9 @@ public class TestPhaseService extends AbstractTest {
 
 	@Test
 	public void testDeletePhase() {
-		super.authenticate("handyworker1");
-		this.phaseService.delete(1179);
-		Assert.isNull(this.phaseService.findOne(1179));
+		super.authenticate("handyworker3");
+		this.phaseService.delete(2940);
+		Assert.isNull(this.phaseService.findOne(2940));
 		super.authenticate(null);
 	}
 

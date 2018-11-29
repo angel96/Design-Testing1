@@ -1,3 +1,4 @@
+
 package services;
 
 import java.util.ArrayList;
@@ -17,18 +18,19 @@ import domain.Note;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
-	"classpath:spring/datasource.xml", 
-	"classpath:spring/config/packages.xml"
+	"classpath:spring/datasource.xml", "classpath:spring/config/packages.xml"
 })
 @Transactional
-public class TestNoteService extends AbstractTest{
-	
+public class TestNoteService extends AbstractTest {
+
 	@Autowired
-	private NoteService noteService;
-	
-	@Test //TEST FOR CREATE
+	private NoteService	noteService;
+
+
+	@Test
+	//TEST FOR CREATE
 	public void testCreateNote() {
-		super.authenticate("referee1");
+		super.authenticate("handyworker1");
 		Note n;
 		n = new Note();
 		n.setId(2989); // if the note doesn't is regarding any of the reports, failed
@@ -40,14 +42,15 @@ public class TestNoteService extends AbstractTest{
 		Assert.notNull(saved);
 		super.unauthenticate();
 	}
-	
-	@Test //TEST FOR WRITE COMMENTS
+
+	@Test
+	//TEST FOR WRITE COMMENTS
 	public void testAddComments() {
-		super.authenticate("super");
+		super.authenticate("handyworker1");
 		Note n;
 		n = this.noteService.findOne(2989);
-		String c = "Comentario extra";
+		final String c = "Comentario extra";
 		this.noteService.addCommentToNote(c, n);
-		super.unauthenticate(); 
+		super.unauthenticate();
 	}
 }

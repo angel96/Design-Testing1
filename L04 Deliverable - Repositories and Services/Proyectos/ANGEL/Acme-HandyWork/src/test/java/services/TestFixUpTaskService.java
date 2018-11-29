@@ -110,9 +110,9 @@ public class TestFixUpTaskService extends AbstractTest {
 	//Testing FixUp update
 	@Test
 	public void testUpdate1() {
-		super.authenticate("customer2");
+		super.authenticate("customer1");
 		FixUpTask f, saved;
-		f = this.fixUpTaskService.findOne(1249);
+		f = this.fixUpTaskService.findOne(3039);
 		f.setAddress("addressfixuptask6");
 		saved = this.fixUpTaskService.update(f);
 		super.authenticate(null);
@@ -121,9 +121,9 @@ public class TestFixUpTaskService extends AbstractTest {
 	//Testing FixUp delete
 	@Test
 	public void testDelete1() {
-		super.authenticate("customer2");
-		this.fixUpTaskService.delete(1249);
-		Assert.isNull(this.fixUpTaskService.findOne(1249));
+		super.authenticate("customer1");
+		this.fixUpTaskService.delete(3039);
+		Assert.isNull(this.fixUpTaskService.findOne(3039));
 		super.authenticate(null);
 	}
 	//Testing FixUp update - Doesn´t belong to the customer given - Expected Exception
@@ -132,7 +132,7 @@ public class TestFixUpTaskService extends AbstractTest {
 		super.authenticate("customer2");
 		FixUpTask f, saved;
 		//Task from Customer 1
-		f = this.fixUpTaskService.findOne(1248);
+		f = this.fixUpTaskService.findOne(3038);
 		f.setAddress("addressfixuptask6");
 		this.exception.expect(IllegalAccessError.class);
 		saved = this.fixUpTaskService.update(f);
@@ -144,8 +144,8 @@ public class TestFixUpTaskService extends AbstractTest {
 	public void testDelete2() {
 		super.authenticate("customer2");
 		this.exception.expect(IllegalAccessError.class);
-		this.fixUpTaskService.delete(1248);
-		Assert.isNull(this.fixUpTaskService.findOne(1248));
+		this.fixUpTaskService.delete(3038);
+		Assert.isNull(this.fixUpTaskService.findOne(3038));
 		super.authenticate(null);
 	}
 
@@ -167,7 +167,7 @@ public class TestFixUpTaskService extends AbstractTest {
 		p2.setTitle("Fase 2");
 		p2.setDescription("Des 2");
 		p2.setStartMoment(new Date());
-		p2.setEndMoment(Utiles.convertDate(2028, 12, 3));
+		p2.setEndMoment(Utiles.convertDate(2018, 12, 3));
 
 		List<Phase> phases;
 		phases = new ArrayList<Phase>();
@@ -175,7 +175,7 @@ public class TestFixUpTaskService extends AbstractTest {
 		phases.add(p1);
 		phases.add(p2);
 
-		Assert.isTrue(this.fixUpTaskService.createWorkPlan(phases, this.applicationService.findOne(3054)));
+		Assert.isTrue(this.fixUpTaskService.createWorkPlan(phases, this.applicationService.findOne(3066)));
 
 	}
 }

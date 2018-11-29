@@ -37,11 +37,11 @@ public class TestWarrrantyService extends AbstractTest {
 	}
 	@Test
 	public void testGetById() {
-		Assert.notNull(this.serviceWarranty.findOne(1128));
+		Assert.notNull(this.serviceWarranty.findOne(2967));
 	}
 	@Test
 	public void testCreate() {
-		super.authenticate("admin");
+		super.authenticate("admin1");
 		Warranty w, saved;
 		Collection<Warranty> warranties;
 
@@ -62,32 +62,36 @@ public class TestWarrrantyService extends AbstractTest {
 
 	@Test
 	public void testUpdate1() {
+		super.authenticate("admin1");
 		Warranty w;
-		w = this.serviceWarranty.findOne(1129);
+		w = this.serviceWarranty.findOne(2968);
 		w.setTitle("Testeando garantia");
 		Assert.notNull(this.serviceWarranty.updateWarranty(w));
+		super.authenticate(null);
 	}
 
 	@Test
 	public void testDelete1() {
-		Assert.notNull(this.serviceWarranty.findOne(1129));
-		this.serviceWarranty.deleteWarranty(1129);
-		Assert.isNull(this.serviceWarranty.findOne(1129));
+		Assert.notNull(this.serviceWarranty.findOne(2968));
+		this.serviceWarranty.deleteWarranty(2968);
+		Assert.isNull(this.serviceWarranty.findOne(2968));
 	}
 	// It can not be modified due to its draftMode value
 	@Test
 	public void testUpdate2() {
+		super.authenticate("admin1");
 		Warranty w;
-		w = this.serviceWarranty.findOne(1128);
+		w = this.serviceWarranty.findOne(2967);
 		w.setTitle("Testeando garantia");
 		this.exception.expect(IllegalAccessError.class);
 		Assert.notNull(this.serviceWarranty.updateWarranty(w));
+		super.authenticate(null);
 	}
 	@Test
 	public void testDelete2() {
-		Assert.notNull(this.serviceWarranty.findOne(1128));
+		Assert.notNull(this.serviceWarranty.findOne(2967));
 		this.exception.expect(IllegalAccessError.class);
-		this.serviceWarranty.deleteWarranty(1128);
-		Assert.isNull(this.serviceWarranty.findOne(1128));
+		this.serviceWarranty.deleteWarranty(2967);
+		Assert.isNull(this.serviceWarranty.findOne(2967));
 	}
 }

@@ -29,7 +29,7 @@ public class TestCategoryService extends AbstractTest {
 
 	@Test
 	public void testCreate() {
-		super.authenticate("admin");
+		super.authenticate("admin1");
 		Category c, saved;
 		Collection<Category> colCat;
 		c = Utiles.createCategory();
@@ -47,9 +47,9 @@ public class TestCategoryService extends AbstractTest {
 
 	@Test
 	public void testUpdate() {
-		super.authenticate("admin");
+		super.authenticate("admin1");
 		Category c;
-		c = this.serviceCategory.findOne(1203);
+		c = this.serviceCategory.findOne(2946);
 		System.out.println(c.getName());
 		c.setName("testeo carpinteria");
 		System.out.println(c.getName());
@@ -59,12 +59,12 @@ public class TestCategoryService extends AbstractTest {
 
 	@Test
 	public void testDelete() {
-		super.authenticate("admin");
-		Assert.notNull(this.serviceCategory.findOne(1203));
-		System.out.println(this.serviceCategory.findOne(1203));
-		this.serviceCategory.deleteCategory(1203);
-		System.out.println(this.serviceCategory.findOne(1203));
-		Assert.isNull(this.serviceCategory.findOne(1203));
+		super.authenticate("admin1");
+		Assert.notNull(this.serviceCategory.findOne(2946));
+		System.out.println(this.serviceCategory.findOne(2946));
+		this.serviceCategory.deleteCategory(2946);
+		System.out.println(this.serviceCategory.findOne(2946));
+		Assert.isNull(this.serviceCategory.findOne(2946));
 		super.authenticate(null);
 	}
 

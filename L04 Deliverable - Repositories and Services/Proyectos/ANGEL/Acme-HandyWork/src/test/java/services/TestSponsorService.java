@@ -34,7 +34,7 @@ public class TestSponsorService extends AbstractTest {
 		Sponsor s, saved;
 		s = Utiles.createSponsor();
 		saved = this.serviceSponsor.addSponsor(s);
-
+		Assert.notNull(s);
 	}
 	@Test
 	public void testUpdateSponsor() {

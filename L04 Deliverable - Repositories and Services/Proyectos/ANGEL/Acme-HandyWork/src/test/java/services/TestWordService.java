@@ -38,16 +38,20 @@ public class TestWordService extends AbstractTest {
 	}
 	@Test
 	public void testCreateWord() {
+		super.authenticate("admin1");
 		Word w, saved;
 		w = Utiles.createWord();
 		w.setIsGood(true);
 		w.setWord("Vida");
 		saved = this.wordService.addWord(w);
 		Assert.isTrue(this.wordService.getAll().contains(saved));
+		super.unauthenticate();
 	}
 	@Test
 	public void testDeleteWord() {
-		this.wordService.deleteWord(1115);
-		Assert.isNull(this.wordService.findById(1115));
+		super.authenticate("admin1");
+		this.wordService.deleteWord(2934);
+		Assert.isNull(this.wordService.findById(2934));
+		super.unauthenticate();
 	}
 }
