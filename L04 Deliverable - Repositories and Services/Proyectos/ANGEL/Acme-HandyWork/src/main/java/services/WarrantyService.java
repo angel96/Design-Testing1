@@ -37,7 +37,7 @@ public class WarrantyService {
 		UserAccount user;
 		user = LoginService.getPrincipal();
 		Administrator admin;
-		admin = this.serviceAdministrator.findByUserAccount(user.getId());
+		admin = this.serviceAdministrator.findOne(user.getId());
 		Assert.notNull(admin);
 		Warranty result;
 		Assert.notNull(w);
@@ -55,7 +55,7 @@ public class WarrantyService {
 		UserAccount user;
 		user = LoginService.getPrincipal();
 		Administrator admin;
-		admin = this.serviceAdministrator.findByUserAccount(user.getId());
+		admin = this.serviceAdministrator.findOne(user.getId());
 
 		Assert.notNull(admin);
 

@@ -50,8 +50,8 @@ public class TestWordService extends AbstractTest {
 	@Test
 	public void testDeleteWord() {
 		super.authenticate("admin1");
-		this.wordService.deleteWord(2934);
-		Assert.isNull(this.wordService.findById(2934));
+		this.wordService.deleteWord(2916);
+		Assert.isNull(this.wordService.findById(1115));
 		super.unauthenticate();
 	}
 }

@@ -45,7 +45,7 @@ public class WordService {
 		UserAccount user;
 		user = LoginService.getPrincipal();
 		Administrator admin;
-		admin = this.serviceAdministrator.findByUserAccount(user.getId());
+		admin = this.serviceAdministrator.findOne(user.getId());
 		Assert.notNull(admin);
 
 		Word word;
@@ -59,7 +59,7 @@ public class WordService {
 		UserAccount user;
 		user = LoginService.getPrincipal();
 		Administrator admin;
-		admin = this.serviceAdministrator.findByUserAccount(user.getId());
+		admin = this.serviceAdministrator.findOne(user.getId());
 		Assert.notNull(admin);
 
 		Word saved;
@@ -73,7 +73,7 @@ public class WordService {
 		UserAccount user;
 		user = LoginService.getPrincipal();
 		Administrator admin;
-		admin = this.serviceAdministrator.findByUserAccount(user.getId());
+		admin = this.serviceAdministrator.findOne(user.getId());
 		Assert.notNull(admin);
 		this.wordRepository.delete(id);
 	}

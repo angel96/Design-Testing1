@@ -17,6 +17,7 @@ import org.hibernate.search.query.dsl.QueryBuilder;
 
 import security.Authority;
 import security.UserAccount;
+import domain.Actor;
 import domain.Application;
 import domain.Box;
 import domain.Category;
@@ -25,9 +26,11 @@ import domain.CreditCard;
 import domain.Endorsable;
 import domain.Endorsement;
 import domain.FixUpTask;
+import domain.Message;
 import domain.Phase;
 import domain.Profile;
 import domain.Section;
+import domain.SpamWord;
 import domain.Sponsor;
 import domain.Sponsorship;
 import domain.Tutorial;
@@ -90,6 +93,53 @@ public class Utiles {
 		em.close();
 
 		return result;
+	}
+	public static void broadcastMessage(final Collection<? extends Actor> ls, final Message m) {
+		Collection<Message> existingMessages;
+		existingMessages = new ArrayList<>();
+		Collection<Box> boxes;
+		for (final Actor a : ls) {
+			boxes = a.getBoxes();
+			for (final Box b : boxes)
+				if (b.getName().equals("entry")) {
+					existingMessages = b.getMessage();
+					existingMessages.add(m);
+					b.setMessage(existingMessages);
+				}
+		}
+	}
+
+	public static void sendIndividualMessage(/* final Actor sender, */final Actor recipient, final Collection<Message> received, final Message send) {
+		Collection<Box> boxes;
+		Collection<Message> total;
+		boxes = recipient.getBoxes();
+		received.add(send);
+		for (final Box b : boxes)
+			if (b.getName().equals("entry")) {
+				total = b.getMessage();
+				total.addAll(received);
+			}
+	}
+
+	public static Boolean checkCollectionsSpam(final List<SpamWord> spam, final String[]... fields) {
+		Boolean res = false;
+		for (final String[] s : fields)
+			//			for (int i = 0; i < spam.size(); i++)
+			for (final SpamWord sw : spam)
+				if (sw.getWord().equals(s.toString())) {
+					res = true;
+					break;
+				}
+		return res;
+	}
+	public static Boolean checkSpamStrings(final List<SpamWord> spam, final String s) {
+		Boolean res = false;
+		for (final SpamWord sw : spam)
+			if (sw.getWord().equals(s)) {
+				res = true;
+				break;
+			}
+		return res;
 	}
 	public static Phase createPhase() {
 		Phase p;

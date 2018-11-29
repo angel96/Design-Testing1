@@ -38,7 +38,7 @@ public class CategoryService {
 		idLogged = LoginService.getPrincipal();
 
 		Administrator admin;
-		admin = this.adminService.findByUserAccount(idLogged.getId());
+		admin = this.adminService.findOne(idLogged.getId());
 
 		Assert.notNull(admin);
 
@@ -55,7 +55,7 @@ public class CategoryService {
 		idLogged = LoginService.getPrincipal();
 
 		Administrator admin;
-		admin = this.adminService.findByUserAccount(idLogged.getId());
+		admin = this.adminService.findOne(idLogged.getId());
 
 		Assert.notNull(admin);
 
@@ -67,7 +67,7 @@ public class CategoryService {
 		idLogged = LoginService.getPrincipal();
 
 		Administrator admin;
-		admin = this.adminService.findByUserAccount(idLogged.getId());
+		admin = this.adminService.findOne(idLogged.getId());
 
 		Assert.notNull(admin);
 
