@@ -9,7 +9,9 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import repositories.WarrantyRepository;
-import utilities.Utiles;
+import security.LoginService;
+import security.UserAccount;
+import domain.Administrator;
 import domain.Warranty;
 
 @Service
@@ -17,7 +19,10 @@ import domain.Warranty;
 public class WarrantyService {
 
 	@Autowired
-	private WarrantyRepository	repositoryWarranty;
+	private WarrantyRepository		repositoryWarranty;
+
+	@Autowired
+	private AdministratorService	serviceAdministrator;
 
 
 	public Collection<Warranty> findAll() {
@@ -29,6 +34,11 @@ public class WarrantyService {
 	}
 
 	public Warranty addWarranty(final Warranty w) {
+		UserAccount user;
+		user = LoginService.getPrincipal();
+		Administrator admin;
+		admin = this.serviceAdministrator.findByUserAccount(user.getId());
+		Assert.notNull(admin);
 		Warranty result;
 		Assert.notNull(w);
 		result = this.repositoryWarranty.save(w);
@@ -40,14 +50,18 @@ public class WarrantyService {
 
 	public Warranty updateWarranty(final Warranty newer) {
 
-		Warranty w, saved;
-		w = Utiles.createWarranty();
-		if (w.isDraftMode()) {
-			w.setTitle(newer.getTitle());
-			w.setTerms(newer.getTerms());
-			w.setLaws(newer.getLaws());
-			saved = this.repositoryWarranty.save(w);
-		} else
+		Warranty saved;
+
+		UserAccount user;
+		user = LoginService.getPrincipal();
+		Administrator admin;
+		admin = this.serviceAdministrator.findByUserAccount(user.getId());
+
+		Assert.notNull(admin);
+
+		if (newer.isDraftMode())
+			saved = this.repositoryWarranty.save(newer);
+		else
 			throw new IllegalAccessError();
 
 		return saved;
@@ -62,4 +76,5 @@ public class WarrantyService {
 		else
 			throw new IllegalAccessError();
 	}
+
 }

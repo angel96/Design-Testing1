@@ -41,6 +41,7 @@ public class TestWarrrantyService extends AbstractTest {
 	}
 	@Test
 	public void testCreate() {
+		super.authenticate("admin");
 		Warranty w, saved;
 		Collection<Warranty> warranties;
 
@@ -54,6 +55,7 @@ public class TestWarrrantyService extends AbstractTest {
 
 		warranties = this.serviceWarranty.findAll();
 		Assert.isTrue(warranties.contains(saved));
+		super.unauthenticate();
 	}
 
 	// It can be modified due to its draftMode value

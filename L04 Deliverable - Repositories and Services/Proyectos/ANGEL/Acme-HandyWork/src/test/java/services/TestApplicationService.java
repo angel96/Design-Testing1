@@ -25,13 +25,22 @@ public class TestApplicationService extends AbstractTest {
 
 
 	@Test
+	public void testCreate() {
+		super.authenticate("customer");
+		Application saved, one;
+		one = this.applicationService.findOne(1275);
+
+		saved = this.applicationService.save(one);
+		super.unauthenticate();
+	}
+
+	@Test
 	public void testUpdateStatus() {
 		super.authenticate("customer");
 		Application a, saved;
 		a = this.applicationService.findOne(1275);
-		System.out.println("A1:" + a);
 		a.setStatus("accepted");
-		saved = this.applicationService.update(Utiles.createCreditCard(), a);
+		saved = this.applicationService.updateStatus(Utiles.createCreditCard(), a);
 		Assert.notNull(saved);
 		super.authenticate(null);
 	}

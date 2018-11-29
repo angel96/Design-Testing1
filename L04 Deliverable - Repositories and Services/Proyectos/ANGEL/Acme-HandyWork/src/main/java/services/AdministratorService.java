@@ -23,8 +23,8 @@ public class AdministratorService {
 
 	}
 
-	public Administrator findAdmin(final int id) {
-		return this.administratorRepository.findAdmin(id);
+	public Administrator findOne(final int id) {
+		return this.administratorRepository.findOne(id);
 	}
 
 	public Administrator update(final Administrator a) {
