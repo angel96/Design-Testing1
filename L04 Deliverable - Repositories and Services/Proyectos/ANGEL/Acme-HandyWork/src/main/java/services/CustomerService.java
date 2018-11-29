@@ -17,6 +17,10 @@ public class CustomerService {
 	private CustomerRepository	customerRepository;
 
 
+	public Customer findOne(final int id) {
+		return this.customerRepository.findOne(id);
+	}
+
 	public Customer findByUserAccount(final int userAccount) {
 
 		return this.customerRepository.findByUserAccount(userAccount);

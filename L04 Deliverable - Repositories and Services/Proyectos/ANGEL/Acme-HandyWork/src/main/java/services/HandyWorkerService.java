@@ -22,6 +22,10 @@ public class HandyWorkerService {
 	private HandyWorkerRepository	repositoryHandyWorker;
 
 
+	public HandyWorker findOne(final int id) {
+		return this.repositoryHandyWorker.findOne(id);
+	}
+
 	public HandyWorker findByUserAccount(final int userAccount) {
 		HandyWorker result;
 		result = this.repositoryHandyWorker.findByUserAccount(userAccount);

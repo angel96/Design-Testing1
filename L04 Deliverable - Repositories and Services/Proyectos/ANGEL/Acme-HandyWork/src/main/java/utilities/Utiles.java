@@ -242,15 +242,15 @@ public class Utiles {
 		e.setComments(new ArrayList<String>());
 		return e;
 	}
-	public static Sponsorship createSponsorship() {
+	public static Sponsorship createSponsorship(final Sponsor sponsor, final Tutorial tutorial) {
 		Sponsorship result;
 		result = new Sponsorship();
 
 		result.setUrlBanner("");
 		result.setCreditCard(Utiles.createCreditCard());
 		result.setLinkTPage("");
-		result.setSponsor(Utiles.createSponsor());
-		result.setTutorial(Utiles.createTutorial());
+		result.setSponsor(sponsor);
+		result.setTutorial(tutorial);
 
 		return result;
 	}

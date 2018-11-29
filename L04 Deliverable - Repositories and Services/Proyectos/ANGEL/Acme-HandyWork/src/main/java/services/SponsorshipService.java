@@ -41,39 +41,24 @@ public class SponsorshipService {
 		Sponsor logged;
 		logged = this.serviceSponsor.findByUserAccount(login);
 
-		Collection<Sponsorship> sponsorShipsFromSponsor;
-		sponsorShipsFromSponsor = logged.getSponsorship();
-
 		Assert.notNull(logged);
 
 		Sponsorship saved;
 
 		saved = this.sponsorshipRepository.save(sponsorship);
-
-		sponsorShipsFromSponsor.add(sponsorship);
-		logged.setSponsorship(sponsorShipsFromSponsor);
-
-		this.serviceSponsor.updateSponsor(logged);
+		System.out.println(saved.getLinkTPage());
 
 		return saved;
 	}
-	public Sponsorship update(final int id, final Sponsorship newer) {
+	public Sponsorship update(final Sponsorship newer) {
 
-		Sponsorship old, saved;
-
-		old = this.findOne(id);
-
-		old.setSponsor(newer.getSponsor());
-		old.setCreditCard(newer.getCreditCard());
-		old.setLinkTPage(newer.getLinkTPage());
-		old.setTutorial(newer.getTutorial());
-		old.setUrlBanner(newer.getUrlBanner());
+		Sponsorship saved;
 
 		UserAccount logged;
 		logged = LoginService.getPrincipal();
 
-		if (logged.equals(old.getSponsor().getAccount()))
-			saved = this.sponsorshipRepository.save(old);
+		if (logged.equals(newer.getSponsor().getAccount()))
+			saved = this.sponsorshipRepository.save(newer);
 		else
 			throw new IllegalAccessError();
 

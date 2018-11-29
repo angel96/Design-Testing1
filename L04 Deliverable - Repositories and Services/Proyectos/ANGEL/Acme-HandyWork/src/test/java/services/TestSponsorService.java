@@ -28,20 +28,31 @@ public class TestSponsorService extends AbstractTest {
 	public void testGetAllSponsors() {
 		Assert.isTrue(this.serviceSponsor.findAll().size() >= 1);
 	}
-
+	@Test
 	public void testCreateSponsor() {
-
 		Sponsor s, saved;
 		s = Utiles.createSponsor();
 		saved = this.serviceSponsor.addSponsor(s);
-		Assert.notNull(s);
+		Assert.notNull(saved);
 	}
 	@Test
 	public void testUpdateSponsor() {
-
+		super.authenticate("sponsor1");
+		Sponsor s, saved;
+		s = this.serviceSponsor.findById(3012);
+		s.setAdress("Addres Street");
+		saved = this.serviceSponsor.updateSponsor(s);
+		System.out.println(saved.getAdress());
+		Assert.notNull(saved);
+		super.authenticate(null);
 	}
 	@Test
 	public void testDeleteSponsor() {
-
+		super.authenticate("sponsor1");
+		Sponsor s;
+		s = this.serviceSponsor.findById(3012);
+		this.serviceSponsor.deleteSponsor(s.getId());
+		Assert.isNull(this.serviceSponsor.findById(3012));
+		super.unauthenticate();
 	}
 }
