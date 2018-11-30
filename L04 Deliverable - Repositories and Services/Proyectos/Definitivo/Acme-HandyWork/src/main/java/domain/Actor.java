@@ -8,6 +8,7 @@ import javax.persistence.AccessType;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.Pattern;
@@ -29,11 +30,11 @@ public abstract class Actor extends DomainEntity {
 	private String				email;
 	private String				phone;
 	private String				adress;
-	private Integer				numberProfiles;
 	private UserAccount			account;
 	private Collection<Profile>	profiles;
-	private Collection<Message>	message;
+	private Collection<Box>		boxes;
 	private boolean				ban;
+	private boolean suspicious;
 
 
 	@NotBlank
@@ -104,14 +105,6 @@ public abstract class Actor extends DomainEntity {
 	public void setAdress(final String adress) {
 		this.adress = adress;
 	}
-	@OneToMany
-	public Collection<Message> getMessage() {
-		return this.message;
-	}
-
-	public void setMessage(final Collection<Message> message) {
-		this.message = message;
-	}
 
 	public boolean isBan() {
 		return this.ban;
@@ -131,7 +124,22 @@ public abstract class Actor extends DomainEntity {
 
 	@Override
 	public String toString() {
-		return "Actor [name=" + this.name + ", middleName=" + this.middleName + ", surname=" + this.surname + ", photo=" + this.photo + ", email=" + this.email + ", phone=" + this.phone + ", numberProfiles=" + this.numberProfiles + "]";
+		return "Actor [name=" + this.name + ", middleName=" + this.middleName + ", surname=" + this.surname + ", photo=" + this.photo + ", email=" + this.email + ", phone=" + this.phone + "]";
+	}
+	@ManyToMany
+	public Collection<Box> getBoxes() {
+		return this.boxes;
+	}
+
+	public void setBoxes(final Collection<Box> boxes) {
+		this.boxes = boxes;
+	}
+	public boolean isSuspicious() {
+		return suspicious;
+	}
+
+	public void setSuspicious(boolean suspicious) {
+		this.suspicious = suspicious;
 	}
 
 }

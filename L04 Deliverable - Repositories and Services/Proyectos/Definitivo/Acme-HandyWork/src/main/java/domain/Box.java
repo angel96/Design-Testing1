@@ -16,6 +16,7 @@ public class Box extends DomainEntity {
 
 	private String				name;
 	private boolean				fromSystem;
+
 	private Collection<Message>	message;
 
 
@@ -35,7 +36,7 @@ public class Box extends DomainEntity {
 	public void setFromSystem(final boolean fromSystem) {
 		this.fromSystem = fromSystem;
 	}
-	@ManyToMany
+	@ManyToMany(mappedBy="box")
 	public Collection<Message> getMessage() {
 		return this.message;
 	}
