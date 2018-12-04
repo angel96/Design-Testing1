@@ -27,18 +27,10 @@ public class Report extends DomainEntity {
 	private String				description;
 	private Collection<String>	attachments;
 	private Collection<Note>	notes;
-	private Complaint			complaints;
-	private Referee				referee;
-	private Boolean finalMode;
+	private Boolean 			finalMode;
+	private Complaint			complaint;
 
-	@ManyToOne(optional = false)
-	public Complaint getComplaints() {
-		return this.complaints;
-	}
-
-	public void setComplaints(final Complaint complaints) {
-		this.complaints = complaints;
-	}
+	
 	@Temporal(TemporalType.DATE)
 	public Date getMoment() {
 		return this.moment;
@@ -74,14 +66,6 @@ public class Report extends DomainEntity {
 	public void setNotes(final Collection<Note> notes) {
 		this.notes = notes;
 	}
-	@ManyToOne(optional = false)
-	public Referee getReferee() {
-		return this.referee;
-	}
-
-	public void setReferee(final Referee referee) {
-		this.referee = referee;
-	}
 
 	public Boolean getFinalMode() {
 		return finalMode;
@@ -91,4 +75,12 @@ public class Report extends DomainEntity {
 		this.finalMode = finalMode;
 	}
 
+	@ManyToOne(optional = false)
+	public Complaint getComplaint() {
+		return complaint;
+	}
+
+	public void setComplaint(Complaint complaint) {
+		this.complaint = complaint;
+	}
 }

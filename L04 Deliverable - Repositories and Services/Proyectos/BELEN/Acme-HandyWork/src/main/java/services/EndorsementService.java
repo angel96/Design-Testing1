@@ -9,6 +9,10 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import repositories.EndorsementRepository;
+import security.Authority;
+import security.LoginService;
+import security.UserAccount;
+import utilities.Utiles;
 import domain.Endorsement;
 
 @Service
@@ -28,43 +32,22 @@ public class EndorsementService {
 
 	//Authenticated as Customer or HandyWorker. It´s taken from Endorsable.
 	public Endorsement add(final Endorsement e) {
-
+		UserAccount user;
+		user = LoginService.getPrincipal();
+		Assert.isTrue((Utiles.findAuthority(user.getAuthorities(), Authority.CUSTOMER) || Utiles.findAuthority(user.getAuthorities(), Authority.HANDY_WORKER)));
 		Assert.notNull(e);
 		return this.repositoryEndorsement.save(e);
 	}
-	public Endorsement update(final int id, final Endorsement e) {
-		Endorsement taken, saved;
-		taken = this.findOne(id);
-		Assert.notNull(e);
-		taken.setMoment(e.getMoment());
-		taken.setUserSended(e.getUserSended());
-		taken.setUserReceived(e.getUserReceived());
-		taken.setComments(e.getComments());
-		saved = this.repositoryEndorsement.save(taken);
-		Assert.notNull(taken);
+	public Endorsement update(final Endorsement e) {
+		UserAccount user;
+		user = LoginService.getPrincipal();
+		Assert.isTrue((Utiles.findAuthority(user.getAuthorities(), Authority.CUSTOMER) || Utiles.findAuthority(user.getAuthorities(), Authority.HANDY_WORKER)));
+		Endorsement saved;
+		saved = this.repositoryEndorsement.save(e);
+		Assert.notNull(saved);
 		return saved;
 	}
 
-	public void addComment(final String comment, final Endorsement e) {
-		Collection<String> comments;
-		Endorsement taken;
-		taken = this.findOne(e.getId());
-		comments = taken.getComments();
-		if (comment != "" || comment != null)
-			comments.add(comment);
-		taken.setComments(comments);
-		this.update(e.getId(), taken);
-	}
-	public void removeComment(final String comment, final Endorsement e) {
-		Collection<String> comments;
-		Endorsement taken;
-		taken = this.findOne(e.getId());
-		comments = taken.getComments();
-		if (comments.contains(comment))
-			comments.remove(comment);
-		taken.setComments(comments);
-		this.update(e.getId(), taken);
-	}
 	public void delete(final int id) {
 		Assert.notNull(this.findOne(id));
 		this.repositoryEndorsement.delete(id);

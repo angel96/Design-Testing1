@@ -15,18 +15,9 @@ import javax.persistence.OneToMany;
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Referee extends Actor {
 
-	private Collection<Report>	reports;
 	private Collection<Note>	notes;
+	private Collection<Complaint> complaints;
 
-
-	@OneToMany(mappedBy = "referee")
-	public Collection<Report> getReports() {
-		return this.reports;
-	}
-
-	public void setReports(final Collection<Report> reports) {
-		this.reports = reports;
-	}
 	@OneToMany
 	public Collection<Note> getNotes() {
 		return this.notes;
@@ -34,6 +25,15 @@ public class Referee extends Actor {
 
 	public void setNotes(final Collection<Note> notes) {
 		this.notes = notes;
+	}
+	
+	@OneToMany(mappedBy = "referee")
+	public Collection<Complaint> getComplaints() {
+		return complaints;
+	}
+
+	public void setComplaints(Collection<Complaint> complaints) {
+		this.complaints = complaints;
 	}
 
 }

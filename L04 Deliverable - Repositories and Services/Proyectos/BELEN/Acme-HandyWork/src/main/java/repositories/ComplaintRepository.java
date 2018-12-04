@@ -15,13 +15,13 @@ public interface ComplaintRepository extends JpaRepository<Complaint, Integer>{
 	@Query("select f.complaint from HandyWorker h join h.application a join a.fixUpTask f where h.id = ?1")
 	Collection<Complaint> findComplaintByHandyWorkerId(int handyWId);
 	
-	@Query("select c from Complaint c join c.report f where f.referee is empty")
+	@Query("select c from Complaint c where c.referee is empty")
 	Collection<Complaint> findComplaintNoRefereeAssigned();
 	
-	@Query("select c from Complaint c join c.report f where f.referee is not empty")
+	@Query("select c from Complaint c where c.referee is not empty")
 	Collection<Complaint> findComplaintRefereeAssigned();
 	
-	@Query("select c from Complaint c join c.report f join f.referee r where r.id = ?1")
+	@Query("select c from Complaint c where c.referee.id = ?1")
 	Collection<Complaint> findComplaintByRefereeId(int refereeId);
 	
 	@Query("select c from Customer c join c.complaint x where x.id = ?1")

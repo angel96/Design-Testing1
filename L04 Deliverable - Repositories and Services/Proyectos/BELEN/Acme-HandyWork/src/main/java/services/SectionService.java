@@ -9,6 +9,9 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import repositories.SectionRepository;
+import security.LoginService;
+import security.UserAccount;
+import domain.HandyWorker;
 import domain.Section;
 
 @Service
@@ -18,6 +21,9 @@ public class SectionService {
 	// 1. Let´s instance the corresponding repository
 	@Autowired
 	private SectionRepository	sectionRepository;
+
+	@Autowired
+	private HandyWorkerService	serviceHandyWorker;
 
 
 	// 2. CRUD
@@ -29,11 +35,15 @@ public class SectionService {
 		return this.sectionRepository.findOne(id);
 	}
 
-	public Collection<String> findPicturesBySection(final int id) {
-		return this.findById(id).getPicture();
-	}
-
 	public Section addSection(final Section s) {
+
+		UserAccount user;
+		user = LoginService.getPrincipal();
+
+		HandyWorker w;
+		w = this.serviceHandyWorker.findByUserAccount(user.getId());
+
+		Assert.notNull(w);
 
 		Section result;
 		Assert.notNull(s);
@@ -42,22 +52,29 @@ public class SectionService {
 
 		return result;
 	}
-	public Section updateSection(final int id, final Section n) {
-		Section update, saved;
+	public Section updateSection(final Section n) {
+		UserAccount user;
+		user = LoginService.getPrincipal();
 
-		update = this.sectionRepository.findOne(id);
-		Assert.notNull(update);
+		HandyWorker w;
+		w = this.serviceHandyWorker.findByUserAccount(user.getId());
 
-		update.setTitle(n.getText());
-		update.setText(n.getText());
-		update.setNumber(n.getNumber());
-		update.setPicture(n.getPicture());
-		saved = this.sectionRepository.save(update);
+		Assert.notNull(w);
+		Section saved;
+
+		saved = this.sectionRepository.save(n);
 		Assert.notNull(saved);
 		return saved;
 	}
 
 	public void deleteSection(final Section s) {
+		UserAccount user;
+		user = LoginService.getPrincipal();
+
+		HandyWorker w;
+		w = this.serviceHandyWorker.findByUserAccount(user.getId());
+
+		Assert.notNull(w);
 		Assert.notNull(s);
 		this.sectionRepository.delete(s.getId());
 	}

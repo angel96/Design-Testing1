@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 
+import repositories.ComplaintRepository;
 import repositories.ReportRepository;
 import security.Authority;
 import security.LoginService;
@@ -26,6 +27,9 @@ public class ReportService {
 	
 	@Autowired
 	private ReportRepository reportRepository;
+	
+	@Autowired 
+	private ComplaintRepository complaintRepository;
 	
 	@Autowired
 	private RefereeService refereeService;
@@ -45,34 +49,42 @@ public class ReportService {
 		return this.reportRepository.findReportinFinalMode();
 	}
 	
-	public Report create() {
+	public Report create(final Complaint c) {
 		UserAccount user;
 		user = LoginService.getPrincipal();
 		Assert.isTrue(Utiles.findAuthority(user.getAuthorities(), Authority.REFEREE));
 		Report res;
 		res = new Report();
 		res.setAttachments(new ArrayList<String>());
-		res.setComplaints(new Complaint());
 		res.setDescription("");
 		res.setFinalMode(false);
 		res.setMoment(new Date());
 		res.setNotes(new ArrayList<Note>());
-		res.setReferee(new Referee());
+		Collection<Report> reportPerComplaint;
+		reportPerComplaint = this.complaintRepository.findOne(c.getId()).getReport();
+		reportPerComplaint.add(res);
+		c.setReport(reportPerComplaint);
 		return res;
 	}
 	
 	public Report save(final Report rep) {
 		UserAccount user;
 		user = LoginService.getPrincipal();
+		Assert.isTrue(Utiles.findAuthority(user.getAuthorities(), Authority.REFEREE));
 		Assert.notNull(user);
 		Referee r;
 		r = this.refereeService.findByUserAccount(user.getId());
-		Collection<Report> reportPerReferee;
-		reportPerReferee = this.reportRepository.findReportsByRefereeId(r.getId());
+		Collection<Complaint> complaintPerReferee;
+		complaintPerReferee = this.complaintRepository.findComplaintByRefereeId(user.getId());
+		Assert.isTrue(complaintPerReferee.contains(this.reportRepository.findComplaintByReportId(rep.getId())));
+		Complaint c;
+		c = this.reportRepository.findComplaintByReportId(rep.getId());
+		Collection<Report> reportPerComplaint;
+		reportPerComplaint = this.reportRepository.findReportsByComplaintId(c.getId());
 		Report saved;
 		saved = this.reportRepository.save(rep);
-		reportPerReferee.add(saved);
-		r.setReports(reportPerReferee);
+		reportPerComplaint.add(saved);
+		c.setReport(reportPerComplaint);
 		this.refereeService.update(r);
 		return saved;
 	}

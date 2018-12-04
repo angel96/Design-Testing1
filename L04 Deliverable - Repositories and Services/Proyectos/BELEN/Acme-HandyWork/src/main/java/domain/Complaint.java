@@ -9,6 +9,7 @@ import javax.persistence.AccessType;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -27,6 +28,7 @@ public class Complaint extends DomainEntity {
 	private String				description;
 	private Integer				attachment;
 	private Collection<Report>	report;
+	private Referee referee;
 
 
 	@Pattern(regexp = "^\\d{4}(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])-[\\w]{6}$")
@@ -62,7 +64,7 @@ public class Complaint extends DomainEntity {
 	public void setAttachment(final Integer attachment) {
 		this.attachment = attachment;
 	}
-	@OneToMany(mappedBy = "complaints")
+	@OneToMany(mappedBy = "complaint")
 	public Collection<Report> getReport() {
 		return this.report;
 	}
@@ -70,5 +72,13 @@ public class Complaint extends DomainEntity {
 	public void setReport(final Collection<Report> report) {
 		this.report = report;
 	}
+	
+	@ManyToOne(optional = true)
+	public Referee getReferee() {
+		return referee;
+	}
 
+	public void setReferee(Referee referee) {
+		this.referee = referee;
+	}
 }

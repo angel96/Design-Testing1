@@ -1,3 +1,4 @@
+
 package services;
 
 import java.util.ArrayList;
@@ -17,17 +18,70 @@ import domain.Note;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
-	"classpath:spring/datasource.xml", 
-	"classpath:spring/config/packages.xml"
+	"classpath:spring/datasource.xml", "classpath:spring/config/packages.xml"
 })
 @Transactional
-public class TestNoteService extends AbstractTest{
-	
+public class TestNoteService extends AbstractTest {
+
 	@Autowired
-	private NoteService noteService;
-	
-	@Test //TEST FOR CREATE
+	private NoteService	noteService;
+
+
+	@Test
+	//TEST FOR CREATE
 	public void testCreateNote() {
+		super.authenticate("handyworker1");
+		Note n;
+		n = new Note();
+		n.setId(2989); // if the note doesn't is regarding any of the reports, failed
+		n.setMoment(new GregorianCalendar(2018, 11, 28, 17, 0, 0).getTime());
+		n.setComment("Comentario 1");
+		n.setOtherComments(new ArrayList<String>());
+		Note saved;
+		saved = this.noteService.save(n);
+		Assert.notNull(saved);
+		super.unauthenticate();
+	}
+
+	@Test
+	//TEST FOR WRITE COMMENTS
+	public void testAddComments() {
+		super.authenticate("handyworker1");
+		Note n;
+		n = this.noteService.findOne(2989);
+		final String c = "Comentario extra";
+		this.noteService.addCommentToNote(c, n);
+		super.unauthenticate();
+	}
+	@Test
+	//TEST FOR CREATE
+	public void testCreateNoteCustomer() {
+		super.authenticate("customer1");
+		Note n;
+		n = new Note();
+		n.setId(2989); // if the note doesn't is regarding any of the reports, failed
+		n.setMoment(new GregorianCalendar(2018, 11, 28, 17, 0, 0).getTime());
+		n.setComment("Comentario 1");
+		n.setOtherComments(new ArrayList<String>());
+		Note saved;
+		saved = this.noteService.save(n);
+		Assert.notNull(saved);
+		super.unauthenticate();
+	}
+
+	@Test
+	//TEST FOR WRITE COMMENTS
+	public void testAddCommentsCustomer() {
+		super.authenticate("customer1");
+		Note n;
+		n = this.noteService.findOne(2989);
+		final String c = "Comentario extra";
+		this.noteService.addCommentToNote(c, n);
+		super.unauthenticate();
+	}
+	@Test
+	//TEST FOR CREATE
+	public void testCreateNoteReferee() {
 		super.authenticate("referee1");
 		Note n;
 		n = new Note();
@@ -40,14 +94,15 @@ public class TestNoteService extends AbstractTest{
 		Assert.notNull(saved);
 		super.unauthenticate();
 	}
-	
-	@Test //TEST FOR WRITE COMMENTS
-	public void testAddComments() {
-		super.authenticate("super");
+
+	@Test
+	//TEST FOR WRITE COMMENTS
+	public void testAddCommentsReferee() {
+		super.authenticate("referee1");
 		Note n;
 		n = this.noteService.findOne(2989);
-		String c = "Comentario extra";
+		final String c = "Comentario extra";
 		this.noteService.addCommentToNote(c, n);
-		super.unauthenticate(); 
+		super.unauthenticate();
 	}
 }

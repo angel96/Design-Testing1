@@ -9,6 +9,9 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import repositories.SponsorshipRepository;
+import security.LoginService;
+import security.UserAccount;
+import domain.Sponsor;
 import domain.Sponsorship;
 
 @Service
@@ -17,6 +20,9 @@ public class SponsorshipService {
 
 	@Autowired
 	private SponsorshipRepository	sponsorshipRepository;
+
+	@Autowired
+	private SponsorService			serviceSponsor;
 
 
 	public Collection<Sponsorship> findAll() {
@@ -29,10 +35,34 @@ public class SponsorshipService {
 
 	public Sponsorship add(final Sponsorship sponsorship) {
 
-		return null;
+		UserAccount login;
+		login = LoginService.getPrincipal();
+
+		Sponsor logged;
+		logged = this.serviceSponsor.findByUserAccount(login);
+
+		Assert.notNull(logged);
+
+		Sponsorship saved;
+
+		saved = this.sponsorshipRepository.save(sponsorship);
+		System.out.println(saved.getLinkTPage());
+
+		return saved;
 	}
-	public Sponsorship update(final int id, final Sponsorship newer) {
-		return null;
+	public Sponsorship update(final Sponsorship newer) {
+
+		Sponsorship saved;
+
+		UserAccount logged;
+		logged = LoginService.getPrincipal();
+
+		if (logged.equals(newer.getSponsor().getAccount()))
+			saved = this.sponsorshipRepository.save(newer);
+		else
+			throw new IllegalAccessError();
+
+		return saved;
 	}
 	public void delete(final int id) {
 		Assert.notNull(this.findOne(id));

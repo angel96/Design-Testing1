@@ -84,6 +84,8 @@ public class ComplaintService {
 	public Complaint save(final Complaint comp) {
 		UserAccount user;
 		user = LoginService.getPrincipal();
+		Assert.isTrue(Utiles.findAuthority(user.getAuthorities(), Authority.REFEREE) ||
+				Utiles.findAuthority(user.getAuthorities(), Authority.CUSTOMER));
 		Assert.notNull(user);
 		Customer c;
 		c = this.customerService.findByUserAccount(user.getId());

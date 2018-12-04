@@ -35,6 +35,7 @@ public class TestSectionService extends AbstractTest {
 
 	@Test
 	public void testCreateOnDatabase2() {
+		super.authenticate("handyworker1");
 		Section s, saved;
 		s = Utiles.createSection();
 		s.setTitle("Section Test 1");
@@ -48,23 +49,27 @@ public class TestSectionService extends AbstractTest {
 		s.setPicture(picture);
 		saved = this.sectionService.addSection(s);
 		Assert.isTrue(this.sectionService.findAll().contains(saved));
+		super.unauthenticate();
 	}
 	@Test
 	public void testGetById3() {
-		Assert.notNull(this.sectionService.findById(1247));
+		Assert.notNull(this.sectionService.findById(2996));
 	}
 	@Test
 	public void testDeleteSection4() {
+		super.authenticate("handyworker1");
 		Section s;
-		s = this.sectionService.findById(1247);
+		s = this.sectionService.findById(2996);
 		final int id = s.getId();
 		this.sectionService.deleteSection(s);
 		Assert.isNull(this.sectionService.findById(id));
+		super.unauthenticate();
 	}
 	@Test
 	public void testUpdateSection5() {
+		super.authenticate("handyworker1");
 		Section nonUpdate;
-		nonUpdate = this.sectionService.findById(1247);
+		nonUpdate = this.sectionService.findById(2996);
 		Section update;
 		update = Utiles.createSection();
 		update.setTitle("parteTest2");
@@ -76,8 +81,9 @@ public class TestSectionService extends AbstractTest {
 		for (final String s : pictures)
 			auxiliarPictures.add(s + "TestUpdate");
 		update.setPicture(pictures);
-		final Section s = this.sectionService.updateSection(nonUpdate.getId(), update);
+		final Section s = this.sectionService.updateSection(update);
 		Assert.notNull(s);
+		super.unauthenticate();
 	}
 
 }

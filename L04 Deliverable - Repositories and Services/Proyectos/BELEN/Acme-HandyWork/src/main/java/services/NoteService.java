@@ -1,3 +1,4 @@
+
 package services;
 
 import java.util.ArrayList;
@@ -23,30 +24,28 @@ import domain.Referee;
 @Service
 @Transactional
 public class NoteService {
-	
+
 	@Autowired
-	private NoteRepository noteRepository;
-	
+	private NoteRepository		noteRepository;
+
 	@Autowired
-	private CustomerService customerService;
-	
+	private CustomerService		customerService;
+
 	@Autowired
-	private HandyWorkerService handyWorkerService;
-	
+	private HandyWorkerService	handyWorkerService;
+
 	@Autowired
-	private RefereeService refereeService;
-	
-	
+	private RefereeService		refereeService;
+
+
 	public Note findOne(final int noteId) {
 		return this.noteRepository.findOne(noteId);
 	}
-	
+
 	public Note create() {
 		UserAccount user;
 		user = LoginService.getPrincipal();
-		Assert.isTrue((Utiles.findAuthority(user.getAuthorities(), Authority.CUSTOMER)||
-				Utiles.findAuthority(user.getAuthorities(), Authority.HANDY_WORKER) ||
-				Utiles.findAuthority(user.getAuthorities(), Authority.REFEREE)));
+		Assert.isTrue((Utiles.findAuthority(user.getAuthorities(), Authority.CUSTOMER) || Utiles.findAuthority(user.getAuthorities(), Authority.HANDY_WORKER) || Utiles.findAuthority(user.getAuthorities(), Authority.REFEREE)));
 		Note res;
 		res = new Note();
 		res.setMoment(new Date());
@@ -54,14 +53,14 @@ public class NoteService {
 		res.setOtherComments(new ArrayList<String>());
 		return res;
 	}
-	
+
 	public Note save(final Note note) {
 		UserAccount user;
 		user = LoginService.getPrincipal();
 		Assert.notNull(user);
 		Assert.notNull(this.noteRepository.findReportByNoteId(note.getId()));
 		Note saved;
-		if (this.customerService.findByUserAccount(user.getId()) != null){
+		if (Utiles.findAuthority(user.getAuthorities(), Authority.CUSTOMER)) {
 			Customer c;
 			c = this.customerService.findByUserAccount(user.getId());
 			Collection<Note> notesPerCustomer;
@@ -70,7 +69,8 @@ public class NoteService {
 			notesPerCustomer.add(saved);
 			c.setNotes(notesPerCustomer);
 			this.customerService.update(c);
-		} else if (this.handyWorkerService.findByUserAccount(user.getId()) != null) {
+		}
+		if (Utiles.findAuthority(user.getAuthorities(), Authority.HANDY_WORKER)) {
 			HandyWorker h;
 			h = this.handyWorkerService.findByUserAccount(user.getId());
 			Collection<Note> notesPerHandyWorker;
@@ -79,7 +79,8 @@ public class NoteService {
 			notesPerHandyWorker.add(saved);
 			h.setNotes(notesPerHandyWorker);
 			this.handyWorkerService.update(h);
-		} else if (this.refereeService.findByUserAccount(user.getId()) != null) {
+		}
+		if (Utiles.findAuthority(user.getAuthorities(), Authority.REFEREE)) {
 			Assert.isTrue(this.noteRepository.findReportByNoteId(note.getId()).getFinalMode(), "Report hasn't been saved in final mode");
 			Referee r;
 			r = this.refereeService.findByUserAccount(user.getId());
@@ -93,7 +94,7 @@ public class NoteService {
 		saved = this.noteRepository.save(note);
 		return saved;
 	}
-	
+
 	public void addCommentToNote(final String comment, final Note n) {
 		UserAccount user;
 		user = LoginService.getPrincipal();
@@ -101,28 +102,27 @@ public class NoteService {
 		Note toAddComments;
 		toAddComments = this.findOne(n.getId());
 		comments = toAddComments.getOtherComments();
-		if (comment.equals("") == false || comment != null){
-			Assert.isTrue((Utiles.findAuthority(user.getAuthorities(), Authority.CUSTOMER))||
-					(Utiles.findAuthority(user.getAuthorities(), Authority.HANDY_WORKER))||
-					(Utiles.findAuthority(user.getAuthorities(), Authority.REFEREE)), "An actor with authority " + user.getAuthorities() + " can't add comments"); 
+		if (comment.equals("") == false || comment != null) {
+			Assert.isTrue((Utiles.findAuthority(user.getAuthorities(), Authority.CUSTOMER)) || (Utiles.findAuthority(user.getAuthorities(), Authority.HANDY_WORKER)) || (Utiles.findAuthority(user.getAuthorities(), Authority.REFEREE)),
+				"An actor with authority " + user.getAuthorities() + " can't add comments");
 			comments.add(comment);
 		}
 		toAddComments.setOtherComments(comments);
 		this.save(toAddComments);
 	}
-	
+
 	public Double min() {
 		return this.noteRepository.findMinimumOfNotesPerReport();
 	}
-	
+
 	public Double max() {
 		return this.noteRepository.findMaximumOfNotesPerReport();
 	}
-	
+
 	public Double avg() {
 		return this.noteRepository.findAverageOfNotesPerReport();
 	}
-	
+
 	public Double stdev() {
 		return this.noteRepository.findStandartDeviationOfNotesPerReport();
 	}

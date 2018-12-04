@@ -33,8 +33,8 @@ public abstract class Actor extends DomainEntity {
 	private UserAccount			account;
 	private Collection<Profile>	profiles;
 	private Collection<Box>		boxes;
-	private Collection<Message>	message;
 	private boolean				ban;
+	private boolean suspicious;
 
 
 	@NotBlank
@@ -105,14 +105,6 @@ public abstract class Actor extends DomainEntity {
 	public void setAdress(final String adress) {
 		this.adress = adress;
 	}
-	@OneToMany
-	public Collection<Message> getMessage() {
-		return this.message;
-	}
-
-	public void setMessage(final Collection<Message> message) {
-		this.message = message;
-	}
 
 	public boolean isBan() {
 		return this.ban;
@@ -141,6 +133,13 @@ public abstract class Actor extends DomainEntity {
 
 	public void setBoxes(final Collection<Box> boxes) {
 		this.boxes = boxes;
+	}
+	public boolean isSuspicious() {
+		return suspicious;
+	}
+
+	public void setSuspicious(boolean suspicious) {
+		this.suspicious = suspicious;
 	}
 
 }

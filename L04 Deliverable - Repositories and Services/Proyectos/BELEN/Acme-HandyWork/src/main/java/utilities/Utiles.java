@@ -17,15 +17,20 @@ import org.hibernate.search.query.dsl.QueryBuilder;
 
 import security.Authority;
 import security.UserAccount;
-import utilities.internal.SchemaPrinter;
+import domain.Actor;
+import domain.Application;
 import domain.Box;
+import domain.Category;
+import domain.Complaint;
 import domain.CreditCard;
 import domain.Endorsable;
 import domain.Endorsement;
 import domain.FixUpTask;
 import domain.Message;
+import domain.Phase;
 import domain.Profile;
 import domain.Section;
+import domain.SpamWord;
 import domain.Sponsor;
 import domain.Sponsorship;
 import domain.Tutorial;
@@ -35,11 +40,15 @@ import domain.Word;
 public class Utiles {
 
 	public static String generateTicker() {
-		final SimpleDateFormat formato = new SimpleDateFormat("yyyyMMdd");
+		SimpleDateFormat formato;
+		formato = new SimpleDateFormat("yyyyMMdd");
 
-		final Date d = new Date();
+		Date d;
+		d = new Date();
 
-		final String formated = formato.format(d);
+		String formated;
+
+		formated = formato.format(d);
 
 		final Character[] ch = {
 			'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'
@@ -47,7 +56,9 @@ public class Utiles {
 
 		String c = "";
 
-		final Random random = new Random();
+		Random random;
+
+		random = new Random();
 
 		for (int i = 0; i < 6; i++)
 			c += ch[random.nextInt(ch.length)];
@@ -55,7 +66,13 @@ public class Utiles {
 		return formated + c;
 	}
 
-	public static void fullTextSearch(final String s) {
+	public static Date convertDate(final int year, final int month, final int day) {
+		Date d;
+		d = new Date(year - 1900, month - 1, day);
+		return d;
+	}
+
+	public static List<?> fullTextSearch(final String s) {
 		final HibernatePersistenceProvider provider = new HibernatePersistenceProvider();
 		final EntityManagerFactory entityManagerFactory = provider.createEntityManagerFactory("Acme-HandyWork", null);
 		final EntityManager em = entityManagerFactory.createEntityManager();
@@ -68,13 +85,140 @@ public class Utiles {
 		// From Lucene query to Javax query
 		final javax.persistence.Query jpaQuery = fullTextEntityManager.createFullTextQuery(luceneQuery, FixUpTask.class);
 
-		final List<?> result = jpaQuery.getResultList();
-		SchemaPrinter.print(result);
+		List<?> result;
+		result = jpaQuery.getResultList();
+		//SchemaPrinter.print(result);
 
 		em.getTransaction().commit();
 		em.close();
+
+		return result;
+	}
+	public static void broadcastMessage(final Collection<? extends Actor> ls, final Message m) {
+		Collection<Message> existingMessages;
+		existingMessages = new ArrayList<>();
+		Collection<Box> boxes;
+		for (final Actor a : ls) {
+			boxes = a.getBoxes();
+			for (final Box b : boxes)
+				if (b.getName().equals("entry")) {
+					existingMessages = b.getMessage();
+					existingMessages.add(m);
+					b.setMessage(existingMessages);
+				}
+		}
 	}
 
+	public static void sendIndividualMessage(/* final Actor sender, */final Actor recipient, final Collection<Message> received, final Message send) {
+		Collection<Box> boxes;
+		Collection<Message> total;
+		boxes = recipient.getBoxes();
+		received.add(send);
+		for (final Box b : boxes)
+			if (b.getName().equals("entry")) {
+				total = b.getMessage();
+				total.addAll(received);
+			}
+	}
+
+	public static Boolean checkCollectionsSpam(final List<SpamWord> spam, final String[]... fields) {
+		Boolean res = false;
+		for (final String[] s : fields)
+			//			for (int i = 0; i < spam.size(); i++)
+			for (final SpamWord sw : spam)
+				if (sw.getWord().equals(s.toString())) {
+					res = true;
+					break;
+				}
+		return res;
+	}
+	public static Boolean checkSpamStrings(final List<SpamWord> spam, final String s) {
+		Boolean res = false;
+		for (final SpamWord sw : spam)
+			if (sw.getWord().equals(s)) {
+				res = true;
+				break;
+			}
+		return res;
+	}
+	public static Phase createPhase() {
+		Phase p;
+		p = new Phase();
+		p.setDescription("");
+		p.setEndMoment(new Date());
+		p.setNumber(0);
+		p.setStartMoment(new Date());
+		p.setTitle("");
+		return p;
+	}
+	public static Category createCategory() {
+		Category c;
+		c = new Category();
+
+		c.setName("");
+		c.setCategories(new ArrayList<String>());
+
+		return c;
+	}
+	public static Application createApplication() {
+		Application a;
+		a = new Application();
+		a.setFixUpTask(new FixUpTask());
+		a.setMoment(new Date());
+		a.setMomentElapsed(new Date());
+		a.setOfferedPrice(0.0);
+		a.setStatus("pending");
+
+		return a;
+	}
+	public static FixUpTask createFixUpTask() {
+
+		FixUpTask fut;
+		fut = new FixUpTask();
+		fut.setAddress("");
+		fut.setApplication(new ArrayList<Application>());
+		fut.setCategory(new Category());
+		fut.setComplaint(new ArrayList<Complaint>());
+		fut.setDescription("");
+		fut.setEnd(new Date());
+		fut.setMaximumPrice(0.0);
+		fut.setMoment(new Date());
+		fut.setPhases(new ArrayList<Phase>());
+		fut.setWarranty(new Warranty());
+		fut.setTicker(Utiles.generateTicker());
+		return fut;
+	}
+	public static UserAccount createUserAccount(final String role) {
+		UserAccount user;
+		user = new UserAccount();
+		user.setUsername("");
+		user.setPassword("");
+
+		Authority authority;
+		authority = new Authority();
+
+		switch (role) {
+		case "ADMIN":
+			authority.setAuthority(Authority.ADMIN);
+			break;
+		case "CUSTOMER":
+			authority.setAuthority(Authority.CUSTOMER);
+			break;
+		case "SPONSOR":
+			authority.setAuthority(Authority.SPONSOR);
+			break;
+		case "REFEREE":
+			authority.setAuthority(Authority.REFEREE);
+			break;
+		case "HANDY_WORKER":
+			authority.setAuthority(Authority.HANDY_WORKER);
+			break;
+
+		}
+
+		user.addAuthority(authority);
+		return user;
+	}
 	public static Sponsor createSponsor() {
 		Sponsor w;
 
@@ -87,23 +231,11 @@ public class Utiles {
 		w.setAdress("");
 		w.setBan(false);
 		w.setPhoto("");
-		w.setMessage(new ArrayList<Message>());
 		w.setSponsorship(new ArrayList<Sponsorship>());
 		w.setProfiles(new ArrayList<Profile>());
 		w.setBoxes(new ArrayList<Box>());
-		UserAccount user;
-		user = new UserAccount();
-		user.setUsername("");
-		user.setPassword("");
 
-		Authority authority;
-		authority = new Authority();
-
-		authority.setAuthority(Authority.SPONSOR);
-
-		user.addAuthority(authority);
-
-		w.setAccount(user);
+		w.setAccount(Utiles.createUserAccount("SPONSOR"));
 
 		return w;
 	}
@@ -151,7 +283,7 @@ public class Utiles {
 		return w;
 	}
 	//Authenticated as Customer or HandyWorker
-	public static Endorsement create(final Endorsable send, final Endorsable receive) {
+	public static Endorsement createEndorsement(final Endorsable send, final Endorsable receive) {
 		Endorsement e;
 		e = new Endorsement();
 		e.setMoment(new Date());
@@ -160,15 +292,15 @@ public class Utiles {
 		e.setComments(new ArrayList<String>());
 		return e;
 	}
-	public static Sponsorship create() {
+	public static Sponsorship createSponsorship(final Sponsor sponsor, final Tutorial tutorial) {
 		Sponsorship result;
 		result = new Sponsorship();
 
 		result.setUrlBanner("");
 		result.setCreditCard(Utiles.createCreditCard());
 		result.setLinkTPage("");
-		result.setSponsor(Utiles.createSponsor());
-		result.setTutorial(Utiles.createTutorial());
+		result.setSponsor(sponsor);
+		result.setTutorial(tutorial);
 
 		return result;
 	}
@@ -177,8 +309,8 @@ public class Utiles {
 
 		result = new CreditCard();
 		result.setBrandName("");
-		result.setNumber(0);
-		result.setCodeCVV(1);
+		result.setNumber(1);
+		result.setCodeCVV(100);
 		result.setExpirationMonth(new Date());
 		result.setExpirationYear(new Date());
 		result.setType("");
@@ -186,21 +318,18 @@ public class Utiles {
 
 		return result;
 	}
-	
-	public static Boolean findAuthority(Collection<Authority> comp, String a) {
+	public static Boolean findAuthority(final Collection<Authority> comp, final String a) {
 		Boolean res = false;
 		if (comp.size() > 1) {
-			Authority aut = new Authority();
+			Authority aut;
+			aut = new Authority();
 			aut.setAuthority(a);
 			res = comp.contains(aut);
-		} else {
-			for (Authority authority : comp) {
-				if(authority.toString().equals(a)) {
-				res = true;
-				}
-			}
-		}
-		
+		} else
+			for (final Authority authority : comp)
+				if (authority.toString().equals(a))
+					res = true;
+
 		return res;
 	}
 }

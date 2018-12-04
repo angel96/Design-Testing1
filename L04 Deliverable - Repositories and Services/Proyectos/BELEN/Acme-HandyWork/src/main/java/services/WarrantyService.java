@@ -9,6 +9,9 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import repositories.WarrantyRepository;
+import security.LoginService;
+import security.UserAccount;
+import domain.Administrator;
 import domain.Warranty;
 
 @Service
@@ -16,7 +19,10 @@ import domain.Warranty;
 public class WarrantyService {
 
 	@Autowired
-	private WarrantyRepository	repositoryWarranty;
+	private WarrantyRepository		repositoryWarranty;
+
+	@Autowired
+	private AdministratorService	serviceAdministrator;
 
 
 	public Collection<Warranty> findAll() {
@@ -28,6 +34,11 @@ public class WarrantyService {
 	}
 
 	public Warranty addWarranty(final Warranty w) {
+		UserAccount user;
+		user = LoginService.getPrincipal();
+		Administrator admin;
+		admin = this.serviceAdministrator.findOne(user.getId());
+		Assert.notNull(admin);
 		Warranty result;
 		Assert.notNull(w);
 		result = this.repositoryWarranty.save(w);
@@ -37,18 +48,23 @@ public class WarrantyService {
 
 	//Update or Delete can only be done when Warranty is on draft mode.
 
-	public Warranty updateWarranty(final int id, final Warranty newer) {
+	public Warranty updateWarranty(final Warranty newer) {
 
-		Warranty w;
-		w = this.findOne(id);
-		if (w.isDraftMode()) {
-			w.setTitle(newer.getTitle());
-			w.setTerms(newer.getTerms());
-			w.setLaws(newer.getLaws());
-		} else
+		Warranty saved;
+
+		UserAccount user;
+		user = LoginService.getPrincipal();
+		Administrator admin;
+		admin = this.serviceAdministrator.findOne(user.getId());
+
+		Assert.notNull(admin);
+
+		if (newer.isDraftMode())
+			saved = this.repositoryWarranty.save(newer);
+		else
 			throw new IllegalAccessError();
 
-		return this.repositoryWarranty.save(w);
+		return saved;
 	}
 
 	public void deleteWarranty(final int id) {
@@ -60,4 +76,5 @@ public class WarrantyService {
 		else
 			throw new IllegalAccessError();
 	}
+
 }

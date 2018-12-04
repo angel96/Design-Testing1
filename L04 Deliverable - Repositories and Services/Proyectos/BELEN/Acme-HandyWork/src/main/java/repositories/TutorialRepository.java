@@ -14,7 +14,7 @@ import domain.Tutorial;
 @Repository
 public interface TutorialRepository extends JpaRepository<Tutorial, Integer> {
 
-	@Query("select h.tutoriales from HandyWorker h where h.id = ?1")
+	@Query("select h.tutoriales from HandyWorker h where h.account.id = ?1")
 	Collection<Tutorial> getTutorialsByHandyWorker(int id);
 
 	@Query("select t.section from Tutorial t where t.id = ?1")

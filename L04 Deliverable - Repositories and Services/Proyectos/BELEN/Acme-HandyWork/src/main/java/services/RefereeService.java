@@ -1,3 +1,4 @@
+
 package services;
 
 import java.util.ArrayList;
@@ -14,32 +15,31 @@ import security.LoginService;
 import security.UserAccount;
 import utilities.Utiles;
 import domain.Box;
-import domain.Message;
 import domain.Note;
 import domain.Profile;
 import domain.Referee;
-import domain.Report;
 
 @Service
 @Transactional
 public class RefereeService {
-	
+
 	@Autowired
-	private RefereeRepository refereeRepository;
-	
+	private RefereeRepository	refereeRepository;
+
+
 	public Collection<Referee> findAll() {
 		return this.refereeRepository.findAll();
 	}
-	
+
 	public Referee findOne(final int idReferee) {
 		return this.refereeRepository.findOne(idReferee);
 	}
-	
+
 	public Referee findByUserAccount(final int userAccount) {
 		Assert.notNull(userAccount);
 		return this.refereeRepository.findByUserAccount(userAccount);
 	}
-	
+
 	public Referee create() {
 		UserAccount creator;
 		creator = LoginService.getPrincipal();
@@ -61,30 +61,27 @@ public class RefereeService {
 		r.setBoxes(new ArrayList<Box>());
 		r.setEmail("");
 		r.setId(0);
-		r.setMessage(new ArrayList<Message>());
 		r.setMiddleName("");
 		r.setName("");
 		r.setNotes(new ArrayList<Note>());
 		r.setPhone("");
 		r.setPhoto("");
 		r.setProfiles(new ArrayList<Profile>());
-		r.setReports(new ArrayList<Report>());
 		r.setSurname("");
 		return r;
 	}
-	
+
 	public Referee save(final Referee ref) {
 		Assert.notNull(ref);
 		return this.refereeRepository.save(ref);
 	}
-	
+
 	public Referee update(final Referee ref) {
 		Assert.notNull(ref);
 		Referee saved;
-		
+
 		saved = this.refereeRepository.save(ref);
 		return saved;
-		
-		
+
 	}
 }

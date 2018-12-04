@@ -29,9 +29,12 @@ public class TutorialService {
 	@Autowired
 	private SponsorshipService	serviceSponsorship;
 
+	@Autowired
+	private HandyWorkerService	serviceHandyWorker;
 
-	public Collection<Tutorial> getTutorialsByHandyWorker(final HandyWorker worker) {
-		return this.repositoryTutorial.getTutorialsByHandyWorker(worker.getId());
+
+	public Collection<Tutorial> getTutorialsByHandyWorker(final int userAccount) {
+		return this.repositoryTutorial.getTutorialsByHandyWorker(userAccount);
 	}
 
 	public Collection<Tutorial> findAll() {
@@ -48,78 +51,82 @@ public class TutorialService {
 		return this.repositoryTutorial.findOne(id);
 	}
 
-	public Tutorial save(final HandyWorker worker, final Tutorial t) {
+	public Tutorial save(final Tutorial t) {
 
 		UserAccount user;
 		user = LoginService.getPrincipal();
+		Assert.notNull(user);
+		Collection<Tutorial> tutorialesDelUsuario;
+		tutorialesDelUsuario = this.repositoryTutorial.getTutorialsByHandyWorker(user.getId());
 
 		Tutorial saved;
-		if (user.equals(worker.getAccount()))
+
+		if (t != null) {
 			saved = this.repositoryTutorial.save(t);
-		else
+			tutorialesDelUsuario.add(t);
+			//Necesito el update HandyWorker
+		} else
 			throw new IllegalAccessError();
 
 		return saved;
 	}
-	public void addSectionToTutorial(final int idTutorial, final Section s) {
+	public Section addSectionToTutorial(final Tutorial t, final Section s) {
 		Collection<Section> sectionsFromTutorial;
-		sectionsFromTutorial = this.getSectionsByTutorial(idTutorial);
-
+		sectionsFromTutorial = t.getSection();
 		Section savedSection;
 		savedSection = this.serviceSection.addSection(s);
-
 		sectionsFromTutorial.add(savedSection);
-
-		Tutorial t;
-		t = this.findOne(idTutorial);
+		Tutorial saved;
 		t.setSection(sectionsFromTutorial);
-		this.repositoryTutorial.save(t);
+		saved = this.repositoryTutorial.save(t);
+
+		return savedSection;
 	}
-	public void removeSectionFromTutorial(final int idTutorial, final Section s) {
-		Collection<Section> sectionsFromTutorial;
-		sectionsFromTutorial = this.getSectionsByTutorial(idTutorial);
 
-		this.serviceSection.deleteSection(s);
-
-		sectionsFromTutorial.remove(s);
-
-		Tutorial t;
-		t = this.findOne(idTutorial);
-		t.setSection(sectionsFromTutorial);
-		this.repositoryTutorial.save(t);
-	}
-	public void addSponsorshipToTutorial(final int idTutorial, final Sponsorship s) {
+	public Sponsorship addSponsorshipToTutorial(final Sponsorship s) {
 		Collection<Sponsorship> sponsorshipsFromTutorial;
-		sponsorshipsFromTutorial = this.getSponsorshipsByTutorial(idTutorial);
+		sponsorshipsFromTutorial = s.getTutorial().getSponsorship();
 
 		Sponsorship savedSponsorship;
 		savedSponsorship = this.serviceSponsorship.add(s);
 
 		sponsorshipsFromTutorial.add(savedSponsorship);
 
-		Tutorial t;
-		t = this.findOne(idTutorial);
-		t.setSponsorship(sponsorshipsFromTutorial);
-		this.repositoryTutorial.save(t);
+		Tutorial saved;
+
+		s.getTutorial().setSponsorship(sponsorshipsFromTutorial);
+
+		saved = this.repositoryTutorial.save(s.getTutorial());
+
+		return savedSponsorship;
 	}
-	public void removeSponsorshipFromTutorial(final int idTutorial, final Sponsorship s) {
-		Collection<Sponsorship> sponsorshipsFromTutorial;
-		sponsorshipsFromTutorial = this.getSponsorshipsByTutorial(idTutorial);
 
-		this.serviceSponsorship.delete(s.getId());
+	public Tutorial update(final Tutorial modify) {
 
-		sponsorshipsFromTutorial.remove(s);
+		UserAccount user;
+		user = LoginService.getPrincipal();
 
-		Tutorial t;
-		t = this.findOne(idTutorial);
-		t.setSponsorship(sponsorshipsFromTutorial);
-		this.repositoryTutorial.save(t);
-	}
-	public Tutorial update(final int id, final Tutorial modify) {
-		return null;
+		HandyWorker w;
+		w = this.serviceHandyWorker.findByUserAccount(user.getId());
+
+		Assert.notNull(w);
+
+		Tutorial saved;
+
+		saved = this.repositoryTutorial.save(modify);
+
+		Assert.notNull(saved);
+
+		return saved;
 	}
 
 	public void delete(final int id) {
+		UserAccount user;
+		user = LoginService.getPrincipal();
+
+		HandyWorker w;
+		w = this.serviceHandyWorker.findByUserAccount(user.getId());
+		Assert.notNull(w);
 		Assert.notNull(this.findOne(id));
 		this.repositoryTutorial.delete(id);
 	}

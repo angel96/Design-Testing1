@@ -18,7 +18,7 @@ public class HandyWorker extends Endorsable {
 
 	private Collection<Application>	application;
 	private Collection<Phase>		phase;
-	private Collection<Finder>		finders;
+	private Finder		finder;
 	private Curriculum				curriculum;
 	private Collection<Tutorial>	tutoriales;
 	private Collection<Note>		notes;
@@ -42,14 +42,15 @@ public class HandyWorker extends Endorsable {
 	public void setPhase(final Collection<Phase> phase) {
 		this.phase = phase;
 	}
-	@OneToMany
-	public Collection<Finder> getFinders() {
-		return this.finders;
+	@OneToOne(optional=true)
+	public Finder getFinder() {
+		return finder;
 	}
 
-	public void setFinders(final Collection<Finder> finders) {
-		this.finders = finders;
+	public void setFinder(Finder finder) {
+		this.finder = finder;
 	}
+
 	@OneToOne(optional = true)
 	public Curriculum getCurriculum() {
 		return this.curriculum;

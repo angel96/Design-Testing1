@@ -16,7 +16,6 @@ import utilities.AbstractTest;
 import utilities.Utiles;
 import domain.Complaint;
 import domain.Note;
-import domain.Referee;
 import domain.Report;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -51,16 +50,15 @@ public class TestReportService extends AbstractTest {
 		c.setMoment(new GregorianCalendar(2018, 11, 29, 16, 0, 10).getTime());
 		c.setReport(new ArrayList<Report>());
 		c.setTicker(Utiles.generateTicker());
-		c.setId(3132);
+		c.setId(3022);
 		
 		System.out.println(c);
-		r.setComplaints(c);
+		r.setComplaint(c);
 		r.setDescription("eeee");
 		r.setFinalMode(true);
 		r.setMoment(new GregorianCalendar(2018, 11, 29, 16, 0, 0).getTime());
 		r.setNotes(new ArrayList<Note>());
-		r.setReferee(new Referee());
-		this.reportService.create();
+		this.reportService.create(c);
 		super.unauthenticate();
 	}
 	
