@@ -20,6 +20,16 @@ public class MessageService {
 	private MessageRepository	messageRepository;
 
 
+	public Message save(final Message m) {
+		Assert.notNull(m);
+		return this.messageRepository.save(m);
+	}
+
+	public Collection<Message> saveAllMessages(final Collection<Message> m) {
+		Assert.notNull(m);
+		return this.messageRepository.save(m);
+	}
+
 	public Collection<Message> findAllMessagesSendedBy(final int id) {
 		Assert.notNull(id);
 		Collection<Message> m;

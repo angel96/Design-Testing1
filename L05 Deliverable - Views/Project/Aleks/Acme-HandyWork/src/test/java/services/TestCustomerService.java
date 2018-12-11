@@ -14,7 +14,6 @@ import org.springframework.util.Assert;
 import utilities.AbstractTest;
 import domain.Box;
 import domain.Customer;
-import domain.Message;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {
@@ -54,30 +53,31 @@ public class TestCustomerService extends AbstractTest {
 		Assert.notNull(boxes);
 	}
 
-	@Test
-	public void testSendMessageCustToCust() {
-		super.unauthenticate();
-		super.authenticate("customer1");
-		Customer sender;
-		sender = this.customerService.findByUserAccount(2871);
-		sender.setName("sender");
-		Customer recipient;
-		recipient = this.customerService.findByUserAccount(2872);
-		recipient.setName("recipient");
-
-		Message stock;
-		stock = new Message();
-		stock.setBody("starter body");
-		Message newer;
-		newer = new Message();
-		newer.setBody("new body");
-
-		this.customerService.sendMessage(sender, recipient, newer);
-		for (final Box b : recipient.getBoxes())
-			for (final Message m : b.getMessage())
-				System.out.println(m.getBody());
-	}
-
+	/*
+	 * @Test
+	 * public void testSendMessageCustToCust() {
+	 * super.unauthenticate();
+	 * super.authenticate("customer1");
+	 * Customer sender;
+	 * sender = this.customerService.findByUserAccount(2871);
+	 * sender.setName("sender");
+	 * Customer recipient;
+	 * recipient = this.customerService.findByUserAccount(2872);
+	 * recipient.setName("recipient");
+	 * 
+	 * Message stock;
+	 * stock = new Message();
+	 * stock.setBody("starter body");
+	 * Message newer;
+	 * newer = new Message();
+	 * newer.setBody("new body");
+	 * 
+	 * this.customerService.sendMessage(sender, recipient, newer);
+	 * for (final Box b : recipient.getBoxes())
+	 * for (final Message m : b.getMessage())
+	 * System.out.println(m.getBody());
+	 * }
+	 */
 	@Test
 	public void testFindAll() {
 		Collection<Customer> c;

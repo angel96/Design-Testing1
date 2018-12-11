@@ -35,7 +35,6 @@ public class TestAdministratorService extends AbstractTest {
 
 
 	@Test
-	//R9.2
 	public void testUpdate() {
 		super.authenticate("admin1");
 		Administrator actual;
@@ -49,7 +48,6 @@ public class TestAdministratorService extends AbstractTest {
 	}
 
 	@Test
-	//9.2
 	public void testSendMessageAdminToAdmin() {
 		super.unauthenticate();
 		super.authenticate("admin1");
@@ -74,7 +72,6 @@ public class TestAdministratorService extends AbstractTest {
 	}
 
 	@Test
-	//R9.2
 	public void testSendMessageAdminToHandyWorker() {
 		super.unauthenticate();
 		super.authenticate("admin1");
@@ -112,7 +109,6 @@ public class TestAdministratorService extends AbstractTest {
 	}
 
 	@Test
-	//R9.4
 	public void testManageNoSystemBoxes() {
 		super.unauthenticate();
 		super.authenticate("admin1");
@@ -126,7 +122,6 @@ public class TestAdministratorService extends AbstractTest {
 	}
 
 	@Test
-	//R12.1
 	public void testAddAnotherAdmin() {
 		super.authenticate("admin1");
 		Administrator admin;
@@ -135,7 +130,6 @@ public class TestAdministratorService extends AbstractTest {
 	}
 
 	@Test
-	//R12.4
 	public void testBroadcastMessage() {
 		super.authenticate("admin1");
 		Administrator admin;
@@ -152,7 +146,6 @@ public class TestAdministratorService extends AbstractTest {
 	}
 
 	@Test
-	//R12.5 - 9
 	public void test10PerCentCustomers() {
 		super.authenticate("admin1");
 		Administrator admin;
@@ -163,7 +156,6 @@ public class TestAdministratorService extends AbstractTest {
 	}
 
 	@Test
-	//R12.5 - 10
 	public void test10PerCentHandyWorker() {
 		super.authenticate("admin1");
 		Administrator admin;
@@ -175,7 +167,6 @@ public class TestAdministratorService extends AbstractTest {
 
 	@Test
 	public void testBanActor() {
-		//R38.3
 		super.authenticate("admin1");
 		Administrator admin;
 		admin = this.adminService.findOne(3017);
@@ -195,14 +186,12 @@ public class TestAdministratorService extends AbstractTest {
 
 	@Test
 	public void unBanActor() {
-		//R38.4
 		super.authenticate("admin1");
 		final Sponsor sponsor;
 		sponsor = this.sponsorService.findById(3012);
 		System.out.println(sponsor.isBan());
 	}
 	@Test
-	//R38.5 - 4
 	public void testTopThreeCustomers() {
 		super.authenticate("admin1");
 		Administrator admin;
@@ -214,7 +203,6 @@ public class TestAdministratorService extends AbstractTest {
 			System.out.println(c.getName());
 	}
 	@Test
-	//R38.5 - 5
 	public void testTopThreeHW() {
 		super.authenticate("admin1");
 		Administrator admin;

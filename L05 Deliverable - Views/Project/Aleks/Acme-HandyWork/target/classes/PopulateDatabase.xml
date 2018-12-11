@@ -2104,18 +2104,7 @@
 			</list>
 		</property>
 	</bean>
-<!--	<bean id="box73" class="domain.Box">
-		<property name="name" value="sended" />
-		<property name="fromSystem" value="true" />
-		<property name="message">
-			<list>
-				<ref bean="message4" />
-				<ref bean="message5" />
-				<ref bean="message6" />
-			</list>
-		</property>
-	</bean>
--->	<bean id="box74" class="domain.Box">
+	<bean id="box74" class="domain.Box">
 		<property name="name" value="spam" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
@@ -2408,6 +2397,7 @@
 		<property name="receiver">
 			<list>
 				<ref bean="referee2" />
+				<ref bean="referee4"/>
 			</list>
 		</property>
 		<property name="moment">

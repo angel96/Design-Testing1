@@ -3,6 +3,7 @@ package utilities;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
@@ -109,38 +110,53 @@ public class Utiles {
 		}
 	}
 
-	public static void sendIndividualMessage(/* final Actor sender, */final Actor recipient, final Collection<Message> received, final Message send) {
-		Collection<Box> boxes;
-		Collection<Message> total;
-		boxes = recipient.getBoxes();
-		received.add(send);
-		for (final Box b : boxes)
-			if (b.getName().equals("entry")) {
-				total = b.getMessage();
-				total.addAll(received);
-			}
+	public static Actor sendIndividualMessage(final Actor sender, final Actor recipient, final Message m, final String boxName) {
+		Collection<Actor> receivers;
+		receivers = new ArrayList<>();
+		receivers.add(recipient);
+		m.setSender(sender);
+		m.setReceiver(receivers);
+		return recipient;
 	}
 
-	public static Boolean checkCollectionsSpam(final List<SpamWord> spam, final String[]... fields) {
+	public static Boolean checkSpamOnCollection(final Actor a, final List<SpamWord> spam, final Collection<String> col) {
 		Boolean res = false;
-		for (final String[] s : fields)
-			//			for (int i = 0; i < spam.size(); i++)
-			for (final SpamWord sw : spam)
-				if (sw.getWord().equals(s.toString())) {
+		final List<String> aux = Utiles.prepareCollection(col);
+		//ahora comparo cada string, cada posicion es sa lista con las spam (??
+		if (a.isSuspicious())
+			res = true;
+		else
+			for (final SpamWord spw : spam)
+				if (aux.contains(spw)) {
 					res = true;
 					break;
 				}
 		return res;
 	}
-	public static Boolean checkSpamStrings(final List<SpamWord> spam, final String s) {
+	private static List<String> prepareCollection(final Collection<String> col) {
+		List<String> aux;
+		aux = new ArrayList<>(); //una lista con todas las palabras de la coleccion de comentarios o lo que sea
+		for (final String s : col) {
+			final String[] h = s.split(" ");
+			for (final String c : h)
+				aux.add(c);
+		}
+		return aux;
+	}
+	public static Boolean checkSpamOnStrings(final Actor a, final List<SpamWord> spam, final String s) {
 		Boolean res = false;
-		final String newString = s.replace(" ", "#");
-		final String[] split = newString.split("#");
-		for (final SpamWord sw : spam)
-			if (sw.getWord().equals(s)) {
-				res = true;
-				break;
-			}
+		List<String> aux;
+
+		aux = Arrays.asList(s.split(" "));
+
+		if (a.isSuspicious())
+			res = true;
+		else
+			for (final SpamWord spw : spam)
+				if (aux.contains(spw)) {
+					res = true;
+					break;
+				}
 		return res;
 	}
 	public static Phase createPhase() {
