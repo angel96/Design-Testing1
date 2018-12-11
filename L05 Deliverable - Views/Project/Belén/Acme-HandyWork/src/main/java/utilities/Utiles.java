@@ -72,7 +72,7 @@ public class Utiles {
 		return d;
 	}
 
-	public static List<?> fullTextSearch(final String s) {
+	public static void fullTextSearch(final String s) {
 		final HibernatePersistenceProvider provider = new HibernatePersistenceProvider();
 		final EntityManagerFactory entityManagerFactory = provider.createEntityManagerFactory("Acme-HandyWork", null);
 		final EntityManager em = entityManagerFactory.createEntityManager();
@@ -91,8 +91,6 @@ public class Utiles {
 
 		em.getTransaction().commit();
 		em.close();
-
-		return result;
 	}
 	public static void broadcastMessage(final Collection<? extends Actor> ls, final Message m) {
 		Collection<Message> existingMessages;

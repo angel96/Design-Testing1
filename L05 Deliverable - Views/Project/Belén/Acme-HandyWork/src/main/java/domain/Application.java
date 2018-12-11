@@ -48,14 +48,7 @@ public class Application extends DomainEntity {
 		this.offeredPrice = offeredPrice;
 	}
 	
-	@ElementCollection
-	public Collection<String> getComments() {
-		return this.comments;
-	}
-
-	public void setComments(final Collection<String> comments) {
-		this.comments = comments;
-	}
+	
 	@NotBlank
 	public String getStatus() {
 		return this.status;
@@ -89,6 +82,14 @@ public class Application extends DomainEntity {
 
 	public void setCreditCard(final CreditCard creditCard) {
 		this.creditCard = creditCard;
+	}
+	@ElementCollection
+	public Collection<String> getComments() {
+		return this.comments;
+	}
+
+	public void setComments(final Collection<String> comments) {
+		this.comments = comments;
 	}
 
 }
