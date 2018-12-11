@@ -17,6 +17,7 @@ import org.hibernate.search.query.dsl.QueryBuilder;
 
 import security.Authority;
 import security.UserAccount;
+import utilities.internal.SchemaPrinter;
 import domain.Actor;
 import domain.Application;
 import domain.Box;
@@ -87,10 +88,11 @@ public class Utiles {
 
 		List<?> result;
 		result = jpaQuery.getResultList();
-		//SchemaPrinter.print(result);
+		SchemaPrinter.print(result);
 
 		em.getTransaction().commit();
 		em.close();
+
 	}
 	public static void broadcastMessage(final Collection<? extends Actor> ls, final Message m) {
 		Collection<Message> existingMessages;

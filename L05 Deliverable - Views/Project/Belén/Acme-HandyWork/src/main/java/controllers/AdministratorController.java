@@ -26,14 +26,14 @@ public class AdministratorController extends AbstractController {
 
 	// Action-1 ---------------------------------------------------------------		
 
-	@RequestMapping("/action-1")
-	public ModelAndView action1() {
-		ModelAndView result;
-
-		result = new ModelAndView("administrator/action-1");
-
-		return result;
-	}
+	//	@RequestMapping("/warranty")
+	//	public ModelAndView warranties() {
+	//		ModelAndView result;
+	//
+	//		result = new ModelAndView("warranty/list");
+	//
+	//		return result;
+	//	}
 
 	// Action-2 ---------------------------------------------------------------
 

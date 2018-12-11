@@ -24,13 +24,13 @@ import org.hibernate.validator.constraints.NotBlank;
 public class Message extends DomainEntity {
 
 	private Actor				sender;
-	private Actor				receiver;
+	private Collection<Actor>	receiver;
 	private Date				moment;
 	private String				subject;
 	private String				body;
 	private Collection<String>	tags;
 	private Priority			priority;
-	private Collection<Box> 	box;
+	private Collection<Box>		box;
 
 
 	@ManyToOne(optional = false)
@@ -41,12 +41,12 @@ public class Message extends DomainEntity {
 	public void setSender(final Actor sender) {
 		this.sender = sender;
 	}
-	@ManyToOne(optional = false)
-	public Actor getReceiver() {
+	@ManyToMany
+	public Collection<Actor> getReceiver() {
 		return this.receiver;
 	}
 
-	public void setReceiver(final Actor receiver) {
+	public void setReceiver(final Collection<Actor> receiver) {
 		this.receiver = receiver;
 	}
 
@@ -92,10 +92,10 @@ public class Message extends DomainEntity {
 	}
 	@ManyToMany
 	public Collection<Box> getBox() {
-		return box;
+		return this.box;
 	}
 
-	public void setBox(Collection<Box> box) {
+	public void setBox(final Collection<Box> box) {
 		this.box = box;
 	}
 }

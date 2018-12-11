@@ -13,18 +13,12 @@ import repositories.CustomerRepository;
 import security.Authority;
 import security.LoginService;
 import security.UserAccount;
-import utilities.Utiles;
-import domain.Administrator;
 import domain.Box;
 import domain.Complaint;
 import domain.Customer;
 import domain.FixUpTask;
-import domain.HandyWorker;
-import domain.Message;
 import domain.Note;
 import domain.Profile;
-import domain.Referee;
-import domain.Sponsor;
 
 @Service
 @Transactional
@@ -109,70 +103,87 @@ public class CustomerService {
 		boxes = this.boxService.findAllNonBoxes(cust.getId());
 		return boxes;
 	}
-	public void sendMessage(final Customer sender, final Administrator recipient, final Message m) {
-		Assert.isTrue(Utiles.findAuthority(LoginService.getPrincipal().getAuthorities(), Authority.CUSTOMER));
-		Assert.isTrue(Utiles.findAuthority(sender.getAccount().getAuthorities(), Authority.CUSTOMER));
-		Assert.isTrue(Utiles.findAuthority(recipient.getAccount().getAuthorities(), Authority.ADMIN));
-		Assert.notNull(m);
-		m.setSender(sender);
-		m.setReceiver(recipient);
-		Collection<Message> received;
-		received = this.messageService.findAllMessagesReceivedBy(recipient.getAccount().getId());
-		Utiles.sendIndividualMessage(recipient, received, m);
-
-		this.adminService.save(recipient);
-	}
-
-	public void sendMessage(final Customer sender, final Sponsor recipient, final Message m) {
-		Assert.isTrue(Utiles.findAuthority(LoginService.getPrincipal().getAuthorities(), Authority.CUSTOMER));
-		Assert.isTrue(Utiles.findAuthority(sender.getAccount().getAuthorities(), Authority.CUSTOMER));
-		Assert.isTrue(Utiles.findAuthority(recipient.getAccount().getAuthorities(), Authority.SPONSOR));
-		Assert.notNull(m);
-		m.setSender(sender);
-		m.setReceiver(recipient);
-		Collection<Message> received;
-		received = this.messageService.findAllMessagesReceivedBy(recipient.getAccount().getId());
-		Utiles.sendIndividualMessage(recipient, received, m);
-
-		this.sponsorService.addSponsor(recipient);
-	}
-
-	public void sendMessage(final Customer sender, final Referee recipient, final Message m) {
-		Assert.isTrue(Utiles.findAuthority(LoginService.getPrincipal().getAuthorities(), Authority.CUSTOMER));
-		Assert.isTrue(Utiles.findAuthority(sender.getAccount().getAuthorities(), Authority.CUSTOMER));
-		Assert.isTrue(Utiles.findAuthority(recipient.getAccount().getAuthorities(), Authority.REFEREE));
-		Assert.notNull(m);
-		m.setSender(sender);
-		m.setReceiver(recipient);
-		Collection<Message> received;
-		received = this.messageService.findAllMessagesReceivedBy(recipient.getAccount().getId());
-		Utiles.sendIndividualMessage(recipient, received, m);
-		this.refereeService.save(recipient);
-	}
-
-	public void sendMessage(final Customer sender, final Customer recipient, final Message m) {
-		Assert.isTrue(Utiles.findAuthority(LoginService.getPrincipal().getAuthorities(), Authority.CUSTOMER));
-		Assert.isTrue(Utiles.findAuthority(sender.getAccount().getAuthorities(), Authority.CUSTOMER));
-		Assert.isTrue(Utiles.findAuthority(recipient.getAccount().getAuthorities(), Authority.CUSTOMER));
-		Assert.notNull(m);
-		m.setSender(sender);
-		m.setReceiver(recipient);
-		Collection<Message> received;
-		received = this.messageService.findAllMessagesReceivedBy(recipient.getAccount().getId());
-		Utiles.sendIndividualMessage(recipient, received, m);
-		this.customerRepository.save(recipient);
-	}
-
-	public void sendMessage(final Customer sender, final HandyWorker recipient, final Message m) {
-		Assert.isTrue(Utiles.findAuthority(LoginService.getPrincipal().getAuthorities(), Authority.CUSTOMER));
-		Assert.isTrue(Utiles.findAuthority(sender.getAccount().getAuthorities(), Authority.CUSTOMER));
-		Assert.isTrue(Utiles.findAuthority(recipient.getAccount().getAuthorities(), Authority.HANDY_WORKER));
-		Assert.notNull(m);
-		m.setSender(sender);
-		m.setReceiver(recipient);
-		Collection<Message> received;
-		received = this.messageService.findAllMessagesReceivedBy(recipient.getAccount().getId());
-		Utiles.sendIndividualMessage(recipient, received, m);
-		this.hwService.save(recipient);
-	}
+	/*
+	 * public void sendMessage(final Customer sender, final Administrator recipient, final Message m) {
+	 * Assert.isTrue(Utiles.findAuthority(LoginService.getPrincipal().getAuthorities(), Authority.CUSTOMER));
+	 * Assert.isTrue(Utiles.findAuthority(sender.getAccount().getAuthorities(), Authority.CUSTOMER));
+	 * Assert.isTrue(Utiles.findAuthority(recipient.getAccount().getAuthorities(), Authority.ADMIN));
+	 * Assert.notNull(m);
+	 * m.setSender(sender);
+	 * Collection<Actor> receivers;
+	 * receivers = new ArrayList<>();
+	 * receivers.add(recipient);
+	 * m.setReceiver(receivers);
+	 * Collection<Message> received;
+	 * received = this.messageService.findAllMessagesReceivedBy(recipient.getAccount().getId());
+	 * Utiles.sendIndividualMessage(recipient, received, m);
+	 * 
+	 * this.adminService.save(recipient);
+	 * }
+	 * 
+	 * public void sendMessage(final Customer sender, final Sponsor recipient, final Message m) {
+	 * Assert.isTrue(Utiles.findAuthority(LoginService.getPrincipal().getAuthorities(), Authority.CUSTOMER));
+	 * Assert.isTrue(Utiles.findAuthority(sender.getAccount().getAuthorities(), Authority.CUSTOMER));
+	 * Assert.isTrue(Utiles.findAuthority(recipient.getAccount().getAuthorities(), Authority.SPONSOR));
+	 * Assert.notNull(m);
+	 * m.setSender(sender);
+	 * Collection<Actor> receivers;
+	 * receivers = new ArrayList<>();
+	 * receivers.add(recipient);
+	 * m.setReceiver(receivers);
+	 * Collection<Message> received;
+	 * received = this.messageService.findAllMessagesReceivedBy(recipient.getAccount().getId());
+	 * Utiles.sendIndividualMessage(recipient, received, m);
+	 * 
+	 * this.sponsorService.addSponsor(recipient);
+	 * }
+	 * 
+	 * public void sendMessage(final Customer sender, final Referee recipient, final Message m) {
+	 * Assert.isTrue(Utiles.findAuthority(LoginService.getPrincipal().getAuthorities(), Authority.CUSTOMER));
+	 * Assert.isTrue(Utiles.findAuthority(sender.getAccount().getAuthorities(), Authority.CUSTOMER));
+	 * Assert.isTrue(Utiles.findAuthority(recipient.getAccount().getAuthorities(), Authority.REFEREE));
+	 * Assert.notNull(m);
+	 * m.setSender(sender);
+	 * Collection<Actor> receivers;
+	 * receivers = new ArrayList<>();
+	 * receivers.add(recipient);
+	 * m.setReceiver(receivers);
+	 * Collection<Message> received;
+	 * received = this.messageService.findAllMessagesReceivedBy(recipient.getAccount().getId());
+	 * Utiles.sendIndividualMessage(recipient, received, m);
+	 * this.refereeService.save(recipient);
+	 * }
+	 * 
+	 * public void sendMessage(final Customer sender, final Customer recipient, final Message m) {
+	 * Assert.isTrue(Utiles.findAuthority(LoginService.getPrincipal().getAuthorities(), Authority.CUSTOMER));
+	 * Assert.isTrue(Utiles.findAuthority(sender.getAccount().getAuthorities(), Authority.CUSTOMER));
+	 * Assert.isTrue(Utiles.findAuthority(recipient.getAccount().getAuthorities(), Authority.CUSTOMER));
+	 * Assert.notNull(m);
+	 * m.setSender(sender);
+	 * Collection<Actor> receivers;
+	 * receivers = new ArrayList<>();
+	 * receivers.add(recipient);
+	 * m.setReceiver(receivers);
+	 * Collection<Message> received;
+	 * received = this.messageService.findAllMessagesReceivedBy(recipient.getAccount().getId());
+	 * Utiles.sendIndividualMessage(recipient, received, m);
+	 * this.customerRepository.save(recipient);
+	 * }
+	 * 
+	 * public void sendMessage(final Customer sender, final HandyWorker recipient, final Message m) {
+	 * Assert.isTrue(Utiles.findAuthority(LoginService.getPrincipal().getAuthorities(), Authority.CUSTOMER));
+	 * Assert.isTrue(Utiles.findAuthority(sender.getAccount().getAuthorities(), Authority.CUSTOMER));
+	 * Assert.isTrue(Utiles.findAuthority(recipient.getAccount().getAuthorities(), Authority.HANDY_WORKER));
+	 * Assert.notNull(m);
+	 * m.setSender(sender);
+	 * Collection<Actor> receivers;
+	 * receivers = new ArrayList<>();
+	 * receivers.add(recipient);
+	 * m.setReceiver(receivers);
+	 * Collection<Message> received;
+	 * received = this.messageService.findAllMessagesReceivedBy(recipient.getAccount().getId());
+	 * Utiles.sendIndividualMessage(recipient, received, m);
+	 * this.hwService.save(recipient);
+	 * }
+	 */
 }
