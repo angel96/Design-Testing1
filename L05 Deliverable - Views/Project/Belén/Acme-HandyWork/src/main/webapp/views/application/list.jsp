@@ -40,5 +40,11 @@
 			<img src="images/update.png">
 		</a>
 	</display:column>
+	</security:authorize><security:authorize access="hasRole('CUSTOMER')">	
+	<display:column titleKey="application.updateStatus">
+		<a href="application/handyworker/edit.do?applicationId=${row.id}">
+			<img src="images/update.png">
+		</a>
+	</display:column>
 	</security:authorize>
 </display:table>

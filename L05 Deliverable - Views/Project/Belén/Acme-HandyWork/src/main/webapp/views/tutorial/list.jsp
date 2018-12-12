@@ -42,6 +42,8 @@
 		<a href="tutorial/handyworker/list.do?tutorialId=${row.id}">
 			<img src="images/trash.png">
 		</a>
+		
+<!-- El create va en el desplegable -->
 	</display:column>
 	</security:authorize>
 </display:table>

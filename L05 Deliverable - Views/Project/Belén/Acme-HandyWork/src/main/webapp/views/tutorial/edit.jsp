@@ -32,7 +32,7 @@
 	<form:label path="lastUpdate">
 		<spring:message code="tutorial.lastUpdate" />
 	</form:label>
-	<form:input path="lastUpdate" readonly="${tutorialObject.lastUpdate}"/>
+	<form:input path="lastUpdate" value="${tutorialObject.lastUpdate}" readonly="${true}"/>
 	<br/>
 	<form:label path="summary">
 		<spring:message code="tutorial.summary"/>
