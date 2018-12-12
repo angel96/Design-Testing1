@@ -16,18 +16,18 @@
        
 <tiles-definitions>
 
-	<definition name="customer/edit" extends="master.page">	
-		<put-attribute name="title" value="Register Customer"/>
-		<put-attribute name="body" value="/views/customer/edit.jsp" />
+	<definition name="sponsor/edit" extends="master.page">	
+		<put-attribute name="title" value="Register Sponsor"/>
+		<put-attribute name="body" value="/views/sponsor/edit.jsp" />
 	</definition>
 	
-	<definition name="customer/messages" extends="master.page">	
-		<put-attribute name="title" value="Customer: Messages " />
-		<put-attribute name="body" value="/views/customer/messages.jsp" />
+	<definition name="sponsor/messages" extends="master.page">	
+		<put-attribute name="title" value="Sponsor: Messages " />
+		<put-attribute name="body" value="/views/sponsor/messages.jsp" />
 	</definition>
 	
-	<definition name="customer/boxes" extends="master.page">	
-		<put-attribute name="title" value="Customer: Boxes " />
-		<put-attribute name="body" value="/views/customer/boxes.jsp" />
+	<definition name="sponsor/boxes" extends="master.page">	
+		<put-attribute name="title" value="Sponsor: Boxes " />
+		<put-attribute name="body" value="/views/sponsor/boxes.jsp" />
 	</definition>
 </tiles-definitions>

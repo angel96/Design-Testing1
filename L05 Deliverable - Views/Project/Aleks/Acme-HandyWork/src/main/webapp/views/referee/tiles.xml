@@ -16,18 +16,18 @@
        
 <tiles-definitions>
 
-	<definition name="customer/edit" extends="master.page">	
-		<put-attribute name="title" value="Register Customer"/>
-		<put-attribute name="body" value="/views/customer/edit.jsp" />
+	<definition name="referee/edit" extends="master.page">	
+		<put-attribute name="title" value="Register Referee"/>
+		<put-attribute name="body" value="/views/referee/edit.jsp" />
 	</definition>
 	
-	<definition name="customer/messages" extends="master.page">	
-		<put-attribute name="title" value="Customer: Messages " />
-		<put-attribute name="body" value="/views/customer/messages.jsp" />
+	<definition name="referee/messages" extends="master.page">	
+		<put-attribute name="title" value="Referee: Messages " />
+		<put-attribute name="body" value="/views/referee/messages.jsp" />
 	</definition>
 	
-	<definition name="customer/boxes" extends="master.page">	
-		<put-attribute name="title" value="Customer: Boxes " />
-		<put-attribute name="body" value="/views/customer/boxes.jsp" />
+	<definition name="referee/boxes" extends="master.page">	
+		<put-attribute name="title" value="Referee Boxes " />
+		<put-attribute name="body" value="/views/referee/boxes.jsp" />
 	</definition>
 </tiles-definitions>

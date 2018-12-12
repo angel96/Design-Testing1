@@ -110,45 +110,27 @@ public class Utiles {
 		}
 	}
 
-	public static Actor sendIndividualMessage(final Actor sender, final Actor recipient, final Message m, final String boxName) {
-		Collection<Actor> receivers;
-		receivers = new ArrayList<>();
-		receivers.add(recipient);
-		m.setSender(sender);
-		m.setReceiver(receivers);
-		return recipient;
-	}
-
-	public static Boolean checkSpamOnCollection(final Actor a, final List<SpamWord> spam, final Collection<String> col) {
+	public static Boolean checkSpamOnCollection(final Actor a, final Collection<SpamWord> spam, final Collection<String> col) {
 		Boolean res = false;
 		final List<String> aux = Utiles.prepareCollection(col);
-		//ahora comparo cada string, cada posicion es sa lista con las spam (??
 		if (a.isSuspicious())
 			res = true;
 		else
-			for (final SpamWord spw : spam)
-				if (aux.contains(spw)) {
-					res = true;
-					break;
-				}
+			for (final String s : aux)
+				Utiles.checkSpamOnStrings(a, spam, s);
 		return res;
 	}
 	private static List<String> prepareCollection(final Collection<String> col) {
 		List<String> aux;
-		aux = new ArrayList<>(); //una lista con todas las palabras de la coleccion de comentarios o lo que sea
-		for (final String s : col) {
-			final String[] h = s.split(" ");
-			for (final String c : h)
-				aux.add(c);
-		}
+		aux = new ArrayList<>();
+		for (final String s : col)
+			aux.add(s);
 		return aux;
 	}
-	public static Boolean checkSpamOnStrings(final Actor a, final List<SpamWord> spam, final String s) {
+	public static Boolean checkSpamOnStrings(final Actor a, final Collection<SpamWord> spam, final String s) {
 		Boolean res = false;
 		List<String> aux;
-
 		aux = Arrays.asList(s.split(" "));
-
 		if (a.isSuspicious())
 			res = true;
 		else

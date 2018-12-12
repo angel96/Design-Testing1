@@ -47,67 +47,68 @@ public class TestAdministratorService extends AbstractTest {
 		System.out.println(newer);
 	}
 
-	@Test
-	public void testSendMessageAdminToAdmin() {
-		super.unauthenticate();
-		super.authenticate("admin1");
-		Administrator sender;
-		sender = this.adminService.findOne(3017);
-		sender.setName("sender");
-		Administrator recipient;
-		recipient = this.adminService.findOne(3018);
-		recipient.setName("recipient");
-
-		Message stock;
-		stock = new Message();
-		stock.setBody("starter body");
-		Message newer;
-		newer = new Message();
-		newer.setBody("new body");
-
-		this.adminService.sendMessage(sender, recipient, newer);
-		for (final Box b : recipient.getBoxes())
-			for (final Message m : b.getMessage())
-				System.out.println(m.getBody());
-	}
-
-	@Test
-	public void testSendMessageAdminToHandyWorker() {
-		super.unauthenticate();
-		super.authenticate("admin1");
-		Administrator sender;
-		sender = this.adminService.createAnotherAdministrator();
-		sender.setName("sender");
-		Administrator recipient;
-		recipient = this.adminService.createAnotherAdministrator();
-		recipient.setName("recipient");
-
-		Message stock;
-		stock = new Message();
-		stock.setBody("starter body");
-		Message newer;
-		newer = new Message();
-		newer.setBody("new body");
-		for (final Box b : sender.getBoxes())
-			if (b.getName().equals("entry")) {
-				Collection<Message> mes;
-				mes = b.getMessage();
-				mes.add(stock);
-			}
-
-		for (final Box b : recipient.getBoxes())
-			if (b.getName().equals("entry")) {
-				Collection<Message> mes;
-				mes = b.getMessage();
-				mes.add(stock);
-			}
-
-		this.adminService.sendMessage(sender, recipient, newer);
-		for (final Box b : recipient.getBoxes())
-			for (final Message m : b.getMessage())
-				System.out.println(m.getBody());
-	}
-
+	/*
+	 * @Test
+	 * public void testSendMessageAdminToAdmin() {
+	 * super.unauthenticate();
+	 * super.authenticate("admin1");
+	 * Administrator sender;
+	 * sender = this.adminService.findOne(3017);
+	 * sender.setName("sender");
+	 * Administrator recipient;
+	 * recipient = this.adminService.findOne(3018);
+	 * recipient.setName("recipient");
+	 * 
+	 * Message stock;
+	 * stock = new Message();
+	 * stock.setBody("starter body");
+	 * Message newer;
+	 * newer = new Message();
+	 * newer.setBody("new body");
+	 * 
+	 * this.adminService.sendMessage(sender, recipient, newer);
+	 * for (final Box b : recipient.getBoxes())
+	 * for (final Message m : b.getMessage())
+	 * System.out.println(m.getBody());
+	 * }
+	 * 
+	 * @Test
+	 * public void testSendMessageAdminToHandyWorker() {
+	 * super.unauthenticate();
+	 * super.authenticate("admin1");
+	 * Administrator sender;
+	 * sender = this.adminService.createAnotherAdministrator();
+	 * sender.setName("sender");
+	 * Administrator recipient;
+	 * recipient = this.adminService.createAnotherAdministrator();
+	 * recipient.setName("recipient");
+	 * 
+	 * Message stock;
+	 * stock = new Message();
+	 * stock.setBody("starter body");
+	 * Message newer;
+	 * newer = new Message();
+	 * newer.setBody("new body");
+	 * for (final Box b : sender.getBoxes())
+	 * if (b.getName().equals("entry")) {
+	 * Collection<Message> mes;
+	 * mes = b.getMessage();
+	 * mes.add(stock);
+	 * }
+	 * 
+	 * for (final Box b : recipient.getBoxes())
+	 * if (b.getName().equals("entry")) {
+	 * Collection<Message> mes;
+	 * mes = b.getMessage();
+	 * mes.add(stock);
+	 * }
+	 * 
+	 * this.adminService.sendMessage(sender, recipient, newer);
+	 * for (final Box b : recipient.getBoxes())
+	 * for (final Message m : b.getMessage())
+	 * System.out.println(m.getBody());
+	 * }
+	 */
 	@Test
 	public void testManageNoSystemBoxes() {
 		super.unauthenticate();
