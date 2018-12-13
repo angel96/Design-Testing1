@@ -26,16 +26,22 @@ public class CustomerService {
 
 	@Autowired
 	private CustomerRepository		customerRepository;
+
 	@Autowired
 	private AdministratorService	adminService;
+
 	@Autowired
 	private HandyWorkerService		hwService;
+
 	@Autowired
 	private RefereeService			refereeService;
+
 	@Autowired
 	private SponsorService			sponsorService;
+
 	@Autowired
 	private BoxService				boxService;
+
 	@Autowired
 	private MessageService			messageService;
 

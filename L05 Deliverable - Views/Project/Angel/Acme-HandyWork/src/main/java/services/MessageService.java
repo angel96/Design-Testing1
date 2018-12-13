@@ -28,11 +28,4 @@ public class MessageService {
 		return m;
 	}
 
-	public Collection<Message> findAllMessagesReceivedBy(final int id) {
-		Assert.notNull(id);
-		Collection<Message> m;
-		m = this.messageRepository.findAllMessagesReceivedByAnActor(id);
-		Assert.notNull(m);
-		return m;
-	}
 }

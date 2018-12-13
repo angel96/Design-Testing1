@@ -14,7 +14,7 @@
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 
 <div>
-	<a href="#"><img src="images/logo.png" alt="Sample Co., Inc." /></a>
+	<a href="#"><img src="images/header.png" alt="Acme Handy Worker Inc." height = "150" width = "850"/></a>
 </div>
 
 <div>

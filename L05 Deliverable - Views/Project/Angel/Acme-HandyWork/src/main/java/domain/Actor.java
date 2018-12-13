@@ -34,7 +34,7 @@ public abstract class Actor extends DomainEntity {
 	private Collection<Profile>	profiles;
 	private Collection<Box>		boxes;
 	private boolean				ban;
-	private boolean suspicious;
+	private boolean				suspicious;
 
 
 	@NotBlank
@@ -122,10 +122,6 @@ public abstract class Actor extends DomainEntity {
 		this.account = account;
 	}
 
-	@Override
-	public String toString() {
-		return "Actor [name=" + this.name + ", middleName=" + this.middleName + ", surname=" + this.surname + ", photo=" + this.photo + ", email=" + this.email + ", phone=" + this.phone + "]";
-	}
 	@ManyToMany
 	public Collection<Box> getBoxes() {
 		return this.boxes;
@@ -135,10 +131,10 @@ public abstract class Actor extends DomainEntity {
 		this.boxes = boxes;
 	}
 	public boolean isSuspicious() {
-		return suspicious;
+		return this.suspicious;
 	}
 
-	public void setSuspicious(boolean suspicious) {
+	public void setSuspicious(final boolean suspicious) {
 		this.suspicious = suspicious;
 	}
 

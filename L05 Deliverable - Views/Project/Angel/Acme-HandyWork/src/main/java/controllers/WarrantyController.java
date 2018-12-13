@@ -46,6 +46,7 @@ public class WarrantyController extends AbstractController {
 		result = new ModelAndView("warranty/edit");
 		result.addObject("warrantyObject", Utiles.createWarranty());
 		result.addObject("requestURI", "administrator/warranty/create.do");
+
 		return result;
 	}
 

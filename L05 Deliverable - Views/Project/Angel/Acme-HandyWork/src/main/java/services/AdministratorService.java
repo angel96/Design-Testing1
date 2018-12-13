@@ -31,16 +31,22 @@ public class AdministratorService {
 
 	@Autowired
 	private AdministratorRepository	adminRepository;
+
 	@Autowired
 	private SponsorService			sponsorService;
+
 	@Autowired
 	private CustomerService			customerService;
+
 	@Autowired
 	private HandyWorkerService		hwService;
+
 	@Autowired
 	private RefereeService			refereeService;
+
 	@Autowired
 	private BoxService				boxService;
+
 	@Autowired
 	private MessageService			messageService;
 
