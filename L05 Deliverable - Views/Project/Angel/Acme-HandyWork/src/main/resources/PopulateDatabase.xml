@@ -5346,6 +5346,7 @@
 
 	<!-- beans handyworker -->
 	<bean id="handyworker1" class="domain.HandyWorker">
+	<property name = "make" value = "handyworker1" />
 		<property name="name" value="handyworker1" />
 		<property name="middleName" value="handyworker1Middle" />
 		<property name="surname" value="handyworker1Surname" />
@@ -5395,6 +5396,7 @@
 	</bean>
 
 	<bean id="handyworker2" class="domain.HandyWorker">
+	<property name = "make" value = "handyworker1" />
 		<property name="name" value="handyworker2" />
 		<property name="middleName" value="handyworker2Middle" />
 		<property name="surname" value="handyworker2Surname" />
@@ -5433,6 +5435,7 @@
 	</bean>
 
 	<bean id="handyworker3" class="domain.HandyWorker">
+	<property name = "make" value = "handyworker1" />
 		<property name="name" value="handyworker3" />
 		<property name="middleName" value="handyworker3Middle" />
 		<property name="surname" value="handyworker3Surname" />
@@ -5486,6 +5489,7 @@
 	</bean>
 
 	<bean id="handyworker4" class="domain.HandyWorker">
+	<property name = "make" value = "handyworker1" />
 		<property name="name" value="handyworker4" />
 		<property name="middleName" value="handyworker4Middle" />
 		<property name="surname" value="handyworker4Surname" />
@@ -5534,6 +5538,7 @@
 	</bean>
 
 	<bean id="handyworker5" class="domain.HandyWorker">
+	<property name = "make" value = "handyworker1" />
 		<property name="name" value="handyworker5" />
 		<property name="middleName" value="handyworker5Middle" />
 		<property name="surname" value="handyworker5Surname" />

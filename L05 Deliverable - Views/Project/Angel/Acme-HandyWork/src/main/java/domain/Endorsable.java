@@ -10,7 +10,7 @@ import javax.persistence.InheritanceType;
 @Entity
 @Access(AccessType.PROPERTY)
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public class Endorsable extends Actor {
+public abstract class Endorsable extends Actor {
 
 	private Double	score;
 

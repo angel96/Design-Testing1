@@ -11,6 +11,8 @@ import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 @Entity
 @Access(AccessType.PROPERTY)
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
@@ -18,10 +20,11 @@ public class HandyWorker extends Endorsable {
 
 	private Collection<Application>	application;
 	private Collection<Phase>		phase;
-	private Finder		finder;
+	private Finder					finder;
 	private Curriculum				curriculum;
 	private Collection<Tutorial>	tutoriales;
 	private Collection<Note>		notes;
+	private String					make;
 
 
 	@OneToMany
@@ -42,12 +45,12 @@ public class HandyWorker extends Endorsable {
 	public void setPhase(final Collection<Phase> phase) {
 		this.phase = phase;
 	}
-	@OneToOne(optional=true)
+	@OneToOne(optional = true)
 	public Finder getFinder() {
-		return finder;
+		return this.finder;
 	}
 
-	public void setFinder(Finder finder) {
+	public void setFinder(final Finder finder) {
 		this.finder = finder;
 	}
 
@@ -74,5 +77,14 @@ public class HandyWorker extends Endorsable {
 
 	public void setNotes(final Collection<Note> notes) {
 		this.notes = notes;
+	}
+
+	@NotBlank
+	public String getMake() {
+		return this.make;
+	}
+
+	public void setMake(final String make) {
+		this.make = make;
 	}
 }
