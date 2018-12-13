@@ -15,63 +15,71 @@
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<form:form modelAttribute="sponsor" action="welcome/index.jsp/">
+<form:form modelAttribute="sponsorObject" action="profile/sponsor/edit.do">
 <form:hidden path="id"/>
 <form:hidden path="version"/>
 
-<form:label path="Name">
+<form:label path="name">
 <spring:message code="sponsor.name"></spring:message>
 </form:label>
-<form:input path="text"/>
+<form:input path="name"/>
+<form:errors cssClass="error" path="name"></form:errors>
 <br>
 
-<form:label path="Surname">
+<form:label path="surname">
 <spring:message code="sponsor.surname"></spring:message>
 </form:label>
-<form:input path="text"/>
+<form:input path="surname"/>
+<form:errors cssClass="error" path="surname"></form:errors>
 <br>
 
-<form:label path="Middle Name">
+<form:label path="middleName">
 <spring:message code="sponsor.middlename"></spring:message>
 </form:label>
-<form:input path="text"/>
+<form:input path="middlename"/>
 <br>
 
-<form:label path="Phone">
+<form:label path="phone">
 <spring:message code="sponsor.phone"></spring:message>
 </form:label>
-<form:input path="text"/>
+<form:input path="phone"/>
 <br>
 
-<form:label path="Email">
+<form:label path="email">
 <spring:message code="sponsor.email"></spring:message>
 </form:label>
 <form:input path="text"/>
+<form:errors cssClass="error" path="email"></form:errors>
 <br>
 
-<form:label path="Adress">
+<form:label path="adress">
 <spring:message code="sponsor.adress"></spring:message>
 </form:label>
-<form:input path="text"/>
+<form:input path="adress"/>
 <br>
 
-<form:label path="URL for a Photo">
+<form:label path="photoUrl">
 <spring:message code="sponsor.photo"></spring:message>
 </form:label>
-<form:input path="text"/>
+<form:input path="photoUrl"/>
 <br>
 
-<form:label path="User">
+<form:label path="user">
 <spring:message code="sponsor.user"></spring:message>
 </form:label>
-<form:input path="text"/>
+<form:input path="user"/>
+<form:errors cssClass="error" path="user"></form:errors>
 <br>
 
-<form:label path="Password">
+<form:label path="password">
 <spring:message code="sponsor.password"></spring:message>
 </form:label>
-<form:password path="text"/>
+<form:password path="password"/>
+<form:errors cssClass="error" path="password"></form:errors>
 <br>
 </form:form>
 
-<input type="submit" value="<spring:message code=sponsor.save/>">
+<input type="submit" name="save" value="<spring:message code=sponsor.save/>"
+onclick="javascript:relativeRedir('profile/sponsor/edit.do');"/>
+<input type="button" name="cancel" value="<spring:message code=sponsor.cancel/>"
+onclick="javascript:relativeRedir('welcome/index.jsp');"/>

@@ -6,18 +6,18 @@
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<form:form modelAtributte="boxes" action="messages/send.do">
+<form:form modelAtributte="boxes" action="boxes/list.do">
 <form:select path="boxes"></form:select>
 <form:options item="${boxes}" itemLabel="Box" itemValue="id"/>
 <form:option label="----" value="0"></form:option>
 <display:table name="boxes" id="row" requestURI="${requestURI}" 
 				pagesize=5 class="displaytag"></display:table>
-<display:column property="<spring:message code=handyworker.box.recipient/>" titleKey="row.receiver"></display:column>
-<display:column property="<spring:message code=handyworker.box.moment/>" titleKey="row.moment"></display:column>
-<display:column property="<spring:message code=handyworker.box.subject/>" titleKey="row.subject"></display:column>
-<display:column property="<spring:message code=handyworker.box.priority/>" titleKey="row.priority"></display:column>
-<display:column property="<spring:message code=handyworker.box.view/>" titleKey="messages/view?id=${row.id}"></display:column>
+<display:column property="<spring:message code=box.recipient/>" titleKey="row.receiver"></display:column>
+<display:column property="<spring:message code=box.moment/>" titleKey="row.moment"></display:column>
+<display:column property="<spring:message code=box.subject/>" titleKey="row.subject"></display:column>
+<display:column property="<spring:message code=box.priority/>" titleKey="row.priority"></display:column>
+<display:column property="<spring:message code=box.view/>" titleKey="messages/administrator/edit.do?id=${row.id}"></display:column>
 
-<a href="messages/create.do"> Create New Message</a>
+<a href="messages/edit.do"> Create New Message</a>
 
 </form:form>
