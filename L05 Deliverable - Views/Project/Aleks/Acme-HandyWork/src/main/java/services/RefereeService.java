@@ -1,7 +1,6 @@
 
 package services;
 
-import java.util.ArrayList;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,11 +13,10 @@ import security.Authority;
 import security.LoginService;
 import security.UserAccount;
 import utilities.Utiles;
+import domain.Actor;
 import domain.Box;
-import domain.Note;
-import domain.Profile;
+import domain.Message;
 import domain.Referee;
-import domain.Report;
 
 @Service
 @Transactional
@@ -26,6 +24,10 @@ public class RefereeService {
 
 	@Autowired
 	private RefereeRepository	refereeRepository;
+	@Autowired
+	private ActorService		actorService;
+	@Autowired
+	private BoxService			boxService;
 
 
 	public Collection<Referee> findAll() {
@@ -47,30 +49,10 @@ public class RefereeService {
 		Assert.isTrue(Utiles.findAuthority(creator.getAuthorities(), Authority.ADMIN));
 		Referee r;
 		r = new Referee();
-		UserAccount user;
-		user = new UserAccount();
-		Authority a;
-		a = new Authority();
-		Collection<Authority> authorities;
-		authorities = new ArrayList<>();
-		a.setAuthority(Authority.REFEREE);
-		authorities.add(a);
-		user.setAuthorities(authorities);
-		r.setAccount(user);
-		r.setAdress("");
-		r.setBan(false);
-		r.setBoxes(new ArrayList<Box>());
-		r.setEmail("");
-		r.setId(0);
-		r.setMiddleName("");
-		r.setName("");
-		r.setNotes(new ArrayList<Note>());
-		r.setPhone("");
-		r.setPhoto("");
-		r.setProfiles(new ArrayList<Profile>());
-		r.setReports(new ArrayList<Report>());
-		r.setSurname("");
+		r = Utiles.createReferee();
+		Assert.notNull(r);
 		return r;
+
 	}
 
 	public Referee save(final Referee ref) {
@@ -85,5 +67,17 @@ public class RefereeService {
 		saved = this.refereeRepository.save(ref);
 		return saved;
 
+	}
+	public void sendMessage(final Actor sender, final Collection<Actor> recipient, final Message m) {
+		Assert.notNull(LoginService.getPrincipal().getAuthorities());
+		Assert.notEmpty(recipient);
+		Assert.notNull(m);
+		this.actorService.sendIndividualMessage(sender, recipient, m);
+	}
+	public Collection<Box> manageNotSystemBoxes() {
+		Assert.notNull(this.refereeRepository.findByUserAccount(LoginService.getPrincipal().getId()));
+		Collection<Box> boxes;
+		boxes = this.boxService.findAllNotSystemBoxes(LoginService.getPrincipal().getId());
+		return boxes;
 	}
 }

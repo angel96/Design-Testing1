@@ -20,9 +20,9 @@ public class BoxService {
 	private BoxRepository	boxRepository;
 
 
-	public Collection<Box> findAllNonBoxes(final int actorId) {
+	public Collection<Box> findAllNotSystemBoxes(final int actorId) {
 		Assert.notNull(actorId);
-		return this.boxRepository.getAllNoSystemBoxesByActor(actorId);
+		return this.boxRepository.manageNotSystemBoxes(actorId);
 	}
 
 }

@@ -11,6 +11,10 @@ import org.springframework.util.Assert;
 import repositories.SponsorRepository;
 import security.LoginService;
 import security.UserAccount;
+import utilities.Utiles;
+import domain.Actor;
+import domain.Box;
+import domain.Message;
 import domain.Sponsor;
 import domain.Sponsorship;
 
@@ -20,10 +24,22 @@ public class SponsorService {
 
 	@Autowired
 	private SponsorRepository	sponsorRepository;
+	@Autowired
+	private ActorService		actorService;
+	@Autowired
+	private BoxService			boxService;
 
 
 	public Collection<Sponsor> findAll() {
 		return this.sponsorRepository.findAll();
+	}
+
+	public Sponsor create() {
+		Sponsor s;
+		s = new Sponsor();
+		s = Utiles.createSponsor();
+		Assert.notNull(s);
+		return s;
 	}
 
 	public Collection<Sponsorship> getSponsorshipsBySponsor(final Sponsor s) {
@@ -78,6 +94,20 @@ public class SponsorService {
 			this.sponsorRepository.delete(id);
 		else
 			throw new IllegalAccessError("Trying to delete a sponsor which is not the same as logged");
+	}
+
+	public void sendMessage(final Actor sender, final Collection<Actor> recipient, final Message m) {
+		Assert.notNull(LoginService.getPrincipal().getAuthorities());
+		Assert.notEmpty(recipient);
+		Assert.notNull(m);
+		this.actorService.sendIndividualMessage(sender, recipient, m);
+	}
+
+	public Collection<Box> manageNotSystemBoxes() {
+		Assert.notNull(this.sponsorRepository.findByUserAccountId(LoginService.getPrincipal().getId()));
+		Collection<Box> boxes;
+		boxes = this.boxService.findAllNotSystemBoxes(LoginService.getPrincipal().getId());
+		return boxes;
 	}
 
 }

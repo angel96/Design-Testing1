@@ -1,7 +1,6 @@
 
 package services;
 
-import java.util.ArrayList;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,19 +9,14 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import repositories.HandyWorkerRepository;
-import security.Authority;
 import security.LoginService;
-import security.UserAccount;
-import domain.Application;
+import utilities.Utiles;
+import domain.Actor;
 import domain.Box;
 import domain.Category;
-import domain.Curriculum;
 import domain.FixUpTask;
 import domain.HandyWorker;
-import domain.Note;
-import domain.Phase;
-import domain.Profile;
-import domain.Tutorial;
+import domain.Message;
 import domain.Warranty;
 
 @Service
@@ -32,17 +26,9 @@ public class HandyWorkerService {
 	@Autowired
 	private HandyWorkerRepository	repositoryHandyWorker;
 	@Autowired
-	private AdministratorService	adminService;
-	@Autowired
-	private CustomerService			customerService;
-	@Autowired
-	private RefereeService			refereeService;
-	@Autowired
-	private SponsorService			sponsorService;
-	@Autowired
 	private BoxService				boxService;
 	@Autowired
-	private MessageService			messageService;
+	private ActorService			actorService;
 
 
 	public Collection<HandyWorker> findAll() {
@@ -62,35 +48,8 @@ public class HandyWorkerService {
 	public HandyWorker create() {
 		HandyWorker handyWorker;
 		handyWorker = new HandyWorker();
-		UserAccount account;
-		account = new UserAccount();
-		Authority auth;
-		auth = new Authority();
-		Collection<Authority> authorities;
-		authorities = new ArrayList<>();
-		auth.setAuthority(Authority.HANDY_WORKER);
-		authorities.add(auth);
-		account.setAuthorities(authorities);
-		account.setUsername("");
-		account.setPassword("");
-		handyWorker.setAccount(account);
-		handyWorker.setApplication(new ArrayList<Application>());
-		handyWorker.setNotes(new ArrayList<Note>());
-		handyWorker.setPhase(new ArrayList<Phase>());
-		handyWorker.setProfiles(new ArrayList<Profile>());
-		handyWorker.setTutoriales(new ArrayList<Tutorial>());
-		handyWorker.setAdress("");
-		handyWorker.setBan(false);
-		handyWorker.setCurriculum(new Curriculum());
-		handyWorker.setEmail("");
-		handyWorker.setId(0);
-		handyWorker.setMiddleName("");
-		handyWorker.setName("");
-		handyWorker.setPhone("");
-		handyWorker.setPhoto("");
-		handyWorker.setScore(0.0);
-		handyWorker.setSurname("");
-		handyWorker.setVersion(0);
+		handyWorker = Utiles.createHandyWorker();
+		Assert.notNull(handyWorker);
 		return handyWorker;
 	}
 
@@ -107,95 +66,14 @@ public class HandyWorkerService {
 		return saved;
 	}
 
-	public Collection<Box> manageNotSystemBox(final HandyWorker hw) {
+	public Collection<Box> manageNotSystemBoxes() {
 		Assert.notNull(this.repositoryHandyWorker.findByUserAccount(LoginService.getPrincipal().getId()));
 		Collection<Box> boxes;
-		boxes = this.boxService.findAllNonBoxes(hw.getId());
+		boxes = this.boxService.findAllNotSystemBoxes(LoginService.getPrincipal().getId());
 		return boxes;
 	}
-	/*
-	 * public void sendMessage(final HandyWorker sender, final Administrator recipient, final Message m) {
-	 * Assert.isTrue(Utiles.findAuthority(LoginService.getPrincipal().getAuthorities(), Authority.HANDY_WORKER));
-	 * Assert.isTrue(Utiles.findAuthority(sender.getAccount().getAuthorities(), Authority.HANDY_WORKER));
-	 * Assert.isTrue(Utiles.findAuthority(recipient.getAccount().getAuthorities(), Authority.ADMIN));
-	 * Assert.notNull(m);
-	 * m.setSender(sender);
-	 * Collection<Actor> receivers;
-	 * receivers = new ArrayList<>();
-	 * receivers.add(recipient);
-	 * 
-	 * m.setReceiver(receivers);
-	 * Collection<Message> received;
-	 * received = this.messageService.findAllMessagesReceivedBy(recipient.getAccount().getId());
-	 * Utiles.sendIndividualMessage(recipient, received, m);
-	 * this.adminService.save(recipient);
-	 * }
-	 * 
-	 * public void sendMessage(final HandyWorker sender, final Sponsor recipient, final Message m) {
-	 * Assert.isTrue(Utiles.findAuthority(LoginService.getPrincipal().getAuthorities(), Authority.HANDY_WORKER));
-	 * Assert.isTrue(Utiles.findAuthority(sender.getAccount().getAuthorities(), Authority.HANDY_WORKER));
-	 * Assert.isTrue(Utiles.findAuthority(recipient.getAccount().getAuthorities(), Authority.SPONSOR));
-	 * Assert.notNull(m);
-	 * m.setSender(sender);
-	 * Collection<Actor> receivers;
-	 * receivers = new ArrayList<>();
-	 * receivers.add(recipient);
-	 * 
-	 * m.setReceiver(receivers);
-	 * Collection<Message> received;
-	 * received = this.messageService.findAllMessagesReceivedBy(recipient.getAccount().getId());
-	 * Utiles.sendIndividualMessage(recipient, received, m);
-	 * this.sponsorService.addSponsor(recipient);
-	 * }
-	 * 
-	 * public void sendMessage(final HandyWorker sender, final Referee recipient, final Message m) {
-	 * Assert.isTrue(Utiles.findAuthority(LoginService.getPrincipal().getAuthorities(), Authority.HANDY_WORKER));
-	 * Assert.isTrue(Utiles.findAuthority(sender.getAccount().getAuthorities(), Authority.HANDY_WORKER));
-	 * Assert.isTrue(Utiles.findAuthority(recipient.getAccount().getAuthorities(), Authority.REFEREE));
-	 * Assert.notNull(m);
-	 * m.setSender(sender);
-	 * Collection<Actor> receivers;
-	 * receivers = new ArrayList<>();
-	 * receivers.add(recipient);
-	 * m.setReceiver(receivers);
-	 * Collection<Message> received;
-	 * received = this.messageService.findAllMessagesReceivedBy(recipient.getAccount().getId());
-	 * Utiles.sendIndividualMessage(recipient, received, m);
-	 * this.refereeService.save(recipient);
-	 * }
-	 * 
-	 * public void sendMessage(final HandyWorker sender, final Customer recipient, final Message m) {
-	 * Assert.isTrue(Utiles.findAuthority(LoginService.getPrincipal().getAuthorities(), Authority.HANDY_WORKER));
-	 * Assert.isTrue(Utiles.findAuthority(sender.getAccount().getAuthorities(), Authority.HANDY_WORKER));
-	 * Assert.isTrue(Utiles.findAuthority(recipient.getAccount().getAuthorities(), Authority.CUSTOMER));
-	 * Assert.notNull(m);
-	 * m.setSender(sender);
-	 * Collection<Actor> receivers;
-	 * receivers = new ArrayList<>();
-	 * receivers.add(recipient);
-	 * m.setReceiver(receivers);
-	 * Collection<Message> received;
-	 * received = this.messageService.findAllMessagesReceivedBy(recipient.getAccount().getId());
-	 * Utiles.sendIndividualMessage(recipient, received, m);
-	 * this.customerService.save(recipient);
-	 * }
-	 * 
-	 * public void sendMessage(final HandyWorker sender, final HandyWorker recipient, final Message m) {
-	 * Assert.isTrue(Utiles.findAuthority(LoginService.getPrincipal().getAuthorities(), Authority.HANDY_WORKER));
-	 * Assert.isTrue(Utiles.findAuthority(sender.getAccount().getAuthorities(), Authority.HANDY_WORKER));
-	 * Assert.isTrue(Utiles.findAuthority(recipient.getAccount().getAuthorities(), Authority.HANDY_WORKER));
-	 * Assert.notNull(m);
-	 * m.setSender(sender);
-	 * Collection<Actor> receivers;
-	 * receivers = new ArrayList<>();
-	 * receivers.add(recipient);
-	 * m.setReceiver(receivers);
-	 * Collection<Message> received;
-	 * received = this.messageService.findAllMessagesReceivedBy(recipient.getAccount().getId());
-	 * Utiles.sendIndividualMessage(recipient, received, m);
-	 * this.repositoryHandyWorker.save(recipient);
-	 * }
-	 */public Collection<FixUpTask> findByKeyWord(final String s) {
+
+	public Collection<FixUpTask> findByKeyWord(final String s) {
 		return this.repositoryHandyWorker.findAllByKeyWorkd("%" + s + "%");
 	}
 	public Collection<FixUpTask> findByPrices(final double d1, final double d2) {
@@ -206,6 +84,13 @@ public class HandyWorkerService {
 	}
 	public Collection<FixUpTask> findByWarranty(final Warranty warranty) {
 		return this.repositoryHandyWorker.findAllByWarranty(warranty);
+	}
+
+	public void sendMessage(final Actor sender, final Collection<Actor> recipient, final Message m) {
+		Assert.notNull(LoginService.getPrincipal().getAuthorities());
+		Assert.notEmpty(recipient);
+		Assert.notNull(m);
+		this.actorService.sendIndividualMessage(sender, recipient, m);
 	}
 
 }

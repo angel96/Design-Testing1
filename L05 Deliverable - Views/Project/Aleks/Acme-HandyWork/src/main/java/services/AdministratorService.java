@@ -13,7 +13,6 @@ import org.springframework.util.Assert;
 import repositories.AdministratorRepository;
 import security.Authority;
 import security.LoginService;
-import security.UserAccount;
 import utilities.Utiles;
 import domain.Actor;
 import domain.Administrator;
@@ -21,7 +20,6 @@ import domain.Box;
 import domain.Customer;
 import domain.HandyWorker;
 import domain.Message;
-import domain.Profile;
 import domain.Referee;
 import domain.Sponsor;
 
@@ -42,54 +40,27 @@ public class AdministratorService {
 	@Autowired
 	private BoxService				boxService;
 	@Autowired
-	private MessageService			messageService;
+	private ActorService			actorService;
 
 
 	public Administrator createAnotherAdministrator() {
 		Assert.isTrue(Utiles.findAuthority(LoginService.getPrincipal().getAuthorities(), Authority.ADMIN));
 		Administrator administrator;
-		administrator = new Administrator();
-
-		UserAccount userAccount;
-		Authority auth;
-		Collection<Authority> authorities;
-
-		userAccount = new UserAccount();
-		auth = new Authority();
-		authorities = new ArrayList<>();
-
-		auth.setAuthority("ADMIN");
-
-		authorities.add(auth);
-		userAccount.setAuthorities(authorities);
-		userAccount.setUsername("");
-		userAccount.setPassword("");
-
-		administrator.setAccount(userAccount);
-		administrator.setProfiles(new ArrayList<Profile>());
-		administrator.setAdress("");
-		administrator.setBan(false);
-		administrator.setBoxes(new ArrayList<Box>());
-		administrator.setEmail("");
-		administrator.setMiddleName("");
-		administrator.setName("");
-		administrator.setPhone("");
-		administrator.setPhoto("");
-		administrator.setSurname("");
-
+		administrator = Utiles.createAdministrator();
+		Assert.notNull(administrator);
 		return administrator;
 	}
 
 	public Administrator findOne(final int userAccount) {
 		Assert.isTrue(Utiles.findAuthority(LoginService.getPrincipal().getAuthorities(), Authority.ADMIN));
 		Administrator saved;
-		saved = this.adminRepository.findAdministratorByUserAccountId(LoginService.getPrincipal().getId());
+		saved = this.adminRepository.findAdministratorById(LoginService.getPrincipal().getId());
 		Assert.notNull(saved);
 		return saved;
 	}
 
 	public Administrator save(final Administrator admin) {
-		Assert.isTrue(admin.getAccount().getId() == this.adminRepository.findAdministratorByUserAccountId(admin.getAccount().getId()).getAccount().getId());
+		Assert.isTrue(admin.getAccount().getId() == this.adminRepository.findAdministratorById(admin.getAccount().getId()).getAccount().getId());
 		Assert.notNull(admin);
 		return this.adminRepository.save(admin);
 	}
@@ -97,14 +68,14 @@ public class AdministratorService {
 	public Administrator update(final Administrator admin) {
 		Assert.notNull(admin);
 		Assert.isTrue(Utiles.findAuthority(LoginService.getPrincipal().getAuthorities(), Authority.ADMIN));
-		Assert.isTrue(admin.getAccount().getId() == this.adminRepository.findAdministratorByUserAccountId(admin.getAccount().getId()).getAccount().getId());
+		Assert.isTrue(admin.getAccount().getId() == this.adminRepository.findAdministratorById(admin.getAccount().getId()).getAccount().getId());
 		Administrator saved;
 		saved = this.save(admin);
 		Assert.notNull(saved);
 		return saved;
 	}
 
-	public void broadcastMessage(final Administrator admin, final Message m) {
+	public void broadcastMessage(final Administrator admin, final Message m) { //TODO Hay que mirarlo
 		Assert.isTrue(Utiles.findAuthority(LoginService.getPrincipal().getAuthorities(), Authority.ADMIN));
 		Assert.notNull(m);
 
@@ -136,21 +107,21 @@ public class AdministratorService {
 	//Admin dashboard
 	public Collection<Customer> findCustomersWith10PerCentMoreFixUpPublishedThanAvgOrderApps(final Administrator admin) {
 		Administrator administrator;
-		administrator = this.adminRepository.findAdministratorByUserAccountId(LoginService.getPrincipal().getId());
+		administrator = this.adminRepository.findAdministratorById(LoginService.getPrincipal().getId());
 		Assert.notNull(administrator);
 		return this.adminRepository.findCustomers10PerCentMoreFixUpThanAvgOrderApplication();
 	}
 
 	public Collection<HandyWorker> findHandyWorkersWith10PerCentMoreAppsPublishedThanAvgOrderApps(final Administrator admin) {
 		Administrator administrator;
-		administrator = this.adminRepository.findAdministratorByUserAccountId(LoginService.getPrincipal().getId());
+		administrator = this.adminRepository.findAdministratorById(LoginService.getPrincipal().getId());
 		Assert.notNull(administrator);
 		return this.adminRepository.findHandyWorkers10PerCentMoreAppsThanAvgAcepptedOrderApplication();
 	}
 
 	public Collection<Customer> topThreeCustomerOrderByComplaints(final Administrator admin) {
 		Administrator administrator;
-		administrator = this.adminRepository.findAdministratorByUserAccountId(LoginService.getPrincipal().getId());
+		administrator = this.adminRepository.findAdministratorById(LoginService.getPrincipal().getId());
 		Assert.notNull(administrator);
 		List<Customer> topThree;
 		topThree = this.adminRepository.topTreeCustomerOrderByComplaints();
@@ -161,7 +132,7 @@ public class AdministratorService {
 
 	public Collection<HandyWorker> topThreeHandyWorkerOrderByComplaints(final Administrator admin) {
 		Administrator administrator;
-		administrator = this.adminRepository.findAdministratorByUserAccountId(LoginService.getPrincipal().getId());
+		administrator = this.adminRepository.findAdministratorById(LoginService.getPrincipal().getId());
 		Assert.notNull(administrator);
 		List<HandyWorker> topThree;
 		topThree = this.adminRepository.topTreeHandyWorkerOrderByComplaints();
@@ -170,116 +141,38 @@ public class AdministratorService {
 		return result;
 	}
 
-	//Ban Actors
-	public void unbanAdmin(final Administrator admin) {
-		Assert.isTrue(admin.isBan() == true);
-		Administrator administrator;
-		administrator = this.adminRepository.findAdministratorByUserAccountId(LoginService.getPrincipal().getId());
-		Assert.notNull(administrator);
-		Assert.isTrue(Utiles.findAuthority(admin.getAccount().getAuthorities(), Authority.ADMIN));
-		admin.setBan(false);
-		this.adminRepository.save(admin);
-	}
-	public void unbanCustomer(final Administrator admin, final Customer cus) {
-		Assert.isTrue(cus.isBan());
-		Administrator administrator;
-		administrator = this.adminRepository.findAdministratorByUserAccountId(LoginService.getPrincipal().getId());
-		Assert.notNull(administrator);
-		Assert.isTrue(Utiles.findAuthority(cus.getAccount().getAuthorities(), Authority.CUSTOMER));
-		cus.setBan(false);
-		this.customerService.save(cus);
-	}
-	public void unbanHandyWorker(final Administrator admin, final HandyWorker hw) {
-		Assert.isTrue(hw.isBan() == true);
-		Administrator administrator;
-		administrator = this.adminRepository.findAdministratorByUserAccountId(LoginService.getPrincipal().getId());
-		Assert.notNull(administrator);
-		Assert.isTrue(Utiles.findAuthority(hw.getAccount().getAuthorities(), Authority.HANDY_WORKER));
-		hw.setBan(false);
-		this.hwService.save(hw);
-	}
-	public void unbanSponsor(final Administrator admin, final Sponsor sponsor) {
-		Assert.isTrue(sponsor.isBan() == true);
-		Administrator administrator;
-		administrator = this.adminRepository.findAdministratorByUserAccountId(LoginService.getPrincipal().getId());
-		Assert.notNull(administrator);
-		Assert.isTrue(Utiles.findAuthority(sponsor.getAccount().getAuthorities(), Authority.SPONSOR));
-		sponsor.setBan(false);
-		this.sponsorService.addSponsor(sponsor);
-	}
-
-	public void unbanReferee(final Administrator admin, final Referee referee) {
-		Assert.isTrue(referee.isBan() == true);
-		Administrator administrator;
-		administrator = this.adminRepository.findAdministratorByUserAccountId(LoginService.getPrincipal().getId());
-		Assert.notNull(administrator);
-		Assert.isTrue(Utiles.findAuthority(referee.getAccount().getAuthorities(), Authority.REFEREE));
-		referee.setBan(false);
-		this.refereeService.save(referee);
-	}
-	//Unban Actors
-
-	public void banAdmin(final Administrator admin) {
-		Assert.isTrue(admin.isBan() == false);
-		Administrator administrator;
-		administrator = this.adminRepository.findAdministratorByUserAccountId(LoginService.getPrincipal().getId());
-		Assert.notNull(administrator);
-		Assert.isTrue(Utiles.findAuthority(admin.getAccount().getAuthorities(), Authority.ADMIN));
-		admin.setBan(true);
-		this.adminRepository.save(admin);
-	}
-	public void banCustomer(final Administrator admin, final Customer cus) {
-		Assert.isTrue(cus.isBan() == false);
-		Administrator administrator;
-		administrator = this.adminRepository.findAdministratorByUserAccountId(LoginService.getPrincipal().getId());
-		Assert.notNull(administrator);
-		Assert.isTrue(Utiles.findAuthority(cus.getAccount().getAuthorities(), Authority.CUSTOMER));
-		cus.setBan(true);
-		this.customerService.save(cus);
-	}
-	public void banHandyWorker(final Administrator admin, final HandyWorker hw) {
-		Assert.isTrue(hw.isBan() == false);
-		Administrator administrator;
-		administrator = this.adminRepository.findAdministratorByUserAccountId(LoginService.getPrincipal().getId());
-		Assert.notNull(administrator);
-		Assert.isTrue(Utiles.findAuthority(hw.getAccount().getAuthorities(), Authority.HANDY_WORKER));
-		hw.setBan(true);
-		this.hwService.save(hw);
-	}
-	public void banSponsor(final Administrator admin, final Sponsor sponsor) {
-		Assert.isTrue(sponsor.isBan() == false);
-		Administrator administrator;
-		administrator = this.adminRepository.findAdministratorByUserAccountId(LoginService.getPrincipal().getId());
-		Assert.notNull(administrator);
-		Assert.isTrue(Utiles.findAuthority(sponsor.getAccount().getAuthorities(), Authority.SPONSOR));
-		sponsor.setBan(true);
-		this.sponsorService.addSponsor(sponsor);
-	}
-	public void banReferee(final Administrator admin, final Referee referee) {
-		Assert.isTrue(referee.isBan() == false);
-		Administrator administrator;
-		administrator = this.adminRepository.findAdministratorByUserAccountId(LoginService.getPrincipal().getId());
-		Assert.notNull(administrator);
-		Assert.isTrue(Utiles.findAuthority(referee.getAccount().getAuthorities(), Authority.REFEREE));
-		referee.setBan(true);
-		this.refereeService.save(referee);
-	}
-	public Collection<Box> manageNotSystemBoxes(final Administrator admin) {
-		Assert.notNull(this.adminRepository.findAdministratorByUserAccountId(LoginService.getPrincipal().getId()));
+	public Collection<Box> manageNotSystemBoxes() {
+		Assert.notNull(this.adminRepository.findAdministratorById(LoginService.getPrincipal().getId()));
 		Collection<Box> boxes;
-		boxes = this.boxService.findAllNonBoxes(admin.getId());
+		boxes = this.boxService.findAllNotSystemBoxes(LoginService.getPrincipal().getId());
 		return boxes;
 	}
 	public void sendMessage(final Actor sender, final Collection<Actor> recipient, final Message m) {
-		Assert.isTrue(Utiles.findAuthority(LoginService.getPrincipal().getAuthorities(), Authority.ADMIN));
-		Assert.isTrue(Utiles.findAuthority(sender.getAccount().getAuthorities(), Authority.ADMIN));
-		//		Assert.isTrue(Utiles.findAuthority(recipient.getAccount().getAuthorities(), Authority.ADMIN));
+		Assert.notNull(LoginService.getPrincipal().getAuthorities());
+		Assert.notEmpty(recipient);
 		Assert.notNull(m);
+		this.actorService.sendIndividualMessage(sender, recipient, m);
 	}
 
-	public Collection<Actor> getSuspiciousActors(final Administrator admin) {
+	public void banActor(final Actor toBan) {
 		Assert.isTrue(Utiles.findAuthority(LoginService.getPrincipal().getAuthorities(), Authority.ADMIN));
-		return this.adminRepository.getSuspiciousActors();
+		Assert.notNull(toBan);
+		this.actorService.banActor(toBan);
+	}
+
+	public void unbanActor(final Actor toUnban) {
+		Assert.isTrue(Utiles.findAuthority(LoginService.getPrincipal().getAuthorities(), Authority.ADMIN));
+		Assert.notNull(toUnban);
+		this.actorService.unbanActor(toUnban);
+	}
+
+	public Collection<Actor> getSuspiciousActors() {
+		Collection<Actor> actors;
+		actors = new ArrayList<>();
+		Assert.isTrue(Utiles.findAuthority(LoginService.getPrincipal().getAuthorities(), Authority.ADMIN));
+		actors = this.adminRepository.getSuspiciousActors();
+		Assert.notNull(actors);
+		return actors;
 	}
 
 }

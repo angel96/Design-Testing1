@@ -19,17 +19,24 @@ import org.hibernate.search.query.dsl.QueryBuilder;
 import security.Authority;
 import security.UserAccount;
 import domain.Actor;
+import domain.Administrator;
 import domain.Application;
 import domain.Box;
 import domain.Category;
 import domain.Complaint;
 import domain.CreditCard;
+import domain.Curriculum;
+import domain.Customer;
 import domain.Endorsable;
 import domain.Endorsement;
 import domain.FixUpTask;
+import domain.HandyWorker;
 import domain.Message;
+import domain.Note;
 import domain.Phase;
 import domain.Profile;
+import domain.Referee;
+import domain.Report;
 import domain.Section;
 import domain.SpamWord;
 import domain.Sponsor;
@@ -95,7 +102,7 @@ public class Utiles {
 
 		return result;
 	}
-	public static void broadcastMessage(final Collection<? extends Actor> ls, final Message m) {
+	public static void broadcastMessage(final Collection<? extends Actor> ls, final Message m) {//TODO cambiar y mejorar
 		Collection<Message> existingMessages;
 		existingMessages = new ArrayList<>();
 		Collection<Box> boxes;
@@ -317,6 +324,87 @@ public class Utiles {
 		result.setHolderName("");
 
 		return result;
+	}
+
+	public static Administrator createAdministrator() {
+		Administrator administrator;
+		administrator = new Administrator();
+		administrator.setAccount(Utiles.createUserAccount("ADMIN"));
+		administrator.setProfiles(new ArrayList<Profile>());
+		administrator.setAdress("");
+		administrator.setBan(false);
+		administrator.setBoxes(new ArrayList<Box>());
+		administrator.setEmail("");
+		administrator.setMiddleName("");
+		administrator.setName("");
+		administrator.setPhone("");
+		administrator.setPhoto("");
+		administrator.setSurname("");
+		return administrator;
+	}
+
+	public static HandyWorker createHandyWorker() {
+		HandyWorker handyWorker;
+		handyWorker = new HandyWorker();
+		handyWorker.setAccount(Utiles.createUserAccount("HANDYWORKER"));
+		handyWorker.setApplication(new ArrayList<Application>());
+		handyWorker.setNotes(new ArrayList<Note>());
+		handyWorker.setPhase(new ArrayList<Phase>());
+		handyWorker.setProfiles(new ArrayList<Profile>());
+		handyWorker.setTutoriales(new ArrayList<Tutorial>());
+		handyWorker.setAdress("");
+		handyWorker.setBan(false);
+		handyWorker.setCurriculum(new Curriculum());
+		handyWorker.setEmail("");
+		handyWorker.setMiddleName("");
+		handyWorker.setName("");
+		handyWorker.setPhone("");
+		handyWorker.setPhoto("");
+		handyWorker.setScore(0.0);
+		handyWorker.setSurname("");
+		return handyWorker;
+	}
+
+	public static Referee createReferee() {
+		Referee r;
+		r = new Referee();
+		r.setAccount(Utiles.createUserAccount("REFEREE"));
+		r.setAdress("");
+		r.setBan(false);
+		r.setBoxes(new ArrayList<Box>());
+		r.setEmail("");
+		r.setMiddleName("");
+		r.setName("");
+		r.setNotes(new ArrayList<Note>());
+		r.setPhone("");
+		r.setPhoto("");
+		r.setProfiles(new ArrayList<Profile>());
+		r.setReports(new ArrayList<Report>());
+		r.setSurname("");
+		return r;
+	}
+
+	public static Customer createCustomer() {
+		Customer customer;
+		customer = new Customer();
+		customer.setAccount(Utiles.createUserAccount("CUSTOMER"));
+		customer.setComplaint(new ArrayList<Complaint>());
+		customer.setFixUpTask(new ArrayList<FixUpTask>());
+		customer.setNotes(new ArrayList<Note>());
+		customer.setProfiles(new ArrayList<Profile>());
+		customer.setAdress("");
+		customer.setBan(false);
+		customer.setEmail("");
+		customer.setId(0);
+		customer.setMiddleName("");
+		customer.setName("");
+		customer.setPhone("");
+		customer.setPhoto("");
+		customer.setScore(0.0);
+		customer.setSurname("");
+		customer.setVersion(0);
+		return customer;
+
 	}
 	public static Boolean findAuthority(final Collection<Authority> comp, final String a) {
 		Boolean res = false;

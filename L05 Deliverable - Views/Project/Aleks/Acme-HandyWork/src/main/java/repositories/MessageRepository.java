@@ -15,6 +15,7 @@ public interface MessageRepository extends JpaRepository<Message, Integer> {
 	@Query("select m from Message m where m.sender.account.id = ?1")
 	Collection<Message> findAllMessagesSendedByAnActor(int id);
 
-	@Query("select m from Message m join m.receiver r where r.account.id=?1")
-	Collection<Message> findAllMessagesReceivedByAnActor(int id);
+	//	@Query("select m from Message m join m.receiver r where r.account.id=?1") //TODO arreglar esto -> me falta el puto mysql :)))
+	//	Collection<Message> findAllMessagesReceivedByAnActor(int id);
+
 }

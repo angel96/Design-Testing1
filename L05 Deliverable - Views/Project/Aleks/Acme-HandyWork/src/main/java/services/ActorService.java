@@ -8,8 +8,11 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 
 import repositories.ActorRepository;
+import security.Authority;
+import security.LoginService;
 import utilities.Utiles;
 import domain.Actor;
 import domain.Box;
@@ -30,10 +33,9 @@ public class ActorService {
 	private final Collection<SpamWord>	spamwords	= this.spam.findAll();
 
 
-	//LOS BAN Y UNBAN
+	//TODO el broadcast
 
 	public Message sendIndividualMessage(final Actor sender, final Collection<Actor> recipients, final Message m) {
-		//ASSERTS VARIOS
 		Collection<Box> box;
 		box = new ArrayList<>();
 		Box entry;
@@ -68,5 +70,25 @@ public class ActorService {
 		me = this.messages.save(m);
 		this.actorRepository.save(sender);
 		return me;
+	}
+
+	public void banActor(final Actor a) {
+		Assert.isTrue(a.isBan() == false);
+		Actor ac;
+		ac = this.actorRepository.findActorByUserAccountId(LoginService.getPrincipal().getId());
+		Assert.notNull(ac);
+		Assert.isTrue(Utiles.findAuthority(ac.getAccount().getAuthorities(), Authority.ADMIN));
+		a.setBan(true);
+		this.actorRepository.save(a);
+	}
+
+	public void unbanActor(final Actor a) {
+		Assert.isTrue(a.isBan() == true);
+		Actor ac;
+		ac = this.actorRepository.findActorByUserAccountId(LoginService.getPrincipal().getId());
+		Assert.notNull(ac);
+		Assert.isTrue(Utiles.findAuthority(ac.getAccount().getAuthorities(), Authority.ADMIN));
+		a.setBan(false);
+		this.actorRepository.save(a);
 	}
 }
