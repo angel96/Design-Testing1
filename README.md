@@ -7,6 +7,7 @@
   * D03 - 15 de Noviembre
   * D04 - 28 de Noviembre
   * D05 - 13 de Diciembre
+  * D06 - 10 de Enero
   
   ## Tecnologías usadas
   
@@ -36,6 +37,7 @@
   * D03 - November 15st
   * D04 - November 28st
   * D05 - December 13st
+  * D06 - January 10th
   ## Technologies used
   
   * Spring MVC 4.0.0
