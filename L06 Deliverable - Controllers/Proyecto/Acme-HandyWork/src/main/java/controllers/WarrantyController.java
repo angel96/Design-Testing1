@@ -44,7 +44,7 @@ public class WarrantyController extends AbstractController {
 	public ModelAndView create() {
 		ModelAndView result;
 		result = new ModelAndView("warranty/edit");
-		result.addObject("warrantyObject", Utiles.createWarranty());
+		result.addObject("warranty", Utiles.createWarranty());
 		result.addObject("requestURI", "warranty/administrator/create.do");
 
 		return result;
@@ -55,7 +55,7 @@ public class WarrantyController extends AbstractController {
 		ModelAndView model;
 
 		if (binding.hasErrors())
-			model = this.createEditModelAndView(warranty, "El formulario tiene errores");
+			model = this.createEditModelAndView(warranty);
 		else
 			try {
 				this.serviceWarranty.addWarranty(warranty);
@@ -103,7 +103,7 @@ public class WarrantyController extends AbstractController {
 	protected ModelAndView createEditModelAndView(final Warranty warranty, final String message) {
 		ModelAndView result;
 		result = new ModelAndView("warranty/edit");
-		result.addObject("warrantyObject", warranty);
+		result.addObject("warranty", warranty);
 		result.addObject("message", message);
 		return result;
 	}

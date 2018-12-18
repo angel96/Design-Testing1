@@ -5,12 +5,16 @@ import java.util.Collection;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.NotBlank;
@@ -113,7 +117,13 @@ public abstract class Actor extends DomainEntity {
 	public void setBan(final boolean ban) {
 		this.ban = ban;
 	}
-	@OneToOne
+
+	@NotNull
+	@Valid
+	@OneToOne(cascade = {
+		CascadeType.ALL
+	}, optional = false)
+	@JoinColumn(name = "user_account_id")
 	public UserAccount getAccount() {
 		return this.account;
 	}

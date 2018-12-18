@@ -14,7 +14,6 @@ import repositories.AdministratorRepository;
 import security.Authority;
 import security.LoginService;
 import security.UserAccount;
-import security.UserAccountService;
 import utilities.Utiles;
 import domain.Actor;
 import domain.Administrator;
@@ -28,9 +27,6 @@ import domain.Sponsor;
 @Service
 @Transactional
 public class AdministratorService {
-
-	@Autowired
-	private UserAccountService		serviceUserAccount;
 
 	@Autowired
 	private AdministratorRepository	adminRepository;
@@ -61,27 +57,30 @@ public class AdministratorService {
 		Assert.notNull(saved);
 		return saved;
 	}
-
-	public Administrator save(final Administrator admin) {
-		Administrator modify;
-
-		UserAccount auth, commit;
-		auth = admin.getAccount();
-		auth = this.serviceUserAccount.hashPassword(auth);
-		commit = this.serviceUserAccount.submit(auth.getUsername(), auth.getPassword(), "ADMIN");
-		admin.setAccount(commit);
-		modify = this.adminRepository.save(admin);
-		return modify;
-	}
-
-	public Administrator update(final Administrator admin) {
-		Assert.notNull(admin);
+	public Administrator findAdmin(final int administrator) {
 		Assert.isTrue(Utiles.findAuthority(LoginService.getPrincipal().getAuthorities(), Authority.ADMIN));
-		Assert.isTrue(admin.getAccount().getId() == this.adminRepository.findAdministratorByUserAccountId(admin.getAccount().getId()).getAccount().getId());
 		Administrator saved;
-		saved = this.save(admin);
+		saved = this.adminRepository.findOne(administrator);
 		Assert.notNull(saved);
 		return saved;
+	}
+
+	public Administrator save(final Administrator admin) {
+
+		if (admin.getId() != 0) {
+			final UserAccount account = this.findAdmin(admin.getId()).getAccount();
+			account.setUsername(admin.getAccount().getUsername());
+			account.setPassword(Utiles.hashPassword(admin.getAccount().getPassword()));
+			account.setAuthorities(admin.getAccount().getAuthorities());
+			admin.setAccount(account);
+		} else
+			admin.getAccount().setPassword(Utiles.hashPassword(admin.getAccount().getPassword()));
+
+		Administrator modify;
+
+		modify = this.adminRepository.saveAndFlush(admin);
+
+		return modify;
 	}
 
 	public void broadcastMessage(final Administrator admin, final Message m) {

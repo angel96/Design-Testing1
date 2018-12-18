@@ -17,11 +17,13 @@
 	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<form:form action="administrator/edit.do"
-	modelAttribute="administratorObject">
-
+<form:form action="administrator/edit.do" modelAttribute="administrator">
 	<form:hidden path="id" />
 	<form:hidden path="version" />
+	<!--<form:hidden path="profiles" />
+	<form:hidden path="boxes" />-->
+	<form:hidden path="account.id" />
+	<form:hidden path="account.authorities" />
 
 	<form:label path="name">
 		<spring:message code="admin.name" />
@@ -86,11 +88,12 @@
 	<form:errors cssClass="error" path="account.password" />
 	<br />
 	<br />
-	<jstl:forEach items="${errors}" var="error">
-		<jstl:out value="${error }" />
-	</jstl:forEach>
-	<br />
-	<input type="submit" name="save"
-		value="<spring:message code="admin.save"/>">
-</form:form>
 
+	<jstl:forEach items="${errors}" var="error">
+		<jstl:out value="${error}" />
+	</jstl:forEach>
+	<jstl:out value="${oops}" />
+	<jstl:out value="${message}" />
+	<input type="submit" name="save"
+		value="<spring:message code="admin.save"/>" />
+</form:form>

@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import security.LoginService;
 import services.AdministratorService;
 import utilities.Utiles;
 import domain.Administrator;
@@ -48,32 +49,49 @@ public class AdministratorController extends AbstractController {
 	}
 
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
-	public ModelAndView submit(@Valid final Administrator administratorObject, final BindingResult binding) {
+	public ModelAndView submit(@Valid final Administrator administrator, final BindingResult binding) {
 		ModelAndView result;
 
 		if (binding.hasErrors()) {
-			result = this.createEditModelAndView(administratorObject);
+			result = this.createEditModelAndView(administrator);
 			result.addObject("errors", binding.getAllErrors());
 		} else
 			try {
-				this.serviceAdministrator.save(administratorObject);
+
+				this.serviceAdministrator.save(administrator);
 				result = new ModelAndView("redirect:../security/login.do");
 			} catch (final Throwable oops) {
-				result = this.createEditModelAndView(administratorObject, "El formulario no se ha procesado correctamente");
-
+				result = this.createEditModelAndView(administrator, "administrator.commit.error");
+				result.addObject("oops", oops.getMessage());
+				result.addObject("errors", binding.getAllErrors());
 			}
 
 		return result;
 	}
-	protected ModelAndView createEditModelAndView(final Administrator administratorObject) {
+	@RequestMapping(value = "/personal", method = RequestMethod.GET)
+	public ModelAndView editPersonalData() {
+		ModelAndView result;
+
+		//This method is used for personal data edition. Administrators can not change data from other administrators.
+
+		Administrator find;
+
+		find = this.serviceAdministrator.findOne(LoginService.getPrincipal().getId());
+
+		result = this.createEditModelAndView(find);
+
+		return result;
+	}
+
+	protected ModelAndView createEditModelAndView(final Administrator administrator) {
 		ModelAndView model;
-		model = this.createEditModelAndView(administratorObject, null);
+		model = this.createEditModelAndView(administrator, null);
 		return model;
 	}
-	protected ModelAndView createEditModelAndView(final Administrator administratorObject, final String message) {
+	protected ModelAndView createEditModelAndView(final Administrator administrator, final String message) {
 		ModelAndView result;
 		result = new ModelAndView("administrator/edit");
-		result.addObject("administratorObject", administratorObject);
+		result.addObject("administrator", administrator);
 		result.addObject("message", message);
 		return result;
 

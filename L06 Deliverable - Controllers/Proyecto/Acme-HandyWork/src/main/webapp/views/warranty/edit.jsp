@@ -19,7 +19,7 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
 <form:form action="warranty/administrator/edit.do"
-	modelAttribute="warrantyObject">
+	modelAttribute="warranty">
 
 	<form:hidden path="id" />
 	<form:hidden path="version" />

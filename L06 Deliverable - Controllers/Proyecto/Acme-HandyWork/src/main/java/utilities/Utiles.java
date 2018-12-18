@@ -14,6 +14,7 @@ import javax.persistence.EntityManagerFactory;
 import org.hibernate.jpa.HibernatePersistenceProvider;
 import org.hibernate.search.jpa.FullTextEntityManager;
 import org.hibernate.search.query.dsl.QueryBuilder;
+import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.util.Assert;
 
 import security.Authority;
@@ -43,6 +44,14 @@ import domain.Word;
 
 public class Utiles {
 
+	public static String hashPassword(final String old) {
+		Md5PasswordEncoder encoder;
+		encoder = new Md5PasswordEncoder();
+		String passEncoded;
+		passEncoded = encoder.encodePassword(old, null);
+
+		return passEncoded;
+	}
 	public static String generateTicker() {
 		SimpleDateFormat formato;
 		formato = new SimpleDateFormat("yyyyMMdd");
