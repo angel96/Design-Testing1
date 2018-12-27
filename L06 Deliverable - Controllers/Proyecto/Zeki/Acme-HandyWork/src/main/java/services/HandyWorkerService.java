@@ -66,8 +66,7 @@ public class HandyWorkerService {
 	}
 
 	public HandyWorker save(final HandyWorker hw) {
-		//		Assert.notNull(hw);
-		//		return this.repositoryHandyWorker.save(hw);
+
 		System.out.println(hw);
 		if (hw.getId() != 0) {
 			final UserAccount account = this.findHandyWorker(hw.getId()).getAccount();
@@ -76,18 +75,16 @@ public class HandyWorkerService {
 			account.setAuthorities(hw.getAccount().getAuthorities());
 			hw.setAccount(account);
 		} else
-
 			hw.getAccount().setPassword(Utiles.hashPassword(hw.getAccount().getPassword()));
 
 		Finder fin;
 		fin = this.finderService.save(Utiles.createFinder());
 		System.out.println(fin);
-
 		hw.setFinder(fin);
-		//		hw.setMake(hw.getName() + hw.getMiddleName());
+
 		HandyWorker modify;
 		modify = this.repositoryHandyWorker.saveAndFlush(hw);
-		System.out.println(modify);
+
 		return modify;
 	}
 
