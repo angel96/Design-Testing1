@@ -1,0 +1,58 @@
+
+package services;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Assert;
+
+import utilities.AbstractTest;
+import utilities.Utiles;
+import domain.Sponsor;
+
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = {
+	"classpath:spring/datasource.xml", "classpath:spring/config/packages.xml"
+})
+@Transactional
+public class TestSponsorService extends AbstractTest {
+
+	@Autowired
+	private SponsorService	serviceSponsor;
+
+
+	@Test
+	public void testGetAllSponsors() {
+		Assert.isTrue(this.serviceSponsor.findAll().size() >= 1);
+	}
+	@Test
+	public void testCreateSponsor() {
+		Sponsor s, saved;
+		s = Utiles.createSponsor();
+		saved = this.serviceSponsor.addSponsor(s);
+		Assert.notNull(saved);
+	}
+	@Test
+	public void testUpdateSponsor() {
+		super.authenticate("sponsor1");
+		Sponsor s, saved;
+		s = this.serviceSponsor.findById(5028);
+		s.setAdress("Addres Street");
+		saved = this.serviceSponsor.save(s);
+		System.out.println(saved.getAdress());
+		Assert.notNull(saved);
+		super.authenticate(null);
+	}
+	@Test
+	public void testDeleteSponsor() {
+		super.authenticate("sponsor1");
+		Sponsor s;
+		s = this.serviceSponsor.findById(5028);
+		this.serviceSponsor.deleteSponsor(s.getId());
+		Assert.isNull(this.serviceSponsor.findById(5028));
+		super.unauthenticate();
+	}
+}
