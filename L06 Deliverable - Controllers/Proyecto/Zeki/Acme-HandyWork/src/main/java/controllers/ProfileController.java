@@ -63,7 +63,7 @@ public class ProfileController extends AbstractController {
 			try {
 				System.out.println(profile);
 				this.serviceProfile.save(profile);
-				result = new ModelAndView("redirect:../security/login.do");
+				result = new ModelAndView("redirect:../welcome/index.do");
 			} catch (final Throwable oops) {
 				result = this.createEditModelAndView(profile, "user.commit.error");
 				result.addObject("oops", oops.getMessage());

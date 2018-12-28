@@ -216,7 +216,7 @@ public class Utiles {
 		handyWorker.setPhoto("");
 		handyWorker.setSurname("");
 		handyWorker.setFinder(new Finder());
-		//		handyWorker.setMake(handyWorker.getName() + handyWorker.getMiddleName());
+		handyWorker.setMake("");
 		handyWorker.setProfiles(new ArrayList<Profile>());
 		handyWorker.setBoxes(new ArrayList<Box>());
 		handyWorker.setScore(5.0);

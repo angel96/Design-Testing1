@@ -182,7 +182,7 @@
 		</security:authorize>
 
 		<security:authorize access="isAnonymous()">
- 			<li><a class="fNiv" ><spring:message
+<%--  			<li><a class="fNiv" ><spring:message
 						code="master.page.login" /></a>
 						<ul>
 					<li class="arrow"></li>
@@ -191,7 +191,12 @@
 					<li><a href="handyWorker/createHandy.do"><spring:message
 								code="master.page.createHandy" /></a></li>
 				</ul>
-						</li>
+						</li> --%>
+						
+		<li><a href="security/login.do"><spring:message
+								code="master.page.login" /></a></li>
+					<li><a href="handyWorker/createHandy.do"><spring:message
+								code="master.page.createHandy" /></a></li>
 <%--  			<li><a class="fNiv" ><spring:message
 						code="master.page.createHandy" /></a></li>   --%>
 <%-- 						<li><a class="fNiv"><spring:message

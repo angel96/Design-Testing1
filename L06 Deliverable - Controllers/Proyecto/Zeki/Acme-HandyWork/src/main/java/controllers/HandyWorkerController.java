@@ -35,7 +35,6 @@ public class HandyWorkerController extends AbstractController {
 
 		model = this.createEditModelAndView(Utiles.createHandyWorker());
 		System.out.println(Utiles.createHandyWorker());
-		System.out.println("el modelo es :" + model);
 
 		return model;
 
@@ -46,15 +45,12 @@ public class HandyWorkerController extends AbstractController {
 
 		if (binding.hasErrors()) {
 			result = this.createEditModelAndView(handyWorker);
-			result.addObject("errores", binding.getAllErrors());
-			result.addObject("errores", binding);
-			System.out.println("mierda");
-			System.out.println(binding);
-			System.out.println(binding.getAllErrors());
+			result.addObject("errors", binding.getAllErrors());
 		} else
 			try {
 				System.out.println(handyWorker);
 				this.serviceHandyWorker.save(handyWorker);
+
 				result = new ModelAndView("redirect:../security/login.do");
 			} catch (final Throwable oops) {
 				result = this.createEditModelAndView(handyWorker, "handy.commit.error");
@@ -66,7 +62,7 @@ public class HandyWorkerController extends AbstractController {
 	}
 	// Create edit model and view
 	protected ModelAndView createEditModelAndView(final HandyWorker handyWorker) {
-		final ModelAndView model;
+		ModelAndView model;
 		model = this.createEditModelAndView(handyWorker, null);
 		return model;
 	}
