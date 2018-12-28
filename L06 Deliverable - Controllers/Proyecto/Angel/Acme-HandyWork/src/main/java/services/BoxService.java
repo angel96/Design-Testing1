@@ -7,6 +7,7 @@ import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.Assert;
 
 import repositories.BoxRepository;
 import security.LoginService;
@@ -21,12 +22,18 @@ public class BoxService {
 	private BoxRepository	boxRepository;
 
 
+	public Collection<Actor> findAllActorsSystem() {
+		return this.boxRepository.findAllActorsSystem(LoginService.getPrincipal().getId());
+	}
+
 	public Actor findActorByUserAccount(final int id) {
 		return this.boxRepository.getActorByUserAccount(id);
 	}
 
 	public Box findOne(final int id) {
-		return this.boxRepository.findOne(id);
+		final Box box = this.boxRepository.findOne(id);
+		Assert.isTrue(this.findActorByUserAccount(LoginService.getPrincipal().getId()).getBoxes().contains(box), "");
+		return box;
 	}
 
 	public Box save(final Box box) {

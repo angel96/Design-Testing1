@@ -15,6 +15,7 @@ import javax.persistence.TemporalType;
 
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.URL;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Access(AccessType.PROPERTY)
@@ -38,6 +39,7 @@ public class EducationRecord extends DomainEntity {
 		this.diplomaTitle = diplomaTitle;
 	}
 	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "yyyy/MM/dd")
 	public Date getStartStudies() {
 		return this.startStudies;
 	}
@@ -46,6 +48,7 @@ public class EducationRecord extends DomainEntity {
 		this.startStudies = startStudies;
 	}
 	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "yyyy/MM/dd")
 	public Date getEndStudies() {
 		return this.endStudies;
 	}

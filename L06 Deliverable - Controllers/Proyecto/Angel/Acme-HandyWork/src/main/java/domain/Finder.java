@@ -14,6 +14,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @Access(AccessType.PROPERTY)
@@ -38,6 +40,7 @@ public class Finder extends DomainEntity {
 		this.fixUpTask = fixUpTask;
 	}
 	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "yyyy/MM/dd")
 	public Date getStartDate() {
 		return this.startDate;
 	}
@@ -46,6 +49,7 @@ public class Finder extends DomainEntity {
 		this.startDate = startDate;
 	}
 	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "yyyy/MM/dd")
 	public Date getEndDate() {
 		return this.endDate;
 	}
@@ -95,6 +99,7 @@ public class Finder extends DomainEntity {
 		this.price2 = price2;
 	}
 	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "yyyy/MM/dd")
 	public Date getCreationDate() {
 		return this.creationDate;
 	}

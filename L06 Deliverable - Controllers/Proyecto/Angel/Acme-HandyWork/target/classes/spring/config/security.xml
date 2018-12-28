@@ -42,7 +42,18 @@
 
 		<security:intercept-url pattern="/welcome/index.do"
 			access="permitAll" />
-
+		<security:intercept-url access="permitAll"
+			pattern="/handyWorker/createHandy.do" />
+		<security:intercept-url access="permitAll"
+			pattern="/handyWorker/edit.do" />
+		<security:intercept-url access="permitAll"
+			pattern="/profile/create.do" />
+		<security:intercept-url access="permitAll"
+			pattern="/profile/edit.do" />
+		<security:intercept-url access="permitAll"
+			pattern="/customer/createCustomer.do" />
+		<security:intercept-url access="permitAll"
+			pattern="/customer/edit.do" />
 		<security:intercept-url pattern="/box/**"
 			access="isAuthenticated()" />
 
@@ -52,7 +63,13 @@
 			access="hasRole('ADMIN')" />
 		<security:intercept-url pattern="/category/administrator/**"
 			access="hasRole('ADMIN')" />
-		<security:intercept-url pattern="/customer/action-1.do"
+		<security:intercept-url pattern="/customisation/administrator/**"
+			access="hasRole('ADMIN')" />
+			<security:intercept-url pattern="/fixuptask/customer/**"
+			access="hasRole('CUSTOMER')" />
+			<security:intercept-url pattern="/fixuptask/handyworker/**"
+			access="hasRole('HANDY_WORKER')" />
+		<security:intercept-url pattern="/note/customer/**"
 			access="hasRole('CUSTOMER')" />
 		<security:intercept-url pattern="/customer/action-2.do"
 			access="hasRole('CUSTOMER')" />

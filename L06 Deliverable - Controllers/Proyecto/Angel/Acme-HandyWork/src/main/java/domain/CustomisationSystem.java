@@ -26,6 +26,8 @@ public class CustomisationSystem extends DomainEntity {
 	private Collection<String>	badWords;
 	private Integer				hoursFinder;
 	private Integer				resultFinder;
+	private Double				vat;
+	private Integer				phonePrefix;
 
 
 	@NotBlank
@@ -91,5 +93,21 @@ public class CustomisationSystem extends DomainEntity {
 
 	public void setResultFinder(final Integer resultFinder) {
 		this.resultFinder = resultFinder;
+	}
+
+	public Double getVat() {
+		return this.vat;
+	}
+
+	public void setVat(final Double vat) {
+		this.vat = vat;
+	}
+
+	public Integer getPhonePrefix() {
+		return this.phonePrefix;
+	}
+
+	public void setPhonePrefix(final Integer phonePrefix) {
+		this.phonePrefix = phonePrefix;
 	}
 }

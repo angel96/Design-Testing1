@@ -5,10 +5,11 @@ import java.util.Collection;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
-import javax.persistence.ElementCollection;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.OneToMany;
 
 import org.hibernate.validator.constraints.NotBlank;
 
@@ -17,8 +18,9 @@ import org.hibernate.validator.constraints.NotBlank;
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Category extends DomainEntity {
 
-	private String				name;
-	private Collection<String>	categories;
+	private String					name;
+
+	private Collection<Category>	categories;
 
 
 	@NotBlank
@@ -30,12 +32,12 @@ public class Category extends DomainEntity {
 		this.name = name;
 	}
 
-	@ElementCollection
-	public Collection<String> getCategories() {
+	@OneToMany(cascade = CascadeType.ALL)
+	public Collection<Category> getCategories() {
 		return this.categories;
 	}
 
-	public void setCategories(final Collection<String> categories) {
+	public void setCategories(final Collection<Category> categories) {
 		this.categories = categories;
 	}
 

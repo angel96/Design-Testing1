@@ -1,7 +1,6 @@
 
 package services;
 
-import java.util.ArrayList;
 import java.util.Collection;
 
 import org.junit.Test;
@@ -35,7 +34,7 @@ public class TestCategoryService extends AbstractTest {
 		Collection<Category> colCat;
 		c = Utiles.createCategory();
 		c.setName("Reparación movil");
-		c.setCategories(new ArrayList<String>());
+		//c.setCategories(new ArrayList<String>());
 
 		//saved = this.serviceCategory.addCategory(c);
 

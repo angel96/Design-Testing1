@@ -61,7 +61,7 @@ public class TestReportService extends AbstractTest {
 		r.setFinalMode(true);
 		r.setMoment(new GregorianCalendar(2018, 11, 29, 16, 0, 0).getTime());
 		r.setNotes(new ArrayList<Note>());
-		this.reportService.create(c);
+		//this.reportService.create(c);
 		super.unauthenticate();
 	}
 
@@ -73,7 +73,7 @@ public class TestReportService extends AbstractTest {
 		r = this.reportService.findOne(5119);
 		r.setDescription("abcd");
 		Report saved;
-		saved = this.reportService.update(r);
+		saved = this.reportService.save(r);
 		Assert.notNull(saved);
 		super.unauthenticate();
 	}

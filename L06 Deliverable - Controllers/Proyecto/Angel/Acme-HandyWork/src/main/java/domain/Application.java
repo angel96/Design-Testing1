@@ -16,22 +16,24 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.Digits;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Access(AccessType.PROPERTY)
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Application extends DomainEntity {
 
-	private Date					moment;
-	private double					offeredPrice;
-	private Collection<String>		comments;
-	private String					status;
-	private FixUpTask				fixUpTask;
-	private Date					momentElapsed;
-	private CreditCard				creditCard;
+	private Date				moment;
+	private double				offeredPrice;
+	private Collection<String>	comments;
+	private String				status;
+	private FixUpTask			fixUpTask;
+	private Date				momentElapsed;
+	private CreditCard			creditCard;
 
 
 	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "yyyy/MM/dd")
 	public Date getMoment() {
 		return this.moment;
 	}
@@ -47,8 +49,7 @@ public class Application extends DomainEntity {
 	public void setOfferedPrice(final double offeredPrice) {
 		this.offeredPrice = offeredPrice;
 	}
-	
-	
+
 	@NotBlank
 	public String getStatus() {
 		return this.status;
@@ -68,6 +69,7 @@ public class Application extends DomainEntity {
 	}
 
 	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "yyyy/MM/dd")
 	public Date getMomentElapsed() {
 		return this.momentElapsed;
 	}

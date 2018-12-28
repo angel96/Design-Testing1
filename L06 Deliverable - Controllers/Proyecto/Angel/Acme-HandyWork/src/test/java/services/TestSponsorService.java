@@ -41,7 +41,7 @@ public class TestSponsorService extends AbstractTest {
 		Sponsor s, saved;
 		s = this.serviceSponsor.findById(5028);
 		s.setAdress("Addres Street");
-		saved = this.serviceSponsor.updateSponsor(s);
+		saved = this.serviceSponsor.addSponsor(s);
 		System.out.println(saved.getAdress());
 		Assert.notNull(saved);
 		super.authenticate(null);

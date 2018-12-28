@@ -28,43 +28,26 @@ public class WarrantyService {
 	public Collection<Warranty> findAll() {
 		return this.repositoryWarranty.findAll();
 	}
-
+	public Collection<Warranty> findAllFinalWarranties() {
+		return this.repositoryWarranty.findAllFinalWarranties();
+	}
 	public Warranty findOne(final int id) {
 		return this.repositoryWarranty.findOne(id);
 	}
 
-	public Warranty addWarranty(final Warranty w) {
+	public Warranty save(final Warranty w) {
 		UserAccount user;
 		user = LoginService.getPrincipal();
 		Administrator admin;
 		admin = this.serviceAdministrator.findOne(user.getId());
 		Assert.notNull(admin);
-		Warranty result;
-		Assert.notNull(w);
-		result = this.repositoryWarranty.save(w);
+		Warranty result = null;
+		if (w.isDraftMode()) {
+			Assert.notNull(w);
+			result = this.repositoryWarranty.save(w);
+		}
 		Assert.notNull(result);
 		return result;
-	}
-
-	//Update or Delete can only be done when Warranty is on draft mode.
-
-	public Warranty updateWarranty(final Warranty newer) {
-
-		Warranty saved;
-
-		UserAccount user;
-		user = LoginService.getPrincipal();
-		Administrator admin;
-		admin = this.serviceAdministrator.findOne(user.getId());
-
-		Assert.notNull(admin);
-
-		if (newer.isDraftMode())
-			saved = this.repositoryWarranty.save(newer);
-		else
-			throw new IllegalAccessError();
-
-		return saved;
 	}
 
 	public void deleteWarranty(final int id) {

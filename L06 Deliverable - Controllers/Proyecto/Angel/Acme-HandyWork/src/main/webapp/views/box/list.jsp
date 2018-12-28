@@ -13,7 +13,7 @@
 	<display:column property="name" titleKey="box.name" />
 	<display:column property="fromSystem" titleKey="box.fromSystem" />
 	<display:column titleKey="box.messages">
-		<a href="box/message/list.do?boxId=${row.id}">Ver mensajes</a>
+		<a href="box/mess/list.do?boxId=${row.id}">Ver mensajes</a>
 	</display:column>
 </display:table>
 

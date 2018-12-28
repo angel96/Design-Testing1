@@ -28,14 +28,14 @@
 	<display:column property="name" titleKey="category.name" />
 	<display:column titleKey="category.categories">
 		<jstl:forEach items="${row.categories}" var="cat">
-			<jstl:out value="${cat}" />
+			<jstl:out value="${cat.name}" />
 		</jstl:forEach>
 	</display:column>
 
 	<security:authorize access="hasRole('ADMIN')">
 		<display:column>
-			<a href="category/administrator/edit.do?id=${row.id}"><spring:message
-					code="category.edit" /></a>
+			<a href="category/administrator/create.do?parent=${row.id}"><spring:message
+					code="category.child" /></a>
 		</display:column>
 	</security:authorize>
 
