@@ -19,7 +19,7 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
 <security:authorize access="hasRole('ADMIN')">
-	<form:form action="category/administrator/edit.do"
+	<form:form action="category/administrator/edit.do?parent=${parent}"
 		modelAttribute="category">
 
 		<form:hidden path="id" />
@@ -30,16 +30,10 @@
 		</form:label>
 		<form:input path="name" />
 		<br />
-		<form:label path="categories">
-			<spring:message code="category.categories" />
-		</form:label>
-		<form:textarea path="categories" />
-
-		<br />
-
 
 		<input type="submit" name="save"
 			value="<spring:message code="category.save" />" />
+			
 		<input type="submit" name="delete"
 			value="<spring:message code="category.delete" />" />
 	</form:form>

@@ -58,7 +58,7 @@ public class WarrantyController extends AbstractController {
 			model = this.createEditModelAndView(warranty);
 		else
 			try {
-				this.serviceWarranty.addWarranty(warranty);
+				this.serviceWarranty.save(warranty);
 				model = new ModelAndView("redirect:list.do");
 			} catch (final Throwable oops) {
 				model = this.createEditModelAndView(warranty, "warranty.commit.error");

@@ -58,7 +58,7 @@ public class TestEndorsementService extends AbstractTest {
 		Endorsement modified;
 		modified = this.serviceEndorsement.findOne(5102);
 		modified.setMoment(Utiles.convertDate(2018, 06, 01));
-		Assert.notNull(this.serviceEndorsement.update(modified));
+		Assert.notNull(this.serviceEndorsement.add(modified));
 		super.unauthenticate();
 	}
 	@Test

@@ -39,7 +39,7 @@ public class TestCustomerService extends AbstractTest {
 		Customer newer;
 		old = this.customerService.findByUserAccount(4795);
 		old.setName("test");
-		newer = this.customerService.update(old);
+		newer = this.customerService.save(old);
 		Assert.isTrue(old.equals(newer));
 	}
 

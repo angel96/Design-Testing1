@@ -2,8 +2,6 @@
 package services;
 
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,6 +9,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import repositories.CustomerRepository;
+import security.UserAccount;
+import utilities.Utiles;
 import domain.Customer;
 
 @Service
@@ -18,25 +18,7 @@ import domain.Customer;
 public class CustomerService {
 
 	@Autowired
-	private CustomerRepository		customerRepository;
-
-	@Autowired
-	private AdministratorService	adminService;
-
-	@Autowired
-	private HandyWorkerService		hwService;
-
-	@Autowired
-	private RefereeService			refereeService;
-
-	@Autowired
-	private SponsorService			sponsorService;
-
-	@Autowired
-	private BoxService				boxService;
-
-	@Autowired
-	private MessageService			messageService;
+	private CustomerRepository	customerRepository;
 
 
 	public Collection<Customer> findAll() {
@@ -53,24 +35,21 @@ public class CustomerService {
 
 	}
 
-	public Customer update(final Customer c) {
-		Assert.notNull(c);
-		return this.customerRepository.save(c);
-	}
-
 	public Customer save(final Customer cust) {
-		Assert.notNull(cust);
-		return this.customerRepository.save(cust);
-	}
-	public Map<String, Double> dashBoardFixUpTaskPerUser() {
-		Map<String, Double> result;
-		result = new HashMap<String, Double>();
+		if (cust.getId() != 0) {
+			final UserAccount account = this.findOne(cust.getId()).getAccount();
+			account.setUsername(cust.getAccount().getUsername());
+			account.setPassword(Utiles.hashPassword(cust.getAccount().getPassword()));
+			account.setAuthorities(cust.getAccount().getAuthorities());
+			cust.setAccount(account);
+		} else
+			cust.getAccount().setPassword(Utiles.hashPassword(cust.getAccount().getPassword()));
 
-		result.put("FixUpTaskPerUserAVG", this.customerRepository.findAVGOfFixUpTaskPerUser());
-		result.put("FixUpTaskPerUserMIN", this.customerRepository.findMINOfFixUpTaskPerUser());
-		result.put("FixUpTaskPerUserMAX", this.customerRepository.findMAXOfFixUpTaskPerUser());
-		result.put("FixUpTaskPerUserSTDEV", this.customerRepository.findATDDEVOfFixUpTaskPerUser());
+		Customer modify;
 
-		return result;
+		modify = this.customerRepository.saveAndFlush(cust);
+
+		return modify;
 	}
+
 }

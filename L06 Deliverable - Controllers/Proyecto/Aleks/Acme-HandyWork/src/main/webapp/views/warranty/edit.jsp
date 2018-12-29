@@ -27,21 +27,21 @@
 	<form:label path="title">
 		<spring:message code="warranty.title" />
 	</form:label>
-	<form:input path="title" readonly="${not warrantyObject.draftMode}" />
+	<form:input path="title" readonly="${not warranty.draftMode}" />
 	<br />
 	<form:label path="terms">
 		<spring:message code="warranty.terms" />
 	</form:label>
-	<form:textarea path="terms" readonly="${not warrantyObject.draftMode}" />
+	<form:textarea path="terms" readonly="${not warranty.draftMode}" />
 	<br />
 	<form:label path="laws">
 		<spring:message code="warranty.laws" />
 	</form:label>
-	<form:textarea path="laws" readonly="${not warrantyObject.draftMode}" />
+	<form:textarea path="laws" readonly="${not warranty.draftMode}" />
 	<br />
 
 	<security:authorize access="hasRole('ADMIN')">
-		<jstl:if test="${warrantyObject.draftMode}">
+		<jstl:if test="${warranty.draftMode}">
 			<form:label path="draftMode">
 				<spring:message code="warranty.isDraft" />
 			</form:label>
@@ -51,7 +51,7 @@
 	</security:authorize>
 
 	<br />
-	<jstl:if test="${warrantyObject.draftMode}">
+	<jstl:if test="${warranty.draftMode}">
 		<input type="submit" name="save"
 			value="<spring:message code="warranty.save" />" />
 		<input type="submit" name="delete"

@@ -6,6 +6,8 @@ import java.util.Date;
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Temporal;
@@ -14,6 +16,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Access(AccessType.PROPERTY)
@@ -28,6 +31,7 @@ public class Phase extends DomainEntity {
 
 
 	@Min(1)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	public int getNumber() {
 		return this.number;
 	}
@@ -54,6 +58,7 @@ public class Phase extends DomainEntity {
 	}
 	@NotNull
 	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "yyyy/MM/dd")
 	public Date getStartMoment() {
 		return this.startMoment;
 	}
@@ -63,6 +68,7 @@ public class Phase extends DomainEntity {
 	}
 	@NotNull
 	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "yyyy/MM/dd")
 	public Date getEndMoment() {
 		return this.endMoment;
 	}

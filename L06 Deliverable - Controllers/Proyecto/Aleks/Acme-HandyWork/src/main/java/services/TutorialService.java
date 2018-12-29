@@ -24,9 +24,6 @@ public class TutorialService {
 	private TutorialRepository	repositoryTutorial;
 
 	@Autowired
-	private SectionService		serviceSection;
-
-	@Autowired
 	private SponsorshipService	serviceSponsorship;
 
 	@Autowired
@@ -73,14 +70,14 @@ public class TutorialService {
 	public Section addSectionToTutorial(final Tutorial t, final Section s) {
 		Collection<Section> sectionsFromTutorial;
 		sectionsFromTutorial = t.getSection();
-		Section savedSection;
-		savedSection = this.serviceSection.addSection(s);
-		sectionsFromTutorial.add(savedSection);
+		final Section savedSection;
+		//savedSection = this.serviceSection.addSection(s);
+		//sectionsFromTutorial.add(savedSection);
 		Tutorial saved;
 		t.setSection(sectionsFromTutorial);
 		saved = this.repositoryTutorial.save(t);
 
-		return savedSection;
+		return null;
 	}
 
 	public Sponsorship addSponsorshipToTutorial(final Sponsorship s) {
@@ -99,25 +96,6 @@ public class TutorialService {
 		saved = this.repositoryTutorial.save(s.getTutorial());
 
 		return savedSponsorship;
-	}
-
-	public Tutorial update(final Tutorial modify) {
-
-		UserAccount user;
-		user = LoginService.getPrincipal();
-
-		HandyWorker w;
-		w = this.serviceHandyWorker.findByUserAccount(user.getId());
-
-		Assert.notNull(w);
-
-		Tutorial saved;
-
-		saved = this.repositoryTutorial.save(modify);
-
-		Assert.notNull(saved);
-
-		return saved;
 	}
 
 	public void delete(final int id) {

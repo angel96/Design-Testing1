@@ -48,23 +48,8 @@ public class PhasesService {
 
 		//phaseHandy.add(saved);
 		//h.setPhase(phaseHandy);
-		this.handyWorkerService.update(h);
+		this.handyWorkerService.save(h);
 		return saved;
-	}
-
-	public Phase update(final Phase newer) {
-		final Phase saved;
-
-		UserAccount userLogged;
-		userLogged = LoginService.getPrincipal();
-
-		//		if (userLogged.equals(this.phaseRepository.getHandyWorkerByPhases(newer.getId()).getAccount()))
-		//			saved = this.phaseRepository.save(newer);
-		//		else
-		//			throw new IllegalAccessError("A phase which doesn´t belong to the HandyWorker logged can not be modified");
-
-		//		Assert.notNull(saved);
-		return null;
 	}
 
 	public void delete(final int id) {

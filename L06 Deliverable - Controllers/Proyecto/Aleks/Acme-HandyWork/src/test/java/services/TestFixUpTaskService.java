@@ -54,7 +54,7 @@ public class TestFixUpTaskService extends AbstractTest {
 		Category c;
 		c = new Category();
 		c.setName("Carpentry");
-		c.setCategories(new ArrayList<String>());
+		//c.setCategories(new ArrayList<String>());
 		fut.setCategory(c);
 		fut.setComplaint(new ArrayList<Complaint>());
 		fut.setDescription("Test job 1");

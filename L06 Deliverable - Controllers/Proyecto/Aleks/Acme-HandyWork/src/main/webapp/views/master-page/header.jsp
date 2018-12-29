@@ -15,8 +15,8 @@
 <%@taglib prefix="security"
 	uri="http://www.springframework.org/security/tags"%>
 <div>
-	<a href="#"><img src="images/header.png"
-		alt="Acme Handy Worker Inc." height="150" width="850" /></a>
+	<a href="#"><img src="${banner}"
+		alt="${systemName}" height="150" width="850" /></a>
 </div>
 
 <div>
@@ -73,7 +73,7 @@
 					<li class="arrow"></li>
 					<li><a href="fixuptask/customer/list.do"><spring:message
 								code="master.page.customer.action.1" /></a></li>
-					<li><a href="fixuptask/customer/edit.do"><spring:message
+					<li><a href="fixuptask/customer/create.do"><spring:message
 								code="master.page.customer.action.2" /></a></li>
 				</ul></li>
 			<li><a class="fNiv"><spring:message
@@ -82,7 +82,7 @@
 					<li class="arrow"></li>
 					<li><a href="complaint/customer/list.do"><spring:message
 								code="master.page.customer.action.1" /></a></li>
-					<li><a href="complaint/customer/create.do"><spring:message
+					<li><a href="complaint/customer/edit.do"><spring:message
 								code="master.page.customer.action.2" /></a></li>
 				</ul></li>
 				<li><a class="fNiv"><spring:message
@@ -94,7 +94,22 @@
 					<li><a href="note/customer/create.do"><spring:message
 								code="master.page.customer.action.2" /></a></li>
 				</ul></li>
-				</security:authorize>
+			<li><a class="fNiv"><spring:message
+						code="master.page.customer.profile" /></a>
+				<ul>
+					<li class="arrow"></li>
+					<li><a href="profile/customer/list.do"><spring:message
+								code="master.page.customer.action.1" /></a></li>
+				</ul></li>
+			<li><a class="fNiv"><spring:message
+						code="master.page.customer.message" /></a>
+				<ul>
+					<li class="arrow"></li>
+					<li><a href="message/customer/list.do"><spring:message
+								code="master.page.customer.action.1" /></a></li>
+				</ul></li>
+		</security:authorize>
+
 
 		<security:authorize access="hasRole('HANDY_WORKER')">
 			<li><a class="fNiv"><spring:message
@@ -102,54 +117,55 @@
 				<ul>
 					<li class="arrow"></li>
 					<li><a href="fixuptask/handyworker/list.do"><spring:message
-								code="master.page.handyworker.action.1" /></a></li>
+								code="master.page.handyworker.fixuptask.list" /></a></li>
 				</ul></li>
 			<li><a class="fNiv"><spring:message
 						code="master.page.handyworker.application" /></a>
 				<ul>
 					<li class="arrow"></li>
 					<li><a href="application/handyworker/list.do"><spring:message
-								code="master.page.handyworker.action.1" /></a></li>
+								code="master.page.handyworker.application.view" /></a></li>
 				</ul></li>
 			<li><a class="fNiv"><spring:message
 						code="master.page.handyworker.curriculum" /></a>
 				<ul>
 					<li class="arrow"></li>
 					<li><a href="curriculum/handyworker/list.do"><spring:message
-								code="master.page.handyworker.action.1" /></a></li>
+								code="master.page.handyworker.curriculum.list" /></a></li>
 				</ul></li>
 			<li><a class="fNiv"><spring:message
 						code="master.page.handyworker.tutorial" /></a>
 				<ul>
 					<li class="arrow"></li>
 					<li><a href="tutorial/handyworker/list.do"><spring:message
-								code="master.page.handyworker.action.1" /></a></li>
+								code="master.page.handyworker.tutorial.list" /></a></li>
 					<li><a href="tutorial/handyworker/edit.do"><spring:message
-								code="master.page.handyworker.action.2" /></a></li>
+								code="master.page.handyworker.tutorial.create" /></a></li>
 				</ul></li>
 			<li><a class="fNiv"><spring:message
 						code="master.page.handyworker.endorsement" /></a>
 				<ul>
 					<li class="arrow"></li>
 					<li><a href="endorsement/handyworker/list.do"><spring:message
-								code="master.page.handyworker.action.1" /></a></li>
+								code="master.page.handyworker.endorsement.list" /></a></li>
 				</ul></li>
-			<li><a class="fNiv"><spring:message
+<%-- 			<li><a class="fNiv"><spring:message
 						code="master.page.handyworker.profile" /></a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="profile/customer/list.do"><spring:message
-								code="master.page.handyworker.action.1" /></a></li>
-				</ul></li>
+					<li><a href="profile/handyworker/list.do"><spring:message
+								code="master.page.handyworker.profile.list" /></a></li>
+					<li><a href="profile/handyworker/edit.do"><spring:message
+								code="master.page.handyworker.profile.create" /></a></li>
+				</ul></li> --%>
 			<li><a class="fNiv"><spring:message
-						code="master.page.handyworker.message" /></a>
+						code="master.page.handyworker.filter" /></a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="message/customer/list.do"><spring:message
-								code="master.page.handyworker.action.1" /></a></li>
+					<li><a href="application/handyworker/list.do"><spring:message
+								code="master.page.handyworker.filter.search" /></a></li>
 				</ul></li>
 		</security:authorize>
-
 		<security:authorize access="hasRole('REFEREE')">
 			<li><a class="fNiv"><spring:message
 						code="master.page.referee" /></a>
@@ -177,6 +193,8 @@
 		<security:authorize access="isAnonymous()">
 			<li><a class="fNiv" href="security/login.do"><spring:message
 						code="master.page.login" /></a></li>
+					<li><a href="handyWorker/createHandy.do"><spring:message
+								code="master.page.createHandy" /></a></li>
 		</security:authorize>
 
 		<security:authorize access="isAuthenticated()">

@@ -8,7 +8,7 @@ import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
-import services.NoteService;
+import repositories.NoteRepository;
 import domain.Note;
 
 @Component
@@ -16,7 +16,7 @@ import domain.Note;
 public class StringToNoteConverter implements Converter<String, Note> {
 
 	@Autowired
-	private NoteService	noteService;
+	private NoteRepository	noteRepository;
 
 
 	@Override
@@ -28,7 +28,7 @@ public class StringToNoteConverter implements Converter<String, Note> {
 				result = null;
 			else {
 				id = Integer.valueOf(s);
-				result = this.noteService.findOne(id);
+				result = this.noteRepository.findOne(id);
 			}
 		} catch (final Throwable oops) {
 			throw new IllegalArgumentException(oops);

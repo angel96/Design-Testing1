@@ -6,6 +6,7 @@ import java.util.Date;
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Embeddable;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
@@ -18,8 +19,7 @@ public class CreditCard {
 	private String	holderName;
 	private String	brandName;
 	private int		number;
-	private Date	expirationMonth;
-	private Date	expirationYear;
+	private Date	expiration;
 	private Integer	codeCVV;
 	private String	type;
 
@@ -48,21 +48,13 @@ public class CreditCard {
 	public void setNumber(final int number) {
 		this.number = number;
 	}
-	@NotBlank
-	public Date getExpirationMonth() {
-		return this.expirationMonth;
+	@NotNull
+	public Date getExpiration() {
+		return this.expiration;
 	}
 
-	public void setExpirationMonth(final Date expirationMonth) {
-		this.expirationMonth = expirationMonth;
-	}
-	@NotBlank
-	public Date getExpirationYear() {
-		return this.expirationYear;
-	}
-
-	public void setExpirationYear(final Date expirationYear) {
-		this.expirationYear = expirationYear;
+	public void setExpiration(final Date expiration) {
+		this.expiration = expiration;
 	}
 	@NotBlank
 	@Range(min = 100, max = 999)

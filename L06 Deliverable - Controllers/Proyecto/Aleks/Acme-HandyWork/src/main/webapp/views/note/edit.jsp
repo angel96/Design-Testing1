@@ -34,7 +34,7 @@ modelAttribute="note">
 	<form:label path="otherComments">
 		<spring:message code="note.otherComments" />
 	</form:label>
-	<form:textarea path="comment"/>
+	<form:textarea path="otherComments"/>
 	<br>
 
 <input type="submit" name="save"

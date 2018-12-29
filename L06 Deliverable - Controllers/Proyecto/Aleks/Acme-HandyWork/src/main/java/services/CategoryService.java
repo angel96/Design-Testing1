@@ -35,7 +35,7 @@ public class CategoryService {
 		return this.categoryRepository.findOne(id);
 	}
 
-	public Category save(final Category c) {
+	public Category saveParent(final Category c) {
 		UserAccount idLogged;
 		idLogged = LoginService.getPrincipal();
 
@@ -50,6 +50,25 @@ public class CategoryService {
 		Assert.notNull(result);
 		return result;
 
+	}
+
+	public Category saveSubCategory(final int categoryParent, final Category newCategory) {
+
+		Category result;
+		result = this.categoryRepository.save(newCategory);
+
+		Category aux;
+
+		aux = this.categoryRepository.findOne(categoryParent);
+
+		Collection<Category> category;
+		category = aux.getCategories();
+
+		category.add(result);
+
+		aux.setCategories(category);
+
+		return result;
 	}
 
 	public void deleteCategory(final int id) {

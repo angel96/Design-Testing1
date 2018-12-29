@@ -1,7 +1,6 @@
 
 package services;
 
-import java.util.ArrayList;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,13 +9,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import repositories.RefereeRepository;
-import security.Authority;
-import security.LoginService;
 import security.UserAccount;
 import utilities.Utiles;
-import domain.Box;
-import domain.Note;
-import domain.Profile;
 import domain.Referee;
 
 @Service
@@ -40,48 +34,20 @@ public class RefereeService {
 		return this.refereeRepository.findByUserAccount(userAccount);
 	}
 
-	public Referee create() {
-		UserAccount creator;
-		creator = LoginService.getPrincipal();
-		Assert.isTrue(Utiles.findAuthority(creator.getAuthorities(), Authority.ADMIN));
-		Referee r;
-		r = new Referee();
-		UserAccount user;
-		user = new UserAccount();
-		Authority a;
-		a = new Authority();
-		Collection<Authority> authorities;
-		authorities = new ArrayList<>();
-		a.setAuthority(Authority.REFEREE);
-		authorities.add(a);
-		user.setAuthorities(authorities);
-		r.setAccount(user);
-		r.setAdress("");
-		r.setBan(false);
-		r.setBoxes(new ArrayList<Box>());
-		r.setEmail("");
-		r.setId(0);
-		r.setMiddleName("");
-		r.setName("");
-		r.setNotes(new ArrayList<Note>());
-		r.setPhone("");
-		r.setPhoto("");
-		r.setProfiles(new ArrayList<Profile>());
-		r.setSurname("");
-		return r;
-	}
-
 	public Referee save(final Referee ref) {
-		Assert.notNull(ref);
-		return this.refereeRepository.save(ref);
-	}
+		if (ref.getId() != 0) {
+			final UserAccount account = this.findOne(ref.getId()).getAccount();
+			account.setUsername(ref.getAccount().getUsername());
+			account.setPassword(Utiles.hashPassword(ref.getAccount().getPassword()));
+			account.setAuthorities(ref.getAccount().getAuthorities());
+			ref.setAccount(account);
+		} else
+			ref.getAccount().setPassword(Utiles.hashPassword(ref.getAccount().getPassword()));
 
-	public Referee update(final Referee ref) {
-		Assert.notNull(ref);
-		Referee saved;
+		Referee modify;
 
-		saved = this.refereeRepository.save(ref);
-		return saved;
+		modify = this.refereeRepository.saveAndFlush(ref);
 
+		return modify;
 	}
 }

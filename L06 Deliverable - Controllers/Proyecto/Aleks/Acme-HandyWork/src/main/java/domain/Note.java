@@ -14,6 +14,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Access(AccessType.PROPERTY)
@@ -26,6 +27,7 @@ public class Note extends DomainEntity {
 
 
 	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "yyyy/MM/dd")
 	public Date getMoment() {
 		return this.moment;
 	}

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.NoteService;
+import utilities.Utiles;
 import domain.Note;
 
 @Controller
@@ -35,7 +36,7 @@ public class NoteController extends AbstractController {
 	public ModelAndView create() {
 		ModelAndView result;
 		result = new ModelAndView("note/edit");
-		result.addObject("note", this.noteService.create());
+		result.addObject("note", Utiles.createNote());
 		result.addObject("requestURI", "note/customer/create.do");
 		return result;
 	}

@@ -33,15 +33,19 @@ import domain.Box;
 import domain.Category;
 import domain.Complaint;
 import domain.CreditCard;
+import domain.Curriculum;
 import domain.Customer;
 import domain.Endorsable;
 import domain.Endorsement;
+import domain.Finder;
 import domain.FixUpTask;
-import domain.Message;
+import domain.HandyWorker;
+import domain.Mesage;
 import domain.Note;
 import domain.Phase;
-import domain.Priority;
 import domain.Profile;
+import domain.Referee;
+import domain.Report;
 import domain.Section;
 import domain.Sponsor;
 import domain.Sponsorship;
@@ -50,10 +54,22 @@ import domain.Warranty;
 
 public class Utiles {
 
-	private static Collection<String>	spamWords;
-	private static Collection<String>	goodWords;
-	private static Collection<String>	badWords;
+	public static Collection<String>	spamWords	= new ArrayList<String>();
+	public static Collection<String>	goodWords	= new ArrayList<String>();
+	public static Collection<String>	badWords	= new ArrayList<String>();
 
+	public static Integer				hoursFinder;
+	public static Integer				resultsFinder;
+	public static Double				vat;
+	public static Integer				phonePrefix;
+
+
+	public static void setParametersFinder(final Integer hours, final Integer results, final Double vat, final Integer phonePrefix) {
+		Utiles.hoursFinder = hours;
+		Utiles.resultsFinder = results;
+		Utiles.vat = vat;
+		Utiles.phonePrefix = phonePrefix;
+	}
 
 	public static Collection<String> limpiaString(String s) {
 		s = s.replaceAll("[^a-zA-Z0-9]", "#");
@@ -90,7 +106,7 @@ public class Utiles {
 
 		b = new Box();
 
-		b.setMessage(new ArrayList<Message>());
+		b.setMessage(new ArrayList<Mesage>());
 
 		b.setFromSystem(fromSystem);
 
@@ -228,9 +244,123 @@ public class Utiles {
 		em.close();
 
 	}
-	public static Message createMessage(final Actor a) {
-		Message message;
-		message = new Message();
+	public static Profile createProfile() {
+		Profile result;
+		result = new Profile();
+		result.setNick("");
+		result.setLink("");
+		result.setSocialNetworkName("");
+		return result;
+	}
+	public static Complaint createComplaint() {
+		UserAccount user;
+		user = LoginService.getPrincipal();
+		Assert.isTrue(Utiles.findAuthority(user.getAuthorities(), Authority.CUSTOMER));
+		Complaint res;
+		res = new Complaint();
+		res.setTicker(Utiles.generateTicker());
+		res.setMoment(new Date());
+		res.setReport(new ArrayList<Report>());
+		return res;
+	}
+	public static Referee createReferee() {
+
+		UserAccount creator;
+		creator = LoginService.getPrincipal();
+		Assert.isTrue(Utiles.findAuthority(creator.getAuthorities(), Authority.ADMIN));
+
+		Referee r;
+		r = new Referee();
+
+		UserAccount user;
+		user = new UserAccount();
+		Authority a;
+		a = new Authority();
+		Collection<Authority> authorities;
+		authorities = new ArrayList<>();
+		a.setAuthority(Authority.REFEREE);
+		authorities.add(a);
+		user.setAuthorities(authorities);
+
+		r.setAccount(user);
+		r.setAdress("");
+		r.setBan(false);
+		r.setBoxes(new ArrayList<Box>());
+		r.setEmail("");
+
+		r.setMiddleName("");
+		r.setName("");
+		r.setNotes(new ArrayList<Note>());
+		r.setPhone("");
+		r.setPhoto("");
+		r.setProfiles(new ArrayList<Profile>());
+		r.setSurname("");
+		return r;
+	}
+	public static Note createNote() {
+		UserAccount user;
+		user = LoginService.getPrincipal();
+		Assert.isTrue((Utiles.findAuthority(user.getAuthorities(), Authority.CUSTOMER) || Utiles.findAuthority(user.getAuthorities(), Authority.HANDY_WORKER) || Utiles.findAuthority(user.getAuthorities(), Authority.REFEREE)));
+		Note res;
+		res = new Note();
+		res.setMoment(new Date());
+		res.setComment("");
+		res.setOtherComments(new ArrayList<String>());
+		return res;
+	}
+	public static HandyWorker createHandyWorker() {
+		HandyWorker handyWorker;
+		handyWorker = new HandyWorker();
+
+		UserAccount account;
+		account = new UserAccount();
+		Authority auth;
+		auth = new Authority();
+		Collection<Authority> authorities;
+		authorities = new ArrayList<>();
+		auth.setAuthority(Authority.HANDY_WORKER);
+		authorities.add(auth);
+		account.setAuthorities(authorities);
+		account.setUsername("");
+		account.setPassword("");
+
+		handyWorker.setAccount(account);
+		handyWorker.setApplication(new ArrayList<Application>());
+		handyWorker.setNotes(new ArrayList<Note>());
+		handyWorker.setProfiles(new ArrayList<Profile>());
+		handyWorker.setTutoriales(new ArrayList<Tutorial>());
+		handyWorker.setAdress("");
+		handyWorker.setBan(false);
+		handyWorker.setCurriculum(new Curriculum());
+		handyWorker.setEmail("");
+
+		handyWorker.setMiddleName("");
+		handyWorker.setName("");
+		handyWorker.setPhone("");
+		handyWorker.setPhoto("");
+		handyWorker.setScore(0.0);
+		handyWorker.setSurname("");
+
+		return handyWorker;
+	}
+
+	public static Finder createFinder() {
+		Finder f;
+		f = new Finder();
+		f.setCategory(new Category());
+		f.setCreationDate(new Date());
+		f.setEndDate(new Date());
+		f.setFixUpTask(new ArrayList<FixUpTask>());
+		f.setPrice1(0.0);
+		f.setPrice2(10000.0);
+		f.setSingleKey("");
+		f.setStartDate(new Date());
+		f.setWarranty(new Warranty());
+		return f;
+	}
+	public static Mesage createMessage(final Actor a) {
+		Mesage message;
+		message = new Mesage();
 
 		message.setSender(a);
 		message.setBody("");
@@ -238,12 +368,7 @@ public class Utiles {
 		message.setTags(new ArrayList<String>());
 		message.setSubject("");
 
-		Priority priority;
-		priority = new Priority();
-		priority.setName("LOW");
-		priority.setDescription("Low priority is used for non important messages.");
-
-		message.setPriority(priority);
+		message.setPriority("NEUTRAL");
 		message.setBox(new ArrayList<Box>());
 		message.setReceiver(new ArrayList<Actor>());
 
@@ -329,7 +454,7 @@ public class Utiles {
 		c = new Category();
 
 		c.setName("");
-		c.setCategories(new ArrayList<String>());
+		c.setCategories(new ArrayList<Category>());
 
 		return c;
 	}
@@ -457,12 +582,24 @@ public class Utiles {
 		result.setBrandName("");
 		result.setNumber(1);
 		result.setCodeCVV(100);
-		result.setExpirationMonth(new Date());
-		result.setExpirationYear(new Date());
+		result.setExpiration(new Date());
+
 		result.setType("");
 		result.setHolderName("");
 
 		return result;
+	}
+	public static String[] priorities() {
+		String[] priorities;
+		priorities = new String[3];
+
+		Arrays.fill(priorities, "");
+
+		priorities[0] = "LOW";
+		priorities[1] = "NEUTRAL";
+		priorities[2] = "HIGH";
+
+		return priorities;
 	}
 	public static Boolean findAuthority(final Collection<Authority> comp, final String a) {
 		Boolean res = false;

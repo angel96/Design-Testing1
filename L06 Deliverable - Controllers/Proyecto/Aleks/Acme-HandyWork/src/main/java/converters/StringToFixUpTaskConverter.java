@@ -8,7 +8,7 @@ import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 
-import services.FixUpTaskService;
+import repositories.FixUpTaskRepository;
 import domain.FixUpTask;
 
 @Component
@@ -16,7 +16,7 @@ import domain.FixUpTask;
 public class StringToFixUpTaskConverter implements Converter<String, FixUpTask> {
 
 	@Autowired
-	private FixUpTaskService	fixUpService;
+	private FixUpTaskRepository	fixUpTaskRepository;
 
 
 	@Override
@@ -28,7 +28,7 @@ public class StringToFixUpTaskConverter implements Converter<String, FixUpTask> 
 				result = null;
 			else {
 				id = Integer.valueOf(s);
-				result = this.fixUpService.findOne(id);
+				result = this.fixUpTaskRepository.findOne(id);
 			}
 		} catch (final Throwable oops) {
 			throw new IllegalArgumentException(oops);

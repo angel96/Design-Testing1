@@ -34,35 +34,32 @@ public class CategoryController extends AbstractController {
 		return result;
 	}
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
-	public ModelAndView create() {
+	public ModelAndView create(@RequestParam(defaultValue = "0") final int parent) {
 		ModelAndView result;
 
 		result = new ModelAndView("category/edit");
 		result.addObject("category", Utiles.createCategory());
-
+		result.addObject("parent", parent);
 		return result;
 	}
 
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
-	public ModelAndView edit(final Category category, final BindingResult binding) {
+	public ModelAndView edit(@RequestParam final int parent, final Category category, final BindingResult binding) {
 		ModelAndView result;
 
 		if (binding.hasErrors())
 			result = this.createEditModelAndView(category);
 		else
 			try {
-				this.serviceCategory.save(category);
+				if (parent == 0)
+					this.serviceCategory.saveParent(category);
+				else
+					this.serviceCategory.saveSubCategory(parent, category);
+
 				result = new ModelAndView("redirect:list.do");
 			} catch (final Throwable oops) {
 				result = this.createEditModelAndView(category, "category.commit.error");
 			}
-		return result;
-	}
-
-	@RequestMapping(value = "/edit", method = RequestMethod.GET)
-	public ModelAndView edit(@RequestParam final int id) {
-		ModelAndView result;
-		result = this.createEditModelAndView(this.serviceCategory.findOne(id));
 		return result;
 	}
 

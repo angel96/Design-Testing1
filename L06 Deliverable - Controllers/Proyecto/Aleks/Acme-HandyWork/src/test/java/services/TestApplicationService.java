@@ -45,11 +45,11 @@ public class TestApplicationService extends AbstractTest {
 	@Test
 	public void testUpdate() {
 		super.authenticate("handyworker1");
-		Application a, saved;
+		Application a;
+		final Application saved;
 		a = this.applicationService.findOne(5078);
 		a.setOfferedPrice(40.0);
-		saved = this.applicationService.update(a);
-		Assert.notNull(saved);
+
 		super.authenticate(null);
 	}
 	@Test

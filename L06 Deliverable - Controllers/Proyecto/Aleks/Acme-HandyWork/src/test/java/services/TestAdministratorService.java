@@ -17,7 +17,7 @@ import domain.Administrator;
 import domain.Box;
 import domain.Customer;
 import domain.HandyWorker;
-import domain.Message;
+import domain.Mesage;
 import domain.Sponsor;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -61,11 +61,11 @@ public class TestAdministratorService extends AbstractTest {
 		recipient = this.adminService.findOne(3018);
 		recipient.setName("recipient");
 
-		Message stock;
-		stock = new Message();
+		Mesage stock;
+		stock = new Mesage();
 		stock.setBody("starter body");
-		Message newer;
-		newer = new Message();
+		Mesage newer;
+		newer = new Mesage();
 		newer.setBody("new body");
 
 		//		this.adminService.sendMessage(sender, recipient, newer);
@@ -86,22 +86,22 @@ public class TestAdministratorService extends AbstractTest {
 		recipient = Utiles.createAdministrator();
 		recipient.setName("recipient");
 
-		Message stock;
-		stock = new Message();
+		Mesage stock;
+		stock = new Mesage();
 		stock.setBody("starter body");
-		Message newer;
-		newer = new Message();
+		Mesage newer;
+		newer = new Mesage();
 		newer.setBody("new body");
 		for (final Box b : sender.getBoxes())
 			if (b.getName().equals("entry")) {
-				Collection<Message> mes;
+				Collection<Mesage> mes;
 				mes = b.getMessage();
 				mes.add(stock);
 			}
 
 		for (final Box b : recipient.getBoxes())
 			if (b.getName().equals("entry")) {
-				Collection<Message> mes;
+				Collection<Mesage> mes;
 				mes = b.getMessage();
 				mes.add(stock);
 			}
@@ -141,14 +141,14 @@ public class TestAdministratorService extends AbstractTest {
 		super.authenticate("admin1");
 		Administrator admin;
 		admin = this.adminService.findOne(3017);
-		Message m;
-		m = new Message();
+		Mesage m;
+		m = new Mesage();
 		m.setBody("new message body");
 		//this.adminService.broadcastMessage(admin, m);
 		final Administrator prueba = this.adminService.findOne(3018);
 		for (final Box b : prueba.getBoxes())
 			if (b.getName().equals("entry"))
-				for (final Message me : b.getMessage())
+				for (final Mesage me : b.getMessage())
 					System.out.println(me.getBody());
 	}
 
