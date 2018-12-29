@@ -33,42 +33,17 @@ public class TutorialService {
 	private HandyWorkerService	serviceHandyWorker;
 
 
-	public Collection<Tutorial> getTutorialsByHandyWorker(final int userAccount) {
-		return this.repositoryTutorial.getTutorialsByHandyWorker(userAccount);
-	}
-
 	public Collection<Tutorial> findAll() {
 		return this.repositoryTutorial.findAll();
 	}
 
-	public Collection<Section> getSectionsByTutorial(final int id) {
-		return this.repositoryTutorial.getSectionsByTutorial(id);
-	}
-	public Collection<Sponsorship> getSponsorshipsByTutorial(final int id) {
-		return this.repositoryTutorial.getSponsorshipsByTutorial(id);
-	}
 	public Tutorial findOne(final int id) {
 		return this.repositoryTutorial.findOne(id);
 	}
 
 	public Tutorial save(final Tutorial t) {
 
-		UserAccount user;
-		user = LoginService.getPrincipal();
-		Assert.notNull(user);
-		Collection<Tutorial> tutorialesDelUsuario;
-		tutorialesDelUsuario = this.repositoryTutorial.getTutorialsByHandyWorker(user.getId());
-
-		Tutorial saved;
-
-		if (t != null) {
-			saved = this.repositoryTutorial.save(t);
-			tutorialesDelUsuario.add(t);
-			//Necesito el update HandyWorker
-		} else
-			throw new IllegalAccessError();
-
-		return saved;
+		return null;
 	}
 	public Section addSectionToTutorial(final Tutorial t, final Section s) {
 		Collection<Section> sectionsFromTutorial;

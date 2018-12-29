@@ -80,7 +80,7 @@
 <jstl:choose>
     <jstl:when test="${handyWorker.id == 0}">
       <form:hidden path="make"
-        value="${handyWorker.name} + ' ' + ${handyWorker.surname}" />
+        value="${handyWorker.name} '+' ${handyWorker.surname}" />
     </jstl:when>
     <jstl:when test="${handyWorker.id != 0}">
       <form:label path="make">

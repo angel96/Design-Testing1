@@ -16,9 +16,6 @@ import domain.Warranty;
 @Repository
 public interface FixUpTaskRepository extends JpaRepository<FixUpTask, Integer> {
 
-	@Query("select c.fixUpTask from Customer c where c.id = ?1")
-	Collection<FixUpTask> getFixUpTasksByCustomer(int id);
-
 	@Query("select c from Customer c join c.fixUpTask f where f.id = ?1")
 	Customer findCustomerByFixUpTask(int id);
 
