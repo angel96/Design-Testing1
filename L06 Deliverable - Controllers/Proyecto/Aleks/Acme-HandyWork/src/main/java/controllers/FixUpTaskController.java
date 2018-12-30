@@ -27,7 +27,7 @@ import domain.FixUpTask;
 @RequestMapping(value = {
 	"/fixuptask/handyworker", "/fixuptask/customer"
 })
-public class FixUpTaskController {
+public class FixUpTaskController extends AbstractController {
 
 	@Autowired
 	private FixUpTaskService	serviceFixUpTask;
@@ -65,16 +65,16 @@ public class FixUpTaskController {
 	}
 
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
-	public ModelAndView edit(@Valid final FixUpTask fixUp, final BindingResult bind) {
+	public ModelAndView edit(@Valid final FixUpTask fixuptask, final BindingResult bind) {
 		ModelAndView result;
 		if (bind.hasErrors())
-			result = this.createEditModelAndView(fixUp);
+			result = this.createEditModelAndView(fixuptask);
 		else
 			try {
-				this.fixUpService.save(fixUp);
+				this.fixUpService.save(fixuptask);
 				result = new ModelAndView("redirect:list.do");
 			} catch (final Throwable oops) {
-				result = this.createEditModelAndView(fixUp, "fixuptask.commit.error");
+				result = this.createEditModelAndView(fixuptask, "fixuptask.commit.error");
 			}
 		return result;
 	}

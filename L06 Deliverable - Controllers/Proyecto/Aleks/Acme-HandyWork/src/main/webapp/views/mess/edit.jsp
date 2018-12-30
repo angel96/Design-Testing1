@@ -52,28 +52,28 @@
 	</form:select>
 	<br />
 
-	<br>
+	</br>
 	<form:label path="receiver">
 		<spring:message code="message.recipient" />
 	</form:label>
-	<br>
-	<br>
+	</br>
+	</br>
 	<div
 		style="width: 500px; height: 100px; overflow-y: scroll; border-style: solid; border-color: initial;">
 		<jstl:forEach items="${actors}" var="actor">
 			<input type="checkbox" name="receiver" value="${actor.id}" />
 			<jstl:out value="${actor.name} ${actor.surname} ( ${actor.email} )" />
-			<br>
+			</br>
 		</jstl:forEach>
 	</div>
-	<br>
+	</br>
 	<form:label path="body">
 		<spring:message code="message.content" />
 	</form:label>
-	<br>
+	</br>
 	<form:textarea path="body" />
-	<br>
-	<br>
+	</br>
+	</br>
 	<jstl:forEach items="${errors}" var="error">
 		<jstl:out value="${error}" />
 	</jstl:forEach>
@@ -81,5 +81,5 @@
 	<jstl:out value="${oops}" />
 	<input type="submit" name="send"
 		value="<spring:message code="message.save" />" />
-	<br>
+	</br>
 </form:form>

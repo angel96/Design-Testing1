@@ -40,10 +40,6 @@ public class FixUpTaskService {
 	public Collection<FixUpTask> findAll() {
 		return this.fixUpTaskRepository.findAll();
 	}
-
-	public Collection<FixUpTask> getFixUpTasksByCustomer(final Customer c) {
-		return this.fixUpTaskRepository.getFixUpTasksByCustomer(c.getId());
-	}
 	public FixUpTask findOne(final int id) {
 		return this.fixUpTaskRepository.findOne(id);
 	}
@@ -58,7 +54,7 @@ public class FixUpTaskService {
 		c = this.serviceCustomer.findByUserAccount(user.getId());
 
 		Collection<FixUpTask> fixUpTaskCustomer;
-		fixUpTaskCustomer = this.getFixUpTasksByCustomer(c);
+		fixUpTaskCustomer = c.getFixUpTask();
 
 		FixUpTask saved;
 		Assert.notNull(f);
@@ -67,8 +63,6 @@ public class FixUpTaskService {
 		fixUpTaskCustomer.add(saved);
 
 		c.setFixUpTask(fixUpTaskCustomer);
-
-		this.serviceCustomer.save(c);
 
 		return saved;
 	}

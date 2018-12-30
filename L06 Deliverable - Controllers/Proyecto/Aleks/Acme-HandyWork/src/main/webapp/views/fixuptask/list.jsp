@@ -31,10 +31,11 @@
 		</a>
 	</display:column>
 
-	<display:column property="ticker" titleKey="fixuptask.ticker" />
+	<display:column property="ticker" titleKey="fixuptask.tickers" />
 	<display:column property="moment" titleKey="fixuptask.moment" />
 	<display:column property="description" titleKey="fixuptask.description" />
-	<display:column property="maximumPrice" titleKey="fixuptask.maximumPrice" />
+	<display:column property="maximumPrice"
+		titleKey="fixuptask.maximunPrice" />
 	<display:column property="category.name" titleKey="fixuptask.category" />
 	<%-- <display:column property="creator" titleKey="fixuptask.creator" /> --%>
 

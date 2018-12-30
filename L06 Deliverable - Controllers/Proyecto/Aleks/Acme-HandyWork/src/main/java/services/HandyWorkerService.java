@@ -22,6 +22,16 @@ public class HandyWorkerService {
 
 	@Autowired
 	private HandyWorkerRepository	repositoryHandyWorker;
+	@Autowired
+	private AdministratorService	adminService;
+	@Autowired
+	private CustomerService			customerService;
+	@Autowired
+	private RefereeService			refereeService;
+	@Autowired
+	private SponsorService			sponsorService;
+	@Autowired
+	private BoxService				boxService;
 
 	@Autowired
 	private FinderService			finderService;

@@ -26,43 +26,43 @@
 		<spring:message code="custom.system" />
 	</form:label>
 	<form:input path="systemName" />
-	<br>
+	</br>
 	<form:label path="banner">
 		<spring:message code="custom.banner" />
 	</form:label>
 	<form:input path="banner" />
-	<br>
+	</br>
 	<form:label path="message">
 		<spring:message code="custom.message" />
 	</form:label>
 	<form:textarea path="message" />
-	<br>
+	</br>
 	<form:label path="hoursFinder">
 		<spring:message code="custom.hoursFinder" />
 	</form:label>
 	<form:input path="hoursFinder" />
-	<br>
+	</br>
 	<form:label path="resultFinder">
 		<spring:message code="custom.resultFinder" />
 	</form:label>
 	<form:input path="resultFinder" />
-	<br>
+	</br>
 	<form:label path="goodWords">
 		<spring:message code="custom.goodWords" />
 	</form:label>
 
 	<form:textarea path="goodWords" />
-	<br>
+	</br>
 	<form:label path="badWords">
 		<spring:message code="custom.badWords" />
 	</form:label>
 	<form:textarea path="badWords" />
-	<br>
+	</br>
 	<form:label path="spamWords">
 		<spring:message code="custom.spamWords" />
 	</form:label>
 	<form:textarea path="spamWords" />
-	<br>
+	</br>
 	<input type="submit" name="save"
 		value="<spring:message code="custom.save"/>" />
 </form:form>

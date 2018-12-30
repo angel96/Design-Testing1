@@ -18,7 +18,22 @@ import domain.Customer;
 public class CustomerService {
 
 	@Autowired
-	private CustomerRepository	customerRepository;
+	private CustomerRepository		customerRepository;
+
+	@Autowired
+	private AdministratorService	adminService;
+
+	@Autowired
+	private HandyWorkerService		hwService;
+
+	@Autowired
+	private RefereeService			refereeService;
+
+	@Autowired
+	private SponsorService			sponsorService;
+
+	@Autowired
+	private BoxService				boxService;
 
 
 	public Collection<Customer> findAll() {

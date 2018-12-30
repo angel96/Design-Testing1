@@ -15,7 +15,9 @@ import security.LoginService;
 import security.UserAccount;
 import utilities.Utiles;
 import domain.Customer;
+import domain.HandyWorker;
 import domain.Note;
+import domain.Referee;
 
 @Service
 @Transactional
@@ -49,9 +51,8 @@ public class NoteService {
 		UserAccount user;
 		user = LoginService.getPrincipal();
 		Assert.notNull(user);
-		//		Assert.notNull(this.noteRepository.findReportByNoteId(note.getId()));
+		Assert.notNull(this.noteRepository.findReportByNoteId(note.getId()));
 		Note saved;
-		saved = new Note();
 		if (Utiles.findAuthority(user.getAuthorities(), Authority.CUSTOMER)) {
 			Customer c;
 			c = this.customerService.findByUserAccount(user.getId());
@@ -61,27 +62,26 @@ public class NoteService {
 			notesPerCustomer.add(saved);
 			c.setNotes(notesPerCustomer);
 		}
-		/*
-		 * if (Utiles.findAuthority(user.getAuthorities(), Authority.HANDY_WORKER)) {
-		 * HandyWorker h;
-		 * h = this.handyWorkerService.findByUserAccount(user.getId());
-		 * Collection<Note> notesPerHandyWorker;
-		 * notesPerHandyWorker = this.noteRepository.findNotesByCustomerId(h.getId());
-		 * saved = this.noteRepository.save(note);
-		 * notesPerHandyWorker.add(saved);
-		 * h.setNotes(notesPerHandyWorker);
-		 * }
-		 * if (Utiles.findAuthority(user.getAuthorities(), Authority.REFEREE)) {
-		 * Assert.isTrue(this.noteRepository.findReportByNoteId(note.getId()).getFinalMode(), "Report hasn't been saved in final mode");
-		 * Referee r;
-		 * r = this.refereeService.findByUserAccount(user.getId());
-		 * Collection<Note> notesPerReferee;
-		 * notesPerReferee = this.noteRepository.findNotesByCustomerId(r.getId());
-		 * saved = this.noteRepository.save(note);
-		 * notesPerReferee.add(saved);
-		 * r.setNotes(notesPerReferee);
-		 * }
-		 *///saved = this.noteRepository.save(note);
+		if (Utiles.findAuthority(user.getAuthorities(), Authority.HANDY_WORKER)) {
+			HandyWorker h;
+			h = this.handyWorkerService.findByUserAccount(user.getId());
+			Collection<Note> notesPerHandyWorker;
+			notesPerHandyWorker = this.noteRepository.findNotesByCustomerId(h.getId());
+			saved = this.noteRepository.save(note);
+			notesPerHandyWorker.add(saved);
+			h.setNotes(notesPerHandyWorker);
+		}
+		if (Utiles.findAuthority(user.getAuthorities(), Authority.REFEREE)) {
+			Assert.isTrue(this.noteRepository.findReportByNoteId(note.getId()).getFinalMode(), "Report hasn't been saved in final mode");
+			Referee r;
+			r = this.refereeService.findByUserAccount(user.getId());
+			Collection<Note> notesPerReferee;
+			notesPerReferee = this.noteRepository.findNotesByCustomerId(r.getId());
+			saved = this.noteRepository.save(note);
+			notesPerReferee.add(saved);
+			r.setNotes(notesPerReferee);
+		}
+		saved = this.noteRepository.save(note);
 		return saved;
 	}
 
