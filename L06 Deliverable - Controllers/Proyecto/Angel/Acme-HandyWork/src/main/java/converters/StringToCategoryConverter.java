@@ -27,7 +27,11 @@ public class StringToCategoryConverter implements Converter<String, Category> {
 				res = null;
 			else {
 				id = Integer.valueOf(source);
-				res = this.repositoryCategory.findOne(id);
+				if (id == 0)
+					res = new Category();
+				else
+					res = this.repositoryCategory.findOne(id);
+
 			}
 		} catch (final Exception oops) {
 			throw new IllegalArgumentException(oops);

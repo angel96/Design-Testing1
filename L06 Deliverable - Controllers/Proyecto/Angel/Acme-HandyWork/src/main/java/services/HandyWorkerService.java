@@ -69,18 +69,17 @@ public class HandyWorkerService {
 			account.setPassword(Utiles.hashPassword(hw.getAccount().getPassword()));
 			account.setAuthorities(hw.getAccount().getAuthorities());
 			hw.setAccount(account);
-		} else
+		} else {
 			hw.getAccount().setPassword(Utiles.hashPassword(hw.getAccount().getPassword()));
-
-		Finder fin;
-		fin = this.finderService.save(Utiles.createFinder());
-		System.out.println(fin);
-		hw.setFinder(fin);
+			Finder fin;
+			fin = this.finderService.save(Utiles.createFinder());
+			System.out.println(fin);
+			hw.setFinder(fin);
+		}
 
 		HandyWorker modify;
 		modify = this.repositoryHandyWorker.saveAndFlush(hw);
 
 		return modify;
 	}
-
 }

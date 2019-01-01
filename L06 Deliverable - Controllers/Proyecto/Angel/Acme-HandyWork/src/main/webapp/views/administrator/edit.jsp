@@ -93,6 +93,7 @@
 		<jstl:out value="${error}" />
 	</jstl:forEach>
 	<jstl:out value="${oops}" />
+	
 	<jstl:out value="${message}" />
 	<input type="submit" name="save"
 		value="<spring:message code="admin.save"/>" />

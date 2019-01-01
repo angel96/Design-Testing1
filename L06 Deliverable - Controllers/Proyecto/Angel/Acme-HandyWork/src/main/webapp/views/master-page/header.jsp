@@ -153,7 +153,7 @@
 						code="master.page.handyworker.filter" /></a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="application/handyworker/list.do"><spring:message
+					<li><a href="fixuptask/handyworker/finder.do"><spring:message
 								code="master.page.handyworker.filter.search" /></a></li>
 				</ul></li>
 		</security:authorize>

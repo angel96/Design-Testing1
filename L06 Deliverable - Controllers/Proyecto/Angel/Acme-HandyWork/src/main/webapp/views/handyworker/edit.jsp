@@ -21,9 +21,11 @@
 
 	<form:hidden path="id" />
 	<form:hidden path="version" />
+	<jstl:if test="${handyWorker.id != 0}">
+		<form:hidden path="finder" />
+	</jstl:if>
 	<form:hidden path="account.id" />
 	<form:hidden path="account.authorities" />
-	<form:hidden path="finder" />
 	<form:hidden path="score" />
 
 
@@ -77,19 +79,19 @@
 	<form:errors cssClass="error" path="photo"></form:errors>
 	<br>
 
-<jstl:choose>
-    <jstl:when test="${handyWorker.id == 0}">
-      <form:hidden path="make"
-        value="${handyWorker.name} '+' ${handyWorker.surname}" />
-    </jstl:when>
-    <jstl:when test="${handyWorker.id != 0}">
-      <form:label path="make">
-        <spring:message code="handy.make"></spring:message>
-      </form:label>
-      <form:input path="make" />
-      <form:errors cssClass="error" path="make"></form:errors>
-    </jstl:when>
-  </jstl:choose>
+	<jstl:choose>
+		<jstl:when test="${handyWorker.id == 0}">
+			<form:hidden path="make"
+				value="${handyWorker.name} + ' ' + ${handyWorker.surname}" />
+		</jstl:when>
+		<jstl:when test="${handyWorker.id != 0}">
+			<form:label path="make">
+				<spring:message code="handy.make"></spring:message>
+			</form:label>
+			<form:input path="make" />
+			<form:errors cssClass="error" path="make"></form:errors>
+		</jstl:when>
+	</jstl:choose>
 
 	<form:label path="account.username">
 		<spring:message code="handy.user"></spring:message>
@@ -104,8 +106,6 @@
 	<form:password path="account.password" />
 	<form:errors cssClass="error" path="account.password"></form:errors>
 	<br>
-
-	<jstl:out value="${handyWorker.make}" />
 
 	<jstl:forEach items="${errors}" var="error">
 		<jstl:out value="${error}" />

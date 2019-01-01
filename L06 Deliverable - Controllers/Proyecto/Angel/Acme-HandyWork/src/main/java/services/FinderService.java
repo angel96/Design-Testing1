@@ -7,13 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import repositories.CategoryRepository;
 import repositories.FinderRepository;
-import repositories.WarrantyRepository;
-import utilities.Utiles;
-import domain.Category;
 import domain.Finder;
-import domain.Warranty;
+import domain.FixUpTask;
 
 @Service
 @Transactional
@@ -23,10 +19,7 @@ public class FinderService {
 	private FinderRepository	finderRepository;
 
 	@Autowired
-	private WarrantyRepository	warrantyRepository;
-
-	@Autowired
-	private CategoryRepository	categoryRepository;
+	private FixUpTaskService	serviceFixUptask;
 
 
 	public Collection<Finder> findAll() {
@@ -37,23 +30,27 @@ public class FinderService {
 		return this.finderRepository.findOne(id);
 	}
 
-	public Finder save(final Finder f) {
-		Warranty w;
-		w = this.warrantyRepository.save(Utiles.createWarranty());
-		w.setLaws("Ley1");
-		w.setTerms("Term1");
-		w.setTitle("warranty1");
-		System.out.println(w);
-		System.out.println(w.getTitle());
-		f.setWarranty(w);
-		Category c;
-		c = this.categoryRepository.save(Utiles.createCategory());
-		System.out.println(c);
-		c.setName("Category1");
-		f.setCategory(c);
+	public Finder save(final Finder finder) {
+
+		if (finder.getId() != 0) {
+			if (finder.getCategory().getId() == 0 || finder.getCategory() == null)
+				finder.setCategory(null);
+			if (finder.getWarranty().getId() == 0 || finder.getWarranty() == null)
+				finder.setWarranty(null);
+		}
+
 		Finder modify;
-		modify = this.finderRepository.save(f);
+		modify = this.finderRepository.save(finder);
+
+		if (finder.getId() == 0) {
+			modify.setCategory(null);
+			modify.setWarranty(null);
+		}
+
+		if (finder.getId() != 0) {
+			final Collection<FixUpTask> fixuptasks = this.serviceFixUptask.findAllByFinder(finder);
+			modify.setFixUpTask(fixuptasks);
+		}
 		return modify;
 	}
-
 }

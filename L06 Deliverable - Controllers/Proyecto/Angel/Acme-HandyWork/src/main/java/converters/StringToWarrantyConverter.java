@@ -27,7 +27,10 @@ public class StringToWarrantyConverter implements Converter<String, Warranty> {
 				res = null;
 			else {
 				id = Integer.valueOf(source);
-				res = this.repositoryWarranty.findOne(id);
+				if (id == 0)
+					res = new Warranty();
+				else
+					res = this.repositoryWarranty.findOne(id);
 			}
 		} catch (final Exception oops) {
 			throw new IllegalArgumentException(oops);

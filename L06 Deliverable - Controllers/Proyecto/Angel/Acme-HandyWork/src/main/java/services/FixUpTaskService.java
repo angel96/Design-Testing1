@@ -1,9 +1,14 @@
 
 package services;
 
+import java.text.SimpleDateFormat;
 import java.util.Collection;
-import java.util.Date;
 import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
+import javax.persistence.TypedQuery;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,11 +22,10 @@ import security.LoginService;
 import security.UserAccount;
 import utilities.Utiles;
 import domain.Application;
-import domain.Category;
 import domain.Customer;
+import domain.Finder;
 import domain.FixUpTask;
 import domain.Phase;
-import domain.Warranty;
 
 @Service
 @Transactional
@@ -125,8 +129,40 @@ public class FixUpTaskService {
 		return update != null;
 	}
 
-	public Collection<FixUpTask> findAllByFinder(final String query, final Date start, final Date end, final Warranty warranty, final Category category, final double amount1, final double amount2) {
-		return this.fixUpTaskRepository.findAllSearchByFinder("%" + query + "%", start, end, warranty, category, amount1, amount2);
+	public Collection<FixUpTask> findAllByFinder(final Finder finder) {
 
+		StringBuilder builder;
+		builder = new StringBuilder();
+		builder.append("select f from FixUpTask f where ");
+
+		final EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("Acme-HandyWork");
+		final EntityManager entityManager = emFactory.createEntityManager();
+
+		if (finder.getSingleKey() != null && !finder.getSingleKey().equals(" ") && !finder.getSingleKey().equals(""))
+			builder.append("f.ticker LIKE CONCAT('%'," + finder.getSingleKey() + ",'%') OR f.description LIKE CONCAT('%'," + finder.getSingleKey() + ",'%') OR f.address LIKE CONCAT('%'," + finder.getSingleKey() + ",'%') AND");
+
+		if (finder.getCategory() != null && finder.getCategory().getId() != 0)
+			builder.append(" f.category.id = " + finder.getCategory().getId() + " AND");
+
+		if (finder.getWarranty() != null && finder.getWarranty().getId() != 0)
+			builder.append(" f.warranty.id = " + finder.getWarranty().getId() + " AND");
+
+		final SimpleDateFormat format = new SimpleDateFormat("yyyy/MM/dd");
+
+		if (finder.getStartDate() != null)
+			builder.append(" f.start >= '" + format.format(finder.getStartDate()) + "' AND");
+		if (finder.getEndDate() != null)
+			builder.append(" f.end <= '" + format.format(finder.getEndDate()) + "' AND");
+
+		if (finder.getPrice1() != null || finder.getPrice1() > 0.0)
+			builder.append(" f.maximumPrice >= " + finder.getPrice1() + " AND");
+
+		if (finder.getPrice2() != null || finder.getPrice2() > 0.0)
+			builder.append(" f.maximumPrice <= " + finder.getPrice2());
+		System.out.println("===========\nQUERY:" + builder.toString() + " ============ \n\n");
+
+		final TypedQuery<FixUpTask> query = entityManager.createQuery(builder.toString(), FixUpTask.class);
+
+		return query.getResultList();
 	}
 }

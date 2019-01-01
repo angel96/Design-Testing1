@@ -231,6 +231,7 @@ public class Utiles {
 		em.getTransaction().begin();
 
 		final QueryBuilder qb = fullTextEntityManager.getSearchFactory().buildQueryBuilder().forEntity(FixUpTask.class).get();
+
 		final org.apache.lucene.search.Query luceneQuery = qb.keyword().onFields("ticker", "description", "address").matching(s).createQuery();
 
 		// From Lucene query to Javax query
@@ -347,7 +348,7 @@ public class Utiles {
 	public static Finder createFinder() {
 		Finder f;
 		f = new Finder();
-		f.setCategory(new Category());
+		f.setCategory(null);
 		f.setCreationDate(new Date());
 		f.setEndDate(new Date());
 		f.setFixUpTask(new ArrayList<FixUpTask>());
@@ -355,7 +356,7 @@ public class Utiles {
 		f.setPrice2(10000.0);
 		f.setSingleKey("");
 		f.setStartDate(new Date());
-		f.setWarranty(new Warranty());
+		f.setWarranty(null);
 		return f;
 	}
 	public static Mesage createMessage(final Actor a) {

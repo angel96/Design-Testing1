@@ -1,8 +1,6 @@
 
 package controllers;
 
-import java.util.Collection;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import security.LoginService;
 import services.CategoryService;
+import services.FinderService;
 import services.FixUpTaskService;
 import services.HandyWorkerService;
 import services.WarrantyService;
@@ -41,6 +40,9 @@ public class FixUpTaskController extends AbstractController {
 
 	@Autowired
 	private FixUpTaskService	fixUpService;
+
+	@Autowired
+	private FinderService		finderService;
 
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
@@ -107,7 +109,7 @@ public class FixUpTaskController extends AbstractController {
 	@RequestMapping(value = "/finder", method = RequestMethod.GET)
 	public ModelAndView finderForm() {
 		ModelAndView result;
-		result = new ModelAndView("fixuptask/finder");
+		result = new ModelAndView("fixuptask/find");
 		result.addObject("finder", this.serviceHandyWorker.findByUserAccount(LoginService.getPrincipal().getId()).getFinder());
 		result.addObject("warranties", this.serviceWarranty.findAllFinalWarranties());
 		result.addObject("categories", this.serviceCategory.findAll());
@@ -117,15 +119,19 @@ public class FixUpTaskController extends AbstractController {
 	@RequestMapping(value = "/search", method = RequestMethod.POST, params = "search")
 	public ModelAndView search(@Valid final Finder finder, final BindingResult binding) {
 		ModelAndView result;
-		if (binding.hasErrors())
+		if (binding.hasErrors()) {
 			result = this.editAndCreateFinderModelAndView(finder);
-		else
+			result.addObject("errors", binding.getAllErrors());
+		} else
 			try {
-				final Collection<FixUpTask> fixuptasks = this.serviceFixUpTask.findAllByFinder(finder.getSingleKey(), finder.getStartDate(), finder.getEndDate(), finder.getWarranty(), finder.getCategory(), finder.getPrice1(), finder.getPrice2());
+				final Finder fin = this.finderService.save(finder);
 				result = new ModelAndView("fixuptask/list");
-				result.addObject("fixuptask", fixuptasks);
+				result.addObject("fixuptasks", fin.getFixUpTask());
+				result.addObject("requestURI", "fixuptask/handyworker/search.do");
 			} catch (final Throwable oops) {
-				result = this.editAndCreateFinderModelAndView(finder, oops.getMessage());
+				result = this.editAndCreateFinderModelAndView(finder, "finder.commit.error");
+				result.addObject("error", oops.getMessage());
+				result.addObject("errors", binding.getAllErrors());
 			}
 		return result;
 	}
@@ -139,9 +145,11 @@ public class FixUpTaskController extends AbstractController {
 
 	private ModelAndView editAndCreateFinderModelAndView(final Finder finder, final String message) {
 		ModelAndView result;
-		result = new ModelAndView("fixuptask/finder");
+		result = new ModelAndView("fixuptask/find");
 		result.addObject("finder", finder);
-		result.addObject("message", message);
+		result.addObject("categories", this.serviceCategory.findAll());
+		result.addObject("warranties", this.serviceWarranty.findAll());
+		result.addObject("mesage", message);
 		return result;
 	}
 
