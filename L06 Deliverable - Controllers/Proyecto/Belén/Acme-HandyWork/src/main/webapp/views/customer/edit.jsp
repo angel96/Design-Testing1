@@ -15,81 +15,71 @@
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<form:form modelAttribute="customer" action="customer/edit.do">
+<form:form modelAttribute="customerObject" action="profile/customer/edit.do">
 <form:hidden path="id"/>
 <form:hidden path="version"/>
-<form:hidden path="account.id" />
-<form:hidden path="account.authorities" />
-<form:hidden path="score"/>
 
 <form:label path="name">
-<spring:message code="cust.name"></spring:message>
+<spring:message code="customer.name"></spring:message>
 </form:label>
 <form:input path="name"/>
 <form:errors cssClass="error" path="name"></form:errors>
 <br>
 
 <form:label path="surname">
-<spring:message code="cust.surname"></spring:message>
+<spring:message code="customer.surname"></spring:message>
 </form:label>
 <form:input path="surname"/>
 <form:errors cssClass="error" path="surname"></form:errors>
 <br>
 
 <form:label path="middleName">
-<spring:message code="cust.middleName"></spring:message>
+<spring:message code="customer.middlename"></spring:message>
 </form:label>
-<form:input path="middleName"/>
+<form:input path="middlename"/>
 <br>
 
 <form:label path="phone">
-<spring:message code="cust.phone"></spring:message>
+<spring:message code="customer.phone"></spring:message>
 </form:label>
 <form:input path="phone"/>
 <br>
 
 <form:label path="email">
-<spring:message code="cust.email"></spring:message>
+<spring:message code="customer.email"></spring:message>
 </form:label>
 <form:input path="email"/>
 <form:errors cssClass="error" path="email"></form:errors>
 <br>
 
-<form:label path="adress">
-<spring:message code="cust.adress"></spring:message>
+<form:label path="address">
+<spring:message code="customer.address"></spring:message>
 </form:label>
-<form:input path="adress"/>
+<form:input path="address"/>
 <br>
 
-<form:label path="photo">
-<spring:message code="cust.photo"></spring:message>
+<form:label path="photoUrl">
+<spring:message code="customer.photo"></spring:message>
 </form:label>
-<form:input path="photo"/>
+<form:input path="photoUrl"/>
 <br>
 
-<form:label path="account.username">
-<spring:message code="cust.user"></spring:message> 
+<form:label path="user">
+<spring:message code="customer.user"></spring:message>
 </form:label>
-<form:input path="account.username"/>
-<form:errors cssClass="error" path="account.username"></form:errors>
+<form:input path="user"/>
+<form:errors cssClass="error" path="user"></form:errors>
 <br>
 
-<form:label path="account.password">
-<spring:message code="cust.password"></spring:message>
+<form:label path="password">
+<spring:message code="customer.password"></spring:message>
 </form:label>
-<form:password path="account.password"/>
-<form:errors cssClass="error" path="account.password"></form:errors>
+<form:password path="password"/>
+<form:errors cssClass="error" path="password"></form:errors>
 <br>
-
- <jstl:forEach items="${errors}" var="error">
-		<jstl:out value="${error}" />
-	</jstl:forEach>
-	<jstl:out value="${oops}" />
-	<jstl:out value="${message}" />
-
-<input type="submit" name="save"
-		value="<spring:message code="cust.save"/>" />
-<input type="button" name="cancel" value="<spring:message code="cust.cancel"/>"
-onclick="javascript:relativeRedir('/welcome/index.jsp');"/> 
 </form:form>
 
+<input type="submit" name="save" value="<spring:message code=customer.save/>"
+onclick="javascript:relativeRedir('profile/customer/edit.do');"/>
+<input type="button" name="cancel" value="<spring:message code=customer.cancel/>"
+onclick="javascript:relativeRedir('welcome/index.jsp');"/>

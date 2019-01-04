@@ -44,14 +44,14 @@ public class ComplaintService {
 		Assert.isTrue(Utiles.findAuthority(user.getAuthorities(), Authority.CUSTOMER));
 		return this.complaintRepository.findOne(id);
 	}
-
+	
 	public Collection<Complaint> findComplaintByHandyWorkerId(final int handyWId) {
 		UserAccount user;
 		user = LoginService.getPrincipal();
 		Assert.isTrue(Utiles.findAuthority(user.getAuthorities(), Authority.HANDY_WORKER));
 		return this.complaintRepository.findComplaintByHandyWorkerId(handyWId);
 	}
-
+	
 	public Collection<Complaint> findComplaintByReferee(final int refereeId) {
 		UserAccount user;
 		user = LoginService.getPrincipal();
@@ -64,11 +64,11 @@ public class ComplaintService {
 		Assert.isTrue(Utiles.findAuthority(user.getAuthorities(), Authority.REFEREE));
 		return this.complaintRepository.findComplaintNoRefereeAssigned();
 	}
-
+	
 	public Collection<Complaint> findComplaintRefereeAssigned() {
 		return this.complaintRepository.findComplaintRefereeAssigned();
 	}
-
+	
 	public Complaint create() {
 		UserAccount user;
 		user = LoginService.getPrincipal();
@@ -84,7 +84,8 @@ public class ComplaintService {
 	public Complaint save(final Complaint comp) {
 		UserAccount user;
 		user = LoginService.getPrincipal();
-		Assert.isTrue(Utiles.findAuthority(user.getAuthorities(), Authority.REFEREE) || Utiles.findAuthority(user.getAuthorities(), Authority.CUSTOMER));
+		Assert.isTrue(Utiles.findAuthority(user.getAuthorities(), Authority.REFEREE) ||
+				Utiles.findAuthority(user.getAuthorities(), Authority.CUSTOMER));
 		Assert.notNull(user);
 		Customer c;
 		c = this.customerService.findByUserAccount(user.getId());
@@ -95,6 +96,14 @@ public class ComplaintService {
 		complaintPerCustomer.add(saved);
 		c.setComplaint(complaintPerCustomer);
 		this.customerService.save(c);
+		return saved;
+	}
+
+	public Complaint update(final Complaint comp) {
+		Assert.notNull(comp);
+		Complaint saved;
+		
+		saved = this.complaintRepository.save(comp);
 		return saved;
 	}
 

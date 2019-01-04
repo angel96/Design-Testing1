@@ -10,7 +10,7 @@ import domain.MiscellaneousRecord;
 
 @Component
 @Transactional
-public class MiscellaneousToStringConverter implements Converter<MiscellaneousRecord, String> {
+public class MiscellaneousRecordToStringConverter implements Converter<MiscellaneousRecord, String> {
 
 	@Override
 	public String convert(final MiscellaneousRecord miscellaneous) {

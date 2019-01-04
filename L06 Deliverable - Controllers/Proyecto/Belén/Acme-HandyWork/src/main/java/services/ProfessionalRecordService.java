@@ -8,15 +8,15 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import repositories.ProfessionalRecRepository;
+import repositories.ProfessionalRecordRepository;
 import domain.ProfessionalRecord;
 
 @Service
 @Transactional
-public class ProfessionalRecService {
+public class ProfessionalRecordService {
 
 	@Autowired
-	private ProfessionalRecRepository	professionalRecRepository;
+	private ProfessionalRecordRepository	professionalRecRepository;
 
 
 	public Collection<ProfessionalRecord> findAll() {

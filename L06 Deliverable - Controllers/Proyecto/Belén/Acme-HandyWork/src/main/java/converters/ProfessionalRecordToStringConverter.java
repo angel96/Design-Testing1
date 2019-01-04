@@ -10,7 +10,7 @@ import domain.ProfessionalRecord;
 
 @Component
 @Transactional
-public class ProfessionalRecToStringConverter implements Converter<ProfessionalRecord, String> {
+public class ProfessionalRecordToStringConverter implements Converter<ProfessionalRecord, String> {
 
 	@Override
 	public String convert(final ProfessionalRecord professional) {

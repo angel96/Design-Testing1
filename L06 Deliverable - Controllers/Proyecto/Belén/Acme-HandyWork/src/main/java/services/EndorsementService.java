@@ -38,7 +38,7 @@ public class EndorsementService {
 		Assert.notNull(e);
 		return this.repositoryEndorsement.save(e);
 	}
-	public Endorsement save(final Endorsement e) {
+	public Endorsement update(final Endorsement e) {
 		UserAccount user;
 		user = LoginService.getPrincipal();
 		Assert.isTrue((Utiles.findAuthority(user.getAuthorities(), Authority.CUSTOMER) || Utiles.findAuthority(user.getAuthorities(), Authority.HANDY_WORKER)));

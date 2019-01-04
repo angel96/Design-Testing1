@@ -8,15 +8,15 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import repositories.EducationRecRepository;
+import repositories.EducationRecordRepository;
 import domain.EducationRecord;
 
 @Service
 @Transactional
-public class EducationRecService {
+public class EducationRecordService {
 
 	@Autowired
-	private EducationRecRepository	educationRecRepository;
+	private EducationRecordRepository	educationRecRepository;
 
 
 	public Collection<EducationRecord> findAll() {

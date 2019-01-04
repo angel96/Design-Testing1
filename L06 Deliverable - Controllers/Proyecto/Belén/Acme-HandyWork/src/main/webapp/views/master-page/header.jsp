@@ -182,8 +182,6 @@
 		<security:authorize access="isAnonymous()">
 			<li><a class="fNiv" href="security/login.do"><spring:message
 						code="master.page.login" /></a></li>
-			<li><a class="fNiv" href="customer/createCustomer.do"><spring:message
-						code="master.page.createCustomer" /></a></li>
 		</security:authorize>
 
 		<security:authorize access="isAuthenticated()">

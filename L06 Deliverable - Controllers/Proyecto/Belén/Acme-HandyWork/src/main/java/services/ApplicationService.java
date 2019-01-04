@@ -78,8 +78,20 @@ public class ApplicationService {
 
 		return saved;
 	}
+	public Application update(final Application newer) {
+		Application saved;
+		UserAccount userLogged;
+		userLogged = LoginService.getPrincipal();
 
-	public Application saveStatus(final CreditCard credit, final Application newer) {
+		Assert.isTrue(Utiles.findAuthority(userLogged.getAuthorities(), Authority.HANDY_WORKER));
+		if (userLogged.equals(this.serviceHWorker.findByUserAccount(userLogged.getId()).getAccount()))
+			saved = this.applicationRepository.save(newer);
+		else
+			throw new IllegalAccessError("An application which doesn´t belong to the HandyWorker logged can not be modified");
+		Assert.notNull(saved);
+		return saved;
+	}
+	public Application updateStatus(final CreditCard credit, final Application newer) {
 		Application saved;
 		UserAccount userLogged;
 		userLogged = LoginService.getPrincipal();

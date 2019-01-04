@@ -50,7 +50,7 @@ public class CategoryService {
 
 	}
 
-	public Category saveCategory(final Category newer) {
+	public Category updateCategory(final Category newer) {
 		UserAccount idLogged;
 		idLogged = LoginService.getPrincipal();
 

@@ -10,7 +10,7 @@ import domain.EndorserRecord;
 
 @Component
 @Transactional
-public class EndorserRecToStringConverter implements Converter<EndorserRecord, String> {
+public class EndorserRecordToStringConverter implements Converter<EndorserRecord, String> {
 
 	@Override
 	public String convert(final EndorserRecord endorser) {

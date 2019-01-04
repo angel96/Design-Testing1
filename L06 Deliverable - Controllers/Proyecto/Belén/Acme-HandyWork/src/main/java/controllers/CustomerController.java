@@ -28,10 +28,10 @@ import domain.Customer;
 @RequestMapping("/customer")
 public class CustomerController extends AbstractController {
 
+	
 	@Autowired
-	private CustomerService	customerService;
-
-
+	private CustomerService customerService;
+	
 	// Constructors -----------------------------------------------------------
 
 	public CustomerController() {
@@ -40,7 +40,7 @@ public class CustomerController extends AbstractController {
 
 	// Create ---------------------------------------------------------------		
 
-	@RequestMapping(value = "/createCustomer", method = RequestMethod.GET)
+	@RequestMapping(value="/create", method = RequestMethod.GET)
 	public ModelAndView create() {
 		ModelAndView model;
 
@@ -52,24 +52,24 @@ public class CustomerController extends AbstractController {
 	// Edit ---------------------------------------------------------------		
 
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
-	public ModelAndView submit(@Valid final Customer customer, final BindingResult binding) {
+	public ModelAndView submit(@Valid final Customer customer, final BindingResult binding){
 		ModelAndView model;
 
-		if (binding.hasErrors()) {
-			model = this.createEditModelAndView(customer);
+	if (binding.hasErrors()) {
+		model = this.createEditModelAndView(customer);
+		model.addObject("errors", binding.getAllErrors());
+	} else
+		try {
+			this.customerService.save(customer);
+			model = new ModelAndView("redirect:../security/login.do");
+		} catch (final Throwable oops) {
+			model = this.createEditModelAndView(customer, "customer.commit.error");
+			model.addObject("oops", oops.getMessage());
 			model.addObject("errors", binding.getAllErrors());
-		} else
-			try {
-				this.customerService.save(customer);
-				model = new ModelAndView("redirect:../security/login.do");
-			} catch (final Throwable oops) {
-				model = this.createEditModelAndView(customer, "cust.commit.error");
-				model.addObject("oops", oops.getMessage());
-				model.addObject("errors", binding.getAllErrors());
-			}
+		}
 		return model;
 	}
-
+	
 	//Personal data ---------------------------------------------------------------		
 	@RequestMapping(value = "/personal", method = RequestMethod.GET)
 	public ModelAndView editPersonalData() {
@@ -85,7 +85,7 @@ public class CustomerController extends AbstractController {
 
 		return model;
 	}
-
+	
 	protected ModelAndView createEditModelAndView(final Customer customer) {
 		ModelAndView model;
 		model = this.createEditModelAndView(customer, null);
