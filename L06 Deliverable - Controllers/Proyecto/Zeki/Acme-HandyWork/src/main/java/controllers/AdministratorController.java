@@ -44,7 +44,6 @@ public class AdministratorController extends AbstractController {
 		ModelAndView model;
 
 		model = this.createEditModelAndView(Utiles.createAdministrator());
-		System.out.println(Utiles.createAdministrator());
 
 		return model;
 	}
@@ -56,11 +55,9 @@ public class AdministratorController extends AbstractController {
 		if (binding.hasErrors()) {
 			result = this.createEditModelAndView(administrator);
 			result.addObject("errors", binding.getAllErrors());
-			System.out.println("errores de admin:" + binding);
-			System.out.println("errores de admin:" + binding.getAllErrors());
 		} else
 			try {
-				System.out.println(administrator);
+
 				this.serviceAdministrator.save(administrator);
 				result = new ModelAndView("redirect:../security/login.do");
 			} catch (final Throwable oops) {
@@ -85,6 +82,7 @@ public class AdministratorController extends AbstractController {
 
 		return result;
 	}
+	//Dashboard
 
 	protected ModelAndView createEditModelAndView(final Administrator administrator) {
 		ModelAndView model;

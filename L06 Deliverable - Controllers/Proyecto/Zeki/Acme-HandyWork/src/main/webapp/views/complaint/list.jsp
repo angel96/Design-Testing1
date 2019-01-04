@@ -19,21 +19,18 @@
 <p><spring:message code="complaint.action.1" /></p>
 
 <display:table name="complaints" id="row"
-	requestURI="complaint/customer/list.do" pagesize="5"
+	requestURI="${requestURI}" pagesize="5"
 	class="displaytag">
 
-<display:column property="tickers" titleKey="complaint.tickers"/>
+	<display:column>
+		<a href="complaint/customer,handyworker,referee/view.do?id=${row.id}&view=true"> <img
+			src="images/viewmore.png" />
+		</a>
+	</display:column>
+
+<display:column property="ticker" titleKey="complaint.tickers"/>
 <display:column property="moment" titleKey="complaint.moment"/>
 <display:column property="description" titleKey="complaint.description" />
 <display:column property="attachment" titleKey="complaint.attachment"/>
-<security:authorize access="hasRole('CUSTOMER')">
-	<display:column>
-		<input type="submit" name="viewReports"
-	value="<spring:message code ="complaint.viewreports"/>"
-	onclick="javascript: relativeRedir('reports/customer/list.do?id=${row.id}');" />
-	</display:column>
-	</security:authorize>
 		
 </display:table>
-
-<!-- en el desplegable va el create complaint -->

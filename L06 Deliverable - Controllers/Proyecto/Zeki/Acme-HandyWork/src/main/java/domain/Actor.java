@@ -139,7 +139,6 @@ public abstract class Actor extends DomainEntity {
 	public void setBoxes(final Collection<Box> boxes) {
 		this.boxes = boxes;
 	}
-
 	public boolean isSuspicious() {
 		return this.suspicious;
 	}

@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import repositories.ProfileRepository;
 import security.LoginService;
-import domain.Administrator;
+import domain.Actor;
 import domain.Profile;
 
 @Service
@@ -17,11 +17,11 @@ import domain.Profile;
 public class ProfileService {
 
 	@Autowired
-	private ProfileRepository		profileRepository;
+	private ProfileRepository	profileRepository;
 
-	@Autowired
-	private AdministratorService	adminSerivice;
 
+	//	@Autowired
+	//	private AdministratorService	adminSerivice;
 
 	public Collection<Profile> findAll() {
 		return this.profileRepository.findAll();
@@ -31,32 +31,33 @@ public class ProfileService {
 		return this.profileRepository.findOne(id);
 	}
 
+	public Actor getActorByUser(final int id) {
+		return this.profileRepository.findActorByUserAccountId(id);
+	}
+
 	public Profile save(final Profile p) {
-
-		if (LoginService.getPrincipal().getAuthorities().toString().equals("[ADMIN]")) {
-			System.out.println(LoginService.getPrincipal().getId());
-			Administrator a;
-			System.out.println(LoginService.getPrincipal().getId());
-			a = this.profileRepository.findAdministratorByUserAccountId(LoginService.getPrincipal().getId());
-			System.out.println(a);
-			Collection<Profile> profiles;
-			profiles = this.profileRepository.getProfilesByAdmin(a.getId());
-			System.out.println(profiles);
-			profiles.add(p);
-			a.setProfiles(profiles);
-			this.adminSerivice.save(a);
-		} else if (LoginService.getPrincipal().getAuthorities().toString().equals("[HANDY_WORKER]")) {
-
-		} else if (LoginService.getPrincipal().getAuthorities().toString().equals("[CUSTOMER]")) {
-
-		} else if (LoginService.getPrincipal().getAuthorities().toString().equals("[REFEREE]")) {
-
-		} else if (LoginService.getPrincipal().getAuthorities().toString().equals("[SPONSOR]")) {
-
-		}
 
 		Profile modify;
 		modify = this.profileRepository.save(p);
+		Actor a;
+		a = this.profileRepository.findActorByUserAccountId(LoginService.getPrincipal().getId());
+		Collection<Profile> profiles;
+		profiles = a.getProfiles();
+		profiles.add(modify);
+		a.setProfiles(profiles);
 		return modify;
+	}
+
+	public void deleteProfile(final int id) {
+		Profile p;
+		p = this.findOne(id);
+		this.profileRepository.delete(p);
+		Collection<Profile> pro;
+		Actor a;
+		a = this.profileRepository.findActorByUserAccountId(LoginService.getPrincipal().getId());
+		pro = a.getProfiles();
+		pro.remove(p);
+		a.setProfiles(pro);
+
 	}
 }

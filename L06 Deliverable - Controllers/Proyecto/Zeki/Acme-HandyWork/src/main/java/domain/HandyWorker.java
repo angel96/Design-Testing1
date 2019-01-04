@@ -19,7 +19,6 @@ import org.hibernate.validator.constraints.NotBlank;
 public class HandyWorker extends Endorsable {
 
 	private Collection<Application>	application;
-	private Collection<Phase>		phase;
 	private Finder					finder;
 	private Curriculum				curriculum;
 	private Collection<Tutorial>	tutoriales;
@@ -37,15 +36,7 @@ public class HandyWorker extends Endorsable {
 
 	}
 
-	@OneToMany
-	public Collection<Phase> getPhase() {
-		return this.phase;
-	}
-
-	public void setPhase(final Collection<Phase> phase) {
-		this.phase = phase;
-	}
-	@OneToOne(optional = false)
+	@OneToOne(optional = true)
 	public Finder getFinder() {
 		return this.finder;
 	}

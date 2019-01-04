@@ -15,8 +15,8 @@
 <%@taglib prefix="security"
 	uri="http://www.springframework.org/security/tags"%>
 <div>
-	<a href="#"><img src="images/header.png"
-		alt="Acme Handy Worker Inc." height="150" width="850" /></a>
+	<a href="#"><img src="${banner}"
+		alt="${systemName}" height="150" width="850" /></a>
 </div>
 
 <div>
@@ -36,9 +36,9 @@
 						code="master.page.administrator.category" /></a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href=""><spring:message
+					<li><a href="category/administrator/list.do"><spring:message
 								code="master.page.administrator.category.show" /></a></li>
-					<li><a href=""><spring:message
+					<li><a href="category/administrator/create.do"><spring:message
 								code="master.page.administrator.category.create" /></a></li>
 				</ul></li>
 			<li><a class="fNiv"><spring:message
@@ -80,8 +80,8 @@
 						code="master.page.customer.complaint" /></a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="complaint/customer/list.do"><spring:message
-								code="master.page.customer.action.1" /></a></li>
+					<li><a href="complaint/customer,handyworker,referee/list.do"><spring:message
+								code="master.page.customer.compliant.list" /></a></li>
 					<li><a href="complaint/customer/edit.do"><spring:message
 								code="master.page.customer.action.2" /></a></li>
 				</ul></li>
@@ -139,15 +139,20 @@
 					<li><a href="endorsement/handyworker/list.do"><spring:message
 								code="master.page.handyworker.endorsement.list" /></a></li>
 				</ul></li>
-<%-- 			<li><a class="fNiv"><spring:message
-						code="master.page.handyworker.profile" /></a>
+			<li><a class="fNiv"><spring:message
+						code="master.page.customer.complaint" /></a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="profile/handyworker/list.do"><spring:message
-								code="master.page.handyworker.profile.list" /></a></li>
-					<li><a href="profile/handyworker/edit.do"><spring:message
-								code="master.page.handyworker.profile.create" /></a></li>
-				</ul></li> --%>
+					<li><a href="complaint/customer,handyworker,referee/list.do"><spring:message
+								code="master.page.customer.compliant.list" /></a></li>
+				</ul></li>
+ 			<li><a class="fNiv"><spring:message
+						code="master.page.handyworker.personalData" /></a>
+				<ul>
+					<li class="arrow"></li>
+					<li><a href="handyWorker/personal.do"><spring:message
+								code="master.page.handyworker.updatePersonalData" /></a></li>
+								</ul></li>
 			<li><a class="fNiv"><spring:message
 						code="master.page.handyworker.filter" /></a>
 				<ul>
@@ -156,16 +161,15 @@
 								code="master.page.handyworker.filter.search" /></a></li>
 				</ul></li>
 		</security:authorize>
-
 		<security:authorize access="hasRole('REFEREE')">
 			<li><a class="fNiv"><spring:message
-						code="master.page.referee" /></a>
+						code="master.page.customer.complaint" /></a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="customer/action-1.do"><spring:message
-								code="master.page.customer.action.1" /></a></li>
-					<li><a href="customer/action-2.do"><spring:message
-								code="master.page.customer.action.2" /></a></li>
+					<li><a href="complaint/customer,handyworker,referee/list.do"><spring:message
+								code="master.page.referee.compliant.listAssigned" /></a></li>
+					<li><a href="complaint/customer,handyworker,referee/listNoAssigned.do"><spring:message
+								code="master.page.referee.compliant.listNoAssigned" /></a></li>
 				</ul></li>
 		</security:authorize>
 
@@ -182,40 +186,11 @@
 		</security:authorize>
 
 		<security:authorize access="isAnonymous()">
-<%--  			<li><a class="fNiv" ><spring:message
-						code="master.page.login" /></a>
-						<ul>
-					<li class="arrow"></li>
-					<li><a href="security/login.do"><spring:message
-								code="master.page.login" /></a></li>
+			<li><a class="fNiv" href="security/login.do"><spring:message
+						code="master.page.login" /></a></li>
 					<li><a href="handyWorker/createHandy.do"><spring:message
 								code="master.page.createHandy" /></a></li>
-				</ul>
-						</li> --%>
-						
-		<li><a href="security/login.do"><spring:message
-								code="master.page.login" /></a></li>
-					<li><a href="handyWorker/createHandy.do"><spring:message
-								code="master.page.createHandy" /></a></li>
-<%--  			<li><a class="fNiv" ><spring:message
-						code="master.page.createHandy" /></a></li>   --%>
-<%-- 						<li><a class="fNiv"><spring:message
-						code="master.page.login" /></a>
-				<ul>
-					<li class="arrow"></li>
-					<li><a href="security/login.do"><spring:message
-								code="master.page.login" /></a></li>
-				</ul></li>
-			<li><a class="fNiv"><spring:message
-						code="master.page.createHandy" /></a>
-				<ul>
-					<li class="arrow"></li>
-					<li><a href=""><spring:message
-								code="createAccount/create.do" /><spring:message
-								code="master.page.createHandy" /></a></li>
-				</ul></li> --%>
 		</security:authorize>
-
 
 		<security:authorize access="isAuthenticated()">
 			<li><a class="fNiv"> <spring:message
@@ -224,10 +199,12 @@
 			</a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="profile/handyworker/list.do"><spring:message
-								code="master.page.handyworker.profile.list" /></a></li>
+					<li><a href="box/list.do"><spring:message
+								code="master.page.box" /></a></li>
 					<li><a href="profile/create.do"><spring:message
-								code="master.page.handyworker.profile.create" /></a></li>
+								code="master.page.profile.create" /></a></li>
+					<li><a href="profile/list.do"><spring:message
+								code="master.page.profile.list" /></a></li>
 					<li><a href="j_spring_security_logout"><spring:message
 								code="master.page.logout" /> </a></li>
 				</ul></li>

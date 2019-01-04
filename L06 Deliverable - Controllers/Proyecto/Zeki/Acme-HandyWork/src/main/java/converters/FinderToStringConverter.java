@@ -20,6 +20,7 @@ public class FinderToStringConverter implements Converter<Finder, String> {
 			result = null;
 		else
 			result = String.valueOf(finder.getId());
+		System.out.println(result);
 
 		return result;
 	}

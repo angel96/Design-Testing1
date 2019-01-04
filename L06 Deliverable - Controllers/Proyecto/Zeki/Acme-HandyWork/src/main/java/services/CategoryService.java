@@ -13,6 +13,8 @@ import security.LoginService;
 import security.UserAccount;
 import domain.Administrator;
 import domain.Category;
+import domain.Finder;
+import domain.FixUpTask;
 
 @Service
 @Transactional
@@ -33,7 +35,7 @@ public class CategoryService {
 		return this.categoryRepository.findOne(id);
 	}
 
-	public Category addCategory(final Category c) {
+	public Category saveParent(final Category c) {
 		UserAccount idLogged;
 		idLogged = LoginService.getPrincipal();
 
@@ -50,16 +52,23 @@ public class CategoryService {
 
 	}
 
-	public Category updateCategory(final Category newer) {
-		UserAccount idLogged;
-		idLogged = LoginService.getPrincipal();
+	public Category saveSubCategory(final int categoryParent, final Category newCategory) {
 
-		Administrator admin;
-		admin = this.adminService.findOne(idLogged.getId());
+		Category result;
+		result = this.categoryRepository.save(newCategory);
 
-		Assert.notNull(admin);
+		Category aux;
 
-		return this.categoryRepository.save(newer);
+		aux = this.categoryRepository.findOne(categoryParent);
+
+		Collection<Category> category;
+		category = aux.getCategories();
+
+		category.add(result);
+
+		aux.setCategories(category);
+
+		return result;
 	}
 
 	public void deleteCategory(final int id) {
@@ -71,9 +80,13 @@ public class CategoryService {
 
 		Assert.notNull(admin);
 
-		Category c;
-		c = this.findOne(id);
-		this.categoryRepository.delete(c);
+		for (final FixUpTask f : this.categoryRepository.findAllFixUpTasksByCategory(id))
+			f.setCategory(null);
+
+		for (final Finder f : this.categoryRepository.findAllFinderByCategory(id))
+			f.setCategory(null);
+
+		this.categoryRepository.delete(id);
 
 	}
 

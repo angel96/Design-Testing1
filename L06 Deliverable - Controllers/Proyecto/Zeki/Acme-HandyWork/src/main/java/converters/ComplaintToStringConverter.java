@@ -12,14 +12,12 @@ import domain.Complaint;
 public class ComplaintToStringConverter implements Converter<Complaint, String> {
 
 	@Override
-	public String convert(final Complaint complaint) {
+	public String convert(final Complaint source) {
 		String result;
-
-		if (complaint == null)
+		if (source == null)
 			result = null;
 		else
-			result = String.valueOf(complaint.getId());
+			result = String.valueOf(source.getId());
 		return result;
 	}
-
 }

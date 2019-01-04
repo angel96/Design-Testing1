@@ -17,8 +17,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import security.LoginService;
 import services.ProfileService;
 import utilities.Utiles;
 import domain.Profile;
@@ -31,8 +33,6 @@ public class ProfileController extends AbstractController {
 	private ProfileService	serviceProfile;
 
 
-	// Action-1 ---------------------------------------------------------------		
-
 	public ProfileController() {
 		super();
 	}
@@ -42,11 +42,9 @@ public class ProfileController extends AbstractController {
 		ModelAndView result;
 
 		result = this.createEditModelAndView(Utiles.createProfile());
-		System.out.println(Utiles.createProfile());
 
 		return result;
 	}
-	// Action-2 ---------------------------------------------------------------		
 
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
 	public ModelAndView submit(@Valid final Profile profile, final BindingResult binding) {
@@ -71,14 +69,30 @@ public class ProfileController extends AbstractController {
 			}
 		return result;
 	}
+	//Listing the profile of the actor
+	@RequestMapping(value = "/list", method = RequestMethod.GET)
+	public ModelAndView listProfile() {
+		ModelAndView result;
+		result = new ModelAndView("profile/list");
+		result.addObject("profiles", this.serviceProfile.getActorByUser(LoginService.getPrincipal().getId()).getProfiles());
+		result.addObject("requestURI", "profile/list.do");
+		return result;
+	}
+	//Delete a profile
+	@RequestMapping(value = "/delete", method = RequestMethod.GET)
+	public ModelAndView deleteProfile(@RequestParam final int id) {
+		ModelAndView result;
 
-	// Action-2 ---------------------------------------------------------------		
-
-	//	@RequestMapping("/action-3")
-	//	public ModelAndView action3() {
-	//		throw new RuntimeException("Oops! An *expected* exception was thrown. This is normal behaviour.");
-	//	}
-
+		System.out.println("primero" + "profileId");
+		System.out.println(id);
+		try {
+			this.serviceProfile.deleteProfile(id);
+			result = new ModelAndView("redirect:list.do");
+		} catch (final Throwable opps) {
+			result = this.createEditModelAndView(this.serviceProfile.findOne(id), "profile.commit.error");
+		}
+		return result;
+	}
 	// Create edit model and view
 	protected ModelAndView createEditModelAndView(final Profile profile) {
 		ModelAndView model;

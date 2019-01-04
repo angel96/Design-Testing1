@@ -22,11 +22,22 @@
 		<value>/views/misc/messages</value>
 		<value>/views/security/messages</value>		
 		<value>/views/welcome/messages</value>
-		<value>/views/handyworker/messages</value>
+
+		<value>/views/actor/messages</value>
 		<value>/views/administrator/messages</value>
+		<value>/views/box/messages</value>
+		<value>/views/handyworker/messages</value>
+		<value>/views/fixuptask/messages</value>
+		<value>/views/note/messages</value>
+		<value>/views/customer/messages</value>
+		<value>/views/profile/messages</value>
+		<value>/views/mess/messages</value>
+		<value>/views/custom/messages</value>
+		<value>/views/category/messages</value>
 		<value>/views/warranty/messages</value>
 		<value>/views/customer/messages</value>
 		<value>/views/profile/messages</value>
+		<value>/views/complaint/messages</value>
 	</util:list>
 
 </beans>

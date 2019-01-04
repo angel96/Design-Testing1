@@ -21,11 +21,18 @@
 
 	<form:hidden path="id" />
 	<form:hidden path="version" />
-	<form:hidden path="make" />
 	<form:hidden path="account.id" />
 	<form:hidden path="account.authorities" />
 	<form:hidden path="finder" />
 	<form:hidden path="score" />
+	<form:hidden path="curriculum"/>
+	<form:hidden path="profiles"/>
+	<form:hidden path="boxes"/>
+	<form:hidden path="ban"/>
+	<form:hidden path="suspicious"/>
+	<form:hidden path="application"/>
+	<form:hidden path="tutoriales"/>
+	<form:hidden path="notes"/>
 
 
 	<form:label path="name">
@@ -78,6 +85,20 @@
 	<form:errors cssClass="error" path="photo"></form:errors>
 	<br>
 
+<jstl:choose>
+    <jstl:when test="${handyWorker.id == 0}">
+      <form:hidden path="make"
+        value="${handyWorker.name}${handyWorker.surname}" />
+    </jstl:when>
+    <jstl:when test="${handyWorker.id != 0}">
+      <form:label path="make">
+        <spring:message code="handy.make"></spring:message>
+      </form:label>
+      <form:input path="make" />
+      <form:errors cssClass="error" path="make"></form:errors>
+    </jstl:when>
+  </jstl:choose>
+
 	<form:label path="account.username">
 		<spring:message code="handy.user"></spring:message>
 	</form:label>
@@ -105,4 +126,4 @@
 
 <input type="button" name="cancel"
 	value="<spring:message code="handy.cancel"/>"
-	onclick="javascript:relativeRedir('/welcome/index.jsp');" />
+	onclick="javascript:relativeRedir('/welcome/index.do');" />

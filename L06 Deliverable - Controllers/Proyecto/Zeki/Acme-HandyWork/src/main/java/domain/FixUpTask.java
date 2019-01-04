@@ -20,6 +20,7 @@ import javax.validation.constraints.Pattern;
 import org.hibernate.search.annotations.Field;
 import org.hibernate.search.annotations.Indexed;
 import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Indexed
 @Entity
@@ -54,6 +55,7 @@ public class FixUpTask extends DomainEntity {
 	}
 
 	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "yyyy/MM/dd")
 	public Date getMoment() {
 		return this.moment;
 	}
@@ -89,6 +91,7 @@ public class FixUpTask extends DomainEntity {
 	}
 
 	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "yyyy/MM/dd")
 	public Date getStart() {
 		return this.start;
 	}
@@ -98,6 +101,7 @@ public class FixUpTask extends DomainEntity {
 	}
 
 	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "yyyy/MM/dd")
 	public Date getEnd() {
 		return this.end;
 	}
@@ -122,7 +126,7 @@ public class FixUpTask extends DomainEntity {
 	public void setPhases(final Collection<Phase> phases) {
 		this.phases = phases;
 	}
-	@OneToOne
+	@OneToOne(optional = true)
 	public Category getCategory() {
 		return this.category;
 	}

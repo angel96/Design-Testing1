@@ -21,6 +21,11 @@
 		<put-attribute name="body" value="/views/handyworker/edit.jsp" />
 	</definition>
 	
+<!-- 	<definition name="handyWorker/personal" extends="master.page">	
+		<put-attribute name="title" value="Update Personal Data of HandyWorker"/>
+		<put-attribute name="body" value="/views/handyworker/edit.jsp" />
+	</definition> -->
+	
 	<definition name="handyworker/messages" extends="master.page">	
 		<put-attribute name="title" value="Handy Worker: Messages " />
 		<put-attribute name="body" value="/views/handyworker/messages.jsp" />

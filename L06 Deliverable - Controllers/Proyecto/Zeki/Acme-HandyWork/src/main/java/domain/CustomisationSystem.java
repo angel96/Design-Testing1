@@ -2,7 +2,6 @@
 package domain;
 
 import java.util.Collection;
-import java.util.Date;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
@@ -19,14 +18,16 @@ import org.hibernate.validator.constraints.Range;
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class CustomisationSystem extends DomainEntity {
 
-	private String	systemName;
-	private String	banner;
-	private String	message;
-	private Collection<String> spamWords;
-	private Collection<String> goodWords;
-	private Collection<String> badWords;
-	private Integer hoursFinder;
-	private Integer resultFinder;
+	private String				systemName;
+	private String				banner;
+	private String				message;
+	private Collection<String>	spamWords;
+	private Collection<String>	goodWords;
+	private Collection<String>	badWords;
+	private Integer				hoursFinder;
+	private Integer				resultFinder;
+	private Double				vat;
+	private Integer				phonePrefix;
 
 
 	@NotBlank
@@ -55,46 +56,58 @@ public class CustomisationSystem extends DomainEntity {
 	}
 	@ElementCollection
 	public Collection<String> getSpamWords() {
-		return spamWords;
+		return this.spamWords;
 	}
 
-	public void setSpamWords(Collection<String> spamWords) {
+	public void setSpamWords(final Collection<String> spamWords) {
 		this.spamWords = spamWords;
 	}
 	@ElementCollection
 	public Collection<String> getGoodWords() {
-		return goodWords;
+		return this.goodWords;
 	}
 
-	public void setGoodWords(Collection<String> goodWords) {
+	public void setGoodWords(final Collection<String> goodWords) {
 		this.goodWords = goodWords;
 	}
 	@ElementCollection
 	public Collection<String> getBadWords() {
-		return badWords;
+		return this.badWords;
 	}
 
-	public void setBadWords(Collection<String> badWords) {
+	public void setBadWords(final Collection<String> badWords) {
 		this.badWords = badWords;
 	}
-	@Range(min=1,max=24)
+	@Range(min = 1, max = 24)
 	public Integer getHoursFinder() {
-		
-		return hoursFinder;
+		return this.hoursFinder;
 	}
 
-	public void setHoursFinder(Integer hoursFinder) {
+	public void setHoursFinder(final Integer hoursFinder) {
 		this.hoursFinder = hoursFinder;
 	}
-	@Range(min=10,max=100)
+	@Range(min = 10, max = 100)
 	public Integer getResultFinder() {
-		return resultFinder;
+		return this.resultFinder;
 	}
 
-	public void setResultFinder(Integer resultFinder) {
+	public void setResultFinder(final Integer resultFinder) {
 		this.resultFinder = resultFinder;
 	}
-	
-	
-	
+
+	public Double getVat() {
+		return this.vat;
+	}
+
+	public void setVat(final Double vat) {
+		this.vat = vat;
+	}
+
+	public Integer getPhonePrefix() {
+		return this.phonePrefix;
+	}
+
+	public void setPhonePrefix(final Integer phonePrefix) {
+		this.phonePrefix = phonePrefix;
+	}
 }

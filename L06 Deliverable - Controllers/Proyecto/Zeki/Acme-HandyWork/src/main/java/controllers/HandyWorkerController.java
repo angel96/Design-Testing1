@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import security.LoginService;
 import services.HandyWorkerService;
 import utilities.Utiles;
 import domain.HandyWorker;
@@ -51,7 +52,7 @@ public class HandyWorkerController extends AbstractController {
 				System.out.println(handyWorker);
 				this.serviceHandyWorker.save(handyWorker);
 
-				result = new ModelAndView("redirect:../security/login.do");
+				result = new ModelAndView("redirect:../welcome/index.do");
 			} catch (final Throwable oops) {
 				result = this.createEditModelAndView(handyWorker, "handy.commit.error");
 				result.addObject("oops", oops.getMessage());
@@ -59,6 +60,19 @@ public class HandyWorkerController extends AbstractController {
 			}
 		return result;
 
+	}
+	// Update personal data
+	@RequestMapping(value = "/personal", method = RequestMethod.GET)
+	public ModelAndView editPersonalData() {
+		ModelAndView result;
+
+		HandyWorker find;
+		System.out.println(LoginService.getPrincipal().getId());
+		find = this.serviceHandyWorker.findByUserAccount(LoginService.getPrincipal().getId());
+		System.out.println("El handy:" + find);
+		result = this.createEditModelAndView(find);
+		System.out.println("despues del cratemodel and view: " + result);
+		return result;
 	}
 	// Create edit model and view
 	protected ModelAndView createEditModelAndView(final HandyWorker handyWorker) {

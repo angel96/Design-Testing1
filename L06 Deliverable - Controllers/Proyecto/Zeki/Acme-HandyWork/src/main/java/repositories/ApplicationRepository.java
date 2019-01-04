@@ -53,7 +53,7 @@ public interface ApplicationRepository extends JpaRepository<Application, Intege
 	@Query("select a from Application a join a.fixUpTask f join f.phases p where p.id = ?1 and a.status = 'accepted'")
 	Application getApplicationAceptedByPhase(int id);
 
-	@Query("select f from FixUpTask f join f.application a where a.id = ?1")
+	@Query("select a.fixUpTask from Application a where a.id = ?1")
 	FixUpTask getFixUpTaskByApplication(int id);
 
 }

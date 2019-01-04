@@ -56,7 +56,7 @@ public class TestTutorialService extends AbstractTest {
 		Tutorial t, updated;
 		t = this.tutorialService.findOne(5023);
 		t.setTitle("Tutorial with title updated");
-		updated = this.tutorialService.update(t);
+		updated = this.tutorialService.save(t);
 		Assert.notNull(updated);
 		System.out.println(updated.getTitle());
 		super.unauthenticate();

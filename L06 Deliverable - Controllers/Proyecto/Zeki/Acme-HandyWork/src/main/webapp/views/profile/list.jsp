@@ -16,4 +16,27 @@
 <%@taglib prefix="security" uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<p><spring:message code="profile.action.1" /></p>
+<p>
+	<spring:message code="profile.title.1" />
+</p>
+
+<display:table name="profiles" id="row" 
+	requestURI="${requestURI}" pagesize="5" 
+	class="displaytag">
+	
+	<display:column property="nick" titleKey="profile.nick"/>
+	<display:column property="socialNetworkName" titleKey="profile.socialNetworkName"/>
+	<display:column property="link" titleKey="profile.link"/>
+ 	<display:column>
+			<a href="profile/delete.do?id=${row.id}"><spring:message
+					code="profile.delete" /></a>
+		</display:column> 
+		
+		 <jstl:forEach items="${errors}" var="error">
+		<jstl:out value="${error}" />
+	</jstl:forEach>
+	<jstl:out value="${oops}" />
+	<jstl:out value="${message}" />
+	
+	
+</display:table>

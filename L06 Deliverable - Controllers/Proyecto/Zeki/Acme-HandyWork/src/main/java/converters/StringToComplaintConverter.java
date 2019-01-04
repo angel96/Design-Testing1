@@ -15,24 +15,24 @@ import domain.Complaint;
 public class StringToComplaintConverter implements Converter<String, Complaint> {
 
 	@Autowired
-	ComplaintRepository	complaintRepository;
+	private ComplaintRepository	complaintRepository;
 
 
 	@Override
-	public Complaint convert(final String text) {
-		Complaint result;
+	public Complaint convert(final String source) {
+		Complaint res;
 		int id;
-
 		try {
-			if (StringUtils.isEmpty(text))
-				result = null;
+			if (StringUtils.isEmpty(source))
+				res = null;
 			else {
-				id = Integer.valueOf(text);
-				result = this.complaintRepository.findOne(id);
+				id = Integer.valueOf(source);
+				res = this.complaintRepository.findOne(id);
 			}
-		} catch (final Throwable opps) {
-			throw new IllegalArgumentException(opps);
+		} catch (final Exception oops) {
+			throw new IllegalArgumentException(oops);
 		}
-		return result;
+		return res;
 	}
+
 }
