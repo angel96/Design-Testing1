@@ -214,7 +214,7 @@ public class Utiles {
 		for (int i = 0; i < 6; i++)
 			c += ch[random.nextInt(ch.length)];
 
-		return formated + c;
+		return formated + "-" + c;
 	}
 
 	public static Date convertDate(final int year, final int month, final int day) {
@@ -484,6 +484,7 @@ public class Utiles {
 		fut.setPhases(new ArrayList<Phase>());
 		fut.setWarranty(new Warranty());
 		fut.setTicker(Utiles.generateTicker());
+
 		return fut;
 	}
 
@@ -588,6 +589,20 @@ public class Utiles {
 		result.setHolderName("");
 
 		return result;
+	}
+
+	public static Report createReport() {
+		Report res;
+		res = new Report();
+		res.setMoment(new Date());
+		res.setDescription("");
+		res.setAttachments(new ArrayList<String>());
+		res.setNotes(new ArrayList<Note>());
+		res.setFinalMode(false);
+		res.setComplaint(new Complaint());
+
+		return res;
+
 	}
 	public static String[] priorities() {
 		String[] priorities;

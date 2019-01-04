@@ -50,30 +50,31 @@ public class ReportService {
 	public Report save(final Report rep) {
 		UserAccount user;
 		user = LoginService.getPrincipal();
-		Assert.isTrue(Utiles.findAuthority(user.getAuthorities(), Authority.REFEREE));
 		Assert.notNull(user);
-		Referee r;
-		r = this.refereeService.findByUserAccount(user.getId());
-		Collection<Complaint> complaintPerReferee;
-		complaintPerReferee = this.complaintRepository.findComplaintByRefereeId(user.getId());
-		Assert.isTrue(complaintPerReferee.contains(this.reportRepository.findComplaintByReportId(rep.getId())));
+		Assert.isTrue(Utiles.findAuthority(user.getAuthorities(), Authority.REFEREE));
+		//		Referee r;
+		//		r = this.refereeService.findByUserAccount(user.getId());
+		//		Collection<Complaint> complaintPerReferee;
+		//		complaintPerReferee = new ArrayList<>();
+		//		complaintPerReferee = r.getComplaints();//complaintPerReferee = this.complaintRepository.findComplaintByRefereeId(user.getId());
+
 		Complaint c;
-		c = this.reportRepository.findComplaintByReportId(rep.getId());
+		c = rep.getComplaint();//c = this.reportRepository.findComplaintByReportId(rep.getId());
 		Collection<Report> reportPerComplaint;
-		reportPerComplaint = this.reportRepository.findReportsByComplaintId(c.getId());
+		reportPerComplaint = c.getReport();//reportPerComplaint = this.reportRepository.findReportsByComplaintId(c.getId());
 		Report saved;
 		saved = this.reportRepository.save(rep);
+
 		reportPerComplaint.add(saved);
 		c.setReport(reportPerComplaint);
-		//this.refereeService.update(r);
 		return saved;
 	}
 
 	public void delete(final Report rep) {
+		Assert.notNull(rep);
 		UserAccount user;
 		user = LoginService.getPrincipal();
 		Assert.isTrue(Utiles.findAuthority(user.getAuthorities(), Authority.REFEREE));
-		Assert.notNull(rep);
 		this.reportRepository.delete(rep);
 	}
 }

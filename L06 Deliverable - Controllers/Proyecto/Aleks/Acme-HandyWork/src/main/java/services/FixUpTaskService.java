@@ -43,26 +43,33 @@ public class FixUpTaskService {
 	public FixUpTask findOne(final int id) {
 		return this.fixUpTaskRepository.findOne(id);
 	}
+	public Collection<FixUpTask> findAllByUser(final int userAccountId) {
+		Collection<FixUpTask> res;
+		Assert.isTrue(Utiles.findAuthority(LoginService.getPrincipal().getAuthorities(), Authority.CUSTOMER));
+		res = this.fixUpTaskRepository.findAllByUser(userAccountId);
+		Assert.notNull(res);
+		return res;
+	}
 
 	public FixUpTask save(final FixUpTask f) {
-
+		Assert.notNull(f);
 		UserAccount user;
 		user = LoginService.getPrincipal();
 		Assert.notNull(user);
+		//assert pa comprobar que esta fixup pertenece al user logueado, aparte de poner el boton de edit en la vista
+		Assert.isTrue(this.fixUpTaskRepository.findAllByUser(user.getId()).contains(f));
+		//		Customer c;
+		//		c = this.serviceCustomer.findByUserAccount(user.getId());
 
-		Customer c;
-		c = this.serviceCustomer.findByUserAccount(user.getId());
-
-		Collection<FixUpTask> fixUpTaskCustomer;
-		fixUpTaskCustomer = c.getFixUpTask();
+		//		Collection<FixUpTask> fixUpTaskCustomer;
+		//		fixUpTaskCustomer = c.getFixUpTask();
 
 		FixUpTask saved;
-		Assert.notNull(f);
 		saved = this.fixUpTaskRepository.save(f);
 
-		fixUpTaskCustomer.add(saved);
+		//		fixUpTaskCustomer.add(saved);
 
-		c.setFixUpTask(fixUpTaskCustomer);
+		//		c.setFixUpTask(fixUpTaskCustomer);
 
 		return saved;
 	}
@@ -79,21 +86,22 @@ public class FixUpTaskService {
 		Assert.notNull(saved);
 		return saved;
 	}
-	public FixUpTask update(final FixUpTask newer) {
-		FixUpTask saved;
-
-		UserAccount userLogged;
-		userLogged = LoginService.getPrincipal();
-
-		if (userLogged.equals(this.fixUpTaskRepository.findCustomerByFixUpTask(newer.getId()).getAccount()))
-			saved = this.fixUpTaskRepository.save(newer);
-		else
-			throw new IllegalAccessError("A task which doesn´t belong to the customer logged can not be modified");
-
-		Assert.notNull(saved);
-		return saved;
-	}
-	public void delete(final int id) {
+	/*
+	 * public FixUpTask update(final FixUpTask newer) {
+	 * FixUpTask saved;
+	 * 
+	 * UserAccount userLogged;
+	 * userLogged = LoginService.getPrincipal();
+	 * 
+	 * if (userLogged.equals(this.fixUpTaskRepository.findCustomerByFixUpTask(newer.getId()).getAccount()))
+	 * saved = this.fixUpTaskRepository.save(newer);
+	 * else
+	 * throw new IllegalAccessError("A task which doesn´t belong to the customer logged can not be modified");
+	 * 
+	 * Assert.notNull(saved);
+	 * return saved;
+	 * }
+	 */public void delete(final int id) {
 
 		UserAccount user;
 		user = LoginService.getPrincipal();
@@ -101,9 +109,13 @@ public class FixUpTaskService {
 		Customer c;
 		c = this.serviceCustomer.findByUserAccount(user.getId());
 
-		if (c.equals(this.fixUpTaskRepository.findCustomerByFixUpTask(id)))
+		if (c.equals(this.fixUpTaskRepository.findCustomerByFixUpTask(id))) {
+			Collection<FixUpTask> collect;
+			collect = c.getFixUpTask();
+			collect.remove(this.fixUpTaskRepository.findOne(id));
+			c.setFixUpTask(collect);
 			this.fixUpTaskRepository.delete(id);
-		else
+		} else
 			throw new IllegalAccessError("A task which doesn´t belong to the customer logged can not be deleted");
 
 	}

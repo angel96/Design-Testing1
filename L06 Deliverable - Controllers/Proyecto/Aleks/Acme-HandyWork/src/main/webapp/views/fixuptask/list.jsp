@@ -22,9 +22,8 @@
 	<spring:message code="fixUpTask.action.1" />
 </p>
 
-<display:table name="fixuptasks" id="row" requestURI="fixuptask/customer/list.do"
+<display:table name="fixuptasks" id="row" requestURI="${requestURI}"
 	pagesize="5" class="displaytag">
-
 	<display:column>
 		<a href="fixuptask/customer/edit.do?id=${row.id}"> <img
 			src="images/viewmore.png" />
@@ -34,9 +33,9 @@
 	<display:column property="ticker" titleKey="fixuptask.tickers" />
 	<display:column property="moment" titleKey="fixuptask.moment" />
 	<display:column property="description" titleKey="fixuptask.description" />
-	<display:column property="maximumPrice"
-		titleKey="fixuptask.maximunPrice" />
+	<display:column property="maximumPrice"	titleKey="fixuptask.maximunPrice" />
 	<display:column property="category.name" titleKey="fixuptask.category" />
+
 	<%-- <display:column property="creator" titleKey="fixuptask.creator" /> --%>
 
 	<%-- <%-- <security:authorize access="hasRole('CUSTOMER')">

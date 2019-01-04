@@ -22,8 +22,7 @@
 	<spring:message code="fixUpTask.action.2" />
 </p>
 
-<form:form action="fixuptask/customer/edit.do"
-	modelAttribute="fixuptask">
+<form:form action="fixuptask/customer/edit.do" modelAttribute="fixuptask">
 
 	<form:hidden path="id" />
 	<form:hidden path="version" />
@@ -64,16 +63,34 @@
 	<form:input path="end" />
 	<form:errors cssClass='error' path="end" />
 	<br />
-
+	
 	<form:select path="category">
 		<form:option value="0" label="---" />
 		<form:options items="${categories}" itemValue = "id" itemLabel = "name"/>
 	</form:select>
+	
+	
+	<form:label path="category">
+	<spring:message code="fixuptask.category" />
+	</form:label>
+	<form:input path="category.name" />
+	<form:errors cssClass='error' path="category" />
+	<br />
+	
+
 
 	<form:select path="warranty">
 		<option value="0" label="---" />
 		<form:options items="${warranties}" itemValue = "id" itemLabel = "title"/>
 	</form:select>
+
+
+	<form:label path="warranty">
+		<spring:message code="fixuptask.warranty" />
+	</form:label>
+	<form:input path="warranty.title" />
+	<form:errors cssClass='error' path="warranty" />
+
 
 	<security:authorize access="hasRole('HANDY_WORKER')">
 		<form:label path="customer">
@@ -93,17 +110,16 @@
 			onclick="javascript: relativeRedir('handyworker/application/edit.do');" />
 		<form:errors cssClass='error' path="application" />
 	</security:authorize>
-</form:form>
+
 
 <security:authorize access="hasRole('CUSTOMER')">
 	<input type="submit" name="save"
-		value="<spring:message code="fixuptask.save" />"
-		onclick="javascript: relativeRedir('fixuptask/customer/edit.do');" />
-
+		value="<spring:message code="fixuptask.save" />"/>
+		
 	<input type="submit" name="delete"
 		value="<spring:message code="fixuptask.delete" />" /> 
-
+</security:authorize>
+</form:form>
 	<input type="submit" name="cancel"
 		value="<spring:message code ="fixuptask.cancel"/>"
 		onclick="javascript: relativeRedir('fixuptask/customer/list.do');" />
-</security:authorize>

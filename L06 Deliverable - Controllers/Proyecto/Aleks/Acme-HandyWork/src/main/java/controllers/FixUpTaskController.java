@@ -27,7 +27,7 @@ import domain.FixUpTask;
 @RequestMapping(value = {
 	"/fixuptask/handyworker", "/fixuptask/customer"
 })
-public class FixUpTaskController extends AbstractController {
+public class FixUpTaskController {// extends AbstractController {
 
 	@Autowired
 	private FixUpTaskService	serviceFixUpTask;
@@ -46,10 +46,10 @@ public class FixUpTaskController extends AbstractController {
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
 	public ModelAndView list() {
 		ModelAndView result;
-
 		result = new ModelAndView("fixuptask/list");
 		result.addObject("fixuptasks", this.fixUpService.findAll());
 		result.addObject("requestURI", "fixuptask/customer/list.do");
+
 		return result;
 	}
 
@@ -65,7 +65,7 @@ public class FixUpTaskController extends AbstractController {
 	}
 
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
-	public ModelAndView edit(@Valid final FixUpTask fixuptask, final BindingResult bind) {
+	public ModelAndView submit(@Valid final FixUpTask fixuptask, final BindingResult bind) {
 		ModelAndView result;
 		if (bind.hasErrors())
 			result = this.createEditModelAndView(fixuptask);
@@ -156,6 +156,8 @@ public class FixUpTaskController extends AbstractController {
 		ModelAndView result;
 		result = new ModelAndView("fixuptask/edit");
 		result.addObject("fixuptask", fixUp);
+		result.addObject("categories", this.serviceCategory.findAll());
+		result.addObject("warranties", this.serviceWarranty.findAll());
 		result.addObject("message", message);
 		return result;
 	}

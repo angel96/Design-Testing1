@@ -72,32 +72,32 @@
 				<ul>
 					<li class="arrow"></li>
 					<li><a href="fixuptask/customer/list.do"><spring:message
-								code="master.page.customer.action.1" /></a></li>
+								code="master.page.customer.list" /></a></li>
 					<li><a href="fixuptask/customer/create.do"><spring:message
-								code="master.page.customer.action.2" /></a></li>
+								code="master.page.customer.create" /></a></li>
 				</ul></li>
 			<li><a class="fNiv"><spring:message
 						code="master.page.customer.complaint" /></a>
 				<ul>
 					<li class="arrow"></li>
 					<li><a href="complaint/customer/list.do"><spring:message
-								code="master.page.customer.action.1" /></a></li>
+								code="master.page.customer.list" /></a></li>
 					<li><a href="complaint/customer/edit.do"><spring:message
-								code="master.page.customer.action.2" /></a></li>
+								code="master.page.customer.create" /></a></li>
 				</ul></li>
 			<li><a class="fNiv"><spring:message
 						code="master.page.customer.profile" /></a>
 				<ul>
 					<li class="arrow"></li>
 					<li><a href="profile/customer/list.do"><spring:message
-								code="master.page.customer.action.1" /></a></li>
+								code="master.page.customer.list" /></a></li>
 				</ul></li>
 			<li><a class="fNiv"><spring:message
 						code="master.page.customer.message" /></a>
 				<ul>
 					<li class="arrow"></li>
 					<li><a href="message/customer/list.do"><spring:message
-								code="master.page.customer.action.1" /></a></li>
+								code="master.page.customer.list" /></a></li>
 				</ul></li>
 		</security:authorize>
 
@@ -158,14 +158,12 @@
 				</ul></li>
 		</security:authorize>
 		<security:authorize access="hasRole('REFEREE')">
-			<li><a class="fNiv"><spring:message
-						code="master.page.referee" /></a>
+				<li><a class="fNiv"><spring:message
+						code="master.page.referee.report" /></a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="customer/action-1.do"><spring:message
-								code="master.page.customer.action.1" /></a></li>
-					<li><a href="customer/action-2.do"><spring:message
-								code="master.page.customer.action.2" /></a></li>
+					<li><a href="report/referee/create.do"><spring:message
+								code="master.page.referee.report.create" /></a></li>
 				</ul></li>
 		</security:authorize>
 
