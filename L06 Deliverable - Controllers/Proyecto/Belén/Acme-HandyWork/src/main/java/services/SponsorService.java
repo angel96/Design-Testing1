@@ -9,7 +9,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import repositories.SponsorRepository;
-import security.Authority;
 import security.LoginService;
 import security.UserAccount;
 import utilities.Utiles;
@@ -39,17 +38,14 @@ public class SponsorService {
 	public Sponsor findById(final int id) {
 		return this.sponsorRepository.findOne(id);
 	}
-	
+
 	public Sponsor findOne(final int idReferee) {
 		return this.sponsorRepository.findOne(idReferee);
 	}
-	
-	public Sponsor findByUserAccount(final UserAccount userAccount) {
-		Sponsor s;
+
+	public Sponsor findByUserAccount(final int userAccount) {
 		Assert.notNull(userAccount);
-		s = this.sponsorRepository.findByUserAccountId(userAccount.getId());
-		Assert.notNull(s);
-		return s;
+		return this.sponsorRepository.findByUserAccount(userAccount);
 	}
 
 	public Sponsor addSponsor(final Sponsor s) {
@@ -60,20 +56,23 @@ public class SponsorService {
 		return result;
 	}
 
-	public Sponsor save(final Sponsor s) {
+	public Sponsor save(final Sponsor spo) {
+		if (spo.getId() != 0) {
+			final UserAccount account = this.findOne(spo.getId()).getAccount();
+			account.setUsername(spo.getAccount().getUsername());
+			account.setPassword(Utiles.hashPassword(spo.getAccount().getPassword()));
+			account.setAuthorities(spo.getAccount().getAuthorities());
+			spo.setAccount(account);
+		} else
+			spo.getAccount().setPassword(Utiles.hashPassword(spo.getAccount().getPassword()));
 
-		UserAccount user;
-		user = LoginService.getPrincipal();
-		Assert.isTrue(Utiles.findAuthority(user.getAuthorities(), Authority.SPONSOR));
-		Sponsor saved;
+		Sponsor modify;
 
-		if (user.equals(s.getAccount()))
-			saved = this.sponsorRepository.save(s);
-		else
-			throw new IllegalAccessError("Trying to modify a Sponsor which is not the same as the logged");
+		modify = this.sponsorRepository.saveAndFlush(spo);
 
-		return saved;
+		return modify;
 	}
+
 	public void deleteSponsor(final int id) {
 
 		UserAccount user;

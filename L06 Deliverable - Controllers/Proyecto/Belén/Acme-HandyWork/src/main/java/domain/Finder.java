@@ -10,8 +10,11 @@ import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
@@ -19,30 +22,89 @@ import javax.persistence.TemporalType;
 public class Finder extends DomainEntity {
 
 	private Collection<FixUpTask>	fixUpTask;
-	private Date					searchStart;
-	private Date					searchEnd;
-	
+	private Date					startDate;
+	private Date					endDate;
+	private String					singleKey;
+	private Category				category;
+	private Warranty				warranty;
+	private Double					price1;
+	private Double					price2;
+	private Date					creationDate;
+
+
 	@OneToMany
 	public Collection<FixUpTask> getFixUpTask() {
-		return fixUpTask;
+		return this.fixUpTask;
 	}
-	public void setFixUpTask(Collection<FixUpTask> fixUpTask) {
+	public void setFixUpTask(final Collection<FixUpTask> fixUpTask) {
 		this.fixUpTask = fixUpTask;
 	}
 	@Temporal(TemporalType.DATE)
-	public Date getSearchStart() {
-		return searchStart;
+	@DateTimeFormat(pattern = "yyyy/MM/dd")
+	public Date getStartDate() {
+		return this.startDate;
 	}
-	public void setSearchStart(Date searchStart) {
-		this.searchStart = searchStart;
+
+	public void setStartDate(final Date startDate) {
+		this.startDate = startDate;
 	}
 	@Temporal(TemporalType.DATE)
-	public Date getSearchEnd() {
-		return searchEnd;
+	@DateTimeFormat(pattern = "yyyy/MM/dd")
+	public Date getEndDate() {
+		return this.endDate;
 	}
-	public void setSearchEnd(Date searchEnd) {
-		this.searchEnd = searchEnd;
+
+	public void setEndDate(final Date endDate) {
+		this.endDate = endDate;
 	}
-	
-	
+
+	public String getSingleKey() {
+		return this.singleKey;
+	}
+
+	public void setSingleKey(final String singleKey) {
+		this.singleKey = singleKey;
+	}
+
+	@OneToOne(optional = true)
+	public Category getCategory() {
+		return this.category;
+	}
+
+	public void setCategory(final Category category) {
+		this.category = category;
+	}
+	@OneToOne(optional = true)
+	public Warranty getWarranty() {
+		return this.warranty;
+	}
+
+	public void setWarranty(final Warranty warranty) {
+		this.warranty = warranty;
+	}
+
+	public Double getPrice1() {
+		return this.price1;
+	}
+
+	public void setPrice1(final Double price1) {
+		this.price1 = price1;
+	}
+
+	public Double getPrice2() {
+		return this.price2;
+	}
+
+	public void setPrice2(final Double price2) {
+		this.price2 = price2;
+	}
+	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "yyyy/MM/dd")
+	public Date getCreationDate() {
+		return this.creationDate;
+	}
+
+	public void setCreationDate(final Date creationDate) {
+		this.creationDate = creationDate;
+	}
 }

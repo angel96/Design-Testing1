@@ -14,29 +14,7 @@
 		<constructor-arg value="yyyy/MM/dd" />
 	</bean>
 	<!-- User accounts -->
-	<bean id="userAccount0" class="security.UserAccount">
-		<property name="username" value="super" />
-		<property name="password" value="1b3231655cebb7a1f783eddf27d254ca" />
-		<property name="authorities">
-			<list>
-				<bean class="security.Authority">
-					<property name="authority" value="ADMIN" />
-				</bean>
-				<bean class="security.Authority">
-					<property name="authority" value="CUSTOMER" />
-				</bean>
-				<bean class="security.Authority">
-					<property name="authority" value="SPONSOR" />
-				</bean>
-				<bean class="security.Authority">
-					<property name="authority" value="REFEREE" />
-				</bean>
-				<bean class="security.Authority">
-					<property name="authority" value="HANDY_WORKER" />
-				</bean>
-			</list>
-		</property>
-	</bean>
+
 	<bean id="userAccount1" class="security.UserAccount">
 		<property name="username" value="admin1" />
 		<property name="password" value="21232f297a57a5a743894a0e4a801fc3" />
@@ -448,103 +426,7 @@
 		<property name="socialNetworkName" value="Twitter" />
 		<property name="link" value="https://www.instagram.com/DP1039" />
 	</bean>
-	<!-- beans word -->
-	<bean id="word1" class="domain.Word">
-		<property name="word" value="good" />
-		<property name="isGood" value="true" />
-	</bean>
-	<bean id="word2" class="domain.Word">
-		<property name="word" value="fantastic" />
-		<property name="isGood" value="true" />
-	</bean>
-	<bean id="word3" class="domain.Word">
-		<property name="word" value="excellent" />
-		<property name="isGood" value="true" />
-	</bean>
-	<bean id="word4" class="domain.Word">
-		<property name="word" value="great" />
-		<property name="isGood" value="true" />
-	</bean>
-	<bean id="word5" class="domain.Word">
-		<property name="word" value="amazing" />
-		<property name="isGood" value="true" />
-	</bean>
-	<bean id="word6" class="domain.Word">
-		<property name="word" value="terrific" />
-		<property name="isGood" value="true" />
-	</bean>
-	<bean id="word7" class="domain.Word">
-		<property name="word" value="beatiful" />
-		<property name="isGood" value="true" />
-	</bean>
-	<bean id="word8" class="domain.Word">
-		<property name="word" value="bueno" />
-		<property name="isGood" value="true" />
-	</bean>
-	<bean id="word9" class="domain.Word">
-		<property name="word" value="fantastico" />
-		<property name="isGood" value="true" />
-	</bean>
-	<bean id="word10" class="domain.Word">
-		<property name="word" value="excelente" />
-		<property name="isGood" value="true" />
-	</bean>
-	<bean id="word11" class="domain.Word">
-		<property name="word" value="genial" />
-		<property name="isGood" value="true" />
-	</bean>
-	<bean id="word12" class="domain.Word">
-		<property name="word" value="asombroso" />
-		<property name="isGood" value="true" />
-	</bean>
-	<bean id="word13" class="domain.Word">
-		<property name="word" value="estupendo" />
-		<property name="isGood" value="true" />
-	</bean>
-	<bean id="word14" class="domain.Word">
-		<property name="word" value="bonito" />
-		<property name="isGood" value="true" />
-	</bean>
-	<bean id="word15" class="domain.Word">
-		<property name="word" value="not" />
-		<property name="isGood" value="false" />
-	</bean>
-	<bean id="word16" class="domain.Word">
-		<property name="word" value="bad" />
-		<property name="isGood" value="false" />
-	</bean>
-	<bean id="word17" class="domain.Word">
-		<property name="word" value="horrible" />
-		<property name="isGood" value="false" />
-	</bean>
-	<bean id="word18" class="domain.Word">
-		<property name="word" value="average" />
-		<property name="isGood" value="false" />
-	</bean>
-	<bean id="word19" class="domain.Word">
-		<property name="word" value="disaster" />
-		<property name="isGood" value="false" />
-	</bean>
-	<bean id="word20" class="domain.Word">
-		<property name="word" value="no" />
-		<property name="isGood" value="false" />
-	</bean>
-	<bean id="word21" class="domain.Word">
-		<property name="word" value="malo" />
-		<property name="isGood" value="false" />
-	</bean>
-	<bean id="word22" class="domain.Word">
-		<property name="word" value="horible" />
-		<property name="isGood" value="false" />
-	</bean>
-	<bean id="word23" class="domain.Word">
-		<property name="word" value="media" />
-		<property name="isGood" value="false" />
-	</bean>
-	<bean id="word24" class="domain.Word">
-		<property name="word" value="desstre" />
-		<property name="isGood" value="false" />
-	</bean>
+
 
 	<!-- bean phase -->
 	<bean id="phase1" class="domain.Phase">
@@ -643,6 +525,7 @@
 	<!-- bean category -->
 	<bean id="category1" class="domain.Category">
 		<property name="name" value="Carprenty" />
+		
 		<property name="categories">
 			<list>
 			</list>
@@ -650,6 +533,7 @@
 	</bean>
 	<bean id="category2" class="domain.Category">
 		<property name="name" value="Ceiling repairs" />
+		
 		<property name="categories">
 			<list>
 			</list>
@@ -658,6 +542,7 @@
 	</bean>
 	<bean id="category3" class="domain.Category">
 		<property name="name" value="Cleaning" />
+		
 		<property name="categories">
 			<list>
 			</list>
@@ -665,6 +550,7 @@
 	</bean>
 	<bean id="category4" class="domain.Category">
 		<property name="name" value="Concrete Work" />
+		
 		<property name="categories">
 			<list>
 			</list>
@@ -672,6 +558,7 @@
 	</bean>
 	<bean id="category5" class="domain.Category">
 		<property name="name" value="Doors" />
+		
 		<property name="categories">
 			<list>
 			</list>
@@ -679,6 +566,7 @@
 	</bean>
 	<bean id="category6" class="domain.Category">
 		<property name="name" value="Electrical wiring" />
+		
 		<property name="categories">
 			<list>
 			</list>
@@ -686,6 +574,7 @@
 	</bean>
 	<bean id="category7" class="domain.Category">
 		<property name="name" value="Fan installation" />
+		
 		<property name="categories">
 			<list>
 			</list>
@@ -693,6 +582,7 @@
 	</bean>
 	<bean id="category8" class="domain.Category">
 		<property name="name" value="Fence Fixing" />
+		
 		<property name="categories">
 			<list>
 			</list>
@@ -700,6 +590,7 @@
 	</bean>
 	<bean id="category9" class="domain.Category">
 		<property name="name" value="Home security systems" />
+		
 		<property name="categories">
 			<list>
 			</list>
@@ -834,31 +725,67 @@
 	</bean>
 	<!-- beans customitationsSystem -->
 	<bean id="customisationsys1" class="domain.CustomisationSystem">
-		<property name="systemName" value="PC1" />
-		<property name="banner" value="http://www.tumblr.com" />
-		<property name="message" value="Message created." />
+		<property name="systemName" value="Acme-HandyWorker" />
+		<property name="banner" value="https://www.dropbox.com/s/ej4ijwpauvkkbrm/header.png?raw=1" />
+		<property name="message" value="Welcome to Acme Handy Worker! Price, quality, and trust in a single place. &lt;br&gt; ¡Bienvenidos a Acme Handy Worker! Precio, calidad y confianza en el mismo sitio." />
+		<property name="vat" value="0.21" />
+		<property name="phonePrefix" value="34" />
+		<property name="spamWords">
+			<list>
+				<value>sex</value>
+				<value>viagra</value>
+				<value>cialis</value>
+				<value>one millon</value>
+				<value>you've been selected</value>
+				<value>Nigeria</value>
+				<value>sexo</value>
+				<value>un millón</value>
+				<value>ha sido seleccionado</value>
+			</list>
+		</property>
+		<property name="goodWords">
+			<list>
+				<value>good</value>
+				<value>fantastic</value>
+				<value>excellent</value>
+				<value>great</value>
+				<value>amazing</value>
+				<value>terrific</value>
+				<value>beatiful</value>
+				<value>bueno</value>
+				<value>fantastico</value>
+				<value>excelente</value>
+				<value>genial</value>
+				<value>asombroso</value>
+				<value>estupendo</value>
+				<value>bonito</value>
+			</list>
+		</property>
+		<property name="badWords">
+			<list>
+				<value>not</value>
+				<value>bad</value>
+				<value>horrible</value>
+				<value>average</value>
+				<value>disaster</value>
+				<value>no</value>
+				<value>malo</value>
+				<value>horrible</value>
+				<value>media</value>
+				<value>desstre</value>
+			</list>
+		</property>
+		<property name="hoursFinder" value="2" />
+		<property name="resultFinder" value="15" />
 	</bean>
-	<bean id="customisationsys2" class="domain.CustomisationSystem">
-		<property name="systemName" value="PC2" />
-		<property name="banner" value="http://www.flickr.com" />
-		<property name="message" value="Message of cutomisation created." />
-	</bean>
-	<bean id="customisationsys3" class="domain.CustomisationSystem">
-		<property name="systemName" value="PC3" />
-		<property name="banner" value="http://www.photobucket.com" />
-		<property name="message" value="Message customisation 2 created." />
-	</bean>
+
+
 	<!-- bean creditCrad -->
 	<bean id="creditcard1" class="domain.CreditCard">
 		<property name="holderName" value="John Doe" />
 		<property name="brandName" value="EEUU Express" />
 		<property name="number" value="13" />
-		<property name="expirationMonth">
-			<bean factory-bean="dateFormat" factory-method="parse">
-				<constructor-arg value="2018/12/15" />
-			</bean>
-		</property>
-		<property name="expirationYear">
+		<property name="expiration">
 			<bean factory-bean="dateFormat" factory-method="parse">
 				<constructor-arg value="2018/12/15" />
 			</bean>
@@ -870,16 +797,12 @@
 		<property name="holderName" value="Alice Jackson" />
 		<property name="brandName" value="UK Express" />
 		<property name="number" value="13" />
-		<property name="expirationMonth">
+		<property name="expiration">
 			<bean factory-bean="dateFormat" factory-method="parse">
 				<constructor-arg value="2018/12/19" />
 			</bean>
 		</property>
-		<property name="expirationYear">
-			<bean factory-bean="dateFormat" factory-method="parse">
-				<constructor-arg value="2018/12/19" />
-			</bean>
-		</property>
+
 		<property name="codeCVV" value="136" />
 		<property name="type" value="MASTER"></property>
 	</bean>
@@ -887,12 +810,7 @@
 		<property name="holderName" value="Alice Jackson" />
 		<property name="brandName" value="UK Express" />
 		<property name="number" value="13" />
-		<property name="expirationMonth">
-			<bean factory-bean="dateFormat" factory-method="parse">
-				<constructor-arg value="2018/12/19" />
-			</bean>
-		</property>
-		<property name="expirationYear">
+		<property name="expiration">
 			<bean factory-bean="dateFormat" factory-method="parse">
 				<constructor-arg value="2018/12/19" />
 			</bean>
@@ -904,12 +822,7 @@
 		<property name="holderName" value="John Doe" />
 		<property name="brandName" value="UK Express" />
 		<property name="number" value="13" />
-		<property name="expirationMonth">
-			<bean factory-bean="dateFormat" factory-method="parse">
-				<constructor-arg value="2018/12/19" />
-			</bean>
-		</property>
-		<property name="expirationYear">
+		<property name="expiration">
 			<bean factory-bean="dateFormat" factory-method="parse">
 				<constructor-arg value="2018/12/19" />
 			</bean>
@@ -921,12 +834,7 @@
 		<property name="holderName" value="John Doeeee" />
 		<property name="brandName" value="Spain Express" />
 		<property name="number" value="9" />
-		<property name="expirationMonth">
-			<bean factory-bean="dateFormat" factory-method="parse">
-				<constructor-arg value="2018/12/19" />
-			</bean>
-		</property>
-		<property name="expirationYear">
+		<property name="expiration">
 			<bean factory-bean="dateFormat" factory-method="parse">
 				<constructor-arg value="2018/12/19" />
 			</bean>
@@ -939,12 +847,7 @@
 		<property name="holderName" value="" />
 		<property name="brandName" value="" />
 		<property name="number" value="0" />
-		<property name="expirationMonth">
-			<bean factory-bean="dateFormat" factory-method="parse">
-				<constructor-arg value="2001/01/01" />
-			</bean>
-		</property>
-		<property name="expirationYear">
+		<property name="expiration">
 			<bean factory-bean="dateFormat" factory-method="parse">
 				<constructor-arg value="2001/01/01" />
 			</bean>
@@ -957,16 +860,12 @@
 		<property name="holderName" value="" />
 		<property name="brandName" value="" />
 		<property name="number" value="0" />
-		<property name="expirationMonth">
+		<property name="expiration">
 			<bean factory-bean="dateFormat" factory-method="parse">
 				<constructor-arg value="2001/01/01" />
 			</bean>
 		</property>
-		<property name="expirationYear">
-			<bean factory-bean="dateFormat" factory-method="parse">
-				<constructor-arg value="2001/01/01" />
-			</bean>
-		</property>
+
 		<property name="codeCVV" value="134" />
 		<property name="type" value="VISA" />
 	</bean>
@@ -975,16 +874,12 @@
 		<property name="holderName" value="" />
 		<property name="brandName" value="" />
 		<property name="number" value="0" />
-		<property name="expirationMonth">
+		<property name="expiration">
 			<bean factory-bean="dateFormat" factory-method="parse">
 				<constructor-arg value="2001/01/01" />
 			</bean>
 		</property>
-		<property name="expirationYear">
-			<bean factory-bean="dateFormat" factory-method="parse">
-				<constructor-arg value="2001/01/01" />
-			</bean>
-		</property>
+
 		<property name="codeCVV" value="134" />
 		<property name="type" value="VISA" />
 	</bean>
@@ -993,16 +888,12 @@
 		<property name="holderName" value="" />
 		<property name="brandName" value="" />
 		<property name="number" value="0" />
-		<property name="expirationMonth">
+		<property name="expiration">
 			<bean factory-bean="dateFormat" factory-method="parse">
 				<constructor-arg value="2001/01/01" />
 			</bean>
 		</property>
-		<property name="expirationYear">
-			<bean factory-bean="dateFormat" factory-method="parse">
-				<constructor-arg value="2001/01/01" />
-			</bean>
-		</property>
+
 		<property name="codeCVV" value="134" />
 		<property name="type" value="VISA" />
 	</bean>
@@ -1011,16 +902,12 @@
 		<property name="holderName" value="" />
 		<property name="brandName" value="" />
 		<property name="number" value="0" />
-		<property name="expirationMonth">
+		<property name="expiration">
 			<bean factory-bean="dateFormat" factory-method="parse">
 				<constructor-arg value="2001/01/01" />
 			</bean>
 		</property>
-		<property name="expirationYear">
-			<bean factory-bean="dateFormat" factory-method="parse">
-				<constructor-arg value="2001/01/01" />
-			</bean>
-		</property>
+
 		<property name="codeCVV" value="134" />
 		<property name="type" value="VISA" />
 	</bean>
@@ -1029,16 +916,12 @@
 		<property name="holderName" value="" />
 		<property name="brandName" value="" />
 		<property name="number" value="0" />
-		<property name="expirationMonth">
+		<property name="expiration">
 			<bean factory-bean="dateFormat" factory-method="parse">
 				<constructor-arg value="2001/01/01" />
 			</bean>
 		</property>
-		<property name="expirationYear">
-			<bean factory-bean="dateFormat" factory-method="parse">
-				<constructor-arg value="2001/01/01" />
-			</bean>
-		</property>
+
 		<property name="codeCVV" value="134" />
 		<property name="type" value="VISA" />
 	</bean>
@@ -1047,16 +930,12 @@
 		<property name="holderName" value="" />
 		<property name="brandName" value="" />
 		<property name="number" value="0" />
-		<property name="expirationMonth">
+		<property name="expiration">
 			<bean factory-bean="dateFormat" factory-method="parse">
 				<constructor-arg value="2001/01/01" />
 			</bean>
 		</property>
-		<property name="expirationYear">
-			<bean factory-bean="dateFormat" factory-method="parse">
-				<constructor-arg value="2001/01/01" />
-			</bean>
-		</property>
+
 		<property name="codeCVV" value="134" />
 		<property name="type" value="VISA" />
 	</bean>
@@ -1065,16 +944,12 @@
 		<property name="holderName" value="" />
 		<property name="brandName" value="" />
 		<property name="number" value="0" />
-		<property name="expirationMonth">
+		<property name="expiration">
 			<bean factory-bean="dateFormat" factory-method="parse">
 				<constructor-arg value="2001/01/01" />
 			</bean>
 		</property>
-		<property name="expirationYear">
-			<bean factory-bean="dateFormat" factory-method="parse">
-				<constructor-arg value="2001/01/01" />
-			</bean>
-		</property>
+
 		<property name="codeCVV" value="134" />
 		<property name="type" value="VISA" />
 	</bean>
@@ -1083,16 +958,12 @@
 		<property name="holderName" value="" />
 		<property name="brandName" value="" />
 		<property name="number" value="0" />
-		<property name="expirationMonth">
+		<property name="expiration">
 			<bean factory-bean="dateFormat" factory-method="parse">
 				<constructor-arg value="2001/01/01" />
 			</bean>
 		</property>
-		<property name="expirationYear">
-			<bean factory-bean="dateFormat" factory-method="parse">
-				<constructor-arg value="2001/01/01" />
-			</bean>
-		</property>
+
 		<property name="codeCVV" value="134" />
 		<property name="type" value="VISA" />
 	</bean>
@@ -1101,16 +972,12 @@
 		<property name="holderName" value="" />
 		<property name="brandName" value="" />
 		<property name="number" value="0" />
-		<property name="expirationMonth">
+		<property name="expiration">
 			<bean factory-bean="dateFormat" factory-method="parse">
 				<constructor-arg value="2001/01/01" />
 			</bean>
 		</property>
-		<property name="expirationYear">
-			<bean factory-bean="dateFormat" factory-method="parse">
-				<constructor-arg value="2001/01/01" />
-			</bean>
-		</property>
+
 		<property name="codeCVV" value="134" />
 		<property name="type" value="VISA" />
 	</bean>
@@ -1119,16 +986,12 @@
 		<property name="holderName" value="" />
 		<property name="brandName" value="" />
 		<property name="number" value="0" />
-		<property name="expirationMonth">
+		<property name="expiration">
 			<bean factory-bean="dateFormat" factory-method="parse">
 				<constructor-arg value="2001/01/01" />
 			</bean>
 		</property>
-		<property name="expirationYear">
-			<bean factory-bean="dateFormat" factory-method="parse">
-				<constructor-arg value="2001/01/01" />
-			</bean>
-		</property>
+
 		<property name="codeCVV" value="134" />
 		<property name="type" value="VISA" />
 	</bean>
@@ -1137,16 +1000,12 @@
 		<property name="holderName" value="" />
 		<property name="brandName" value="" />
 		<property name="number" value="0" />
-		<property name="expirationMonth">
+		<property name="expiration">
 			<bean factory-bean="dateFormat" factory-method="parse">
 				<constructor-arg value="2001/01/01" />
 			</bean>
 		</property>
-		<property name="expirationYear">
-			<bean factory-bean="dateFormat" factory-method="parse">
-				<constructor-arg value="2001/01/01" />
-			</bean>
-		</property>
+
 		<property name="codeCVV" value="134" />
 		<property name="type" value="VISA" />
 	</bean>
@@ -1155,16 +1014,12 @@
 		<property name="holderName" value="" />
 		<property name="brandName" value="" />
 		<property name="number" value="0" />
-		<property name="expirationMonth">
+		<property name="expiration">
 			<bean factory-bean="dateFormat" factory-method="parse">
 				<constructor-arg value="2001/01/01" />
 			</bean>
 		</property>
-		<property name="expirationYear">
-			<bean factory-bean="dateFormat" factory-method="parse">
-				<constructor-arg value="2001/01/01" />
-			</bean>
-		</property>
+
 		<property name="codeCVV" value="134" />
 		<property name="type" value="VISA" />
 	</bean>
@@ -1173,16 +1028,12 @@
 		<property name="holderName" value="" />
 		<property name="brandName" value="" />
 		<property name="number" value="0" />
-		<property name="expirationMonth">
+		<property name="expiration">
 			<bean factory-bean="dateFormat" factory-method="parse">
 				<constructor-arg value="2001/01/01" />
 			</bean>
 		</property>
-		<property name="expirationYear">
-			<bean factory-bean="dateFormat" factory-method="parse">
-				<constructor-arg value="2001/01/01" />
-			</bean>
-		</property>
+
 		<property name="codeCVV" value="134" />
 		<property name="type" value="VISA" />
 	</bean>
@@ -1191,16 +1042,12 @@
 		<property name="holderName" value="" />
 		<property name="brandName" value="" />
 		<property name="number" value="0" />
-		<property name="expirationMonth">
+		<property name="expiration">
 			<bean factory-bean="dateFormat" factory-method="parse">
 				<constructor-arg value="2001/01/01" />
 			</bean>
 		</property>
-		<property name="expirationYear">
-			<bean factory-bean="dateFormat" factory-method="parse">
-				<constructor-arg value="2001/01/01" />
-			</bean>
-		</property>
+
 		<property name="codeCVV" value="134" />
 		<property name="type" value="VISA" />
 	</bean>
@@ -1209,16 +1056,12 @@
 		<property name="holderName" value="" />
 		<property name="brandName" value="" />
 		<property name="number" value="0" />
-		<property name="expirationMonth">
+		<property name="expiration">
 			<bean factory-bean="dateFormat" factory-method="parse">
 				<constructor-arg value="2001/01/01" />
 			</bean>
 		</property>
-		<property name="expirationYear">
-			<bean factory-bean="dateFormat" factory-method="parse">
-				<constructor-arg value="2001/01/01" />
-			</bean>
-		</property>
+
 		<property name="codeCVV" value="134" />
 		<property name="type" value="VISA" />
 	</bean>
@@ -1227,16 +1070,12 @@
 		<property name="holderName" value="" />
 		<property name="brandName" value="" />
 		<property name="number" value="0" />
-		<property name="expirationMonth">
+		<property name="expiration">
 			<bean factory-bean="dateFormat" factory-method="parse">
 				<constructor-arg value="2001/01/01" />
 			</bean>
 		</property>
-		<property name="expirationYear">
-			<bean factory-bean="dateFormat" factory-method="parse">
-				<constructor-arg value="2001/01/01" />
-			</bean>
-		</property>
+
 		<property name="codeCVV" value="134" />
 		<property name="type" value="VISA" />
 	</bean>
@@ -1245,16 +1084,12 @@
 		<property name="holderName" value="" />
 		<property name="brandName" value="" />
 		<property name="number" value="0" />
-		<property name="expirationMonth">
+		<property name="expiration">
 			<bean factory-bean="dateFormat" factory-method="parse">
 				<constructor-arg value="2001/01/01" />
 			</bean>
 		</property>
-		<property name="expirationYear">
-			<bean factory-bean="dateFormat" factory-method="parse">
-				<constructor-arg value="2001/01/01" />
-			</bean>
-		</property>
+
 		<property name="codeCVV" value="134" />
 		<property name="type" value="VISA" />
 	</bean>
@@ -1263,12 +1098,7 @@
 		<property name="holderName" value="" />
 		<property name="brandName" value="" />
 		<property name="number" value="0" />
-		<property name="expirationMonth">
-			<bean factory-bean="dateFormat" factory-method="parse">
-				<constructor-arg value="2001/01/01" />
-			</bean>
-		</property>
-		<property name="expirationYear">
+		<property name="expiration">
 			<bean factory-bean="dateFormat" factory-method="parse">
 				<constructor-arg value="2001/01/01" />
 			</bean>
@@ -1277,68 +1107,9 @@
 		<property name="type" value="VISA" />
 	</bean>
 
-
-
-	<!-- bean spanword -->
-	<bean id="spamWord1" class="domain.SpamWord">
-		<property name="word" value="sex"></property>
-	</bean>
-
-	<bean id="spamWord2" class="domain.SpamWord">
-		<property name="word" value="viagra"></property>
-	</bean>
-
-	<bean id="spamWord3" class="domain.SpamWord">
-		<property name="word" value="cialis"></property>
-	</bean>
-
-	<bean id="spamWord4" class="domain.SpamWord">
-		<property name="word" value="cialis"></property>
-	</bean>
-
-	<bean id="spamWord5" class="domain.SpamWord">
-		<property name="word" value="one millon"></property>
-	</bean>
-
-	<bean id="spamWord6" class="domain.SpamWord">
-		<property name="word" value="you've been selected"></property>
-	</bean>
-
-	<bean id="spamWord7" class="domain.SpamWord">
-		<property name="word" value="Nigeria"></property>
-	</bean>
-
-	<bean id="spamWord8" class="domain.SpamWord">
-		<property name="word" value="sexo"></property>
-	</bean>
-
-	<bean id="spamWord10" class="domain.SpamWord">
-		<property name="word" value="un millón"></property>
-	</bean>
-
-	<bean id="spamWord11" class="domain.SpamWord">
-		<property name="word" value="ha sido seleccionado"></property>
-	</bean>
-	<!-- beans priority -->
-	<bean id="priority1" class="domain.Priority">
-		<property name="name" value="HIGH" />
-		<property name="description"
-			value="High priority is used for important messages." />
-	</bean>
-
-	<bean id="priority2" class="domain.Priority">
-		<property name="name" value="NEUTRAL" />
-		<property name="description" value="High priority is used for common messages." />
-	</bean>
-
-	<bean id="priority3" class="domain.Priority">
-		<property name="name" value="LOW" />
-		<property name="description"
-			value="High priority is used for non important messages." />
-	</bean>
 	<!-- beans box -->
 	<bean id="box1" class="domain.Box">
-		<property name="name" value="entry" />
+		<property name="name" value="In Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -1349,7 +1120,7 @@
 		</property>
 	</bean>
 	<bean id="box2" class="domain.Box">
-		<property name="name" value="sended" />
+		<property name="name" value="Out Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -1360,7 +1131,7 @@
 		</property>
 	</bean>
 	<bean id="box3" class="domain.Box">
-		<property name="name" value="spam" />
+		<property name="name" value="Spam Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -1371,7 +1142,7 @@
 		</property>
 	</bean>
 	<bean id="box4" class="domain.Box">
-		<property name="name" value="trash" />
+		<property name="name" value="Trash Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -1380,7 +1151,7 @@
 		</property>
 	</bean>
 	<bean id="box5" class="domain.Box">
-		<property name="name" value="entry" />
+		<property name="name" value="In Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -1391,7 +1162,7 @@
 		</property>
 	</bean>
 	<bean id="box6" class="domain.Box">
-		<property name="name" value="sended" />
+		<property name="name" value="Out Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -1402,7 +1173,7 @@
 		</property>
 	</bean>
 	<bean id="box7" class="domain.Box">
-		<property name="name" value="spam" />
+		<property name="name" value="Spam Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -1413,7 +1184,7 @@
 		</property>
 	</bean>
 	<bean id="box8" class="domain.Box">
-		<property name="name" value="trash" />
+		<property name="name" value="Trash Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -1422,7 +1193,7 @@
 		</property>
 	</bean>
 	<bean id="box9" class="domain.Box">
-		<property name="name" value="entry" />
+		<property name="name" value="In Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -1433,7 +1204,7 @@
 		</property>
 	</bean>
 	<bean id="box10" class="domain.Box">
-		<property name="name" value="sended" />
+		<property name="name" value="Out Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -1444,7 +1215,7 @@
 		</property>
 	</bean>
 	<bean id="box11" class="domain.Box">
-		<property name="name" value="spam" />
+		<property name="name" value="Spam Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -1455,7 +1226,7 @@
 		</property>
 	</bean>
 	<bean id="box12" class="domain.Box">
-		<property name="name" value="trash" />
+		<property name="name" value="Trash Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -1464,7 +1235,7 @@
 		</property>
 	</bean>
 	<bean id="box13" class="domain.Box">
-		<property name="name" value="entry" />
+		<property name="name" value="In Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -1475,7 +1246,7 @@
 		</property>
 	</bean>
 	<bean id="box14" class="domain.Box">
-		<property name="name" value="sended" />
+		<property name="name" value="Out Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -1486,7 +1257,7 @@
 		</property>
 	</bean>
 	<bean id="box15" class="domain.Box">
-		<property name="name" value="spam" />
+		<property name="name" value="Spam Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -1497,7 +1268,7 @@
 		</property>
 	</bean>
 	<bean id="box16" class="domain.Box">
-		<property name="name" value="trash" />
+		<property name="name" value="Trash Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -1506,7 +1277,7 @@
 		</property>
 	</bean>
 	<bean id="box17" class="domain.Box">
-		<property name="name" value="entry" />
+		<property name="name" value="In Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -1517,7 +1288,7 @@
 		</property>
 	</bean>
 	<bean id="box18" class="domain.Box">
-		<property name="name" value="sended" />
+		<property name="name" value="Out Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -1528,7 +1299,7 @@
 		</property>
 	</bean>
 	<bean id="box19" class="domain.Box">
-		<property name="name" value="spam" />
+		<property name="name" value="Spam Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -1539,7 +1310,7 @@
 		</property>
 	</bean>
 	<bean id="box20" class="domain.Box">
-		<property name="name" value="trash" />
+		<property name="name" value="Trash Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -1548,7 +1319,7 @@
 		</property>
 	</bean>
 	<bean id="box21" class="domain.Box">
-		<property name="name" value="entry" />
+		<property name="name" value="In Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -1559,7 +1330,7 @@
 		</property>
 	</bean>
 	<bean id="box22" class="domain.Box">
-		<property name="name" value="sended" />
+		<property name="name" value="Out Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -1570,7 +1341,7 @@
 		</property>
 	</bean>
 	<bean id="box23" class="domain.Box">
-		<property name="name" value="spam" />
+		<property name="name" value="Spam Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -1581,7 +1352,7 @@
 		</property>
 	</bean>
 	<bean id="box24" class="domain.Box">
-		<property name="name" value="trash" />
+		<property name="name" value="Trash Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -1590,7 +1361,7 @@
 		</property>
 	</bean>
 	<bean id="box25" class="domain.Box">
-		<property name="name" value="entry" />
+		<property name="name" value="In Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -1601,7 +1372,7 @@
 		</property>
 	</bean>
 	<bean id="box26" class="domain.Box">
-		<property name="name" value="sended" />
+		<property name="name" value="Out Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -1612,7 +1383,7 @@
 		</property>
 	</bean>
 	<bean id="box27" class="domain.Box">
-		<property name="name" value="spam" />
+		<property name="name" value="Spam Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -1623,7 +1394,7 @@
 		</property>
 	</bean>
 	<bean id="box28" class="domain.Box">
-		<property name="name" value="trash" />
+		<property name="name" value="Trash Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -1632,7 +1403,7 @@
 		</property>
 	</bean>
 	<bean id="box29" class="domain.Box">
-		<property name="name" value="entry" />
+		<property name="name" value="In Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -1643,7 +1414,7 @@
 		</property>
 	</bean>
 	<bean id="box30" class="domain.Box">
-		<property name="name" value="sended" />
+		<property name="name" value="Out Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -1654,7 +1425,7 @@
 		</property>
 	</bean>
 	<bean id="box31" class="domain.Box">
-		<property name="name" value="spam" />
+		<property name="name" value="Spam Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -1665,7 +1436,7 @@
 		</property>
 	</bean>
 	<bean id="box32" class="domain.Box">
-		<property name="name" value="trash" />
+		<property name="name" value="Trash Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -1674,7 +1445,7 @@
 		</property>
 	</bean>
 	<bean id="box33" class="domain.Box">
-		<property name="name" value="entry" />
+		<property name="name" value="In Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -1685,7 +1456,7 @@
 		</property>
 	</bean>
 	<bean id="box34" class="domain.Box">
-		<property name="name" value="sended" />
+		<property name="name" value="Out Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -1696,7 +1467,7 @@
 		</property>
 	</bean>
 	<bean id="box35" class="domain.Box">
-		<property name="name" value="spam" />
+		<property name="name" value="Spam Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -1707,7 +1478,7 @@
 		</property>
 	</bean>
 	<bean id="box36" class="domain.Box">
-		<property name="name" value="trash" />
+		<property name="name" value="Trash Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -1716,7 +1487,7 @@
 		</property>
 	</bean>
 	<bean id="box37" class="domain.Box">
-		<property name="name" value="entry" />
+		<property name="name" value="In Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -1727,7 +1498,7 @@
 		</property>
 	</bean>
 	<bean id="box38" class="domain.Box">
-		<property name="name" value="sended" />
+		<property name="name" value="Out Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -1738,7 +1509,7 @@
 		</property>
 	</bean>
 	<bean id="box39" class="domain.Box">
-		<property name="name" value="spam" />
+		<property name="name" value="Spam Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -1749,7 +1520,7 @@
 		</property>
 	</bean>
 	<bean id="box40" class="domain.Box">
-		<property name="name" value="trash" />
+		<property name="name" value="Trash Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -1758,7 +1529,7 @@
 		</property>
 	</bean>
 	<bean id="box41" class="domain.Box">
-		<property name="name" value="entry" />
+		<property name="name" value="In Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -1769,7 +1540,7 @@
 		</property>
 	</bean>
 	<bean id="box42" class="domain.Box">
-		<property name="name" value="sended" />
+		<property name="name" value="Out Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -1780,7 +1551,7 @@
 		</property>
 	</bean>
 	<bean id="box43" class="domain.Box">
-		<property name="name" value="spam" />
+		<property name="name" value="Spam Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -1791,7 +1562,7 @@
 		</property>
 	</bean>
 	<bean id="box44" class="domain.Box">
-		<property name="name" value="trash" />
+		<property name="name" value="Trash Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -1800,7 +1571,7 @@
 		</property>
 	</bean>
 	<bean id="box45" class="domain.Box">
-		<property name="name" value="entry" />
+		<property name="name" value="In Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -1811,7 +1582,7 @@
 		</property>
 	</bean>
 	<bean id="box46" class="domain.Box">
-		<property name="name" value="sended" />
+		<property name="name" value="Out Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -1822,7 +1593,7 @@
 		</property>
 	</bean>
 	<bean id="box47" class="domain.Box">
-		<property name="name" value="spam" />
+		<property name="name" value="Spam Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -1833,7 +1604,7 @@
 		</property>
 	</bean>
 	<bean id="box48" class="domain.Box">
-		<property name="name" value="trash" />
+		<property name="name" value="Trash Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -1842,7 +1613,7 @@
 		</property>
 	</bean>
 	<bean id="box49" class="domain.Box">
-		<property name="name" value="entry" />
+		<property name="name" value="In Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -1853,7 +1624,7 @@
 		</property>
 	</bean>
 	<bean id="box50" class="domain.Box">
-		<property name="name" value="sended" />
+		<property name="name" value="Out Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -1864,7 +1635,7 @@
 		</property>
 	</bean>
 	<bean id="box51" class="domain.Box">
-		<property name="name" value="spam" />
+		<property name="name" value="Spam Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -1875,7 +1646,7 @@
 		</property>
 	</bean>
 	<bean id="box52" class="domain.Box">
-		<property name="name" value="trash" />
+		<property name="name" value="Trash Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -1884,7 +1655,7 @@
 		</property>
 	</bean>
 	<bean id="box53" class="domain.Box">
-		<property name="name" value="entry" />
+		<property name="name" value="In Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -1895,7 +1666,7 @@
 		</property>
 	</bean>
 	<bean id="box54" class="domain.Box">
-		<property name="name" value="sended" />
+		<property name="name" value="Out Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -1906,7 +1677,7 @@
 		</property>
 	</bean>
 	<bean id="box55" class="domain.Box">
-		<property name="name" value="spam" />
+		<property name="name" value="Spam Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -1917,7 +1688,7 @@
 		</property>
 	</bean>
 	<bean id="box56" class="domain.Box">
-		<property name="name" value="trash" />
+		<property name="name" value="Trash Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -1926,7 +1697,7 @@
 		</property>
 	</bean>
 	<bean id="box57" class="domain.Box">
-		<property name="name" value="entry" />
+		<property name="name" value="In Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -1937,7 +1708,7 @@
 		</property>
 	</bean>
 	<bean id="box58" class="domain.Box">
-		<property name="name" value="sended" />
+		<property name="name" value="Out Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -1948,7 +1719,7 @@
 		</property>
 	</bean>
 	<bean id="box59" class="domain.Box">
-		<property name="name" value="spam" />
+		<property name="name" value="Spam Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -1959,7 +1730,7 @@
 		</property>
 	</bean>
 	<bean id="box60" class="domain.Box">
-		<property name="name" value="trash" />
+		<property name="name" value="Trash Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -1968,7 +1739,7 @@
 		</property>
 	</bean>
 	<bean id="box61" class="domain.Box">
-		<property name="name" value="entry" />
+		<property name="name" value="In Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -1979,7 +1750,7 @@
 		</property>
 	</bean>
 	<bean id="box62" class="domain.Box">
-		<property name="name" value="sended" />
+		<property name="name" value="Out Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -1990,7 +1761,7 @@
 		</property>
 	</bean>
 	<bean id="box63" class="domain.Box">
-		<property name="name" value="spam" />
+		<property name="name" value="Spam Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -2001,7 +1772,7 @@
 		</property>
 	</bean>
 	<bean id="box64" class="domain.Box">
-		<property name="name" value="trash" />
+		<property name="name" value="Trash Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -2010,7 +1781,7 @@
 		</property>
 	</bean>
 	<bean id="box65" class="domain.Box">
-		<property name="name" value="entry" />
+		<property name="name" value="In Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -2021,7 +1792,7 @@
 		</property>
 	</bean>
 	<bean id="box66" class="domain.Box">
-		<property name="name" value="sended" />
+		<property name="name" value="Out Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -2032,7 +1803,7 @@
 		</property>
 	</bean>
 	<bean id="box67" class="domain.Box">
-		<property name="name" value="spam" />
+		<property name="name" value="Spam Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -2043,7 +1814,7 @@
 		</property>
 	</bean>
 	<bean id="box68" class="domain.Box">
-		<property name="name" value="trash" />
+		<property name="name" value="Trash Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -2052,7 +1823,7 @@
 		</property>
 	</bean>
 	<bean id="box69" class="domain.Box">
-		<property name="name" value="entry" />
+		<property name="name" value="In Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -2063,7 +1834,7 @@
 		</property>
 	</bean>
 	<bean id="box70" class="domain.Box">
-		<property name="name" value="sended" />
+		<property name="name" value="Out Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -2074,7 +1845,7 @@
 		</property>
 	</bean>
 	<bean id="box71" class="domain.Box">
-		<property name="name" value="spam" />
+		<property name="name" value="Spam Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -2085,7 +1856,7 @@
 		</property>
 	</bean>
 	<bean id="box72" class="domain.Box">
-		<property name="name" value="trash" />
+		<property name="name" value="Trash Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -2094,7 +1865,7 @@
 		</property>
 	</bean>
 	<bean id="box73" class="domain.Box">
-		<property name="name" value="entry" />
+		<property name="name" value="In Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -2105,7 +1876,7 @@
 		</property>
 	</bean>
 	<bean id="box74" class="domain.Box">
-		<property name="name" value="spam" />
+		<property name="name" value="Spam Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -2116,7 +1887,7 @@
 		</property>
 	</bean>
 	<bean id="box75" class="domain.Box">
-		<property name="name" value="trash" />
+		<property name="name" value="Trash Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -2125,7 +1896,7 @@
 		</property>
 	</bean>
 	<bean id="box76" class="domain.Box">
-		<property name="name" value="entry" />
+		<property name="name" value="In Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -2136,7 +1907,7 @@
 		</property>
 	</bean>
 	<bean id="box77" class="domain.Box">
-		<property name="name" value="sended" />
+		<property name="name" value="Out Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -2147,7 +1918,7 @@
 		</property>
 	</bean>
 	<bean id="box78" class="domain.Box">
-		<property name="name" value="spam" />
+		<property name="name" value="Spam Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -2158,7 +1929,7 @@
 		</property>
 	</bean>
 	<bean id="box79" class="domain.Box">
-		<property name="name" value="trash" />
+		<property name="name" value="Trash Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -2167,7 +1938,7 @@
 		</property>
 	</bean>
 	<bean id="box80" class="domain.Box">
-		<property name="name" value="entry" />
+		<property name="name" value="In Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -2178,7 +1949,7 @@
 		</property>
 	</bean>
 	<bean id="box81" class="domain.Box">
-		<property name="name" value="sended" />
+		<property name="name" value="Out Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -2189,7 +1960,7 @@
 		</property>
 	</bean>
 	<bean id="box82" class="domain.Box">
-		<property name="name" value="spam" />
+		<property name="name" value="Spam Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -2200,7 +1971,7 @@
 		</property>
 	</bean>
 	<bean id="box83" class="domain.Box">
-		<property name="name" value="trash" />
+		<property name="name" value="Trash Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -2209,7 +1980,7 @@
 		</property>
 	</bean>
 	<bean id="box84" class="domain.Box">
-		<property name="name" value="entry" />
+		<property name="name" value="In Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -2220,7 +1991,7 @@
 		</property>
 	</bean>
 	<bean id="box85" class="domain.Box">
-		<property name="name" value="sended" />
+		<property name="name" value="Out Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -2231,7 +2002,7 @@
 		</property>
 	</bean>
 	<bean id="box86" class="domain.Box">
-		<property name="name" value="spam" />
+		<property name="name" value="Spam Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -2242,7 +2013,7 @@
 		</property>
 	</bean>
 	<bean id="box87" class="domain.Box">
-		<property name="name" value="trash" />
+		<property name="name" value="Trash Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -2251,7 +2022,7 @@
 		</property>
 	</bean>
 	<bean id="box88" class="domain.Box">
-		<property name="name" value="entry" />
+		<property name="name" value="In Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -2262,7 +2033,7 @@
 		</property>
 	</bean>
 	<bean id="box89" class="domain.Box">
-		<property name="name" value="sended" />
+		<property name="name" value="Out Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -2273,7 +2044,7 @@
 		</property>
 	</bean>
 	<bean id="box90" class="domain.Box">
-		<property name="name" value="spam" />
+		<property name="name" value="Spam Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -2284,7 +2055,7 @@
 		</property>
 	</bean>
 	<bean id="box91" class="domain.Box">
-		<property name="name" value="trash" />
+		<property name="name" value="Trash Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -2293,7 +2064,7 @@
 		</property>
 	</bean>
 	<bean id="box92" class="domain.Box">
-		<property name="name" value="entry" />
+		<property name="name" value="In Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -2304,7 +2075,7 @@
 		</property>
 	</bean>
 	<bean id="box93" class="domain.Box">
-		<property name="name" value="sended" />
+		<property name="name" value="Out Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -2315,7 +2086,7 @@
 		</property>
 	</bean>
 	<bean id="box94" class="domain.Box">
-		<property name="name" value="spam" />
+		<property name="name" value="Spam Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -2326,7 +2097,7 @@
 		</property>
 	</bean>
 	<bean id="box95" class="domain.Box">
-		<property name="name" value="trash" />
+		<property name="name" value="Trash Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -2335,7 +2106,7 @@
 		</property>
 	</bean>
 	<bean id="box96" class="domain.Box">
-		<property name="name" value="entry" />
+		<property name="name" value="In Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -2346,7 +2117,7 @@
 		</property>
 	</bean>
 	<bean id="box97" class="domain.Box">
-		<property name="name" value="sended" />
+		<property name="name" value="Out Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -2357,7 +2128,7 @@
 		</property>
 	</bean>
 	<bean id="box98" class="domain.Box">
-		<property name="name" value="spam" />
+		<property name="name" value="Spam Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -2368,7 +2139,7 @@
 		</property>
 	</bean>
 	<bean id="box99" class="domain.Box">
-		<property name="name" value="trash" />
+		<property name="name" value="Trash Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -2377,7 +2148,7 @@
 		</property>
 	</bean>
 	<bean id="box100" class="domain.Box">
-		<property name="name" value="entry" />
+		<property name="name" value="In Box" />
 		<property name="fromSystem" value="true" />
 		<property name="message">
 			<list>
@@ -2389,7 +2160,7 @@
 	</bean>
 
 	<!-- beans message -->
-	<bean id="message1" class="domain.Message">
+	<bean id="message1" class="domain.Mesage">
 
 		<property name="sender">
 			<ref bean="referee1" />
@@ -2417,11 +2188,9 @@
 		<property name="box">
 			<ref bean="box1" />
 		</property>
-		<property name="priority">
-			<ref bean="priority1" />
-		</property>
+		<property name="priority" value="LOW" />
 	</bean>
-	<bean id="message2" class="domain.Message">
+	<bean id="message2" class="domain.Mesage">
 
 		<property name="sender">
 			<ref bean="referee3" />
@@ -2448,11 +2217,9 @@
 		<property name="box">
 			<ref bean="box1" />
 		</property>
-		<property name="priority">
-			<ref bean="priority2" />
-		</property>
+		<property name="priority" value="LOW" />
 	</bean>
-	<bean id="message3" class="domain.Message">
+	<bean id="message3" class="domain.Mesage">
 
 		<property name="sender">
 			<ref bean="referee5" />
@@ -2479,13 +2246,11 @@
 		<property name="box">
 			<ref bean="box1" />
 		</property>
-		<property name="priority">
-			<ref bean="priority3" />
-		</property>
+		<property name="priority" value="LOW" />
 
 	</bean>
 
-	<bean id="message4" class="domain.Message">
+	<bean id="message4" class="domain.Mesage">
 
 		<property name="sender">
 			<ref bean="customer2" />
@@ -2512,11 +2277,9 @@
 		<property name="box">
 			<ref bean="box2" />
 		</property>
-		<property name="priority">
-			<ref bean="priority1" />
-		</property>
+		<property name="priority" value="LOW" />
 	</bean>
-	<bean id="message5" class="domain.Message">
+	<bean id="message5" class="domain.Mesage">
 
 		<property name="sender">
 			<ref bean="customer4" />
@@ -2543,11 +2306,9 @@
 		<property name="box">
 			<ref bean="box2" />
 		</property>
-		<property name="priority">
-			<ref bean="priority1" />
-		</property>
+		<property name="priority" value="LOW" />
 	</bean>
-	<bean id="message6" class="domain.Message">
+	<bean id="message6" class="domain.Mesage">
 
 		<property name="sender">
 			<ref bean="sponsor1" />
@@ -2574,11 +2335,9 @@
 		<property name="box">
 			<ref bean="box2" />
 		</property>
-		<property name="priority">
-			<ref bean="priority2" />
-		</property>
+		<property name="priority" value="LOW" />
 	</bean>
-	<bean id="message7" class="domain.Message">
+	<bean id="message7" class="domain.Mesage">
 
 		<property name="sender">
 			<ref bean="sponsor3" />
@@ -2605,11 +2364,9 @@
 		<property name="box">
 			<ref bean="box3" />
 		</property>
-		<property name="priority">
-			<ref bean="priority3" />
-		</property>
+		<property name="priority" value="LOW" />
 	</bean>
-	<bean id="message8" class="domain.Message">
+	<bean id="message8" class="domain.Mesage">
 
 		<property name="sender">
 			<ref bean="sponsor5" />
@@ -2636,12 +2393,10 @@
 		<property name="box">
 			<ref bean="box3" />
 		</property>
-		<property name="priority">
-			<ref bean="priority3" />
-		</property>
+		<property name="priority" value="LOW" />
 	</bean>
 
-	<bean id="message9" class="domain.Message">
+	<bean id="message9" class="domain.Mesage">
 
 		<property name="sender">
 			<ref bean="handyworker2" />
@@ -2668,11 +2423,9 @@
 		<property name="box">
 			<ref bean="box3" />
 		</property>
-		<property name="priority">
-			<ref bean="priority1" />
-		</property>
+		<property name="priority" value="LOW" />
 	</bean>
-	<bean id="message10" class="domain.Message">
+	<bean id="message10" class="domain.Mesage">
 
 		<property name="sender">
 			<ref bean="handyworker4" />
@@ -2699,9 +2452,7 @@
 		<property name="box">
 			<ref bean="box4" />
 		</property>
-		<property name="priority">
-			<ref bean="priority2" />
-		</property>
+		<property name="priority" value="LOW" />
 	</bean>
 
 	<!-- bean notes -->
@@ -3670,7 +3421,7 @@
 			</list>
 		</property>
 	</bean>
-<!-- beans referee -->
+	<!-- beans referee -->
 	<!-- beans referee -->
 	<bean id="referee1" class="domain.Referee">
 		<property name="name" value="Referee1" />
@@ -3700,7 +3451,7 @@
 
 		<property name="complaints">
 			<list>
-				<ref bean="complaint1"/>
+				<ref bean="complaint1" />
 			</list>
 		</property>
 		<property name="notes">
@@ -3738,7 +3489,7 @@
 
 		<property name="complaints">
 			<list>
-				<ref bean="complaint2"/>
+				<ref bean="complaint2" />
 			</list>
 		</property>
 		<property name="notes">
@@ -3775,7 +3526,7 @@
 
 		<property name="complaints">
 			<list>
-				<ref bean="complaint3"/>
+				<ref bean="complaint3" />
 			</list>
 		</property>
 		<property name="notes">
@@ -3813,7 +3564,7 @@
 
 		<property name="complaints">
 			<list>
-				<ref bean="complaint4"/>
+				<ref bean="complaint4" />
 			</list>
 		</property>
 		<property name="notes">
@@ -3850,7 +3601,7 @@
 
 		<property name="complaints">
 			<list>
-				<ref bean="complaint5"/>
+				<ref bean="complaint5" />
 			</list>
 		</property>
 		<property name="notes">
@@ -3859,7 +3610,7 @@
 			</list>
 		</property>
 	</bean>
-	
+
 	<!-- beans professionalRecord -->
 	<bean id="ProfessionalRecord1" class="domain.ProfessionalRecord">
 		<property name="companyName" value="ACME Shout"></property>
@@ -5346,7 +5097,7 @@
 
 	<!-- beans handyworker -->
 	<bean id="handyworker1" class="domain.HandyWorker">
-	<property name = "make" value = "handyworker1" />
+		<property name="make" value="handyworker1" />
 		<property name="name" value="handyworker1" />
 		<property name="middleName" value="handyworker1Middle" />
 		<property name="surname" value="handyworker1Surname" />
@@ -5379,11 +5130,7 @@
 				<ref bean="application3" />
 			</list>
 		</property>
-		<property name="phase">
-			<list>
 
-			</list>
-		</property>
 		<property name="tutoriales">
 			<list>
 				<ref bean="tutorial1" />
@@ -5393,10 +5140,33 @@
 		<property name="curriculum">
 			<ref bean="Curriculum1" />
 		</property>
+		<property name="finder">
+			<ref bean="finder1" />
+		</property>
 	</bean>
 
+	<bean id="finder1" class="domain.Finder">
+		<property name="startDate" value="2018/1/1" />
+		<property name="endDate" value="2018/1/1" />
+		<property name="singleKey" value="" />
+		<property name="category">
+			<ref bean="category1" />
+		</property>
+		<property name="warranty">
+			<ref bean="warranty1" />
+		</property>
+		<property name="price1" value="" />
+		<property name="price2" value="" />
+		<property name="fixUpTask">
+			<list>
+			</list>
+		</property>
+		<property name="creationDate" value="2018/12/22" />
+	</bean>
+
+
 	<bean id="handyworker2" class="domain.HandyWorker">
-	<property name = "make" value = "handyworker1" />
+		<property name="make" value="handyworker1" />
 		<property name="name" value="handyworker2" />
 		<property name="middleName" value="handyworker2Middle" />
 		<property name="surname" value="handyworker2Surname" />
@@ -5427,15 +5197,32 @@
 
 			</list>
 		</property>
-		<property name="phase">
-			<list>
-
-			</list>
+		<property name="finder">
+			<ref bean="finder2" />
 		</property>
 	</bean>
 
+	<bean id="finder2" class="domain.Finder">
+		<property name="startDate" value="2018/1/1" />
+		<property name="endDate" value="2018/1/1" />
+		<property name="singleKey" value="" />
+		<property name="category">
+			<ref bean="category1" />
+		</property>
+		<property name="warranty">
+			<ref bean="warranty1" />
+		</property>
+		<property name="price1" value="" />
+		<property name="price2" value="" />
+		<property name="fixUpTask">
+			<list>
+			</list>
+		</property>
+		<property name="creationDate" value="2018/12/22" />
+	</bean>
+
 	<bean id="handyworker3" class="domain.HandyWorker">
-	<property name = "make" value = "handyworker1" />
+		<property name="make" value="handyworker1" />
 		<property name="name" value="handyworker3" />
 		<property name="middleName" value="handyworker3Middle" />
 		<property name="surname" value="handyworker3Surname" />
@@ -5471,25 +5258,38 @@
 				<ref bean="application9" />
 			</list>
 		</property>
-		<property name="phase">
-			<list>
-				<ref bean="phase1" />
-				<ref bean="phase2" />
-				<ref bean="phase3" />
-				<ref bean="phase4" />
-				<ref bean="phase5" />
-				<ref bean="phase6" />
-			</list>
-		</property>
+
 		<property name="tutoriales">
 			<list>
 				<ref bean="tutorial3" />
 			</list>
 		</property>
+		<property name="finder">
+			<ref bean="finder3" />
+		</property>
+	</bean>
+
+	<bean id="finder3" class="domain.Finder">
+		<property name="startDate" value="2018/1/1" />
+		<property name="endDate" value="2018/1/1" />
+		<property name="singleKey" value="" />
+		<property name="category">
+			<ref bean="category1" />
+		</property>
+		<property name="warranty">
+			<ref bean="warranty1" />
+		</property>
+		<property name="price1" value="" />
+		<property name="price2" value="" />
+		<property name="fixUpTask">
+			<list>
+			</list>
+		</property>
+		<property name="creationDate" value="2018/12/22" />
 	</bean>
 
 	<bean id="handyworker4" class="domain.HandyWorker">
-	<property name = "make" value = "handyworker1" />
+		<property name="make" value="handyworker1" />
 		<property name="name" value="handyworker4" />
 		<property name="middleName" value="handyworker4Middle" />
 		<property name="surname" value="handyworker4Surname" />
@@ -5525,20 +5325,38 @@
 				<ref bean="application15" />
 			</list>
 		</property>
-		<property name="phase">
-			<list>
 
-			</list>
-		</property>
 		<property name="tutoriales">
 			<list>
 				<ref bean="tutorial4" />
 			</list>
 		</property>
+		<property name="finder">
+			<ref bean="finder4" />
+		</property>
+	</bean>
+
+	<bean id="finder4" class="domain.Finder">
+		<property name="startDate" value="2018/1/1" />
+		<property name="endDate" value="2018/1/1" />
+		<property name="singleKey" value="" />
+		<property name="category">
+			<ref bean="category1" />
+		</property>
+		<property name="warranty">
+			<ref bean="warranty1" />
+		</property>
+		<property name="price1" value="" />
+		<property name="price2" value="" />
+		<property name="fixUpTask">
+			<list>
+			</list>
+		</property>
+		<property name="creationDate" value="2018/12/22" />
 	</bean>
 
 	<bean id="handyworker5" class="domain.HandyWorker">
-	<property name = "make" value = "handyworker1" />
+		<property name="make" value="handyworker1" />
 		<property name="name" value="handyworker5" />
 		<property name="middleName" value="handyworker5Middle" />
 		<property name="surname" value="handyworker5Surname" />
@@ -5572,17 +5390,37 @@
 				<ref bean="application19" />
 			</list>
 		</property>
-		<property name="phase">
-			<list>
 
-			</list>
-		</property>
 		<property name="tutoriales">
 			<list>
 				<ref bean="tutorial5" />
 			</list>
 		</property>
+		<property name="finder">
+			<ref bean="finder5" />
+		</property>
 	</bean>
+
+	<bean id="finder5" class="domain.Finder">
+		<property name="startDate" value="2018/1/1" />
+		<property name="endDate" value="2018/1/1" />
+		<property name="singleKey" value="" />
+		<property name="category">
+			<ref bean="category1" />
+		</property>
+		<property name="warranty">
+			<ref bean="warranty1" />
+		</property>
+		<property name="price1" value="" />
+		<property name="price2" value="" />
+		<property name="fixUpTask">
+			<list>
+			</list>
+		</property>
+		<property name="creationDate" value="2018/12/22" />
+	</bean>
+
+	<!-- bean endorsement -->
 
 	<bean id="endorsement1" class="domain.Endorsement">
 		<property name="moment">
@@ -5688,315 +5526,5 @@
 			<ref bean="handyworker5" />
 		</property>
 	</bean>
-	<!-- Actors Bean <bean id="handyworker1" class="domain.HandyWorker"> <property 
-		name="name" value="handyworker1" /> <property name="middleName" value="handyworker1Middle" 
-		/> <property name="surname" value="handyworker1Surname" /> <property name="photo" 
-		value="https://www.photohandyworker.com" /> <property name="email" value="hw1@us.es" 
-		/> <property name="phone" value="954152639" /> <property name="adress" value="C/Canal" 
-		/> <property name="boxes"> <list> </list> </property> <property name="score" 
-		value="5.0" /> <property name="account"> <ref bean="userAccount4" /> </property> 
-		<property name="profiles"> <list> <ref bean="profile5" /> <ref bean="profile6" 
-		/> </list> </property> <property name="message"> <list> </list> </property> 
-		<property name="ban" value="false" /> <property name="application"> <list> 
-		<ref bean="application1" /> <ref bean="application2" /> </list> </property> 
-		<property name="phase"> <list> <ref bean="phase1"></ref> <ref bean="phase2"></ref> 
-		</list> </property> <property name = "tutoriales"> <list> <ref bean="tutorial1"></ref> 
-		<ref bean="tutorial2"></ref> </list> </property> </bean> <bean id="handyworker2" 
-		class="domain.HandyWorker"> <property name="name" value="handyworker2" /> 
-		<property name="middleName" value="handyworker2Middle" /> <property name="surname" 
-		value="handyworker2Surname" /> <property name="photo" value="https://www.photohandyworker.com" 
-		/> <property name="email" value="hw1@us.es" /> <property name="phone" value="954152639" 
-		/> <property name="adress" value="C/Canal" /> <property name="boxes"> <list> 
-		</list> </property> <property name="score" value="5.0" /> <property name="account"> 
-		<ref bean="userAccount7" /> </property> <property name="profiles"> <list> 
-		<ref bean="profile11" /> </list> </property> <property name="message"> <list> 
-		</list> </property> <property name="ban" value="false" /> <property name="application"> 
-		<list> <ref bean="application3" /> </list> </property> <property name="phase"> 
-		<list> </list> </property> </bean> <bean id="handyworker3" class="domain.HandyWorker"> 
-		<property name="name" value="handyworker3" /> <property name="middleName" 
-		value="handyworker3Middle" /> <property name="surname" value="handyworker3Surname" 
-		/> <property name="photo" value="https://www.photohandyworker.com" /> <property 
-		name="email" value="hw1@us.es" /> <property name="phone" value="954152639" 
-		/> <property name="adress" value="C/Canal" /> <property name="boxes"> <list> 
-		</list> </property> <property name="score" value="5.0" /> <property name="account"> 
-		<ref bean="userAccount8" /> </property> <property name="profiles"> <list> 
-		</list> </property> <property name="message"> <list> </list> </property> 
-		<property name="ban" value="false" /> <property name="application"> <list> 
-		<ref bean="application4" /> </list> </property> <property name="phase"> <list> 
-		<ref bean="phase5"></ref> </list> </property> </bean> <bean id="customer1" 
-		class="domain.Customer"> <property name="name" value="customer1" /> <property 
-		name="middleName" value="customer1Middle" /> <property name="surname" value="customer1Surname" 
-		/> <property name="photo" value="https://www.photocustomer.com" /> <property 
-		name="email" value="customer@us.es" /> <property name="phone" value="954152634" 
-		/> <property name="adress" value="Avenida de Andalucia" /> <property name="boxes"> 
-		<list> </list> </property> <property name="score" value="6.0" /> <property 
-		name="account"> <ref bean="userAccount2" /> </property> <property name="profiles"> 
-		<list> <ref bean="profile4" /> </list> </property> <property name="message"> 
-		<list> </list> </property> <property name="ban" value="false" /> <property 
-		name="fixUpTask"> <list> <ref bean="fixuptask1" /> </list> </property> <property 
-		name="complaint"> <list> <ref bean="complaint1" /> <ref bean="complaint2" 
-		/> </list> </property> </bean> <bean id="customer2" class="domain.Customer"> 
-		<property name="name" value="customer2" /> <property name="middleName" value="customer2Middle" 
-		/> <property name="surname" value="customer2Surname" /> <property name="photo" 
-		value="https://www.photocustomer2.com" /> <property name="email" value="customer2@us.es" 
-		/> <property name="phone" value="954152555" /> <property name="adress" value="Avenida 
-		de España" /> <property name="boxes"> <list> </list> </property> <property 
-		name="score" value="6.0" /> <property name="account"> <ref bean="userAccount7" 
-		/> </property> <property name="profiles"> <list> <ref bean="profile8" /> 
-		</list> </property> <property name="message"> <list> </list> </property> 
-		<property name="ban" value="false" /> <property name="fixUpTask"> <list> 
-		<ref bean="fixuptask2" /> <ref bean="fixuptask3" /> <ref bean="fixuptask9" 
-		/> </list> </property> <property name="complaint"> <list> <ref bean="complaint3" 
-		/> </list> </property> </bean> <bean id="customer3" class="domain.Customer"> 
-		<property name="name" value="customer3" /> <property name="middleName" value="customer3Middle" 
-		/> <property name="surname" value="customer3Surname" /> <property name="photo" 
-		value="https://www.photocustomer3.com" /> <property name="email" value="customer3@us.es" 
-		/> <property name="phone" value="954152553" /> <property name="adress" value="Avenida 
-		de España" /> <property name="boxes"> <list> </list> </property> <property 
-		name="score" value="6.0" /> <property name="account"> <ref bean="userAccount8" 
-		/> </property> <property name="profiles"> <list> </list> </property> <property 
-		name="message"> <list> </list> </property> <property name="ban" value="false" 
-		/> <property name="fixUpTask"> <list> <ref bean="fixuptask4" /> </list> </property> 
-		<property name="complaint"> <list> <ref bean="complaint6" /> </list> </property> 
-		</bean> <bean id="customer4" class="domain.Customer"> <property name="name" 
-		value="customer4" /> <property name="middleName" value="customer4Middle" 
-		/> <property name="surname" value="customer4Surname" /> <property name="photo" 
-		value="https://www.photocustomer4.com" /> <property name="email" value="customer4@us.es" 
-		/> <property name="phone" value="951245378" /> <property name="adress" value="Avenida 
-		de Andalucía" /> <property name="boxes"> <list> </list> </property> <property 
-		name="score" value="8.0" /> <property name="account"> <ref bean="userAccount2" 
-		/> </property> <property name="profiles"> <list> </list> </property> <property 
-		name="message"> <list> </list> </property> <property name="ban" value="false" 
-		/> <property name="fixUpTask"> <list> <ref bean="fixuptask5" /> </list> </property> 
-		<property name="complaint"> <list> </list> </property> </bean> <bean id="customer5" 
-		class="domain.Customer"> <property name="name" value="customer5" /> <property 
-		name="middleName" value="customer5Middle" /> <property name="surname" value="customer5Surname" 
-		/> <property name="photo" value="https://www.photocustomer5.com" /> <property 
-		name="email" value="customer5@acme.com" /> <property name="phone" value="954151469" 
-		/> <property name="adress" value="Avenida del Guadalquivir" /> <property 
-		name="boxes"> <list> </list> </property> <property name="score" value="4.0" 
-		/> <property name="account"> <ref bean="userAccount2" /> </property> <property 
-		name="profiles"> <list> <ref bean="profile9"></ref> </list> </property> <property 
-		name="message"> <list> <ref bean="message2"></ref> </list> </property> <property 
-		name="ban" value="false" /> <property name="fixUpTask"> <list> <ref bean="fixuptask6" 
-		/> <ref bean="fixuptask7" /> <ref bean="fixuptask8" /> </list> </property> 
-		<property name="complaint"> <list> </list> </property> </bean> Boxes Beans 
-		Application Beans <bean id="application1" class="domain.Application"> <property 
-		name="moment"> <bean factory-bean="dateFormat" factory-method="parse"> <constructor-arg 
-		value="2018/11/13" /> </bean> </property> <property name="offeredPrice" value="14.0" 
-		/> <property name="comments" value="Screen was broken by a fall" /> <property 
-		name="status" value="accepted" /> <property name="momentElapsed"> <bean factory-bean="dateFormat" 
-		factory-method="parse"> <constructor-arg value="2018/12/14" /> </bean> </property> 
-		<property name="fixUpTask"> <ref bean="fixuptask1" /> </property> </bean> 
-		<bean id="application2" class="domain.Application"> <property name="moment"> 
-		<bean factory-bean="dateFormat" factory-method="parse"> <constructor-arg 
-		value="2018/12/10" /> </bean> </property> <property name="offeredPrice" value="19.0" 
-		/> <property name="comments" value="Screen was broken by water" /> <property 
-		name="status" value="pending" /> <property name="momentElapsed"> <bean factory-bean="dateFormat" 
-		factory-method="parse"> <constructor-arg value="2018/11/14" /> </bean> </property> 
-		<property name="fixUpTask"> <ref bean="fixuptask2" /> </property> </bean> 
-		<bean id="application3" class="domain.Application"> <property name="moment"> 
-		<bean factory-bean="dateFormat" factory-method="parse"> <constructor-arg 
-		value="2018/12/04" /> </bean> </property> <property name="offeredPrice" value="25.0" 
-		/> <property name="comments" value="Screen was shining" /> <property name="status" 
-		value="rejected" /> <property name="momentElapsed"> <bean factory-bean="dateFormat" 
-		factory-method="parse"> <constructor-arg value="2018/12/28" /> </bean> </property> 
-		<property name="fixUpTask"> <ref bean="fixuptask3" /> </property> </bean> 
-		<bean id="application4" class="domain.Application"> <property name="moment"> 
-		<bean factory-bean="dateFormat" factory-method="parse"> <constructor-arg 
-		value="2018/12/25" /> </bean> </property> <property name="offeredPrice" value="50.0" 
-		/> <property name="comments" value="Screen was broken by a fall..." /> <property 
-		name="status" value="accepted" /> <property name="momentElapsed"> <bean factory-bean="dateFormat" 
-		factory-method="parse"> <constructor-arg value="2018/12/27" /> </bean> </property> 
-		<property name="fixUpTask"> <ref bean="fixuptask1" /> </property> </bean> 
-		<bean id="application5" class="domain.Application"> <property name="moment"> 
-		<bean factory-bean="dateFormat" factory-method="parse"> <constructor-arg 
-		value="2018/12/25" /> </bean> </property> <property name="offeredPrice" value="50.0" 
-		/> <property name="comments" value="Screen was broken by a fall..." /> <property 
-		name="status" value="accepted" /> <property name="momentElapsed"> <bean factory-bean="dateFormat" 
-		factory-method="parse"> <constructor-arg value="2018/12/25" /> </bean> </property> 
-		<property name="fixUpTask"> <ref bean="fixuptask1" /> </property> </bean> 
-		<bean id="application6" class="domain.Application"> <property name="moment"> 
-		<bean factory-bean="dateFormat" factory-method="parse"> <constructor-arg 
-		value="2018/12/25" /> </bean> </property> <property name="offeredPrice" value="90.0" 
-		/> <property name="comments" value="10 Windows broken in a flat" /> <property 
-		name="status" value="rejected" /> <property name="momentElapsed"> <bean factory-bean="dateFormat" 
-		factory-method="parse"> <constructor-arg value="2018/12/25" /> </bean> </property> 
-		<property name="fixUpTask"> <ref bean="fixuptask9" /> </property> </bean> 
-		Categories FixUp Tasks - Beans <bean id="fixuptask1" class="domain.FixUpTask"> 
-		<property name="ticker" value="20181108-A32569" /> <property name="moment"> 
-		<bean factory-bean="dateFormat" factory-method="parse"> <constructor-arg 
-		value="2018/12/13" /> </bean> </property> <property name="description" value="descriptionfixuptask1" 
-		/> <property name="address" value="addressfixuptask1" /> <property name="maximumPrice" 
-		value="40.0" /> <property name="start"> <bean factory-bean="dateFormat" factory-method="parse"> 
-		<constructor-arg value="2018/12/15" /> </bean> </property> <property name="end"> 
-		<bean factory-bean="dateFormat" factory-method="parse"> <constructor-arg 
-		value="2018/12/15" /> </bean> </property> <property name="phases"> <list> 
-		<ref bean="phase1" /> <ref bean="phase2" /> </list> </property> <property 
-		name="warranty"> <ref bean="warranty1" /> </property> <property name="category"> 
-		<ref bean="category1" /> </property> <property name="complaint"> <list> <ref 
-		bean="complaint1" /> <ref bean="complaint8" /> </list> </property> <property 
-		name="application"> <ref bean="application1" /> </property> </bean> <bean 
-		id="fixuptask2" class="domain.FixUpTask"> <property name="ticker" value="20181108-A32567" 
-		/> <property name="moment"> <bean factory-bean="dateFormat" factory-method="parse"> 
-		<constructor-arg value="2018/12/13" /> </bean> </property> <property name="description" 
-		value="descriptionfixuptask2" /> <property name="address" value="addressfixuptask2" 
-		/> <property name="maximumPrice" value="25.0" /> <property name="start"> 
-		<bean factory-bean="dateFormat" factory-method="parse"> <constructor-arg 
-		value="2018/12/15" /> </bean> </property> <property name="end"> <bean factory-bean="dateFormat" 
-		factory-method="parse"> <constructor-arg value="2018/12/15" /> </bean> </property> 
-		<property name="phases"> <list> <ref bean="phase4" /> </list> </property> 
-		<property name="warranty"> <ref bean="warranty1" /> </property> <property 
-		name="category"> <ref bean="category1" /> </property> <property name="complaint"> 
-		<list> <ref bean="complaint2" /> </list> </property> <property name="application"> 
-		<list> <ref bean="application2" /> <ref bean="application5" /> </list> </property> 
-		</bean> <bean id="fixuptask3" class="domain.FixUpTask"> <property name="ticker" 
-		value="20181108-A32559" /> <property name="moment"> <bean factory-bean="dateFormat" 
-		factory-method="parse"> <constructor-arg value="2018/12/13" /> </bean> </property> 
-		<property name="description" value="descriptionfixuptask3" /> <property name="address" 
-		value="addressfixuptask3" /> <property name="maximumPrice" value="10.0" /> 
-		<property name="start"> <bean factory-bean="dateFormat" factory-method="parse"> 
-		<constructor-arg value="2018/12/15" /> </bean> </property> <property name="end"> 
-		<bean factory-bean="dateFormat" factory-method="parse"> <constructor-arg 
-		value="2018/12/15" /> </bean> </property> <property name="phases"> <list> 
-		<ref bean="phase5" /> <ref bean="phase6" /> </list> </property> <property 
-		name="warranty"> <ref bean="warranty1" /> </property> <property name="category"> 
-		<ref bean="category1" /> </property> <property name="complaint"> <list> <ref 
-		bean="complaint3" /> </list> </property> <property name="application"> <list> 
-		<ref bean="application3" /> </list> </property> </bean> <bean id="fixuptask4" 
-		class="domain.FixUpTask"> <property name="ticker" value="20181110-A32759" 
-		/> <property name="moment"> <bean factory-bean="dateFormat" factory-method="parse"> 
-		<constructor-arg value="2018/12/13" /> </bean> </property> <property name="description" 
-		value="descriptionfixuptask4" /> <property name="address" value="addressfixuptask4" 
-		/> <property name="maximumPrice" value="2.0" /> <property name="start"> <bean 
-		factory-bean="dateFormat" factory-method="parse"> <constructor-arg value="2018/12/15" 
-		/> </bean> </property> <property name="end"> <bean factory-bean="dateFormat" 
-		factory-method="parse"> <constructor-arg value="2018/12/15" /> </bean> </property> 
-		<property name="phases"> <list> </list> </property> <property name="warranty"> 
-		<ref bean="warranty1" /> </property> <property name="category"> <ref bean="category1" 
-		/> </property> <property name="complaint"> <list></list> </property> <property 
-		name="application"> <list> <ref bean="application4" /> </list> </property> 
-		</bean> <bean id="fixuptask5" class="domain.FixUpTask"> <property name="ticker" 
-		value="20281108-A32469" /> <property name="moment"> <bean factory-bean="dateFormat" 
-		factory-method="parse"> <constructor-arg value="2018/12/13" /> </bean> </property> 
-		<property name="description" value="descriptionfixuptask5" /> <property name="address" 
-		value="addressfixuptask5" /> <property name="maximumPrice" value="6.0" /> 
-		<property name="start"> <bean factory-bean="dateFormat" factory-method="parse"> 
-		<constructor-arg value="2018/12/15" /> </bean> </property> <property name="end"> 
-		<bean factory-bean="dateFormat" factory-method="parse"> <constructor-arg 
-		value="2018/12/15" /> </bean> </property> <property name="phases"> <list> 
-		<ref bean="phase3"/> </list> </property> <property name="warranty"> <ref 
-		bean="warranty1" /> </property> <property name="category"> <ref bean="category1" 
-		/> </property> <property name="complaint"> <list> <ref bean="complaint4" 
-		></ref> </list> </property> <property name="application"> <list> <ref bean="application4" 
-		/> </list> </property> </bean> <bean id="fixuptask6" class="domain.FixUpTask"> 
-		<property name="ticker" value="20181108-A32329" /> <property name="moment"> 
-		<bean factory-bean="dateFormat" factory-method="parse"> <constructor-arg 
-		value="2018/12/13" /> </bean> </property> <property name="description" value="descriptionfixuptask6" 
-		/> <property name="address" value="addressfixuptask6" /> <property name="maximumPrice" 
-		value="8.0" /> <property name="start"> <bean factory-bean="dateFormat" factory-method="parse"> 
-		<constructor-arg value="2018/12/15" /> </bean> </property> <property name="end"> 
-		<bean factory-bean="dateFormat" factory-method="parse"> <constructor-arg 
-		value="2018/12/15" /> </bean> </property> <property name="phases"> <list> 
-		</list> </property> <property name="warranty"> <ref bean="warranty1" /> </property> 
-		<property name="category"> <ref bean="category1" /> </property> <property 
-		name="complaint"> <list> <ref bean="complaint6" ></ref> </list> </property> 
-		<property name="application"> <list> <ref bean="application4" /> </list> 
-		</property> </bean> <bean id="fixuptask7" class="domain.FixUpTask"> <property 
-		name="ticker" value="20171108-A32571" /> <property name="moment"> <bean factory-bean="dateFormat" 
-		factory-method="parse"> <constructor-arg value="2018/12/13" /> </bean> </property> 
-		<property name="description" value="descriptionfixuptask7" /> <property name="address" 
-		value="addressfixuptask7" /> <property name="maximumPrice" value="4.0" /> 
-		<property name="start"> <bean factory-bean="dateFormat" factory-method="parse"> 
-		<constructor-arg value="2018/12/15" /> </bean> </property> <property name="end"> 
-		<bean factory-bean="dateFormat" factory-method="parse"> <constructor-arg 
-		value="2018/12/15" /> </bean> </property> <property name="phases"> <list> 
-		</list> </property> <property name="warranty"> <ref bean="warranty1" /> </property> 
-		<property name="category"> <ref bean="category1" /> </property> <property 
-		name="complaint"> <list> <ref bean="complaint5" ></ref> </list> </property> 
-		<property name="application"> <list> <ref bean="application4" /> </list> 
-		</property> </bean> <bean id="fixuptask8" class="domain.FixUpTask"> <property 
-		name="ticker" value="20181118-A24559" /> <property name="moment"> <bean factory-bean="dateFormat" 
-		factory-method="parse"> <constructor-arg value="2018/12/13" /> </bean> </property> 
-		<property name="description" value="descriptionfixuptask8" /> <property name="address" 
-		value="addressfixuptask8" /> <property name="maximumPrice" value="3.0" /> 
-		<property name="start"> <bean factory-bean="dateFormat" factory-method="parse"> 
-		<constructor-arg value="2018/12/15" /> </bean> </property> <property name="end"> 
-		<bean factory-bean="dateFormat" factory-method="parse"> <constructor-arg 
-		value="2018/12/15" /> </bean> </property> <property name="phases"> <list> 
-		</list> </property> <property name="warranty"> <ref bean="warranty1" /> </property> 
-		<property name="category"> <ref bean="category1" /> </property> <property 
-		name="complaint"> <list></list> </property> <property name="application"> 
-		<list> <ref bean="application4" /> </list> </property> </bean> <bean id="fixuptask9" 
-		class="domain.FixUpTask"> <property name="ticker" value="20180108-A32559" 
-		/> <property name="moment"> <bean factory-bean="dateFormat" factory-method="parse"> 
-		<constructor-arg value="2018/12/13" /> </bean> </property> <property name="description" 
-		value="descriptionfixuptask9" /> <property name="address" value="addressfixuptask9" 
-		/> <property name="maximumPrice" value="10.0" /> <property name="start"> 
-		<bean factory-bean="dateFormat" factory-method="parse"> <constructor-arg 
-		value="2018/12/15" /> </bean> </property> <property name="end"> <bean factory-bean="dateFormat" 
-		factory-method="parse"> <constructor-arg value="2018/12/15" /> </bean> </property> 
-		<property name="phases"> <list> </list> </property> <property name="warranty"> 
-		<ref bean="warranty1" /> </property> <property name="category"> <ref bean="category1" 
-		/> </property> <property name="complaint"> <list></list> </property> <property 
-		name="application"> <list> <ref bean="application6" /> </list> </property> 
-		</bean> Credit Card Beans Customisation System beans Notes beans <bean id="note1" 
-		class="domain.Note"> <property name="moment"> <bean factory-bean="dateFormat" 
-		factory-method="parse"> <constructor-arg value="2018/11/18" /> </bean> </property> 
-		<property name="comment" value="Notita simple"> </property> <property name="otherComments"> 
-		<list> <value>Comentario opcional 1</value> <value>Comentario opcional 2</value> 
-		</list> </property> </bean> <bean id="note2" class="domain.Note"> <property 
-		name="moment"> <bean factory-bean="dateFormat" factory-method="parse"> <constructor-arg 
-		value="2018/11/18" /> </bean> </property> <property name="comment" value="What 
-		a note!"> </property> <property name="otherComments"> <list> <value>Comentario 
-		opcional 3</value> </list> </property> </bean> Reports beans Complaints beans 
-		<bean id="complaint1" class="domain.Complaint"> <property name="ticker" value="20181111-A32579"></property> 
-		<property name="moment"> <bean factory-bean="dateFormat" factory-method="parse"> 
-		<constructor-arg value="2018/11/20" /> </bean> </property> <property name="description" 
-		value="Queja numelo 1"></property> <property name="attachment" value="1"></property> 
-		<property name="report"> <list> <ref bean="report1" /> </list> </property> 
-		</bean> <bean id="complaint2" class="domain.Complaint"> <property name="ticker" 
-		value="20181111-A32580"></property> <property name="moment"> <bean factory-bean="dateFormat" 
-		factory-method="parse"> <constructor-arg value="2018/11/27" /> </bean> </property> 
-		<property name="description" value="Queja numero 2"></property> <property 
-		name="attachment" value="2"></property> <property name="report"> <list> <ref 
-		bean="report1" /> </list> </property> </bean> <bean id="complaint3" class="domain.Complaint"> 
-		<property name="ticker" value="20181111-A32581"></property> <property name="moment"> 
-		<bean factory-bean="dateFormat" factory-method="parse"> <constructor-arg 
-		value="2018/11/29" /> </bean> </property> <property name="description" value="Queja 
-		numero 3"></property> <property name="attachment" value="3"></property> <property 
-		name="report"> <list> <ref bean="report1" /> </list> </property> </bean> 
-		<bean id="complaint4" class="domain.Complaint"> <property name="ticker" value="20181111-A32591"></property> 
-		<property name="moment"> <bean factory-bean="dateFormat" factory-method="parse"> 
-		<constructor-arg value="2018/11/29" /> </bean> </property> <property name="description" 
-		value="Queja numero 4"></property> <property name="attachment" value="4"></property> 
-		<property name="report"> <list> <ref bean="report1" /> </list> </property> 
-		</bean> <bean id="complaint5" class="domain.Complaint"> <property name="ticker" 
-		value="20181111-A31583"></property> <property name="moment"> <bean factory-bean="dateFormat" 
-		factory-method="parse"> <constructor-arg value="2018/11/29" /> </bean> </property> 
-		<property name="description" value="Queja numero 5"></property> <property 
-		name="attachment" value="6"></property> <property name="report"> <list> <ref 
-		bean="report1" /> </list> </property> </bean> <bean id="complaint6" class="domain.Complaint"> 
-		<property name="ticker" value="20181111-A32581"></property> <property name="moment"> 
-		<bean factory-bean="dateFormat" factory-method="parse"> <constructor-arg 
-		value="2018/11/29" /> </bean> </property> <property name="description" value="Queja 
-		numero 6"></property> <property name="attachment" value="6"></property> <property 
-		name="report"> <list> <ref bean="report1" /> </list> </property> </bean> 
-		<bean id="complaint7" class="domain.Complaint"> <property name="ticker" value="20181208-A32580"></property> 
-		<property name="moment"> <bean factory-bean="dateFormat" factory-method="parse"> 
-		<constructor-arg value="2018/11/29" /> </bean> </property> <property name="description" 
-		value="Queja numero 7"></property> <property name="attachment" value="4"></property> 
-		<property name="report"> <list> <ref bean="report2" /> </list> </property> 
-		</bean> <bean id="complaint8" class="domain.Complaint"> <property name="ticker" 
-		value="20181219-A32580"></property> <property name="moment"> <bean factory-bean="dateFormat" 
-		factory-method="parse"> <constructor-arg value="2018/11/29" /> </bean> </property> 
-		<property name="description" value="Queja numero 8"></property> <property 
-		name="attachment" value="1"></property> <property name="report"> <list> <ref 
-		bean="report1" /> </list> </property> </bean> Referee tutorial beans endorsement 
-		beans <bean id="endorsement1" class="domain.Endorsement"> <property name="moment"> 
-		<bean factory-bean="dateFormat" factory-method="parse"> <constructor-arg 
-		value="2018/11/13" /> </bean> </property> <property name="comments"> <list> 
-		<value>comment1</value> <value>comment2</value> <value>comment3</value> </list> 
-		</property> <property name="userReceived"> <ref bean="customer1" /> </property> 
-		<property name="userSended"> <ref bean="handyworker1" /> </property> </bean> -->
+
 </beans>

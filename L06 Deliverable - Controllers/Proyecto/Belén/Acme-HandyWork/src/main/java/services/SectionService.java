@@ -35,7 +35,7 @@ public class SectionService {
 		return this.sectionRepository.findOne(id);
 	}
 
-	public Section addSection(final Section s) {
+	public Section save(final Section s) {
 
 		UserAccount user;
 		user = LoginService.getPrincipal();
@@ -51,20 +51,6 @@ public class SectionService {
 		Assert.notNull(result);
 
 		return result;
-	}
-	public Section updateSection(final Section n) {
-		UserAccount user;
-		user = LoginService.getPrincipal();
-
-		HandyWorker w;
-		w = this.serviceHandyWorker.findByUserAccount(user.getId());
-
-		Assert.notNull(w);
-		Section saved;
-
-		saved = this.sectionRepository.save(n);
-		Assert.notNull(saved);
-		return saved;
 	}
 
 	public void deleteSection(final Section s) {

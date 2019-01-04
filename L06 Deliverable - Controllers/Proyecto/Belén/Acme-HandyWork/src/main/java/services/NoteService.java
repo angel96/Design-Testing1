@@ -1,9 +1,7 @@
 
 package services;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Date;
 
 import javax.transaction.Transactional;
 
@@ -42,16 +40,11 @@ public class NoteService {
 		return this.noteRepository.findOne(noteId);
 	}
 
-	public Note create() {
-		UserAccount user;
-		user = LoginService.getPrincipal();
-		Assert.isTrue((Utiles.findAuthority(user.getAuthorities(), Authority.CUSTOMER) || Utiles.findAuthority(user.getAuthorities(), Authority.HANDY_WORKER) || Utiles.findAuthority(user.getAuthorities(), Authority.REFEREE)));
-		Note res;
-		res = new Note();
-		res.setMoment(new Date());
-		res.setComment("");
-		res.setOtherComments(new ArrayList<String>());
-		return res;
+	public Collection<Note> findAll() {
+		Collection<Note> notes;
+		notes = this.noteRepository.findAll();
+		Assert.notNull(notes);
+		return notes;
 	}
 
 	public Note save(final Note note) {
@@ -68,7 +61,6 @@ public class NoteService {
 			saved = this.noteRepository.save(note);
 			notesPerCustomer.add(saved);
 			c.setNotes(notesPerCustomer);
-			this.customerService.save(c);
 		}
 		if (Utiles.findAuthority(user.getAuthorities(), Authority.HANDY_WORKER)) {
 			HandyWorker h;
@@ -78,7 +70,6 @@ public class NoteService {
 			saved = this.noteRepository.save(note);
 			notesPerHandyWorker.add(saved);
 			h.setNotes(notesPerHandyWorker);
-			this.handyWorkerService.update(h);
 		}
 		if (Utiles.findAuthority(user.getAuthorities(), Authority.REFEREE)) {
 			Assert.isTrue(this.noteRepository.findReportByNoteId(note.getId()).getFinalMode(), "Report hasn't been saved in final mode");
@@ -89,7 +80,6 @@ public class NoteService {
 			saved = this.noteRepository.save(note);
 			notesPerReferee.add(saved);
 			r.setNotes(notesPerReferee);
-			this.refereeService.save(r);
 		}
 		saved = this.noteRepository.save(note);
 		return saved;

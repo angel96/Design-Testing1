@@ -17,6 +17,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Access(AccessType.PROPERTY)
@@ -27,11 +28,12 @@ public class Report extends DomainEntity {
 	private String				description;
 	private Collection<String>	attachments;
 	private Collection<Note>	notes;
-	private Boolean 			finalMode;
+	private Boolean				finalMode;
 	private Complaint			complaint;
 
-	
+
 	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "yyyy/MM/dd")
 	public Date getMoment() {
 		return this.moment;
 	}
@@ -68,19 +70,19 @@ public class Report extends DomainEntity {
 	}
 
 	public Boolean getFinalMode() {
-		return finalMode;
+		return this.finalMode;
 	}
 
-	public void setFinalMode(Boolean finalMode) {
+	public void setFinalMode(final Boolean finalMode) {
 		this.finalMode = finalMode;
 	}
 
 	@ManyToOne(optional = false)
 	public Complaint getComplaint() {
-		return complaint;
+		return this.complaint;
 	}
 
-	public void setComplaint(Complaint complaint) {
+	public void setComplaint(final Complaint complaint) {
 		this.complaint = complaint;
 	}
 }

@@ -21,13 +21,5 @@
 		<put-attribute name="body" value="/views/administrator/edit.jsp" />
 	</definition>
 	
-	<definition name="administrator/messages" extends="master.page">	
-		<put-attribute name="title" value="Administrator: Messages " />
-		<put-attribute name="body" value="/views/administrator/messages.jsp" />
-	</definition>
 	
-	<definition name="administrator/boxes" extends="master.page">	
-		<put-attribute name="title" value="Administrator: Boxes " />
-		<put-attribute name="body" value="/views/administrator/boxes.jsp" />
-	</definition>
 </tiles-definitions>

@@ -1,3 +1,4 @@
+
 package controllers;
 
 import javax.validation.Valid;
@@ -17,17 +18,18 @@ import domain.Referee;
 @Controller
 @RequestMapping("/referee")
 public class RefereeController {
-	
+
 	@Autowired
-	private RefereeService refereeService;
-	
+	private RefereeService	refereeService;
+
+
 	// Constructors -----------------------------------------------------------
 	public RefereeController() {
 		super();
 	}
-	
+
 	// Create ---------------------------------------------------------------		
-	@RequestMapping(value="/create", method = RequestMethod.GET)
+	@RequestMapping(value = "/createReferee", method = RequestMethod.GET)
 	public ModelAndView create() {
 		ModelAndView model;
 
@@ -39,36 +41,36 @@ public class RefereeController {
 	// Edit ---------------------------------------------------------------		
 
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
-	public ModelAndView submit(@Valid final Referee referee, final BindingResult binding){
+	public ModelAndView submit(@Valid final Referee referee, final BindingResult binding) {
 		ModelAndView model;
-	
-	if (binding.hasErrors()) {
-		model = this.createEditModelAndView(referee);
-		model.addObject("errors", binding.getAllErrors());
-	} else 
-		try {
-			this.refereeService.save(referee);
-			model = new ModelAndView("redirect:../security/login.do");
-		} catch (final Throwable oops) {
-			model = this.createEditModelAndView(referee, "referee.commit.error");
-			model.addObject("oops", oops.getMessage());
+
+		if (binding.hasErrors()) {
+			model = this.createEditModelAndView(referee);
 			model.addObject("errors", binding.getAllErrors());
-		}
+		} else
+			try {
+				this.refereeService.save(referee);
+				model = new ModelAndView("redirect:../security/login.do");
+			} catch (final Throwable oops) {
+				model = this.createEditModelAndView(referee, "referee.commit.error");
+				model.addObject("oops", oops.getMessage());
+				model.addObject("errors", binding.getAllErrors());
+			}
 		return model;
 	}
-	
+
 	//Personal data ---------------------------------------------------------------		
 	@RequestMapping(value = "/personal", method = RequestMethod.GET)
 	public ModelAndView editPersonalData() {
 		ModelAndView model;
 		//This method is used for personal data edition
-		
+
 		Referee find;
-		
-		find = this.refereeService.findOne(LoginService.getPrincipal().getId());
-		
+
+		find = this.refereeService.findByUserAccount(LoginService.getPrincipal().getId());
+
 		model = this.createEditModelAndView(find);
-		
+
 		return model;
 	}
 	protected ModelAndView createEditModelAndView(final Referee referee) {

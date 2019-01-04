@@ -1,3 +1,4 @@
+
 package controllers;
 
 import javax.validation.Valid;
@@ -17,16 +18,17 @@ import domain.Sponsor;
 @Controller
 @RequestMapping("/sponsor")
 public class SponsorController {
-	
+
 	@Autowired
-	private SponsorService sponsorService;
-	
+	private SponsorService	sponsorService;
+
+
 	// Constructors -----------------------------------------------------------
-		public SponsorController() {
-			super();
-		}
+	public SponsorController() {
+		super();
+	}
 	// Create ---------------------------------------------------------------		
-	@RequestMapping(value="/create", method = RequestMethod.GET)
+	@RequestMapping(value = "/createSponsor", method = RequestMethod.GET)
 	public ModelAndView create() {
 		ModelAndView model;
 
@@ -34,46 +36,43 @@ public class SponsorController {
 
 		return model;
 	}
-	
+
 	// Edit ---------------------------------------------------------------		
 
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
-	public ModelAndView submit(@Valid final Sponsor sponsor, final BindingResult binding){
+	public ModelAndView submit(@Valid final Sponsor sponsor, final BindingResult binding) {
 		ModelAndView model;
-	
-	if (binding.hasErrors()) {
-		model = this.createEditModelAndView(sponsor);
-		model.addObject("errors", binding.getAllErrors());
-	} else 
-		try {
-			this.sponsorService.save(sponsor);
-			model = new ModelAndView("redirect:../security/login.do");
-		} catch (final Throwable oops) {
-			model = this.createEditModelAndView(sponsor, "sponsor.commit.error");
-			model.addObject("oops", oops.getMessage());
+
+		if (binding.hasErrors()) {
+			model = this.createEditModelAndView(sponsor);
 			model.addObject("errors", binding.getAllErrors());
-		}
+		} else
+			try {
+				this.sponsorService.save(sponsor);
+				model = new ModelAndView("redirect:../security/login.do");
+			} catch (final Throwable oops) {
+				model = this.createEditModelAndView(sponsor, "sponsor.commit.error");
+				model.addObject("oops", oops.getMessage());
+				model.addObject("errors", binding.getAllErrors());
+			}
 		return model;
 	}
-	
+
 	//Personal data ---------------------------------------------------------------		
 	@RequestMapping(value = "/personal", method = RequestMethod.GET)
 	public ModelAndView editPersonalData() {
 		ModelAndView model;
 		//This method is used for personal data edition
-		
+
 		Sponsor find;
-		
-		find = this.sponsorService.findOne(LoginService.getPrincipal().getId());
-		
+
+		find = this.sponsorService.findByUserAccount(LoginService.getPrincipal().getId());
+
 		model = this.createEditModelAndView(find);
-		
+
 		return model;
 	}
-	
-	
-		
-	
+
 	protected ModelAndView createEditModelAndView(final Sponsor sponsor) {
 		ModelAndView model;
 		model = this.createEditModelAndView(sponsor, null);

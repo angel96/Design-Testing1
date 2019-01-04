@@ -2,6 +2,8 @@
 package services;
 
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -78,19 +80,7 @@ public class ApplicationService {
 
 		return saved;
 	}
-	public Application update(final Application newer) {
-		Application saved;
-		UserAccount userLogged;
-		userLogged = LoginService.getPrincipal();
 
-		Assert.isTrue(Utiles.findAuthority(userLogged.getAuthorities(), Authority.HANDY_WORKER));
-		if (userLogged.equals(this.serviceHWorker.findByUserAccount(userLogged.getId()).getAccount()))
-			saved = this.applicationRepository.save(newer);
-		else
-			throw new IllegalAccessError("An application which doesn´t belong to the HandyWorker logged can not be modified");
-		Assert.notNull(saved);
-		return saved;
-	}
 	public Application updateStatus(final CreditCard credit, final Application newer) {
 		Application saved;
 		UserAccount userLogged;
@@ -120,4 +110,31 @@ public class ApplicationService {
 		}
 	}
 
+	public Map<String, Double> dashboardApplications() {
+		Map<String, Double> result;
+		result = new HashMap<String, Double>();
+
+		result.put("ApplicationsPerFixUpTaskAVG", this.applicationRepository.findAVGOfApplicationPerFixUpTask());
+		result.put("ApplicationsPerFixUpTaskMIN", this.applicationRepository.findMINOfApplicationPerFixUpTask());
+		result.put("ApplicationsPerFixUpTaskMAX", this.applicationRepository.findMAXOfApplicationPerFixUpTask());
+		result.put("ApplicationsPerFixUpTaskSTDEV", this.applicationRepository.findATDDEVOfApplicationPerFixUpTask());
+
+		result.put("RatioPendingApplications", this.applicationRepository.findRatioOfPendingApplications());
+		result.put("RatioAcceptedApplications", this.applicationRepository.findRationOfAcceptedAplications());
+		result.put("RatioRejectedApplications", this.applicationRepository.findRationOfRejectedApplications());
+		result.put("RatioApplicationsItsStatusCannotbechanged", this.applicationRepository.findRationOfPendingApplicationCannotChangeItsStatus());
+
+		return result;
+	}
+	public Map<String, Double> dashboardPrices() {
+		Map<String, Double> result;
+		result = new HashMap<String, Double>();
+
+		result.put("PriceFixUpTaskAVG", this.applicationRepository.findAVGOfPriceOfferedInApplicatio());
+		result.put("PriceFixUpTaskMIN", this.applicationRepository.findMINOfPriceOfferedInApplicatio());
+		result.put("PriceFixUpTaskMAX", this.applicationRepository.findMAXOfPriceOfferedInApplicatio());
+		result.put("PriceFixUpTaskSTDEV", this.applicationRepository.findATDDEVOfPriceOfferedInApplicatio());
+
+		return result;
+	}
 }

@@ -17,6 +17,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Access(AccessType.PROPERTY)
@@ -28,7 +29,7 @@ public class Complaint extends DomainEntity {
 	private String				description;
 	private Integer				attachment;
 	private Collection<Report>	report;
-	private Referee referee;
+	private Referee				referee;
 
 
 	@Pattern(regexp = "^\\d{4}(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])-[\\w]{6}$")
@@ -41,6 +42,7 @@ public class Complaint extends DomainEntity {
 		this.ticker = ticker;
 	}
 	@Temporal(TemporalType.DATE)
+	@DateTimeFormat(pattern = "yyyy/MM/dd")
 	public Date getMoment() {
 		return this.moment;
 	}
@@ -72,13 +74,13 @@ public class Complaint extends DomainEntity {
 	public void setReport(final Collection<Report> report) {
 		this.report = report;
 	}
-	
+
 	@ManyToOne(optional = true)
 	public Referee getReferee() {
-		return referee;
+		return this.referee;
 	}
 
-	public void setReferee(Referee referee) {
+	public void setReferee(final Referee referee) {
 		this.referee = referee;
 	}
 }

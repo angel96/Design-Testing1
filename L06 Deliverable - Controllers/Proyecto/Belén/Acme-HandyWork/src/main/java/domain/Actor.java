@@ -10,7 +10,6 @@ import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.validation.Valid;
@@ -132,7 +131,7 @@ public abstract class Actor extends DomainEntity {
 		this.account = account;
 	}
 
-	@ManyToMany
+	@OneToMany
 	public Collection<Box> getBoxes() {
 		return this.boxes;
 	}

@@ -20,8 +20,8 @@
 <form:form action="administrator/edit.do" modelAttribute="administrator">
 	<form:hidden path="id" />
 	<form:hidden path="version" />
-	<!--<form:hidden path="profiles" />
-	<form:hidden path="boxes" />-->
+	<!--<form:hidden path="profiles" /> -->
+	<form:hidden path="boxes" />
 	<form:hidden path="account.id" />
 	<form:hidden path="account.authorities" />
 

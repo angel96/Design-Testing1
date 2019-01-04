@@ -82,6 +82,7 @@ public class AdministratorController extends AbstractController {
 
 		return result;
 	}
+	//Dashboard
 
 	protected ModelAndView createEditModelAndView(final Administrator administrator) {
 		ModelAndView model;
@@ -94,5 +95,7 @@ public class AdministratorController extends AbstractController {
 		result.addObject("administrator", administrator);
 		result.addObject("message", message);
 		return result;
+
 	}
+
 }

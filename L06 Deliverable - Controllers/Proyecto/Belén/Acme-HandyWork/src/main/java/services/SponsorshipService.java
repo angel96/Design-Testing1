@@ -39,7 +39,7 @@ public class SponsorshipService {
 		login = LoginService.getPrincipal();
 
 		Sponsor logged;
-		logged = this.serviceSponsor.findByUserAccount(login);
+		logged = this.serviceSponsor.findByUserAccount(login.getId());
 
 		Assert.notNull(logged);
 
@@ -50,20 +50,7 @@ public class SponsorshipService {
 
 		return saved;
 	}
-	public Sponsorship update(final Sponsorship newer) {
 
-		Sponsorship saved;
-
-		UserAccount logged;
-		logged = LoginService.getPrincipal();
-
-		if (logged.equals(newer.getSponsor().getAccount()))
-			saved = this.sponsorshipRepository.save(newer);
-		else
-			throw new IllegalAccessError();
-
-		return saved;
-	}
 	public void delete(final int id) {
 		Assert.notNull(this.findOne(id));
 		this.sponsorshipRepository.delete(id);

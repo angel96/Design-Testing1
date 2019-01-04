@@ -58,10 +58,10 @@ public class WarrantyController extends AbstractController {
 			model = this.createEditModelAndView(warranty);
 		else
 			try {
-				this.serviceWarranty.addWarranty(warranty);
+				this.serviceWarranty.save(warranty);
 				model = new ModelAndView("redirect:list.do");
 			} catch (final Throwable oops) {
-				model = this.createEditModelAndView(warranty, "El formulario tiene errores");
+				model = this.createEditModelAndView(warranty, "warranty.commit.error");
 				;
 			}
 
@@ -80,14 +80,14 @@ public class WarrantyController extends AbstractController {
 	}
 	//Delete a warranty
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "delete")
-	public ModelAndView delete(final Warranty warranty, final BindingResult binding) {
+	public ModelAndView delete(final Warranty warranty) {
 		ModelAndView result;
 
 		try {
 			this.serviceWarranty.deleteWarranty(warranty.getId());
 			result = new ModelAndView("redirect:list.do");
 		} catch (final Throwable oops) {
-			result = this.createEditModelAndView(warranty, "No se ha podido eliminar la garantia");
+			result = this.createEditModelAndView(warranty, "warranty.commit.error");
 		}
 
 		return result;

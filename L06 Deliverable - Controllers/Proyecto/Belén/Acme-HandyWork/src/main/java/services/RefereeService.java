@@ -1,7 +1,6 @@
 
 package services;
 
-import java.util.ArrayList;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,13 +9,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import repositories.RefereeRepository;
-import security.Authority;
-import security.LoginService;
 import security.UserAccount;
 import utilities.Utiles;
-import domain.Box;
-import domain.Note;
-import domain.Profile;
 import domain.Referee;
 
 @Service
@@ -41,7 +35,19 @@ public class RefereeService {
 	}
 
 	public Referee save(final Referee ref) {
-		Assert.notNull(ref);
-		return this.refereeRepository.save(ref);
+		if (ref.getId() != 0) {
+			final UserAccount account = this.findOne(ref.getId()).getAccount();
+			account.setUsername(ref.getAccount().getUsername());
+			account.setPassword(Utiles.hashPassword(ref.getAccount().getPassword()));
+			account.setAuthorities(ref.getAccount().getAuthorities());
+			ref.setAccount(account);
+		} else
+			ref.getAccount().setPassword(Utiles.hashPassword(ref.getAccount().getPassword()));
+
+		Referee modify;
+
+		modify = this.refereeRepository.saveAndFlush(ref);
+
+		return modify;
 	}
 }

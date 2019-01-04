@@ -38,15 +38,6 @@ public class EndorsementService {
 		Assert.notNull(e);
 		return this.repositoryEndorsement.save(e);
 	}
-	public Endorsement update(final Endorsement e) {
-		UserAccount user;
-		user = LoginService.getPrincipal();
-		Assert.isTrue((Utiles.findAuthority(user.getAuthorities(), Authority.CUSTOMER) || Utiles.findAuthority(user.getAuthorities(), Authority.HANDY_WORKER)));
-		Endorsement saved;
-		saved = this.repositoryEndorsement.save(e);
-		Assert.notNull(saved);
-		return saved;
-	}
 
 	public void delete(final int id) {
 		Assert.notNull(this.findOne(id));
