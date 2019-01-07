@@ -10,12 +10,16 @@ import org.springframework.stereotype.Repository;
 import domain.Actor;
 import domain.Complaint;
 import domain.Customer;
+import domain.Referee;
 
 @Repository
 public interface ComplaintRepository extends JpaRepository<Complaint, Integer> {
 
 	@Query("select a from Actor a where a.account.id = ?1")
 	Actor findActorByUserAccountId(int id);
+
+	@Query("select a from Referee a where a.account.id = ?1")
+	Referee findRefereeByUserAccountId(int id);
 	//actor
 	@Query("select f.complaint from Actor h join h.application a join a.fixUpTask f where h.id = ?1")
 	Collection<Complaint> findComplaintByHandyWorkerId(int handyWId);

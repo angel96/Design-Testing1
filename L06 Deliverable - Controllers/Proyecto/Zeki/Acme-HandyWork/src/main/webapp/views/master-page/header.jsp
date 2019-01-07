@@ -80,10 +80,8 @@
 						code="master.page.customer.complaint" /></a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="complaint/customer,handyworker,referee/list.do"><spring:message
+					<li><a href="complaint/customer/list.do"><spring:message
 								code="master.page.customer.compliant.list" /></a></li>
-					<li><a href="complaint/customer/edit.do"><spring:message
-								code="master.page.customer.action.2" /></a></li>
 				</ul></li>
 			<li><a class="fNiv"><spring:message
 						code="master.page.customer.profile" /></a>
@@ -143,7 +141,7 @@
 						code="master.page.customer.complaint" /></a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="complaint/customer,handyworker,referee/list.do"><spring:message
+					<li><a href="complaint/handyworker/list.do"><spring:message
 								code="master.page.customer.compliant.list" /></a></li>
 				</ul></li>
  			<li><a class="fNiv"><spring:message
@@ -166,9 +164,9 @@
 						code="master.page.customer.complaint" /></a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="complaint/customer,handyworker,referee/list.do"><spring:message
+					<li><a href="complaint/referee/list.do?ref=true"><spring:message
 								code="master.page.referee.compliant.listAssigned" /></a></li>
-					<li><a href="complaint/customer,handyworker,referee/listNoAssigned.do"><spring:message
+					<li><a href="complaint/referee/list.do?ref=false"><spring:message
 								code="master.page.referee.compliant.listNoAssigned" /></a></li>
 				</ul></li>
 		</security:authorize>

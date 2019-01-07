@@ -39,32 +39,10 @@
 	<display:column property="category.name" titleKey="fixuptask.category" />
 	<security:authorize access="hasRole('CUSTOMER')">
 	<display:column>
-			<a href="complaint/customer,handyworker,referee/create.do?id=${row.id}&view=false"><spring:message
+			<a href="complaint/customer/create.do?idFix=${row.id}&view=false"><spring:message
 					code="fixuptask.createcomplaint" /></a>
 		</display:column> 
 		</security:authorize>
-	
-	
-	<%-- <display:column property="creator" titleKey="fixuptask.creator" /> --%>
 
-<%-- 	 <security:authorize access="hasRole('CUSTOMER')">
-		<jstl:if test="${row}==${principal.username}">
-			<display:column>
-				uwuwuw
-			</display:column>
-		</jstl:if>
-	</security:authorize> --%>
-	<%-- 
-
-	<security:authorize access="hasRole('CUSTOMER')">
-		<jstl:if test="${row.creator}==${principal.username}">
-			<display:column>
-				<input type="submit" name="delete"
-					value="<img src="images/trash.png" />" />
-			</display:column>
-		</jstl:if>
-	</security:authorize>
- --%> --%>
 </display:table>
 
-<!-- El create va en el desplegable -->

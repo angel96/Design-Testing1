@@ -22,15 +22,38 @@
 	requestURI="${requestURI}" pagesize="5"
 	class="displaytag">
 
+<security:authorize access="hasRole('CUSTOMER')">
 	<display:column>
-		<a href="complaint/customer,handyworker,referee/view.do?id=${row.id}&view=true"> <img
+		<a href="complaint/customer/view.do?id=${row.id}&view=true"> <img
 			src="images/viewmore.png" />
 		</a>
 	</display:column>
-
+</security:authorize>
+<security:authorize access="hasRole('HANDY_WORKER')">
+	<display:column>
+		<a href="complaint/handyworker/view.do?id=${row.id}&view=true"> <img
+			src="images/viewmore.png" />
+		</a>
+	</display:column>
+</security:authorize>
+<security:authorize access="hasRole('REFEREE')">
+	<display:column>
+		<a href="complaint/referee/view.do?id=${row.id}&view=true"> <img
+			src="images/viewmore.png" />
+		</a>
+	</display:column>
+</security:authorize>
 <display:column property="ticker" titleKey="complaint.tickers"/>
 <display:column property="moment" titleKey="complaint.moment"/>
 <display:column property="description" titleKey="complaint.description" />
 <display:column property="attachment" titleKey="complaint.attachment"/>
-		
+<security:authorize access="hasRole('REFEREE')">
+<display:column>
+<jstl:if test="${row.referee == null}">
+		<a href="complaint/referee/update.do?id=${row.id}"><spring:message
+					code="complaint.update" />
+		</a>
+</jstl:if>
+</display:column>
+</security:authorize>
 </display:table>

@@ -79,17 +79,27 @@
 			access="hasRole('CUSTOMER')" />
 		<security:intercept-url pattern="/handyWorker/personal.do"
 			access="hasRole('HANDY_WORKER')" />
-		<security:intercept-url pattern="/complaint/customer,handyworker,referee/list.do"
-			access="hasAnyRole('CUSTOMER','HANDY_WORKER','REFEREE')" />
-		<security:intercept-url pattern="/complaint/customer,handyworker,referee/edit.do"
+			
+			<!-- complaints -->
+		<security:intercept-url pattern="/complaint/customer/edit.do"
 			access="hasRole('CUSTOMER')" />
-		<security:intercept-url pattern="/complaint/customer,handyworker,referee/create.do"
+		<security:intercept-url pattern="/complaint/customer/create.do"
 			access="hasRole('CUSTOMER')" />
-		<security:intercept-url pattern="/complaint/customer,handyworker,referee/view.do"
-			access="hasAnyRole('CUSTOMER','HANDY_WORKER','REFEREE')" />
-		<security:intercept-url pattern="/complaint/customer,handyworker,referee/listNoAssigned.do"
+		<security:intercept-url pattern="/complaint/customer/list.do"
+			access="hasRole('CUSTOMER')" />
+		<security:intercept-url pattern="/complaint/handyworker/list.do"
+			access="hasRole('HANDY_WORKER')" />
+		<security:intercept-url pattern="/complaint/referee/list.do"
 			access="hasRole('REFEREE')" />
-
+		<security:intercept-url pattern="/complaint/customer/view.do"
+			access="hasRole('CUSTOMER')" />
+		<security:intercept-url pattern="/complaint/handyworker/view.do"
+			access="hasRole('HANDY_WORKER')" />
+		<security:intercept-url pattern="/complaint/referee/view.do"
+			access="hasRole('REFEREE')" />
+		<security:intercept-url pattern="/complaint/referee/update.do"
+			access="hasRole('REFEREE')" />
+			<!--  -->
 
 		<security:intercept-url pattern="/profile/action-1.do"
 			access="isAuthenticated()" />

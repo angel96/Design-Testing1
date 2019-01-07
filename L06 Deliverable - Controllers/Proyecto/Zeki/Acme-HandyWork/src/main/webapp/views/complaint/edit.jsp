@@ -18,7 +18,7 @@
 
 <p><spring:message code="complaint.action.2" /></p>
 
-<form:form action="complaint/customer,handyworker,referee/edit.do"
+<form:form action="complaint/customer/edit.do?idFix=${idFix}"
 modelAttribute="complaint">
 
 <form:hidden path="id" />
@@ -81,9 +81,36 @@ modelAttribute="complaint">
 	value="<spring:message code ="complaint.cancel"/>"
 	onclick="javascript: relativeRedir('fixuptask/customer/list.do');" />
 	</jstl:if>
-	
+
+<security:authorize access="hasRole('CUSTOMER')">
 	<jstl:if test="${view}">
 <input type="submit" name="cancel"
 	value="<spring:message code ="complaint.cancel"/>"
-	onclick="javascript: relativeRedir('complaint/customer,handyworker,referee/list.do');" />
+	onclick="javascript: relativeRedir('complaint/customer/list.do');" />
 	</jstl:if>
+</security:authorize>
+<security:authorize access="hasRole('HANDY_WORKER')">
+	<jstl:if test="${view}">
+<input type="submit" name="cancel"
+	value="<spring:message code ="complaint.cancel"/>"
+	onclick="javascript: relativeRedir('complaint/handyworker/list.do');" />
+	</jstl:if>
+</security:authorize>
+<security:authorize access="hasRole('REFEREE')">
+	<jstl:if test="${view}">
+	<jstl:if test="${ref}">
+<input type="submit" name="cancel"
+	value="<spring:message code ="complaint.cancel"/>"
+	onclick="javascript: window.history.back();" />
+	</jstl:if>
+	</jstl:if>
+</security:authorize>
+<security:authorize access="hasRole('REFEREE')">
+	<jstl:if test="${view}">
+	<jstl:if test="${not ref}">
+<input type="submit" name="cancel"
+	value="<spring:message code ="complaint.cancel"/>"
+	onclick="javascript: window.history.back();" />
+	</jstl:if>
+	</jstl:if>
+</security:authorize>

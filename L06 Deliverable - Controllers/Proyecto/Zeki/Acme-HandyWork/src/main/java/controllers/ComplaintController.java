@@ -18,7 +18,10 @@ import utilities.Utiles;
 import domain.Complaint;
 
 @Controller
-@RequestMapping("/complaint/customer,handyworker,referee")
+@RequestMapping(value = {
+	"/complaint/customer", "/complaint/handyworker", "/complaint/referee"
+})
+//@RequestMapping("/complaint/customer,handyworker,referee")
 public class ComplaintController extends AbstractController {
 
 	@Autowired
@@ -33,60 +36,72 @@ public class ComplaintController extends AbstractController {
 	}
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public ModelAndView listComplaintCustomer() {
+	public ModelAndView listComplaintCustomer(@RequestParam(defaultValue = "0") final Boolean ref) {
 		ModelAndView result;
 		result = new ModelAndView("complaint/list");
-		if (LoginService.getPrincipal().getAuthorities().toString().equals("[CUSTOMER]"))
+		if (LoginService.getPrincipal().getAuthorities().toString().equals("[CUSTOMER]")) {
 			result.addObject("complaints", this.serviceComplaint.findComplaintByCustomer(this.serviceComplaint.getActorByUser(LoginService.getPrincipal().getId())));
-		else if (LoginService.getPrincipal().getAuthorities().toString().equals("[HANDY_WORKER]"))
-			result.addObject("complaints", this.serviceComplaint.findComplaintByHandyWorkerId(this.serviceComplaint.getActorByUser(LoginService.getPrincipal().getId()).getId()));
-		else if (LoginService.getPrincipal().getAuthorities().toString().equals("[REFEREE]"))
-			result.addObject("complaints", this.serviceComplaint.findComplaintByReferee(this.serviceComplaint.getActorByUser(LoginService.getPrincipal().getId()).getId()));
+			result.addObject("requestURI", "complaint/customer/list.do");
 
-		result.addObject("requestURI", "complaint/customer,handyworker,referee/list.do");
+		} else if (LoginService.getPrincipal().getAuthorities().toString().equals("[HANDY_WORKER]")) {
+			result.addObject("complaints", this.serviceComplaint.findComplaintByHandyWorkerId(this.serviceComplaint.getActorByUser(LoginService.getPrincipal().getId()).getId()));
+			result.addObject("requestURI", "complaint/handyworker/list.do");
+
+		} else if (LoginService.getPrincipal().getAuthorities().toString().equals("[REFEREE]") && ref == true) {
+			result.addObject("complaints", this.serviceComplaint.findComplaintByReferee(this.serviceComplaint.getActorByUser(LoginService.getPrincipal().getId()).getId()));
+			result.addObject("requestURI", "complaint/referee/list.do");
+
+		} else if (LoginService.getPrincipal().getAuthorities().toString().equals("[REFEREE]") && ref == false) {
+			result.addObject("complaints", this.serviceComplaint.findComplaintNoRefereeAssigned());
+			result.addObject("requestURI", "complaint/referee/list.do");
+		}
+
 		return result;
 	}
 
-	@RequestMapping(value = "/listNoAssigned", method = RequestMethod.GET)
-	public ModelAndView listComplaintCustomerNoAssigned() {
-		final ModelAndView model;
-		model = new ModelAndView("complaint/list");
-		if (LoginService.getPrincipal().getAuthorities().toString().equals("[REFEREE]"))
-			model.addObject("complaints", this.serviceComplaint.findComplaintNoRefereeAssigned());
-
-		model.addObject("requestURI", "complaint/customer,handyworker,referee/list.do");
-		return model;
-	}
-
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
-	public ModelAndView createComplaint(@RequestParam final int id, @RequestParam final String view) {
+	public ModelAndView createComplaint(@RequestParam final int idFix, @RequestParam final String view) {
 		ModelAndView result;
-		System.out.println(id);
+		System.out.println(idFix);
 		System.out.println(view);
-		result = this.createEditModelAndView(Utiles.createComplaint(), view);
+		result = this.createEditModelAndView(Utiles.createComplaint());
+		result.addObject("view", view);
+		result.addObject("idFix", idFix);
+		System.out.println(result);
+		result.addObject("requestURI", "complaint/customer/edit.do");
 		return result;
 	}
 
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
-	public ModelAndView submit(@Valid final Complaint complaint, final BindingResult binding, final String view) {
+	public ModelAndView submit(@RequestParam final int idFix, @Valid final Complaint complaint, final BindingResult binding) {
 		ModelAndView model;
 
-		System.out.println("la id es:" + view);
+		System.out.println("edit" + idFix);
 		if (binding.hasErrors()) {
-			model = this.createEditModelAndView(complaint, view);
+			model = this.createEditModelAndView(complaint);
 			model.addObject("errores", binding.getAllErrors());
 			model.addObject("errores", binding);
 		} else
 			try {
-				this.serviceComplaint.save(complaint);
+
+				this.serviceComplaint.save(complaint, idFix);
 				model = new ModelAndView("redirect:list.do");
 			} catch (final Throwable oops) {
-				model = this.createEditModelAndView(complaint, "complaint.commit.error", view);
+				model = this.createEditModelAndView(complaint, "complaint.commit.error");
 				model.addObject("oops", oops.getMessage());
 				model.addObject("errors", binding.getAllErrors());
 			}
 		return model;
 	}
+
+	@RequestMapping(value = "/update", method = RequestMethod.GET)
+	public ModelAndView updateComplaint(@RequestParam final int id) {
+		ModelAndView result;
+		this.serviceComplaint.update(id);
+		result = new ModelAndView("redirect:list.do");
+		return result;
+	}
+
 	@RequestMapping(value = "/view", method = RequestMethod.GET)
 	public ModelAndView viewComplaint(@RequestParam final int id, @RequestParam final String view) {
 		ModelAndView result;
@@ -94,24 +109,22 @@ public class ComplaintController extends AbstractController {
 		System.out.println(id);
 		System.out.println(view);
 		find = this.serviceComplaint.findOne(id);
-		result = this.createEditModelAndView(find, view);
+		result = this.createEditModelAndView(find);
+		result.addObject("view", view);
 		return result;
 	}
 
-	protected ModelAndView createEditModelAndView(final Complaint complaint, final String view) {
+	protected ModelAndView createEditModelAndView(final Complaint complaint) {
 		ModelAndView result;
-		System.out.println(view);
-		result = this.createEditModelAndView(complaint, null, view);
+		result = this.createEditModelAndView(complaint, null);
 		return result;
 	}
 
-	protected ModelAndView createEditModelAndView(final Complaint complaint, final String message, final String view) {
+	protected ModelAndView createEditModelAndView(final Complaint complaint, final String message) {
 		ModelAndView result;
-		System.out.println(view);
 		result = new ModelAndView("complaint/edit");
 		result.addObject("complaint", complaint);
 		result.addObject("message", message);
-		result.addObject("view", view);
 		return result;
 	}
 }

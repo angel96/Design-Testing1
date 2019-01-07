@@ -214,7 +214,7 @@ public class Utiles {
 		for (int i = 0; i < 6; i++)
 			c += ch[random.nextInt(ch.length)];
 
-		return formated + c;
+		return formated + "-" + c;
 	}
 
 	public static Date convertDate(final int year, final int month, final int day) {

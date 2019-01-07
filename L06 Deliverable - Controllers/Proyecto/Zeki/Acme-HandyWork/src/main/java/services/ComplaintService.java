@@ -17,6 +17,8 @@ import utilities.Utiles;
 import domain.Actor;
 import domain.Complaint;
 import domain.Customer;
+import domain.FixUpTask;
+import domain.Referee;
 
 @Service
 @Transactional
@@ -47,6 +49,10 @@ public class ComplaintService {
 		return this.complaintRepository.findActorByUserAccountId(id);
 	}
 
+	public Referee getRefereeByUser(final int id) {
+		return this.complaintRepository.findRefereeByUserAccountId(id);
+	}
+
 	public Collection<Complaint> findComplaintByHandyWorkerId(final int handyWId) {
 		UserAccount user;
 		user = LoginService.getPrincipal();
@@ -71,7 +77,7 @@ public class ComplaintService {
 		return this.complaintRepository.findComplaintRefereeAssigned();
 	}
 
-	public Complaint save(final Complaint comp) {
+	public Complaint save(final Complaint comp, final int idFix) {
 		UserAccount user;
 		user = LoginService.getPrincipal();
 		Assert.isTrue(Utiles.findAuthority(user.getAuthorities(), Authority.REFEREE) || Utiles.findAuthority(user.getAuthorities(), Authority.CUSTOMER));
@@ -84,7 +90,31 @@ public class ComplaintService {
 		saved = this.complaintRepository.save(comp);
 		complaintPerCustomer.add(saved);
 		c.setComplaint(complaintPerCustomer);
+		FixUpTask f;
+		f = this.serviceFix.findOne(idFix);
+		Collection<Complaint> coll;
+		coll = f.getComplaint();
+		coll.add(saved);
+		f.setComplaint(coll);
 		return saved;
+	}
+
+	public Complaint update(final int id) {
+		UserAccount user;
+		user = LoginService.getPrincipal();
+
+		Referee a;
+		a = this.complaintRepository.findRefereeByUserAccountId(user.getId());
+		Complaint c;
+		c = this.complaintRepository.findOne(id);
+		c.setReferee(a);
+
+		Collection<Complaint> comp;
+		comp = a.getComplaints();
+		comp.add(c);
+		a.setComplaints(comp);
+
+		return c;
 	}
 
 	public Double min() {

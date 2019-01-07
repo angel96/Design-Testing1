@@ -15,6 +15,7 @@ import org.springframework.util.Assert;
 
 import utilities.AbstractTest;
 import domain.Complaint;
+import domain.FixUpTask;
 import domain.Report;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -54,7 +55,9 @@ public class TestComplaintService extends AbstractTest {
 		c.setMoment(new GregorianCalendar(2018, 11, 29, 16, 0, 0).getTime());
 		c.setReport(new ArrayList<Report>());
 		Complaint saved;
-		saved = this.complaintService.save(c);
+		FixUpTask f;
+		f = new FixUpTask();
+		saved = this.complaintService.save(c, f.getId());
 		Assert.notNull(saved);
 		super.unauthenticate();
 	}
