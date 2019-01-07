@@ -46,6 +46,10 @@ public class ApplicationService {
 		return this.applicationRepository.getApplicationAceptedByPhase(id);
 	}
 
+	public Collection<Application> getApplicationsByFixUp(final int customerAccountId, final int fixUpId) {
+		return this.applicationRepository.getApplicationsByFixUpTask(customerAccountId, fixUpId);
+	}
+
 	public Application findOne(final int id) {
 
 		return this.applicationRepository.findOne(id);

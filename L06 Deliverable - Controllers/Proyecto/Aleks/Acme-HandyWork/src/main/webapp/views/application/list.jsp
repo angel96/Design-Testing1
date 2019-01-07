@@ -23,24 +23,24 @@
 </p>
 
 <display:table name="applications" id="row"
-	requestURI="${requestURI}" pagesize="3"
+	requestURI="${requestURI}" pagesize="5"
 	class="displaytag">
 
 	<display:column property="moment" titleKey="application.moment"/>
 	<display:column property="status" titleKey="application.status"/>
 	<display:column property="offeredPrice" titleKey="application.offeredPrice">$</display:column>
-	<display:column titleKey="application.comments">
-		<a href="comments/handyworker/list.do?applicationId=${row.id}">
-			<img src="images/comments.png">
-		</a>
-	</display:column>
+	<display:column titleKey="application.comments"/>
+	<display:column titleKey="application.fixUpTask" >
+	 <a href="fixuptask/handyworker/edit.do?id=${row.fixUpTask.id }">${row.fixUpTask.description}</a>
+	 </display:column>
 	<security:authorize access="hasRole('HANDY_WORKER')">	
 	<display:column>
-		<a href="application/handyworker/edit.do?applicationId=${row.id}">
+		<a href="application/handyworker/edit.do?id=${row.id}">
 			<img src="images/update.png">
 		</a>
 	</display:column>
-	</security:authorize><security:authorize access="hasRole('CUSTOMER')">	
+	</security:authorize>
+	<security:authorize access="hasRole('CUSTOMER')">	
 	<display:column titleKey="application.updateStatus">
 		<a href="application/handyworker/edit.do?applicationId=${row.id}">
 			<img src="images/update.png">

@@ -25,7 +25,7 @@
 <display:table name="fixuptasks" id="row" requestURI="${requestURI}"
 	pagesize="5" class="displaytag">
 	<display:column>
-		<a href="fixuptask/customer/edit.do?id=${row.id}"> <img
+		<a href="${URI}edit.do?id=${row.id}"> <img
 			src="images/viewmore.png" />
 		</a>
 	</display:column>
@@ -35,6 +35,17 @@
 	<display:column property="description" titleKey="fixuptask.description" />
 	<display:column property="maximumPrice"	titleKey="fixuptask.maximunPrice" />
 	<display:column property="category.name" titleKey="fixuptask.category" />
+	
+	<security:authorize access="hasRole('CUSTOMER')">
+	<display:column titleKey="fixuptask.applications">
+	<a href="application/customer/listByFixUp.do?fixUpId=${row.id}">Applications </a>
+	</display:column>
+	</security:authorize>
+	<security:authorize access="hasRole('HANDY_WORKER')">
+		<display:column titleKey="fixuptask.application">
+			<a href="application/handyworker/create.do?fixUpId=${row.id}">Apply this FixUpTask</a>
+		</display:column>
+	</security:authorize> 
 
 	<%-- <display:column property="creator" titleKey="fixuptask.creator" /> --%>
 
@@ -56,7 +67,7 @@
 			</display:column>
 		</jstl:if>
 	</security:authorize>
- --%> --%>
+ --%>
 </display:table>
 
 <!-- El create va en el desplegable -->

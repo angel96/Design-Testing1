@@ -466,6 +466,7 @@ public class Utiles {
 		a.setMomentElapsed(new Date());
 		a.setOfferedPrice(0.0);
 		a.setStatus("pending");
+		a.setCreditCard(new CreditCard());
 
 		return a;
 	}

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import security.Authority;
 import security.LoginService;
 import services.CategoryService;
 import services.FixUpTaskService;
@@ -47,20 +48,26 @@ public class FixUpTaskController {// extends AbstractController {
 	public ModelAndView list() {
 		ModelAndView result;
 		result = new ModelAndView("fixuptask/list");
-		result.addObject("fixuptasks", this.fixUpService.findAll());
-		result.addObject("requestURI", "fixuptask/customer/list.do");
-
+		if (Utiles.findAuthority(LoginService.getPrincipal().getAuthorities(), Authority.CUSTOMER)) {
+			result.addObject("fixuptasks", this.fixUpService.findAllByUser(LoginService.getPrincipal().getId()));
+			result.addObject("requestURI", "fixuptask/customer/list.do");
+			result.addObject("URI", "fixuptask/customer/");
+		} else if (Utiles.findAuthority(LoginService.getPrincipal().getAuthorities(), Authority.HANDY_WORKER)) {
+			result.addObject("fixuptasks", this.fixUpService.findAll());
+			result.addObject("requestURI", "fixuptask/handyworker/list.do");
+			result.addObject("URI", "fixuptask/handyworker/");
+		}
 		return result;
 	}
-
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public ModelAndView create() {
 		ModelAndView result;
 		result = new ModelAndView("fixuptask/edit");
 		result.addObject("fixuptask", Utiles.createFixUpTask());
 		result.addObject("categories", this.serviceCategory.findAll());
-		result.addObject("warranties", this.serviceWarranty.findAll());
+		result.addObject("warranties", this.serviceWarranty.findAllFinalWarranties());
 		result.addObject("requestURI", "fixuptask/customer/create.do");
+
 		return result;
 	}
 
@@ -157,7 +164,7 @@ public class FixUpTaskController {// extends AbstractController {
 		result = new ModelAndView("fixuptask/edit");
 		result.addObject("fixuptask", fixUp);
 		result.addObject("categories", this.serviceCategory.findAll());
-		result.addObject("warranties", this.serviceWarranty.findAll());
+		result.addObject("warranties", this.serviceWarranty.findAllFinalWarranties());
 		result.addObject("message", message);
 		return result;
 	}

@@ -14,8 +14,7 @@
 <%@taglib prefix="jstl" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@taglib prefix="security"
-	uri="http://www.springframework.org/security/tags"%>
+<%@taglib prefix="security"	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
 <p>
@@ -68,46 +67,20 @@
 		<form:option value="0" label="---" />
 		<form:options items="${categories}" itemValue = "id" itemLabel = "name"/>
 	</form:select>
-	
-	
-	<form:label path="category">
-	<spring:message code="fixuptask.category" />
-	</form:label>
-	<form:input path="category.name" />
-	<form:errors cssClass='error' path="category" />
 	<br />
 	
-
-
 	<form:select path="warranty">
 		<option value="0" label="---" />
 		<form:options items="${warranties}" itemValue = "id" itemLabel = "title"/>
 	</form:select>
-
-
-	<form:label path="warranty">
-		<spring:message code="fixuptask.warranty" />
-	</form:label>
-	<form:input path="warranty.title" />
-	<form:errors cssClass='error' path="warranty" />
-
-
-	<security:authorize access="hasRole('HANDY_WORKER')">
-		<form:label path="customer">
-			<spring:message code="fixuptask.customer" />
-		</form:label>
-		<a href="profile/handyworker/edit.do?customerId=${row.id}"> <jstl:out
-				value="${fixpask.customer.name}"></jstl:out>
-		</a>
-		<form:errors cssClass='error' path="customer" />
-	</security:authorize>
-
+	  
 	<security:authorize access="hasRole('HANDY_WORKER')">
 		<form:label path="application">
+		<spring:message code="fixuptask.application" />
 		</form:label>
-		<input type="submit" name="addApplication"
+		<input type="submit"
 			value="<spring:message code="fixuptask.application" />"
-			onclick="javascript: relativeRedir('handyworker/application/edit.do');" />
+			onclick="javascript: relativeRedir('application/handyworker/create.do');" />
 		<form:errors cssClass='error' path="application" />
 	</security:authorize>
 
