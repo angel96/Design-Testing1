@@ -32,7 +32,7 @@ public class EducationRecordController {
 		result = this.createEditModelAndView(this.educationService.createEducationRecord());
 		//	result = new ModelAndView("educationrecord/edit");
 		//	result.addObject("educationrecord", this.educationService.createEducationRecord());
-		//result.addObject("requestURI", "educationrecord/handyworker/create.do");
+		result.addObject("requestURI", "educationrecord/handyworker/create.do");
 
 		return result;
 	}
@@ -43,12 +43,14 @@ public class EducationRecordController {
 
 		if (binding.hasErrors()) {
 			model = this.createEditModelAndView(education);
+			System.out.println(education);
+			System.out.println(education.getId());
 			model.addObject("errors", binding.getAllErrors());
 			model.addObject("errores", binding);
 		} else
 			try {
 				this.educationService.save(education);
-				model = new ModelAndView("redirect:/list.do");
+				model = new ModelAndView("redirect:/curriculum/handyworker/list.do");
 			} catch (final Throwable oops) {
 				model = this.createEditModelAndView(education, "education.commit.error");
 				model.addObject("oops", oops.getMessage());

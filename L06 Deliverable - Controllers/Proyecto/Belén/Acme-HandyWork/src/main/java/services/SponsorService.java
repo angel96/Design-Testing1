@@ -39,10 +39,6 @@ public class SponsorService {
 		return this.sponsorRepository.findOne(id);
 	}
 
-	public Sponsor findOne(final int idReferee) {
-		return this.sponsorRepository.findOne(idReferee);
-	}
-
 	public Sponsor findByUserAccount(final int userAccount) {
 		Assert.notNull(userAccount);
 		return this.sponsorRepository.findByUserAccount(userAccount);
@@ -58,7 +54,7 @@ public class SponsorService {
 
 	public Sponsor save(final Sponsor spo) {
 		if (spo.getId() != 0) {
-			final UserAccount account = this.findOne(spo.getId()).getAccount();
+			final UserAccount account = this.findById(spo.getId()).getAccount();
 			account.setUsername(spo.getAccount().getUsername());
 			account.setPassword(Utiles.hashPassword(spo.getAccount().getPassword()));
 			account.setAuthorities(spo.getAccount().getAuthorities());

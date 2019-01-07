@@ -18,7 +18,7 @@
 
 <p><spring:message code="professional.edit" /></p>
 
-<form:form modelAttribute="professionalrecord" action="professionalrecord/edit.do">
+<form:form modelAttribute="professionalrecord" action="professionalrecord/handyworker/edit.do">
 
 <form:hidden path="id" />
 <form:hidden path="version" />
@@ -27,41 +27,49 @@
 	<spring:message code="professional.companyName" />
 </form:label>
 <form:input path="companyName"/>
-<form:errors cssClass="error" path="companyName"></form:errors>
+<form:errors cssClass='error' path="companyName"></form:errors>
 <br>
 
 <form:label path="startWorking">
 	<spring:message code="professional.startWorking" />
 </form:label>
-<form:input path="startWorking" readonly="true" />
-<form:errors cssClass="error" path="startWorking" />
+<form:input path="startWorking" placeholder="yyyy/mm/dd"/>
+<form:errors cssClass='error' path="startWorking" />
 <br>
 
 <form:label path="endWorking">
 	<spring:message code="professional.endWorking" />
 </form:label>
-<form:input path="endWorking" readonly="true" />
-<form:errors cssClass="error" path="endWorking" />
+<form:input path="endWorking" placeholder="yyyy/mm/dd"/>
+<form:errors cssClass='error' path="endWorking" />
 <br>
 
 <form:label path="role">
 	<spring:message code="professional.role" />
 </form:label>
-<form:input path="role"/>
-<form:errors cssClass="error" path="role"></form:errors>
-<br>
+<form:input path="role"  />
+<form:errors cssClass='error' path="role" />
+<br />
 
 <form:label path="attachment">
 	<spring:message code="professional.attachment" />
 </form:label>
 <form:input path="attachment"  />
-<form:errors cssClass="error" path="attachment" />
+<form:errors cssClass='error' path="attachment" />
 <br />
-	
-</form:form>
+
+<jstl:forEach items="${errors}" var="error">
+		<jstl:out value="${error}" />
+	</jstl:forEach>
+	<jstl:out value="${oops}" />
+	<jstl:out value="${message}" />
+
 <security:authorize access="hasRole('HANDY_WORKER')">
 <input type="submit" name="save"
 			value="<spring:message code="professional.save" />" />
+</security:authorize>
+</form:form>
+		
 <input type="submit" name="cancel" value="<spring:message code ="professional.cancel"/>"
 	onclick="javascript: relativeRedir('curriculum/handyworker/list.do');" />
-</security:authorize>
+

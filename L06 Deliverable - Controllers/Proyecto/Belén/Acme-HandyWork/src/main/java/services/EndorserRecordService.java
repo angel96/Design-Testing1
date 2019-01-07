@@ -15,7 +15,9 @@ import security.Authority;
 import security.LoginService;
 import security.UserAccount;
 import utilities.Utiles;
+import domain.Curriculum;
 import domain.EndorserRecord;
+import domain.HandyWorker;
 
 @Service
 @Transactional
@@ -23,6 +25,9 @@ public class EndorserRecordService {
 
 	@Autowired
 	private EndorserRecordRepository	endorserRecRepository;
+
+	@Autowired
+	private CurriculumService			curriculumService;
 
 
 	public Collection<EndorserRecord> findAll() {
@@ -37,7 +42,7 @@ public class EndorserRecordService {
 		UserAccount user;
 		user = LoginService.getPrincipal();
 		Assert.isTrue(Utiles.findAuthority(user.getAuthorities(), Authority.HANDY_WORKER));
-		return this.endorserRecRepository.findEndorserRecordByUserId(user.getId());
+		return this.endorserRecRepository.findEndorserRecordByUserId(id);
 	}
 
 	public EndorserRecord createEndorserRecord() {
@@ -62,6 +67,13 @@ public class EndorserRecordService {
 		Assert.isTrue(Utiles.findAuthority(user.getAuthorities(), Authority.HANDY_WORKER));
 		EndorserRecord saved;
 		saved = this.endorserRecRepository.save(e);
+		HandyWorker h;
+		h = this.curriculumService.getHandyByUserAccount(user.getId());
+		Curriculum c;
+		c = h.getCurriculum();
+		Collection<EndorserRecord> endorser;
+		endorser = c.getEndorserRecord();
+		endorser.add(saved);
 		return saved;
 	}
 }

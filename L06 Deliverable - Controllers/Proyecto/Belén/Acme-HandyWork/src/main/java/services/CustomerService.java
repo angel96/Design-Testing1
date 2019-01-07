@@ -11,6 +11,7 @@ import org.springframework.util.Assert;
 import repositories.CustomerRepository;
 import security.UserAccount;
 import utilities.Utiles;
+import domain.Box;
 import domain.Customer;
 
 @Service
@@ -19,6 +20,9 @@ public class CustomerService {
 
 	@Autowired
 	private CustomerRepository	customerRepository;
+
+	@Autowired
+	private BoxService			boxService;
 
 
 	public Collection<Customer> findAll() {
@@ -43,9 +47,11 @@ public class CustomerService {
 			account.setPassword(Utiles.hashPassword(cust.getAccount().getPassword()));
 			account.setAuthorities(cust.getAccount().getAuthorities());
 			cust.setAccount(account);
-		} else
+		} else {
 			cust.getAccount().setPassword(Utiles.hashPassword(cust.getAccount().getPassword()));
-
+			final Collection<Box> boxes = this.boxService.save(Utiles.initBoxes());
+			cust.setBoxes(boxes);
+		}
 		Customer modify;
 
 		modify = this.customerRepository.saveAndFlush(cust);

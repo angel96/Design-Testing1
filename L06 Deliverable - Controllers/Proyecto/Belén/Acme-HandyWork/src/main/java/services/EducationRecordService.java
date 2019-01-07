@@ -16,7 +16,9 @@ import security.Authority;
 import security.LoginService;
 import security.UserAccount;
 import utilities.Utiles;
+import domain.Curriculum;
 import domain.EducationRecord;
+import domain.HandyWorker;
 
 @Service
 @Transactional
@@ -24,6 +26,9 @@ public class EducationRecordService {
 
 	@Autowired
 	private EducationRecordRepository	educationRecRepository;
+
+	@Autowired
+	private CurriculumService			curriculumService;
 
 
 	public Collection<EducationRecord> findAll() {
@@ -38,7 +43,7 @@ public class EducationRecordService {
 		UserAccount user;
 		user = LoginService.getPrincipal();
 		Assert.isTrue(Utiles.findAuthority(user.getAuthorities(), Authority.HANDY_WORKER));
-		return this.educationRecRepository.findEducationRecordByUserId(user.getId());
+		return this.educationRecRepository.findEducationRecordByUserId(id);
 	}
 
 	public EducationRecord createEducationRecord() {
@@ -64,7 +69,13 @@ public class EducationRecordService {
 		Assert.isTrue(Utiles.findAuthority(user.getAuthorities(), Authority.HANDY_WORKER));
 		EducationRecord saved;
 		saved = this.educationRecRepository.save(e);
+		HandyWorker h;
+		h = this.curriculumService.getHandyByUserAccount(user.getId());
+		Curriculum c;
+		c = h.getCurriculum();
+		Collection<EducationRecord> education;
+		education = c.getEducationRecord();
+		education.add(saved);
 		return saved;
 	}
-
 }

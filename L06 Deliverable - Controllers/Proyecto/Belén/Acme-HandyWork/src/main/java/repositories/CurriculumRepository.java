@@ -1,22 +1,20 @@
 
 package repositories;
 
-import java.util.Collection;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
-import domain.Actor;
 import domain.Curriculum;
+import domain.HandyWorker;
 import domain.Profile;
 
 @Repository
 public interface CurriculumRepository extends JpaRepository<Curriculum, Integer> {
 
-	@Query("select a from Actor a where a.account.id = ?1")
-	Actor findActorByUserAccountId(int id);
+	@Query("select h from HandyWorker h where h.account.id = ?1")
+	HandyWorker findHandyByUserAccountId(int id);
 
-	@Query("select p from Actor a join a.profiles p where p.socialNetworkName like 'LinkedIn' and a.id = ?1")
-	Collection<Profile> findLinkedInByActorId(int id);
+	@Query("select p from HandyWorker h join h.profiles p where p.socialNetworkName like 'LinkedIn' and h.id = ?1")
+	Profile findLinkedInByHandyWorkerId(int id);
 }

@@ -18,7 +18,7 @@
 
 <p><spring:message code="endorser.edit" /></p>
 
-<form:form modelAttribute="endorserrecord" action="endorserrecord/edit.do">
+<form:form modelAttribute="endorserrecord" action="endorserrecord/handyworker/edit.do">
 
 <form:hidden path="id" />
 <form:hidden path="version" />
@@ -50,11 +50,12 @@
 <form:input path="linkedin"/>
 <form:errors cssClass="error" path="linkedin"></form:errors>
 <br>
-</form:form>
 <security:authorize access="hasRole('HANDY_WORKER')">
 <input type="submit" name="save"
 			value="<spring:message code="endorser.save" />" />
+</security:authorize>
+</form:form>
 <input type="submit" name="cancel" value="<spring:message code ="endorser.cancel"/>"
 	onclick="javascript: relativeRedir('curriculum/handyworker/list.do');" />
-</security:authorize>
+
 

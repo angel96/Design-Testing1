@@ -18,7 +18,7 @@
 
 <p><spring:message code="miscellaneous.edit" /></p>
 
-<form:form modelAttribute="miscellaneousrecord" action="miscellaneousrecord/edit.do">
+<form:form modelAttribute="miscellaneousrecord" action="miscellaneousrecord/handyworker/edit.do">
 
 <form:hidden path="id" />
 <form:hidden path="version" />
@@ -36,11 +36,12 @@
 <form:input path="attachment"  />
 <form:errors cssClass="error" path="attachment" />
 <br />
-</form:form>
 <security:authorize access="hasRole('HANDY_WORKER')">
 <input type="submit" name="save"
 			value="<spring:message code="miscellaneous.save" />" />
+</security:authorize>
+</form:form>
 <input type="submit" name="cancel" value="<spring:message code ="miscellaneous.cancel"/>"
 	onclick="javascript: relativeRedir('curriculum/handyworker/list.do');" />
-</security:authorize>
+
 

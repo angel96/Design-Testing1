@@ -15,6 +15,8 @@ import security.Authority;
 import security.LoginService;
 import security.UserAccount;
 import utilities.Utiles;
+import domain.Curriculum;
+import domain.HandyWorker;
 import domain.MiscellaneousRecord;
 
 @Service
@@ -23,6 +25,9 @@ public class MiscellaneousRecordService {
 
 	@Autowired
 	private MiscellaneousRecordRepository	miscellaneousRepository;
+
+	@Autowired
+	private CurriculumService				curriculumService;
 
 
 	public Collection<MiscellaneousRecord> findAll() {
@@ -37,7 +42,8 @@ public class MiscellaneousRecordService {
 		UserAccount user;
 		user = LoginService.getPrincipal();
 		Assert.isTrue(Utiles.findAuthority(user.getAuthorities(), Authority.HANDY_WORKER));
-		return this.miscellaneousRepository.findMiscellaneousRecordByUserId(user.getId());
+		System.out.println(this.miscellaneousRepository.findMiscellaneousRecordByUserId(id));
+		return this.miscellaneousRepository.findMiscellaneousRecordByUserId(id);
 	}
 
 	public MiscellaneousRecord createMiscellaneousRecord() {
@@ -60,6 +66,13 @@ public class MiscellaneousRecordService {
 		Assert.isTrue(Utiles.findAuthority(user.getAuthorities(), Authority.HANDY_WORKER));
 		MiscellaneousRecord saved;
 		saved = this.miscellaneousRepository.save(m);
+		HandyWorker h;
+		h = this.curriculumService.getHandyByUserAccount(user.getId());
+		Curriculum c;
+		c = h.getCurriculum();
+		Collection<MiscellaneousRecord> miscellaneous;
+		miscellaneous = c.getMiscellaneousRecord();
+		miscellaneous.add(saved);
 		return saved;
 	}
 }

@@ -16,6 +16,8 @@ import security.Authority;
 import security.LoginService;
 import security.UserAccount;
 import utilities.Utiles;
+import domain.Curriculum;
+import domain.HandyWorker;
 import domain.ProfessionalRecord;
 
 @Service
@@ -24,6 +26,9 @@ public class ProfessionalRecordService {
 
 	@Autowired
 	private ProfessionalRecordRepository	professionalRecRepository;
+
+	@Autowired
+	private CurriculumService				curriculumService;
 
 
 	public Collection<ProfessionalRecord> findAll() {
@@ -38,7 +43,7 @@ public class ProfessionalRecordService {
 		UserAccount user;
 		user = LoginService.getPrincipal();
 		Assert.isTrue(Utiles.findAuthority(user.getAuthorities(), Authority.HANDY_WORKER));
-		return this.professionalRecRepository.findProfessionalRecordByUserId(user.getId());
+		return this.professionalRecRepository.findProfessionalRecordByUserId(id);
 	}
 
 	public ProfessionalRecord createProfessionalRecord() {
@@ -64,6 +69,13 @@ public class ProfessionalRecordService {
 		Assert.isTrue(Utiles.findAuthority(user.getAuthorities(), Authority.HANDY_WORKER));
 		ProfessionalRecord saved;
 		saved = this.professionalRecRepository.save(p);
+		HandyWorker h;
+		h = this.curriculumService.getHandyByUserAccount(user.getId());
+		Curriculum c;
+		c = h.getCurriculum();
+		Collection<ProfessionalRecord> professional;
+		professional = c.getProfessionalRecord();
+		professional.add(saved);
 		return saved;
 	}
 }

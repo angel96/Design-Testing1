@@ -15,12 +15,13 @@ import security.Authority;
 import security.LoginService;
 import security.UserAccount;
 import utilities.Utiles;
-import domain.Actor;
 import domain.Curriculum;
 import domain.EducationRecord;
 import domain.EndorserRecord;
+import domain.HandyWorker;
 import domain.MiscellaneousRecord;
 import domain.ProfessionalRecord;
+import domain.Profile;
 
 @Service
 @Transactional
@@ -30,8 +31,12 @@ public class CurriculumService {
 	private CurriculumRepository	curriculumRepository;
 
 
-	public Actor getActorByUserAccount(final int id) {
-		return this.curriculumRepository.findActorByUserAccountId(id);
+	public HandyWorker getHandyByUserAccount(final int id) {
+		return this.curriculumRepository.findHandyByUserAccountId(id);
+	}
+
+	public Profile getLinkedInProfile(final int id) {
+		return this.curriculumRepository.findLinkedInByHandyWorkerId(id);
 	}
 
 	public Collection<Curriculum> findAll() {
@@ -48,22 +53,20 @@ public class CurriculumService {
 		Assert.isTrue(Utiles.findAuthority(user.getAuthorities(), Authority.HANDY_WORKER));
 		Curriculum curriculum;
 		curriculum = new Curriculum();
-		if (this.curriculumRepository.findLinkedInByActorId(user.getId()).size() > 0) {
-			curriculum.setTicker(Utiles.generateTicker());
-			Collection<EducationRecord> educ;
-			educ = new ArrayList<>();
-			curriculum.setEducationRecord(educ);
-			Collection<EndorserRecord> endor;
-			endor = new ArrayList<>();
-			curriculum.setEndorserRecord(endor);
-			Collection<ProfessionalRecord> profe;
-			profe = new ArrayList<>();
-			curriculum.setProfessionalRecord(profe);
-			Collection<MiscellaneousRecord> misc;
-			misc = new ArrayList<>();
-			curriculum.setMiscellaneousRecord(misc);
-		}
-
+		Assert.notNull(this.curriculumRepository.findLinkedInByHandyWorkerId(user.getId()));
+		curriculum.setTicker(Utiles.generateTicker());
+		Collection<EducationRecord> educ;
+		educ = new ArrayList<>();
+		curriculum.setEducationRecord(educ);
+		Collection<EndorserRecord> endor;
+		endor = new ArrayList<>();
+		curriculum.setEndorserRecord(endor);
+		Collection<ProfessionalRecord> profe;
+		profe = new ArrayList<>();
+		curriculum.setProfessionalRecord(profe);
+		Collection<MiscellaneousRecord> misc;
+		misc = new ArrayList<>();
+		curriculum.setMiscellaneousRecord(misc);
 		return curriculum;
 	}
 	public Curriculum save(final Curriculum c) {

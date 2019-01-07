@@ -18,7 +18,7 @@
 
 <p><spring:message code="education.edit" /></p>
 
-<form:form modelAttribute="educationrecord" action="educationrecord/edit.do">
+<form:form modelAttribute="educationrecord" action="educationrecord/handyworker/edit.do">
 
 <form:hidden path="id" />
 <form:hidden path="version" />
@@ -27,42 +27,49 @@
 	<spring:message code="education.diplomaTitle" />
 </form:label>
 <form:input path="diplomaTitle"/>
-<form:errors cssClass="error" path="diplomaTitle"></form:errors>
+<form:errors cssClass='error' path="diplomaTitle"></form:errors>
 <br>
 
 <form:label path="startStudies">
 	<spring:message code="education.startStudies" />
 </form:label>
 <form:input path="startStudies" placeholder="yyyy/mm/dd"/>
-<form:errors cssClass="error" path="startStudies" />
+<form:errors cssClass='error' path="startStudies" />
 <br>
 
 <form:label path="endStudies">
 	<spring:message code="education.endStudies" />
 </form:label>
 <form:input path="endStudies" placeholder="yyyy/mm/dd"/>
-<form:errors cssClass="error" path="endStudies" />
+<form:errors cssClass='error' path="endStudies" />
 <br>
 
 <form:label path="institutionDiploma">
 	<spring:message code="education.institutionDiploma" />
 </form:label>
 <form:input path="institutionDiploma"  />
-<form:errors cssClass="error" path="institutionDiploma" />
+<form:errors cssClass='error' path="institutionDiploma" />
 <br />
 
 <form:label path="attachment">
 	<spring:message code="education.attachment" />
 </form:label>
 <form:input path="attachment"  />
-<form:errors cssClass="error" path="attachment" />
+<form:errors cssClass='error' path="attachment" />
 <br />
+
+<jstl:forEach items="${errors}" var="error">
+		<jstl:out value="${error}" />
+	</jstl:forEach>
+	<jstl:out value="${oops}" />
+	<jstl:out value="${message}" />
 
 <security:authorize access="hasRole('HANDY_WORKER')">
 <input type="submit" name="save"
 			value="<spring:message code="education.save" />" />
-			
-<input type="submit" name="cancel" value="<spring:message code ="education.cancel"/>"
-	onclick="javascript: relativeRedir('curriculum/handyworker/list.do');" />
 </security:authorize>
 </form:form>
+		
+<input type="submit" name="cancel" value="<spring:message code ="education.cancel"/>"
+	onclick="javascript: relativeRedir('curriculum/handyworker/list.do');" />
+
