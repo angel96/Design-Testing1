@@ -22,13 +22,14 @@
 	<spring:message code="fixUpTask.action.1" />
 </p>
 
-<display:table name="fixuptasks" id="row" requestURI="${requestURI}"
-	pagesize="5" class="displaytag">
-	<display:column>
-		<a href="${URI}edit.do?id=${row.id}"> <img
-			src="images/viewmore.png" />
-		</a>
-	</display:column>
+<display:table name="fixuptasks" id="row" requestURI="${requestURI}" pagesize="5" class="displaytag">
+	<security:authorize access="hasRole('CUSTOMER')">
+		<display:column>
+			<a href="${URI}edit.do?id=${row.id}"> <img
+				src="images/viewmore.png" />
+			</a>
+		</display:column>
+	</security:authorize>
 
 	<display:column property="ticker" titleKey="fixuptask.tickers" />
 	<display:column property="moment" titleKey="fixuptask.moment" />
@@ -46,28 +47,4 @@
 			<a href="application/handyworker/create.do?fixUpId=${row.id}">Apply this FixUpTask</a>
 		</display:column>
 	</security:authorize> 
-
-	<%-- <display:column property="creator" titleKey="fixuptask.creator" /> --%>
-
-	<%-- <%-- <security:authorize access="hasRole('CUSTOMER')">
-		<jstl:if test="${row.creator}==${principal.username}">
-			<display:column>
-				<a href="fixuptaks/customer/edit.do?id=${row.id}"> <img
-					src="images/update.png" />
-				</a>
-			</display:column>
-		</jstl:if>
-	</security:authorize>
-
-	<security:authorize access="hasRole('CUSTOMER')">
-		<jstl:if test="${row.creator}==${principal.username}">
-			<display:column>
-				<input type="submit" name="delete"
-					value="<img src="images/trash.png" />" />
-			</display:column>
-		</jstl:if>
-	</security:authorize>
- --%>
 </display:table>
-
-<!-- El create va en el desplegable -->

@@ -22,16 +22,13 @@
 	<spring:message code="application.action.1" />
 </p>
 
-<display:table name="applications" id="row"
-	requestURI="${requestURI}" pagesize="5"
-	class="displaytag">
+<display:table name="applications" id="row"	requestURI="${requestURI}" pagesize="5"	class="displaytag">
 
 	<display:column property="moment" titleKey="application.moment"/>
 	<display:column property="status" titleKey="application.status"/>
 	<display:column property="offeredPrice" titleKey="application.offeredPrice">$</display:column>
-	<display:column titleKey="application.comments"/>
 	<display:column titleKey="application.fixUpTask" >
-	 <a href="fixuptask/handyworker/edit.do?id=${row.fixUpTask.id }">${row.fixUpTask.description}</a>
+	 <jstl:out value = "${row.fixUpTask.description}"/>
 	 </display:column>
 	<security:authorize access="hasRole('HANDY_WORKER')">	
 	<display:column>
@@ -42,7 +39,7 @@
 	</security:authorize>
 	<security:authorize access="hasRole('CUSTOMER')">	
 	<display:column titleKey="application.updateStatus">
-		<a href="application/handyworker/edit.do?applicationId=${row.id}">
+		<a href="application/customer/edit.do?id=${row.id}">
 			<img src="images/update.png">
 		</a>
 	</display:column>

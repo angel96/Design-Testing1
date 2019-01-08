@@ -38,7 +38,7 @@ public class ApplicationController {
 	public ModelAndView list() {
 		ModelAndView result;
 		result = new ModelAndView("application/list");
-		result.addObject("applications", this.appService.findAll());
+		result.addObject("applications", this.appService.getApplicationsByHandyWorker(LoginService.getPrincipal().getId()));
 		if (Utiles.findAuthority(LoginService.getPrincipal().getAuthorities(), Authority.CUSTOMER))
 			result.addObject("requestURI", "application/customer/list.do");
 		else if (Utiles.findAuthority(LoginService.getPrincipal().getAuthorities(), Authority.HANDY_WORKER))
@@ -123,7 +123,7 @@ public class ApplicationController {
 
 	protected ModelAndView createEditModelAndView(final Application app, final String message) {
 		ModelAndView result;
-		result = new ModelAndView("fixuptask/edit");
+		result = new ModelAndView("application/edit");
 		result.addObject("application", app);
 		result.addObject("status", Arrays.asList("pending", "accepted", "rejected"));
 		if (Utiles.findAuthority(LoginService.getPrincipal().getAuthorities(), Authority.CUSTOMER))

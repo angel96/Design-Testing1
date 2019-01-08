@@ -1,6 +1,7 @@
 
 package services;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -19,6 +20,7 @@ import domain.Application;
 import domain.CreditCard;
 import domain.Customer;
 import domain.FixUpTask;
+import domain.HandyWorker;
 
 @Service
 @Transactional
@@ -30,12 +32,12 @@ public class ApplicationService {
 	@Autowired
 	private HandyWorkerService		serviceHWorker;
 
-	@Autowired
-	private FixUpTaskService		fixUpTaskService;
 
+	//	@Autowired
+	//	private FixUpTaskService		fixUpTaskService;
 
-	public Collection<Application> getApplicationsByCustomer(final Customer c) {
-		return this.applicationRepository.getApplicationsByCustomer(c.getId());
+	public Collection<Application> getApplicationsByHandyWorker(final int accountId) {
+		return this.applicationRepository.getApplicationsByHandyWorker(accountId);
 	}
 
 	public Customer getCustomerByApplication(final int id) {
@@ -51,8 +53,9 @@ public class ApplicationService {
 	}
 
 	public Application findOne(final int id) {
-
-		return this.applicationRepository.findOne(id);
+		Application a;
+		a = this.applicationRepository.findOne(id);
+		return a;
 	}
 
 	public Collection<Application> findAll() {
@@ -71,8 +74,10 @@ public class ApplicationService {
 		Assert.notNull(f);
 
 		Application saved;
+		HandyWorker h;
 
 		saved = this.applicationRepository.save(a);
+		h = this.serviceHWorker.findByUserAccount(user.getId());
 
 		Collection<Application> apps;
 		apps = f.getApplication();
@@ -80,7 +85,14 @@ public class ApplicationService {
 		apps.add(saved);
 		f.setApplication(apps);
 
-		this.fixUpTaskService.updateApplications(f);
+		Collection<Application> handyApps;
+		handyApps = new ArrayList<>();
+		handyApps = h.getApplication();
+
+		handyApps.add(saved);
+		h.setApplication(handyApps);
+
+		//		this.fixUpTaskService.updateApplications(f);
 
 		return saved;
 	}

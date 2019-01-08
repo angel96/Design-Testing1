@@ -44,8 +44,8 @@ public interface ApplicationRepository extends JpaRepository<Application, Intege
 	@Query("select (count(a)*1.0/(select count(ap) from Application ap)) from Application a where current_date() > a.momentElapsed and a.status = 'pending'")
 	double findRationOfPendingApplicationCannotChangeItsStatus();
 	//10.2
-	@Query("select f.application from Customer c join c.fixUpTask f where c = ?1")
-	Collection<Application> getApplicationsByCustomer(int id);
+	@Query("select a from HandyWorker hw join hw.application a where hw.account.id = ?1")
+	Collection<Application> getApplicationsByHandyWorker(int userAccountId);
 
 	@Query("select c from Customer c join c.fixUpTask f join f.application a where a.id = ?1")
 	Customer getCustomerByApplication(int id);

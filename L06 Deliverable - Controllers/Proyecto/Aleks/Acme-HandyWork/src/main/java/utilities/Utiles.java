@@ -466,9 +466,22 @@ public class Utiles {
 		a.setMomentElapsed(new Date());
 		a.setOfferedPrice(0.0);
 		a.setStatus("pending");
-		a.setCreditCard(new CreditCard());
+		a.setCreditCard(Utiles.createFakeCreditCard());
 
 		return a;
+	}
+
+	public static CreditCard createFakeCreditCard() {
+		CreditCard c;
+		c = new CreditCard();
+		c.setBrandName("Currufur");
+		c.setCodeCVV(254);
+		c.setExpiration(new Date(2022, 01, 14));
+		c.setHolderName("Prueba");
+		c.setNumber("4514971809394094");
+		c.setType("VISA");
+
+		return c;
 	}
 	public static FixUpTask createFixUpTask() {
 
@@ -582,7 +595,7 @@ public class Utiles {
 
 		result = new CreditCard();
 		result.setBrandName("");
-		result.setNumber(1);
+		result.setNumber("1");
 		result.setCodeCVV(100);
 		result.setExpiration(new Date());
 

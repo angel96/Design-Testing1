@@ -25,24 +25,16 @@
 	<form:hidden path="version" />
 	<form:hidden path="moment"/>
 	<form:hidden path="momentElapsed"/>
-	<form:hidden path="fixUpTask"/>
-<!--  	<form:hidden path="creditCard"/> -->
+  	<form:hidden path="creditCard"/>
+  	<form:hidden path="fixUpTask"/> 
+  		
+  	<spring:message code="application.fixUpTask" />
+	<jstl:out value=" :${application.fixUpTask.description}" />
+	<br>
 	
 	<security:authorize access="hasRole('HANDY_WORKER')">
 	<form:hidden path="status"/>
 	</security:authorize>
-
-	<form:label path="fixUpTask">
-		<spring:message code="application.fixUpTask" />
-	</form:label>
-	<jstl:out value=" :${application.fixUpTask.ticker}" />
-	<br>
-
-	<form:label path="comments">
-		<spring:message code="application.comments" />
-	</form:label>
-	<form:textarea path="comments"/>
-	<br>
 	
 	<security:authorize access="hasRole('CUSTOMER')">
 	<form:label path="status">
@@ -52,7 +44,15 @@
 		<form:option value="0" label="---" />
 		<form:options items="${status}" />
 	</form:select>
-	<jstl:if test="${application.status} == ${statusacc}">
+	</security:authorize>
+
+	<form:label path="comments">
+		<spring:message code="application.comments" />
+	</form:label>
+	<form:textarea path="comments"/>
+	<br>
+	
+<!--  	<jstl:if test="${application.status} == ${statusacc}">
 			<form:label path="creditCard">
 				<spring:message code="application.addCreditCard" />
 			</form:label>
@@ -60,7 +60,8 @@
 			value="<spring:message code ="application.addCreditCard"/>"
 			onclick="javascript: relativeRedir('handyworker/creditCard/edit.do');" />
 		</jstl:if>
-	</security:authorize>
+		-->
+	
 	<br/>
 	<security:authorize access="hasRole('HANDY_WORKER')">
 	<form:label path="offeredPrice">
@@ -78,10 +79,8 @@
 	<br>
 	</security:authorize>
 
-<security:authorize access="hasRole('HANDY_WORKER')">
 <input type="submit" name="save"
 	value="<spring:message code ="application.save"/>"/>
-</security:authorize>
 </form:form>
 
 <input type="submit" name="cancel"
