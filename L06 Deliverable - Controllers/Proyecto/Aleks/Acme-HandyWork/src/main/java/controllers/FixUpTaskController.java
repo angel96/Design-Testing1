@@ -1,8 +1,6 @@
 
 package controllers;
 
-import java.util.Collection;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -121,21 +119,6 @@ public class FixUpTaskController {// extends AbstractController {
 		return result;
 	}
 
-	@RequestMapping(value = "/search", method = RequestMethod.POST, params = "search")
-	public ModelAndView search(@Valid final Finder finder, final BindingResult binding) {
-		ModelAndView result;
-		if (binding.hasErrors())
-			result = this.editAndCreateFinderModelAndView(finder);
-		else
-			try {
-				final Collection<FixUpTask> fixuptasks = this.serviceFixUpTask.findAllByFinder(finder.getSingleKey(), finder.getStartDate(), finder.getEndDate(), finder.getWarranty(), finder.getCategory(), finder.getPrice1(), finder.getPrice2());
-				result = new ModelAndView("fixuptask/list");
-				result.addObject("fixuptask", fixuptasks);
-			} catch (final Throwable oops) {
-				result = this.editAndCreateFinderModelAndView(finder, oops.getMessage());
-			}
-		return result;
-	}
 	protected ModelAndView editAndCreateFinderModelAndView(final Finder finder) {
 		ModelAndView result;
 

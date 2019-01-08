@@ -474,10 +474,10 @@ public class Utiles {
 	public static CreditCard createFakeCreditCard() {
 		CreditCard c;
 		c = new CreditCard();
-		c.setBrandName("Currufur");
+		c.setBrandName("Prueba");
 		c.setCodeCVV(254);
-		c.setExpiration(new Date(2022, 01, 14));
-		c.setHolderName("Prueba");
+		c.setExpiration(new Date());
+		c.setHolderName("Fake");
 		c.setNumber("4514971809394094");
 		c.setType("VISA");
 

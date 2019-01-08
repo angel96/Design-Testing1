@@ -11,6 +11,7 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.Range;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Embeddable
 @Access(AccessType.PROPERTY)
@@ -55,6 +56,7 @@ public class CreditCard {
 
 	}
 	@NotNull
+	@DateTimeFormat(pattern = "yyyy/MM/dd")
 	public Date getExpiration() {
 		return this.expiration;
 	}

@@ -73,15 +73,17 @@ public class ApplicationController {
 	public ModelAndView submit(@Valid final Application app, final BindingResult bind) {
 		ModelAndView result;
 		FixUpTask fut;
-		if (bind.hasErrors())
+		if (bind.hasErrors()) {
 			result = this.createEditModelAndView(app);
-		else
+			result.addObject("errors", bind.getAllErrors());
+		} else
 			try {
 				fut = this.fixUpService.findOne(app.getFixUpTask().getId());
 				this.appService.save(fut, app);
-				result = new ModelAndView("redirect:list.do");
+				result = new ModelAndView("redirect:/fixuptask/customer/list.do");
 			} catch (final Throwable oops) {
 				result = this.createEditModelAndView(app, "app.commit.error");
+				result.addObject("oops", oops.getMessage());
 			}
 		return result;
 	}
@@ -126,10 +128,13 @@ public class ApplicationController {
 		result = new ModelAndView("application/edit");
 		result.addObject("application", app);
 		result.addObject("status", Arrays.asList("pending", "accepted", "rejected"));
-		if (Utiles.findAuthority(LoginService.getPrincipal().getAuthorities(), Authority.CUSTOMER))
+		if (Utiles.findAuthority(LoginService.getPrincipal().getAuthorities(), Authority.CUSTOMER)) {
 			result.addObject("requestURI", "application/customer/edit.do");
-		else if (Utiles.findAuthority(LoginService.getPrincipal().getAuthorities(), Authority.HANDY_WORKER))
+			result.addObject("URI", "/fixuptask/customer/list.do");
+		} else if (Utiles.findAuthority(LoginService.getPrincipal().getAuthorities(), Authority.HANDY_WORKER)) {
 			result.addObject("requestURI", "application/handyworker/edit.do");
+			result.addObject("URI", "application/handyworker/list.do");
+		}
 		result.addObject("message", message);
 		return result;
 	}

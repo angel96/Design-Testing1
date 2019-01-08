@@ -18,71 +18,106 @@
 	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<form:form action="${requestURI}"	modelAttribute="application">
-	
-	<jstl:set var="statusacc" value="accepted"></jstl:set>
+<script>
+	function change(o) {
+		if (o.value == 'accepted') {
+			document.getElementById("creditcard").style.display = 'block';
+			document.getElementById("holdername").reset();
+			document.getElementById("brandname").reset();
+			document.getElementById("name").reset();
+			} else {
+			document.getElementById("creditcard").style.display = 'none';
+		}
+	}
+</script>
+
+<form:form action="${requestURI}" modelAttribute="application">
+
 	<form:hidden path="id" />
 	<form:hidden path="version" />
-	<form:hidden path="moment"/>
-	<form:hidden path="momentElapsed"/>
-  	<form:hidden path="creditCard"/>
-  	<form:hidden path="fixUpTask"/> 
-  		
-  	<spring:message code="application.fixUpTask" />
+	<form:hidden path="moment" />
+	<form:hidden path="momentElapsed" />
+	<form:hidden path="creditCard" />
+	<form:hidden path="fixUpTask" />
+
+	<spring:message code="application.fixUpTask" />
 	<jstl:out value=" :${application.fixUpTask.description}" />
 	<br>
-	
-	<security:authorize access="hasRole('HANDY_WORKER')">
-	<form:hidden path="status"/>
-	</security:authorize>
-	
-	<security:authorize access="hasRole('CUSTOMER')">
-	<form:label path="status">
-		<spring:message code="application.status" />
-	</form:label>
-	<form:select path="status">
-		<form:option value="0" label="---" />
-		<form:options items="${status}" />
-	</form:select>
-	</security:authorize>
 
+	<security:authorize access="hasRole('HANDY_WORKER')">
+		<jstl:if test="${application.id != 0}">
+			<form:label path="status">
+				<spring:message code="application.status" />
+			</form:label>
+			<jstl:out value="${application.status}" />
+		</jstl:if>
+		<form:hidden path="status" />
+	</security:authorize>
+	<br>
+	<security:authorize access="hasRole('CUSTOMER')">
+		<form:label path="status">
+			<spring:message code="application.status" />
+		</form:label>
+		<form:select path="status" onchange="change(this);">
+			<form:option value="0" label="---" />
+			<form:options items="${status}" />
+		</form:select>
+	</security:authorize>
+	<br>
 	<form:label path="comments">
 		<spring:message code="application.comments" />
 	</form:label>
-	<form:textarea path="comments"/>
+	<form:textarea path="comments" />
 	<br>
+
+	<div id="creditcard" style="display: none">
 	
-<!--  	<jstl:if test="${application.status} == ${statusacc}">
-			<form:label path="creditCard">
-				<spring:message code="application.addCreditCard" />
-			</form:label>
-			<input type="submit" name="creditCard" 
-			value="<spring:message code ="application.addCreditCard"/>"
-			onclick="javascript: relativeRedir('handyworker/creditCard/edit.do');" />
-		</jstl:if>
-		-->
-	
-	<br/>
+	<h4><spring:message code="creditCard.alert"/></h4>
+		<form:label path="creditCard.holderName">
+			<spring:message code="application.creditcard.holdername" />
+		</form:label>
+		<form:input path="creditCard.holderName" id="holdername"/>
+		<br>
+		<form:label path="creditCard.brandName">
+			<spring:message code="application.creditcard.brandname" />
+		</form:label>
+		<form:input path="creditCard.brandName" id="brandname"/>
+		<br>
+
+		<form:label path="creditCard.number">
+			<spring:message code="application.creditcard.number" />
+		</form:label>
+		<form:input path="creditCard.number" id="number"/>
+		<br>
+		<form:label path="creditCard.expiration">
+			<spring:message code="application.creditcard.expiration" />
+		</form:label>
+		<form:input path="creditCard.expiration" />
+	</div>
+
+	<br />
 	<security:authorize access="hasRole('HANDY_WORKER')">
-	<form:label path="offeredPrice">
-		<spring:message code="application.offeredPrice" />
-	</form:label>
-	<form:input path="offeredPrice"/>
-	<br>
-	
+		<form:label path="offeredPrice">
+			<spring:message code="application.offeredPrice" />
+		</form:label>
+		<form:input path="offeredPrice" />
+		<br>
+
 	</security:authorize>
 	<security:authorize access="hasRole('CUSTOMER')">
-	<form:label path="offeredPrice">
-		<spring:message code="application.offeredPrice" />
-	</form:label>
-	<form:input path="offeredPrice" readonly="${true}"/>
-	<br>
+		<form:label path="offeredPrice">
+			<spring:message code="application.offeredPrice" />
+		</form:label>
+		<form:input path="offeredPrice" readonly="${true}" />
+		<br>
 	</security:authorize>
-
-<input type="submit" name="save"
-	value="<spring:message code ="application.save"/>"/>
+	<jstl:forEach items = "${errors}" var = "error">
+	<jstl:out value = "${error}" />
+	</jstl:forEach>
+	<jstl:out value="${oops}" />
+	<input type="submit" name="save"
+		value="<spring:message code ="application.save"/>" />
 </form:form>
-
 <input type="submit" name="cancel"
 	value="<spring:message code ="application.cancel"/>"
-	onclick="javascript: relativeRedir('application/handyworker/list.do');" />
+	onclick="javascript: relativeRedir('${URI}');" />

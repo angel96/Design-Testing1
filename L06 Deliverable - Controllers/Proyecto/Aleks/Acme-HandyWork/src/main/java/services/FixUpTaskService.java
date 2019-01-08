@@ -2,7 +2,6 @@
 package services;
 
 import java.util.Collection;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,11 +16,9 @@ import security.LoginService;
 import security.UserAccount;
 import utilities.Utiles;
 import domain.Application;
-import domain.Category;
 import domain.Customer;
 import domain.FixUpTask;
 import domain.Phase;
-import domain.Warranty;
 
 @Service
 @Transactional
@@ -56,8 +53,7 @@ public class FixUpTaskService {
 		UserAccount user;
 		user = LoginService.getPrincipal();
 		Assert.notNull(user);
-		//assert pa comprobar que esta fixup pertenece al user logueado, aparte de poner el boton de edit en la vista
-		//		Assert.isTrue(this.fixUpTaskRepository.findAllByUser(user.getId()).contains(f));
+
 		Customer c;
 		c = this.serviceCustomer.findByUserAccount(user.getId());
 
@@ -69,19 +65,6 @@ public class FixUpTaskService {
 		fixUpTaskCustomer.add(saved);
 		c.setFixUpTask(fixUpTaskCustomer);
 
-		return saved;
-	}
-	public FixUpTask updateApplications(final FixUpTask newer) {
-		FixUpTask saved;
-
-		UserAccount user;
-		user = LoginService.getPrincipal();
-
-		Assert.isTrue(Utiles.findAuthority(user.getAuthorities(), Authority.HANDY_WORKER));
-
-		saved = this.fixUpTaskRepository.save(newer);
-
-		Assert.notNull(saved);
 		return saved;
 	}
 
@@ -120,8 +103,4 @@ public class FixUpTaskService {
 		return update != null;
 	}
 
-	public Collection<FixUpTask> findAllByFinder(final String query, final Date start, final Date end, final Warranty warranty, final Category category, final double amount1, final double amount2) {
-		return this.fixUpTaskRepository.findAllSearchByFinder("%" + query + "%", start, end, warranty, category, amount1, amount2);
-
-	}
 }
