@@ -39,7 +39,7 @@
 	<display:column property="category.name" titleKey="fixuptask.category" />
 	<security:authorize access="hasRole('CUSTOMER')">
 	<display:column>
-			<a href="complaint/customer/create.do?idFix=${row.id}&view=false"><spring:message
+			<a href="complaint/customer/create.do?idFix=${row.id}"><spring:message
 					code="fixuptask.createcomplaint" /></a>
 		</display:column> 
 		</security:authorize>

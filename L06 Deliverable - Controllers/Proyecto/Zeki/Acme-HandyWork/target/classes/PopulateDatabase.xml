@@ -2462,14 +2462,9 @@
 				<constructor-arg value="2018/11/18" />
 			</bean>
 		</property>
-		<property name="comment" value="Notita simple">
-		</property>
-		<property name="otherComments">
-			<list>
-				<value>Comentario opcional 1</value>
-				<value>Comentario opcional 2</value>
-			</list>
-		</property>
+		<property name="customerComment" value="Nota Customer 1"/>
+		<property name="refereeComment" value="Nota Referee 1"/>
+		<property name="handyWorkerComment" value="Nota Handy 1"/>
 	</bean>
 
 	<bean id="note2" class="domain.Note">
@@ -2478,13 +2473,9 @@
 				<constructor-arg value="2018/11/18" />
 			</bean>
 		</property>
-		<property name="comment" value="What a note!">
-		</property>
-		<property name="otherComments">
-			<list>
-				<value>Comentario opcional 3</value>
-			</list>
-		</property>
+		<property name="customerComment" value="Nota Customer 2"/>
+		<property name="refereeComment" value="Nota Referee 2"/>
+		<property name="handyWorkerComment" value="Nota Handy 2"/>
 	</bean>
 
 	<bean id="note3" class="domain.Note">
@@ -2493,14 +2484,9 @@
 				<constructor-arg value="2018/10/18" />
 			</bean>
 		</property>
-		<property name="comment" value="Notita simple">
-		</property>
-		<property name="otherComments">
-			<list>
-				<value>Comentario opcional 1</value>
-				<value>Comentario opcional 4</value>
-			</list>
-		</property>
+		<property name="customerComment" value="Nota Customer 3"/>
+		<property name="refereeComment" value="Nota Referee 3"/>
+		<property name="handyWorkerComment" value="Nota Handy 3"/>
 	</bean>
 
 	<bean id="note4" class="domain.Note">
@@ -2509,14 +2495,9 @@
 				<constructor-arg value="2018/11/13" />
 			</bean>
 		</property>
-		<property name="comment" value="Notita simple">
-		</property>
-		<property name="otherComments">
-			<list>
-				<value>Comentario opcional 1</value>
-				<value>Comentario opcional 2</value>
-			</list>
-		</property>
+		<property name="customerComment" value="Nota Customer 4"/>
+		<property name="refereeComment" value="Nota Referee 4"/>
+		<property name="handyWorkerComment" value="Nota Handy 4"/>
 	</bean>
 
 	<bean id="note5" class="domain.Note">
@@ -2525,13 +2506,9 @@
 				<constructor-arg value="2018/11/18" />
 			</bean>
 		</property>
-		<property name="comment" value="Notita simple">
-		</property>
-		<property name="otherComments">
-			<list>
-				<value>Comentario opcional 2</value>
-			</list>
-		</property>
+		<property name="customerComment" value="Nota Customer 5"/>
+		<property name="refereeComment" value="Nota Referee 5"/>
+		<property name="handyWorkerComment" value="Nota Handy 5"/>
 	</bean>
 
 	<bean id="note6" class="domain.Note">
@@ -2540,14 +2517,9 @@
 				<constructor-arg value="2018/11/18" />
 			</bean>
 		</property>
-		<property name="comment" value="Note">
-		</property>
-		<property name="otherComments">
-			<list>
-				<value>Comentario opcional 1</value>
-				<value>Comentario opcional 2</value>
-			</list>
-		</property>
+		<property name="customerComment" value="Nota Customer 6"/>
+		<property name="refereeComment" value="Nota Referee 6"/>
+		<property name="handyWorkerComment" value="Nota Handy 6"/>
 	</bean>
 
 	<bean id="note7" class="domain.Note">
@@ -2556,14 +2528,9 @@
 				<constructor-arg value="2018/12/18" />
 			</bean>
 		</property>
-		<property name="comment" value="Note">
-		</property>
-		<property name="otherComments">
-			<list>
-				<value>Comentario opcional 4</value>
-				<value>Comentario opcional 2</value>
-			</list>
-		</property>
+		<property name="customerComment" value="Nota Customer 7"/>
+		<property name="refereeComment" value="Nota Referee 7"/>
+		<property name="handyWorkerComment" value="Nota Handy 7"/>
 	</bean>
 	<!-- beans section -->
 	<bean id="section1" class="domain.Section">
@@ -4930,6 +4897,10 @@
 				<ref bean="complaint1" />
 			</list>
 		</property>
+		<property name="notes">
+			<list>
+			</list>
+		</property>
 	</bean>
 	<bean id="customer2" class="domain.Customer">
 
@@ -4969,6 +4940,10 @@
 		<property name="complaint">
 			<list>
 				<ref bean="complaint2" />
+			</list>
+		</property>
+		<property name="notes">
+			<list>
 			</list>
 		</property>
 	</bean>
@@ -5012,6 +4987,10 @@
 				<ref bean="complaint3" />
 			</list>
 		</property>
+		<property name="notes">
+			<list>
+			</list>
+		</property>
 	</bean>
 
 	<bean id="customer4" class="domain.Customer">
@@ -5050,6 +5029,10 @@
 		<property name="complaint">
 			<list>
 				<ref bean="complaint4" />
+			</list>
+		</property>
+		<property name="notes">
+			<list>
 			</list>
 		</property>
 	</bean>
@@ -5091,6 +5074,10 @@
 			<list>
 				<ref bean="complaint5" />
 				<ref bean="complaint6" />
+			</list>
+		</property>
+		<property name="notes">
+			<list>
 			</list>
 		</property>
 	</bean>
@@ -5142,6 +5129,10 @@
 		</property>
 		<property name="finder">
 			<ref bean="finder1" />
+		</property>
+		<property name="notes">
+			<list>
+			</list>
 		</property>
 	</bean>
 
@@ -5199,6 +5190,10 @@
 		</property>
 		<property name="finder">
 			<ref bean="finder2" />
+		</property>
+		<property name="notes">
+			<list>
+			</list>
 		</property>
 	</bean>
 
@@ -5267,6 +5262,10 @@
 		<property name="finder">
 			<ref bean="finder3" />
 		</property>
+		<property name="notes">
+			<list>
+			</list>
+		</property>
 	</bean>
 
 	<bean id="finder3" class="domain.Finder">
@@ -5334,6 +5333,10 @@
 		<property name="finder">
 			<ref bean="finder4" />
 		</property>
+		<property name="notes">
+			<list>
+			</list>
+		</property>
 	</bean>
 
 	<bean id="finder4" class="domain.Finder">
@@ -5398,6 +5401,10 @@
 		</property>
 		<property name="finder">
 			<ref bean="finder5" />
+		</property>
+		<property name="notes">
+			<list>
+			</list>
 		</property>
 	</bean>
 

@@ -84,6 +84,20 @@
 								code="master.page.customer.compliant.list" /></a></li>
 				</ul></li>
 			<li><a class="fNiv"><spring:message
+						code="master.page.referee.report" /></a>
+				<ul>
+					<li class="arrow"></li>
+					<li><a href="report/customer/list.do"><spring:message
+								code="master.page.referee.report.list" /></a></li>
+				</ul></li>
+			<li><a class="fNiv"><spring:message
+						code="master.page.referee.note" /></a>
+				<ul>
+					<li class="arrow"></li>
+					<li><a href="note/customer/list.do"><spring:message
+								code="master.page.referee.note.list" /></a></li>
+				</ul></li>
+			<li><a class="fNiv"><spring:message
 						code="master.page.customer.profile" /></a>
 				<ul>
 					<li class="arrow"></li>
@@ -158,6 +172,20 @@
 					<li><a href="application/handyworker/list.do"><spring:message
 								code="master.page.handyworker.filter.search" /></a></li>
 				</ul></li>
+			<li><a class="fNiv"><spring:message
+						code="master.page.referee.report" /></a>
+				<ul>
+					<li class="arrow"></li>
+					<li><a href="report/handyworker/list.do"><spring:message
+								code="master.page.referee.report.list" /></a></li>
+				</ul></li>
+			<li><a class="fNiv"><spring:message
+						code="master.page.referee.note" /></a>
+				<ul>
+					<li class="arrow"></li>
+					<li><a href="note/handyworker/list.do"><spring:message
+								code="master.page.referee.note.list" /></a></li>
+				</ul></li>
 		</security:authorize>
 		<security:authorize access="hasRole('REFEREE')">
 			<li><a class="fNiv"><spring:message
@@ -166,8 +194,22 @@
 					<li class="arrow"></li>
 					<li><a href="complaint/referee/list.do?ref=true"><spring:message
 								code="master.page.referee.compliant.listAssigned" /></a></li>
-					<li><a href="complaint/referee/list.do?ref=false"><spring:message
+					<li><a href="complaint/referee/list.do?"><spring:message
 								code="master.page.referee.compliant.listNoAssigned" /></a></li>
+				</ul></li>
+			<li><a class="fNiv"><spring:message
+						code="master.page.referee.report" /></a>
+				<ul>
+					<li class="arrow"></li>
+					<li><a href="report/referee/list.do"><spring:message
+								code="master.page.referee.report.list" /></a></li>
+				</ul></li>
+			<li><a class="fNiv"><spring:message
+						code="master.page.referee.note" /></a>
+				<ul>
+					<li class="arrow"></li>
+					<li><a href="note/referee/list.do"><spring:message
+								code="master.page.referee.note.list" /></a></li>
 				</ul></li>
 		</security:authorize>
 

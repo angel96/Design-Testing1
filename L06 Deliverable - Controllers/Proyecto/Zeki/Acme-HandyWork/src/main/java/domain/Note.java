@@ -1,19 +1,16 @@
 
 package domain;
 
-import java.util.Collection;
 import java.util.Date;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
-import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
@@ -21,9 +18,10 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Note extends DomainEntity {
 
-	private Date				moment;
-	private String				comment;
-	private Collection<String>	otherComments;
+	private Date	moment;
+	private String	customerComment;
+	private String	refereeComment;
+	private String	handyWorkerComment;
 
 
 	@Temporal(TemporalType.DATE)
@@ -35,20 +33,29 @@ public class Note extends DomainEntity {
 	public void setMoment(final Date moment) {
 		this.moment = moment;
 	}
-	@NotBlank
-	public String getComment() {
-		return this.comment;
+
+	public String getCustomerComment() {
+		return this.customerComment;
 	}
 
-	public void setComment(final String comment) {
-		this.comment = comment;
-	}
-	@ElementCollection
-	public Collection<String> getOtherComments() {
-		return this.otherComments;
+	public void setCustomerComment(final String customerComment) {
+		this.customerComment = customerComment;
 	}
 
-	public void setOtherComments(final Collection<String> otherComments) {
-		this.otherComments = otherComments;
+	public String getRefereeComment() {
+		return this.refereeComment;
 	}
+
+	public void setRefereeComment(final String refereeComment) {
+		this.refereeComment = refereeComment;
+	}
+
+	public String getHandyWorkerComment() {
+		return this.handyWorkerComment;
+	}
+
+	public void setHandyWorkerComment(final String handyWorkerComment) {
+		this.handyWorkerComment = handyWorkerComment;
+	}
+
 }

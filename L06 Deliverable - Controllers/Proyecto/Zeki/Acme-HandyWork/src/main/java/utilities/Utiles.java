@@ -306,17 +306,7 @@ public class Utiles {
 		r.setSurname("");
 		return r;
 	}
-	public static Note createNote() {
-		UserAccount user;
-		user = LoginService.getPrincipal();
-		Assert.isTrue((Utiles.findAuthority(user.getAuthorities(), Authority.CUSTOMER) || Utiles.findAuthority(user.getAuthorities(), Authority.HANDY_WORKER) || Utiles.findAuthority(user.getAuthorities(), Authority.REFEREE)));
-		Note res;
-		res = new Note();
-		res.setMoment(new Date());
-		res.setComment("");
-		res.setOtherComments(new ArrayList<String>());
-		return res;
-	}
+
 	public static HandyWorker createHandyWorker() {
 		HandyWorker handyWorker;
 		handyWorker = new HandyWorker();

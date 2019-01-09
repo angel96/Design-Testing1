@@ -36,7 +36,7 @@ public class ComplaintController extends AbstractController {
 	}
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public ModelAndView listComplaintCustomer(@RequestParam(defaultValue = "0") final Boolean ref) {
+	public ModelAndView listComplaintCustomer(@RequestParam(defaultValue = "false") final Boolean ref) {
 		ModelAndView result;
 		result = new ModelAndView("complaint/list");
 		if (LoginService.getPrincipal().getAuthorities().toString().equals("[CUSTOMER]")) {
@@ -60,7 +60,7 @@ public class ComplaintController extends AbstractController {
 	}
 
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
-	public ModelAndView createComplaint(@RequestParam final int idFix, @RequestParam final String view) {
+	public ModelAndView createComplaint(@RequestParam final int idFix, @RequestParam(defaultValue = "false") final String view) {
 		ModelAndView result;
 		System.out.println(idFix);
 		System.out.println(view);
@@ -103,7 +103,7 @@ public class ComplaintController extends AbstractController {
 	}
 
 	@RequestMapping(value = "/view", method = RequestMethod.GET)
-	public ModelAndView viewComplaint(@RequestParam final int id, @RequestParam final String view) {
+	public ModelAndView viewComplaint(@RequestParam final int id, @RequestParam(defaultValue = "false") final String view) {
 		ModelAndView result;
 		Complaint find;
 		System.out.println(id);

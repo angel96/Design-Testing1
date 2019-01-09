@@ -21,8 +21,35 @@
 	class="displaytag">
 	
 	<display:column property="moment" titleKey="note.moment"/>
-	<display:column property="comment" titleKey="note.comment"/>
-	<display:column property="otherComments" titleKey="note.otherComments"/>
-	
+	<display:column property="customerComment" titleKey="note.customerComment"/>
+	<display:column property="refereeComment" titleKey="note.refereeComment"/>
+	<display:column property="handyWorkerComment" titleKey="note.handyWorkerComment"/>
+	<security:authorize access="hasRole('REFEREE')">
+		<display:column>
+			<jstl:if test="${empty row.refereeComment}">
+				<a href="note/referee/addComment.do?idNote=${row.id}"> <spring:message
+						code="note.add" />
+				</a>
+			</jstl:if>
+		</display:column>
+	</security:authorize>
+	<security:authorize access="hasRole('HANDY_WORKER')">
+		<display:column>
+			<jstl:if test="${empty row.handyWorkerComment}">
+				<a href="note/handyworker/addComment.do?idNote=${row.id}"> <spring:message
+						code="note.add" />
+				</a>
+			</jstl:if>
+		</display:column>
+	</security:authorize>
+	<security:authorize access="hasRole('CUSTOMER')">
+		<display:column>
+			<jstl:if test="${empty row.customerComment}">
+				<a href="note/customer/addComment.do?idNote=${row.id}"> <spring:message
+						code="note.add" />
+				</a>
+			</jstl:if>
+		</display:column>
+	</security:authorize>
 	
 </display:table>

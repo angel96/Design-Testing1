@@ -49,6 +49,15 @@
 <display:column property="attachment" titleKey="complaint.attachment"/>
 <security:authorize access="hasRole('REFEREE')">
 <display:column>
+<jstl:if test="${row.referee != null}">
+	<a href="report/referee/create.do?idComp=${row.id}"><spring:message
+					code="complaint.añadirreport" />
+		</a>
+		</jstl:if>
+</display:column>
+</security:authorize>
+<security:authorize access="hasRole('REFEREE')">
+<display:column>
 <jstl:if test="${row.referee == null}">
 		<a href="complaint/referee/update.do?id=${row.id}"><spring:message
 					code="complaint.update" />

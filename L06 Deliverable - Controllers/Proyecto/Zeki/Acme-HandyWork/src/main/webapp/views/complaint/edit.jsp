@@ -20,7 +20,7 @@
 
 <form:form action="complaint/customer/edit.do?idFix=${idFix}"
 modelAttribute="complaint">
-
+  
 <form:hidden path="id" />
 <form:hidden path="version" />
 
