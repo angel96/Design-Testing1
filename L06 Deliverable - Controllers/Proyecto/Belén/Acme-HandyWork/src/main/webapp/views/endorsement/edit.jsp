@@ -22,6 +22,8 @@
 
 <form:hidden path="id" />
 <form:hidden path="version" />
+<form:hidden path="userSended"/>
+<form:hidden path="userReceived"/>
 
 <form:label path="moment">
 	<spring:message code="endorsement.moment" />
@@ -30,20 +32,20 @@
 <form:errors cssClass="error" path="moment"></form:errors>
 <br>
 
-<form:label path="userSended.name">
+<!--<form:label path="userSended">
 	<spring:message code="endorsement.userSended" />
 </form:label>
-<form:input path="userSended.name"  readonly="true"/>
-<form:errors cssClass="error" path="userSended.name" />
+<form:input path="userSended"  readonly="true"/>
+<form:errors cssClass="error" path="userSended" />
 <br />
 
-<form:label path="userReceived.name">
+<form:label path="userReceived">
 	<spring:message code="endorsement.userReceived" />
 </form:label>
-<form:input path="userReceived.name"  readonly="true"/>
-<form:errors cssClass="error" path="userReceived.name" />
+<form:input path="userReceived"  readonly="true"/>
+<form:errors cssClass="error" path="userReceived" />
 <br />
-
+-->
 <form:label path="comments">
 <spring:message code="endorsement.comments" />
 </form:label>
@@ -55,6 +57,12 @@
 
 <input type="submit" name="save"
 			value="<spring:message code="endorsement.save" />" />
+
+ <jstl:forEach items="${errors}" var="error">
+		<jstl:out value="${error}" />
+	</jstl:forEach>
+	<jstl:out value="${oops}" />
+	<jstl:out value="${message}" />
 
 </form:form>
 <input type="submit" name="cancel" value="<spring:message code ="endorsement.cancel"/>"

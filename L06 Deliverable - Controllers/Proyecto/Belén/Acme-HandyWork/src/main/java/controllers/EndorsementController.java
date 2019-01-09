@@ -75,6 +75,7 @@ public class EndorsementController extends AbstractController {
 		UserAccount user;
 		user = LoginService.getPrincipal();
 		result = new ModelAndView("endorsement/list");
+		System.out.println(idActor);
 
 		if (Utiles.findAuthority(user.getAuthorities(), Authority.CUSTOMER) == true) {
 			HandyWorker h;
@@ -88,56 +89,59 @@ public class EndorsementController extends AbstractController {
 			Customer c;
 			c = this.customerService.findOne(idActor);
 			result = this.createEditModelAndView(this.endorsementService.createEndorsement(c.getAccount().getId()));
+			result.addObject("role", "handyworker");
 			result.addObject("idActor", idActor);
 			result.addObject("requestURI", "endorsement/handyworker/edit.do");
-			result.addObject("role", "handyworker");
+
 		}
 		return result;
 	}
 
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
-	public ModelAndView submit(@Valid final Endorsement endorsement, final BindingResult binding, @RequestParam final int idActor) {
+	public ModelAndView submit(@RequestParam final int idActor, @Valid final Endorsement endorsement, final BindingResult binding) {
 		ModelAndView model;
 		UserAccount user;
 		user = LoginService.getPrincipal();
 
-		if (binding.hasErrors())
+		if (binding.hasErrors()) {
 			model = this.createEditModelAndView(endorsement);
-		//			model.addObject("errors", binding.getAllErrors());
-		//			model.addObject("errores", binding);
-		else
+			model.addObject("errores", binding.getAllErrors());
+			model.addObject("errores", binding);
+		} else
 			try {
-				String role = "";
 				if (Utiles.findAuthority(user.getAuthorities(), Authority.CUSTOMER) == true) {
-					role = "customer";
 					HandyWorker h;
 					h = this.handyService.findOne(idActor);
 					this.endorsementService.save(endorsement, h.getAccount().getId());
-
 				} else if (Utiles.findAuthority(user.getAuthorities(), Authority.HANDY_WORKER) == true) {
-					role = "handyworker";
 					Customer c;
 					c = this.customerService.findOne(idActor);
 					this.endorsementService.save(endorsement, c.getAccount().getId());
 				}
-				model = new ModelAndView("redirect:list.do");
+				model = new ModelAndView("redirect:list.do?own=true");
 			} catch (final Throwable oops) {
 				model = this.createEditModelAndView(endorsement, "endorsement.error");
-				;
+				model.addObject("oops", oops.getMessage());
+				model.addObject("errors", binding.getAllErrors());
 			}
 		return model;
 	}
+
 	@RequestMapping(value = "/update", method = RequestMethod.GET)
 	public ModelAndView edit(@RequestParam final int idEndorsement) {
 		ModelAndView result;
+		UserAccount user;
+		user = LoginService.getPrincipal();
 		Endorsement e;
 		e = this.endorsementService.findOne(idEndorsement);
 		result = this.createEditModelAndView(e);
 		result.addObject("idActor", this.endorsementService.findOne(idEndorsement).getUserReceived().getId());
-		result.addObject("requestURI", "endorsement/handyworker/edit.do");
+		if (Utiles.findAuthority(user.getAuthorities(), Authority.CUSTOMER) == true)
+			result.addObject("requestURI", "endorsement/customer/edit.do");
+		else if (Utiles.findAuthority(user.getAuthorities(), Authority.HANDY_WORKER) == true)
+			result.addObject("requestURI", "endorsement/handyworker/edit.do");
 		return result;
 	}
-
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
 	public ModelAndView delete(@RequestParam final int idEndorsement) {
 		ModelAndView result;

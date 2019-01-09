@@ -52,38 +52,32 @@ public class EndorsementService {
 	}
 
 	public Endorsement createEndorsement(final int id) {
+		System.out.println(id);
 		UserAccount user;
 		user = LoginService.getPrincipal();
 		Assert.isTrue((Utiles.findAuthority(user.getAuthorities(), Authority.CUSTOMER) || Utiles.findAuthority(user.getAuthorities(), Authority.HANDY_WORKER)));
-		Endorsable sender;
-		sender = this.repositoryEndorsement.findEndorsableByUserAccountId(user.getId());
-		Endorsable receiver;
-		receiver = this.repositoryEndorsement.findEndorsableByUserAccountId(id);
 		Endorsement result;
 		result = new Endorsement();
 		result.setMoment(new Date());
-		result.setUserSended(sender);
-		result.setUserReceived(receiver);
+		result.setUserSended(this.repositoryEndorsement.findEndorsableByUserAccountId(user.getId()));
+		result.setUserReceived(this.repositoryEndorsement.findEndorsableByUserAccountId(id));
 		result.setComments(new ArrayList<String>());
+		System.out.println(result.getId());
 		return result;
 	}
-
 	public Endorsement save(final Endorsement e, final int id) {
+		System.out.println(id);
 		UserAccount user;
 		user = LoginService.getPrincipal();
 		Assert.isTrue((Utiles.findAuthority(user.getAuthorities(), Authority.CUSTOMER) || Utiles.findAuthority(user.getAuthorities(), Authority.HANDY_WORKER)));
 		Endorsement saved;
-		Endorsable sender;
-		sender = this.repositoryEndorsement.findEndorsableByUserAccountId(user.getId());
-		Endorsable receiver;
-		receiver = this.repositoryEndorsement.findEndorsableByUserAccountId(id);
-		e.setUserSended(sender);
-		e.setUserReceived(receiver);
+		e.setUserSended(this.repositoryEndorsement.findEndorsableByUserAccountId(user.getId()));
+		e.setUserReceived(this.repositoryEndorsement.findEndorsableByUserAccountId(id));
 		e.setMoment(new Date());
+
 		saved = this.repositoryEndorsement.save(e);
 		return saved;
 	}
-
 	public void delete(final int idEndorsement) {
 		UserAccount user;
 		user = LoginService.getPrincipal();
