@@ -39,6 +39,7 @@ onclick="javascript:relativeRedir('profile/create.do');"/>
 <display:column property="endStudies" titleKey="curriculum.education.endStudies"/>
 <display:column property="institutionDiploma" titleKey="curriculum.education.institutionDiploma" />
 <display:column property="attachment" titleKey="curriculum.attachment"/>
+<display:column property="comments" titleKey="curriculum.comments"/>
 		
 </display:table>
 <a href="educationrecord/handyworker/create.do"><spring:message code="curriculum.education.create"/></a>
@@ -53,6 +54,7 @@ onclick="javascript:relativeRedir('profile/create.do');"/>
 <display:column property="endWorking" titleKey="curriculum.professional.endWorking"/>
 <display:column property="role" titleKey="curriculum.professional.role" />
 <display:column property="attachment" titleKey="curriculum.attachment"/>
+<display:column property="comments" titleKey="curriculum.comments"/>
 </display:table>
 <a href="professionalrecord/handyworker/create.do"><spring:message code="curriculum.professional.create"/></a>
 	
@@ -65,6 +67,7 @@ onclick="javascript:relativeRedir('profile/create.do');"/>
 <display:column property="email" titleKey="curriculum.endorser.email"/>
 <display:column property="phone" titleKey="curriculum.endorser.phone" />
 <display:column property="linkedin" titleKey="curriculum.endorser.linkedin"/>
+<display:column property="comments" titleKey="curriculum.comments"/>
 </display:table>
 <a href="endorserrecord/handyworker/create.do"><spring:message code="curriculum.endorser.create"/></a>
 
@@ -75,6 +78,7 @@ onclick="javascript:relativeRedir('profile/create.do');"/>
 
 <display:column property="title" titleKey="curriculum.miscellaneous.title"/>
 <display:column property="attachment" titleKey="curriculum.attachment"/>
+<display:column property="comments" titleKey="curriculum.comments"/>
 </display:table>
 <a href="miscellaneousrecord/handyworker/create.do"><spring:message code="curriculum.miscellaneous.create"/></a>
 </jstl:if>

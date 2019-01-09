@@ -50,6 +50,15 @@
 <form:input path="linkedin"/>
 <form:errors cssClass="error" path="linkedin"></form:errors>
 <br>
+
+<form:label path="comments">
+<spring:message code="endorser.comments" />
+</form:label>
+<form:textarea path="comments"/><br>
+<spring:message code="endorser.comments.place" />
+<form:errors cssClass='error' path="comments" />
+<br />
+
 <security:authorize access="hasRole('HANDY_WORKER')">
 <input type="submit" name="save"
 			value="<spring:message code="endorser.save" />" />

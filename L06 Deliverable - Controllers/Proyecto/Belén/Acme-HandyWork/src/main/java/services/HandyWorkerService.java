@@ -13,6 +13,7 @@ import security.Authority;
 import security.LoginService;
 import security.UserAccount;
 import utilities.Utiles;
+import domain.Customer;
 import domain.Finder;
 import domain.HandyWorker;
 
@@ -23,17 +24,6 @@ public class HandyWorkerService {
 	@Autowired
 	private HandyWorkerRepository	repositoryHandyWorker;
 	@Autowired
-	private AdministratorService	adminService;
-	@Autowired
-	private CustomerService			customerService;
-	@Autowired
-	private RefereeService			refereeService;
-	@Autowired
-	private SponsorService			sponsorService;
-	@Autowired
-	private BoxService				boxService;
-
-	@Autowired
 	private FinderService			finderService;
 
 
@@ -43,6 +33,15 @@ public class HandyWorkerService {
 
 	public HandyWorker findOne(final int id) {
 		return this.repositoryHandyWorker.findOne(id);
+	}
+
+	public Collection<Customer> findCustomerByHandyWorkerId(final int id) {
+		UserAccount user;
+		user = LoginService.getPrincipal();
+		Assert.isTrue(Utiles.findAuthority(user.getAuthorities(), Authority.HANDY_WORKER));
+		Collection<Customer> search;
+		search = this.repositoryHandyWorker.findCustomerByHandyWorkerId(id);
+		return search;
 	}
 
 	public HandyWorker findHandyWorker(final int handy) {

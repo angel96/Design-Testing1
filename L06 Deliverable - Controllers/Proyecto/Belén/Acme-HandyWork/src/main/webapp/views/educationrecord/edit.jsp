@@ -58,6 +58,16 @@
 <form:errors cssClass='error' path="attachment" />
 <br />
 
+
+<form:label path="comments">
+<spring:message code="education.comments" />
+</form:label>
+<form:textarea path="comments"/><br>
+<spring:message code="education.comments.place" />
+<form:errors cssClass='error' path="comments" />
+<br />
+
+
 <jstl:forEach items="${errors}" var="error">
 		<jstl:out value="${error}" />
 	</jstl:forEach>

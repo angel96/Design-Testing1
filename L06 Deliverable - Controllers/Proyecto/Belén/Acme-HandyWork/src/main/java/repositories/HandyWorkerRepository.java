@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import domain.Box;
 import domain.Category;
+import domain.Customer;
 import domain.FixUpTask;
 import domain.HandyWorker;
 import domain.Warranty;
@@ -42,4 +43,7 @@ public interface HandyWorkerRepository extends JpaRepository<HandyWorker, Intege
 
 	@Query("select f from FixUpTask f where f.moment between ?1 and ?2")
 	Collection<FixUpTask> findAllByTwoDate(Date date1, Date date2);
+
+	@Query("select distinct (select c from Customer c join c.fixUpTask f join f.application a where a = app) from HandyWorker h join h.application app where app.status = 'accepted' and h.id = ?1")
+	Collection<Customer> findCustomerByHandyWorkerId(int id);
 }

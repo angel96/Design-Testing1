@@ -75,6 +75,9 @@
 		<!-- Endorsement Converter -->
 		<bean class="converters.StringToEndorsementConverter" />
 		<bean class="converters.EndorsementToStringConverter" />
+		<!-- Endorsable Converter -->
+		<bean class="converters.StringToEndorsableConverter" />
+		<bean class="converters.EndorsableToStringConverter" />
 		<!-- Complaint Converter -->
 		<bean class="converters.StringToComplaintConverter" />
 		<bean class="converters.ComplaintToStringConverter" />

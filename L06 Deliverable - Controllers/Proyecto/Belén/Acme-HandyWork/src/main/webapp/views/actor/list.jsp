@@ -18,13 +18,27 @@
 	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<p>
-	<spring:message code="warranty.action.1" />
-</p>
 
-<display:table name="actors" id="row"
-	requestURI="${requestURI}" pagesize="5"
-	class="displaytag">
+<display:table name="actors" id="row" requestURI="${requestURI}"
+	pagesize="5" class="displaytag">
 
-	
+	<display:column property="name" titleKey="endorsement.name" />
+	<display:column property="surname" titleKey="endorsement.surname" />
+	<display:column property="photo" titleKey="endorsement.photo" />
+	<display:column property="email" titleKey="endorsement.email" />
+	<display:column property="phone" titleKey="endorsement.phone" />
+	<security:authorize access="hasRole('CUSTOMER')">
+	<display:column>
+			<a href="endorsement/customer/create.do?idActor=${row.id}"><spring:message
+					code="endorsement.create" /></a>
+	</display:column> 
+	</security:authorize>
+	<security:authorize access="hasRole('HANDY_WORKER')">
+	<display:column>
+			<a href="endorsement/handyworker/create.do?idActor=${row.id}"><spring:message
+					code="endorsement.create" /></a>
+	</display:column> 
+	</security:authorize>
+
 </display:table>
+

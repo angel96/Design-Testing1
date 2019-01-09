@@ -22,7 +22,7 @@
 		<value>/views/misc/messages</value>
 		<value>/views/security/messages</value>		
 		<value>/views/welcome/messages</value>
-		
+		<value>/views/endorsement/messages</value>
 		<value>/views/actor/messages</value>
 		<value>/views/administrator/messages</value>
 		<value>/views/box/messages</value>
@@ -43,6 +43,8 @@
 		<value>/views/professionalrecord/messages</value>
 		<value>/views/endorserrecord/messages</value>
 		<value>/views/miscellaneousrecord/messages</value>
+		<!-- Endorsements -->
+		<value>/views/endorsement/messages</value>
 	</util:list>
 
 </beans>

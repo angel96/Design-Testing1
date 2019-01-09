@@ -36,6 +36,15 @@
 <form:input path="attachment"  />
 <form:errors cssClass="error" path="attachment" />
 <br />
+
+<form:label path="comments">
+<spring:message code="miscellaneous.comments" />
+</form:label>
+<form:textarea path="comments"/><br>
+<spring:message code="miscellaneous.comments.place" />
+<form:errors cssClass='error' path="comments" />
+<br />
+
 <security:authorize access="hasRole('HANDY_WORKER')">
 <input type="submit" name="save"
 			value="<spring:message code="miscellaneous.save" />" />

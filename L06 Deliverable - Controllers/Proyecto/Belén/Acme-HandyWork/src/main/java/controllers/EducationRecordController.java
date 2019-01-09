@@ -15,7 +15,7 @@ import domain.EducationRecord;
 
 @Controller
 @RequestMapping("/educationrecord/handyworker")
-public class EducationRecordController {
+public class EducationRecordController extends AbstractController {
 
 	@Autowired
 	private EducationRecordService	educationService;

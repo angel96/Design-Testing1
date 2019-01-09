@@ -14,7 +14,6 @@ import security.UserAccount;
 import services.CurriculumService;
 import services.EducationRecordService;
 import services.EndorserRecordService;
-import services.HandyWorkerService;
 import services.MiscellaneousRecordService;
 import services.ProfessionalRecordService;
 import domain.EducationRecord;
@@ -29,9 +28,6 @@ public class CurriculumController extends AbstractController {
 
 	@Autowired
 	private CurriculumService			curriculumService;
-
-	@Autowired
-	private HandyWorkerService			handyWorkerService;
 
 	@Autowired
 	private EducationRecordService		educationRecordService;

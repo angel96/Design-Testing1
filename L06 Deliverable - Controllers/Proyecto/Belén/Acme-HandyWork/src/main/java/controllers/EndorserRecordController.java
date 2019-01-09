@@ -15,7 +15,7 @@ import domain.EndorserRecord;
 
 @Controller
 @RequestMapping("/endorserrecord/handyworker")
-public class EndorserRecordController {
+public class EndorserRecordController extends AbstractController {
 
 	@Autowired
 	private EndorserRecordService	endorserService;

@@ -15,7 +15,7 @@ import domain.ProfessionalRecord;
 
 @Controller
 @RequestMapping("/professionalrecord/handyworker")
-public class ProfessionalRecordController {
+public class ProfessionalRecordController extends AbstractController {
 
 	@Autowired
 	private ProfessionalRecordService	professionalService;

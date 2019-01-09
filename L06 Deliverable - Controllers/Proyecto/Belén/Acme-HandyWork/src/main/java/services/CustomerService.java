@@ -9,10 +9,13 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import repositories.CustomerRepository;
+import security.Authority;
+import security.LoginService;
 import security.UserAccount;
 import utilities.Utiles;
 import domain.Box;
 import domain.Customer;
+import domain.HandyWorker;
 
 @Service
 @Transactional
@@ -38,6 +41,15 @@ public class CustomerService {
 		Assert.notNull(c);
 		return c;
 
+	}
+
+	public Collection<HandyWorker> findHandyByCustomerId(final int id) {
+		UserAccount user;
+		user = LoginService.getPrincipal();
+		Assert.isTrue(Utiles.findAuthority(user.getAuthorities(), Authority.CUSTOMER));
+		Collection<HandyWorker> search;
+		search = this.customerRepository.findHandyByCustomerId(id);
+		return search;
 	}
 
 	public Customer save(final Customer cust) {

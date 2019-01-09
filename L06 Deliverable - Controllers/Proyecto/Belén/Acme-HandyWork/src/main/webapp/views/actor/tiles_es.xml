@@ -9,7 +9,7 @@
        "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
 
 <tiles-definitions>
-	<definition name="administrator/edit" extends="master.page">
+	<definition name="endorsement" extends="master.page">
 		<put-attribute name="title" value="Registrar como Administrador" />
 		<put-attribute name="body" value="/views/administrator/edit.jsp" />
 	</definition>

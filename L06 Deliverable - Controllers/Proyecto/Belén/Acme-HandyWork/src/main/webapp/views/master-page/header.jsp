@@ -79,6 +79,15 @@
 								code="master.page.customer.action.2" /></a></li>
 				</ul></li>
 			<li><a class="fNiv"><spring:message
+						code="master.page.customer.endorsement" /></a>
+				<ul>
+					<li class="arrow"></li>
+					<li><a href="endorsement/customer/list.do"><spring:message
+								code="master.page.customer.endorsement.list" /></a></li>
+					<li><a href="endorsement/customer/list.do?own=true"><spring:message
+								code="master.page.customer.endorsement.listyour" /></a></li>
+				</ul></li>
+			<li><a class="fNiv"><spring:message
 						code="master.page.customer.complaint" /></a>
 				<ul>
 					<li class="arrow"></li>
@@ -138,11 +147,13 @@
 								code="master.page.handyworker.tutorial.create" /></a></li>
 				</ul></li>
 			<li><a class="fNiv"><spring:message
-						code="master.page.handyworker.endorsement" /></a>
+						code="master.page.customer.endorsement" /></a>
 				<ul>
 					<li class="arrow"></li>
 					<li><a href="endorsement/handyworker/list.do"><spring:message
-								code="master.page.handyworker.endorsement.list" /></a></li>
+								code="master.page.customer.endorsement.list" /></a></li>
+					<li><a href="endorsement/handyworker/list.do?own=true"><spring:message
+								code="master.page.customer.endorsement.listyour" /></a></li>
 				</ul></li>
 <%-- 			<li><a class="fNiv"><spring:message
 						code="master.page.handyworker.profile" /></a>
