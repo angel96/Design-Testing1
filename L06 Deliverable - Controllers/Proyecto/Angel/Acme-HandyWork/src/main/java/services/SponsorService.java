@@ -1,6 +1,7 @@
 
 package services;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,9 +10,12 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import repositories.SponsorRepository;
+import security.Authority;
 import security.LoginService;
 import security.UserAccount;
 import utilities.Utiles;
+import domain.Box;
+import domain.Profile;
 import domain.Sponsor;
 import domain.Sponsorship;
 
@@ -21,6 +25,9 @@ public class SponsorService {
 
 	@Autowired
 	private SponsorRepository	sponsorRepository;
+
+	@Autowired
+	private BoxService			boxService;
 
 
 	public Collection<Sponsor> findAll() {
@@ -39,36 +46,52 @@ public class SponsorService {
 		return this.sponsorRepository.findOne(id);
 	}
 
-	public Sponsor findOne(final int idReferee) {
-		return this.sponsorRepository.findOne(idReferee);
-	}
-
-	public Sponsor findByUserAccount(final UserAccount userAccount) {
-		Sponsor s;
+	public Sponsor findByUserAccount(final int userAccount) {
 		Assert.notNull(userAccount);
-		s = this.sponsorRepository.findByUserAccountId(userAccount.getId());
-		Assert.notNull(s);
-		return s;
+		return this.sponsorRepository.findByUserAccount(userAccount);
 	}
+	public Sponsor createSponsor() {
+		Sponsor w;
 
-	public Sponsor addSponsor(final Sponsor s) {
-		Sponsor result;
-		Assert.notNull(s);
-		result = this.sponsorRepository.save(s);
-		Assert.notNull(result);
-		return result;
+		w = new Sponsor();
+
+		w.setName("");
+		w.setMiddleName("");
+		w.setSurname("");
+		w.setEmail("");
+		w.setAdress("");
+		w.setPhoto("");
+		w.setSponsorship(new ArrayList<Sponsorship>());
+		w.setProfiles(new ArrayList<Profile>());
+		w.setBoxes(new ArrayList<Box>());
+
+		UserAccount user;
+		user = new UserAccount();
+		user.setUsername("");
+		user.setPassword("");
+		user.setEnabled(true);
+		Authority authority;
+		authority = new Authority();
+		authority.setAuthority(Authority.SPONSOR);
+		user.addAuthority(authority);
+
+		w.setAccount(user);
+
+		return w;
 	}
 
 	public Sponsor save(final Sponsor spo) {
 		if (spo.getId() != 0) {
-			final UserAccount account = this.findOne(spo.getId()).getAccount();
+			final UserAccount account = this.sponsorRepository.findOne(spo.getId()).getAccount();
 			account.setUsername(spo.getAccount().getUsername());
 			account.setPassword(Utiles.hashPassword(spo.getAccount().getPassword()));
 			account.setAuthorities(spo.getAccount().getAuthorities());
 			spo.setAccount(account);
-		} else
+		} else {
 			spo.getAccount().setPassword(Utiles.hashPassword(spo.getAccount().getPassword()));
-
+			final Collection<Box> boxes = this.boxService.save(Utiles.initBoxes());
+			spo.setBoxes(boxes);
+		}
 		Sponsor modify;
 
 		modify = this.sponsorRepository.saveAndFlush(spo);

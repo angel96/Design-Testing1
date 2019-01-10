@@ -16,18 +16,9 @@
        
 <tiles-definitions>
 
-	<definition name="handyWorker/edit" extends="master.page">	
+	<definition name="handyworker/edit" extends="master.page">	
 		<put-attribute name="title" value="Register Handy Worker"/>
 		<put-attribute name="body" value="/views/handyworker/edit.jsp" />
 	</definition>
 	
-	<definition name="handyworker/messages" extends="master.page">	
-		<put-attribute name="title" value="Handy Worker: Messages " />
-		<put-attribute name="body" value="/views/handyworker/messages.jsp" />
-	</definition>
-	
-	<definition name="handyworker/boxes" extends="master.page">	
-		<put-attribute name="title" value="Handy Worker: Boxes " />
-		<put-attribute name="body" value="/views/handyworker/boxes.jsp" />
-	</definition>
 </tiles-definitions>

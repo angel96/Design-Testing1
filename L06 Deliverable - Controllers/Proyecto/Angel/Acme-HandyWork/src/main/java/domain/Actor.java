@@ -36,7 +36,6 @@ public abstract class Actor extends DomainEntity {
 	private UserAccount			account;
 	private Collection<Profile>	profiles;
 	private Collection<Box>		boxes;
-	private boolean				ban;
 	private boolean				suspicious;
 
 
@@ -107,14 +106,6 @@ public abstract class Actor extends DomainEntity {
 
 	public void setAdress(final String adress) {
 		this.adress = adress;
-	}
-
-	public boolean isBan() {
-		return this.ban;
-	}
-
-	public void setBan(final boolean ban) {
-		this.ban = ban;
 	}
 
 	@NotNull

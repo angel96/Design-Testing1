@@ -4,13 +4,13 @@ package controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.CategoryService;
-import utilities.Utiles;
 import domain.Category;
 
 @Controller
@@ -26,10 +26,13 @@ public class CategoryController extends AbstractController {
 	}
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public ModelAndView list() {
+	public ModelAndView list(@CookieValue(value = "language", required = false) String lang) {
 		ModelAndView result;
 		result = new ModelAndView("category/list");
 		result.addObject("categories", this.serviceCategory.findAll());
+		if (lang == null || lang == "")
+			lang = "en";
+		result.addObject("lang", lang);
 		result.addObject("requestURI", "category/administrator/list.do");
 		return result;
 	}
@@ -38,7 +41,7 @@ public class CategoryController extends AbstractController {
 		ModelAndView result;
 
 		result = new ModelAndView("category/edit");
-		result.addObject("category", Utiles.createCategory());
+		result.addObject("category", this.serviceCategory.createCategory());
 		result.addObject("parent", parent);
 		return result;
 	}

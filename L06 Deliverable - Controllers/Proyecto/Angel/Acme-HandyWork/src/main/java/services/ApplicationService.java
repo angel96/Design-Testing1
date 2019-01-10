@@ -1,9 +1,10 @@
 
 package services;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,10 +16,12 @@ import security.Authority;
 import security.LoginService;
 import security.UserAccount;
 import utilities.Utiles;
+import domain.Actor;
 import domain.Application;
-import domain.CreditCard;
 import domain.Customer;
 import domain.FixUpTask;
+import domain.HandyWorker;
+import domain.Mesage;
 
 @Service
 @Transactional
@@ -31,110 +34,91 @@ public class ApplicationService {
 	private HandyWorkerService		serviceHWorker;
 
 	@Autowired
-	private FixUpTaskService		fixUpTaskService;
+	private MesageService			serviceMesage;
 
 
-	public Collection<Application> getApplicationsByCustomer(final Customer c) {
-		return this.applicationRepository.getApplicationsByCustomer(c.getId());
+	public Collection<Application> getApplicationsByHandyWorker(final int accountId) {
+		return this.applicationRepository.getApplicationsByHandyWorker(accountId);
 	}
 
 	public Customer getCustomerByApplication(final int id) {
-		return this.applicationRepository.getCustomerByApplication(id);
+		return this.applicationRepository.findCustomerByApplication(id);
 	}
 
 	public Application getApplicationAcceptedByPhase(final int id) {
 		return this.applicationRepository.getApplicationAceptedByPhase(id);
 	}
 
-	public Application findOne(final int id) {
+	public Collection<Application> getApplicationsByFixUp(final int customerAccountId, final int fixUpId) {
+		return this.applicationRepository.getApplicationsByFixUpTask(customerAccountId, fixUpId);
+	}
 
-		return this.applicationRepository.findOne(id);
+	public Application findOne(final int id) {
+		Application a;
+		a = this.applicationRepository.findOne(id);
+		return a;
 	}
 
 	public Collection<Application> findAll() {
 		return this.applicationRepository.findAll();
 	}
+	public Application createApplication(final FixUpTask f) {
+		Application a;
+		a = new Application();
+		a.setFixUpTask(f);
+		a.setMoment(new Date());
+		a.setMomentElapsed(new Date());
+		a.setOfferedPrice(0.0);
+		a.setStatus("pending");
 
+		return a;
+	}
 	public Application save(final FixUpTask f, final Application a) {
 
 		UserAccount user;
 		user = LoginService.getPrincipal();
 
-		Assert.notNull(user);
-		Assert.isTrue(user.equals(this.serviceHWorker.findByUserAccount(user.getId()).getAccount()));
-		Assert.isTrue(Utiles.findAuthority(user.getAuthorities(), Authority.HANDY_WORKER));
-		Assert.notNull(a);
-		Assert.notNull(f);
+		Assert.isTrue(Utiles.findAuthority(user.getAuthorities(), Authority.HANDY_WORKER) || Utiles.findAuthority(user.getAuthorities(), Authority.CUSTOMER));
 
 		Application saved;
-
 		saved = this.applicationRepository.save(a);
 
-		Collection<Application> apps;
-		apps = f.getApplication();
+		if (Utiles.statusTEMP != a.getStatus()) {
+			final Actor actor = this.applicationRepository.findByUserAccount(user.getId());
+			final Mesage m = this.serviceMesage.createMessage(actor);
 
-		apps.add(saved);
-		f.setApplication(apps);
-
-		this.fixUpTaskService.updateApplications(f);
-
-		return saved;
-	}
-
-	public Application updateStatus(final CreditCard credit, final Application newer) {
-		Application saved;
-		UserAccount userLogged;
-		userLogged = LoginService.getPrincipal();
-		Assert.isTrue(Utiles.findAuthority(userLogged.getAuthorities(), Authority.CUSTOMER));
-		if (userLogged.equals(this.applicationRepository.getCustomerByApplication(newer.getId()).getAccount())) {
-			if (newer.getStatus().equals("accepted"))
-				newer.setCreditCard(credit);
-			saved = this.applicationRepository.save(newer);
-			System.out.println("Saved: " + saved);
-		} else
-			throw new IllegalAccessError("An application which doesn´t belong to the customer logged can not be modified");
-		Assert.notNull(saved);
-		return saved;
-	}
-
-	public void addComment(final String comment, final Application a) {
-		Application taken;
-		UserAccount userLogged;
-		userLogged = LoginService.getPrincipal();
-		Assert.isTrue(Utiles.findAuthority(userLogged.getAuthorities(), Authority.CUSTOMER));
-		Assert.isTrue(userLogged.equals(this.applicationRepository.getCustomerByApplication(a.getId()).getAccount()));
-		if (comment.equals("") == false || !comment.equals(null) == false) {
-			a.getComments().add(comment);
-			taken = this.applicationRepository.save(a);
-			System.out.println(taken.getComments());
+			m.setSubject("Application with status changed <br> Oferta con estado cambiado.");
+			m.setBody("This message is intended to inform about the current status they are involved: " + a.getStatus() + "<br> Este mensaje es meramente informativo. Se utilizara para indicar el estado de la aplicación: "
+				+ Utiles.statusTranslation().get(a.getStatus()));
+			m.setReceiver(new ArrayList<Actor>(Arrays.asList(this.applicationRepository.getHandyWorkerByApplication(a.getId()))));
+			m.setTags(Arrays.asList("Application", a.getStatus(), new Date().toString()));
+			this.serviceMesage.sendMessage(m);
 		}
-	}
 
-	public Map<String, Double> dashboardApplications() {
-		Map<String, Double> result;
-		result = new HashMap<String, Double>();
+		if (a.getStatus().equals("accepted"))
+			for (final Application app : f.getApplication())
+				if (app != a)
+					app.setStatus("rejected");
 
-		result.put("ApplicationsPerFixUpTaskAVG", this.applicationRepository.findAVGOfApplicationPerFixUpTask());
-		result.put("ApplicationsPerFixUpTaskMIN", this.applicationRepository.findMINOfApplicationPerFixUpTask());
-		result.put("ApplicationsPerFixUpTaskMAX", this.applicationRepository.findMAXOfApplicationPerFixUpTask());
-		result.put("ApplicationsPerFixUpTaskSTDEV", this.applicationRepository.findATDDEVOfApplicationPerFixUpTask());
+		if (Utiles.findAuthority(user.getAuthorities(), Authority.HANDY_WORKER)) {
+			HandyWorker h;
+			h = this.serviceHWorker.findByUserAccount(user.getId());
 
-		result.put("RatioPendingApplications", this.applicationRepository.findRatioOfPendingApplications());
-		result.put("RatioAcceptedApplications", this.applicationRepository.findRationOfAcceptedAplications());
-		result.put("RatioRejectedApplications", this.applicationRepository.findRationOfRejectedApplications());
-		result.put("RatioApplicationsItsStatusCannotbechanged", this.applicationRepository.findRationOfPendingApplicationCannotChangeItsStatus());
+			Collection<Application> apps;
+			apps = f.getApplication();
 
-		return result;
-	}
-	public Map<String, Double> dashboardPrices() {
-		Map<String, Double> result;
-		result = new HashMap<String, Double>();
+			apps.add(saved);
+			f.setApplication(apps);
 
-		result.put("PriceFixUpTaskAVG", this.applicationRepository.findAVGOfPriceOfferedInApplicatio());
-		result.put("PriceFixUpTaskMIN", this.applicationRepository.findMINOfPriceOfferedInApplicatio());
-		result.put("PriceFixUpTaskMAX", this.applicationRepository.findMAXOfPriceOfferedInApplicatio());
-		result.put("PriceFixUpTaskSTDEV", this.applicationRepository.findATDDEVOfPriceOfferedInApplicatio());
+			Collection<Application> handyApps;
+			handyApps = new ArrayList<>();
+			handyApps = h.getApplication();
 
-		return result;
+			handyApps.add(saved);
+			h.setApplication(handyApps);
+
+		}
+
+		return saved;
 	}
 }

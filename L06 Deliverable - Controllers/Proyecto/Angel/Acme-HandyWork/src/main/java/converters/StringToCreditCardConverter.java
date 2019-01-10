@@ -2,7 +2,7 @@
 package converters;
 
 import java.net.URLDecoder;
-import java.sql.Date;
+import java.text.SimpleDateFormat;
 
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
@@ -30,8 +30,8 @@ public class StringToCreditCardConverter implements Converter<String, CreditCard
 				result.setType(URLDecoder.decode(parts[2], "UTF-8"));
 
 				result.setCodeCVV(Integer.valueOf(URLDecoder.decode(parts[3], "UTF-8")));
-				result.setExpiration(Date.valueOf(URLDecoder.decode(parts[4], "UTF-8")));
-				result.setNumber(Integer.valueOf(URLDecoder.decode(parts[5], "UTF-8")));
+				result.setExpiration(new SimpleDateFormat("yyyy/MM/dd").parse(URLDecoder.decode(parts[4], "UTF-8")));
+				result.setNumber(URLDecoder.decode(parts[5], "UTF-8"));
 
 			} catch (final Throwable oops) {
 				throw new RuntimeException(oops);

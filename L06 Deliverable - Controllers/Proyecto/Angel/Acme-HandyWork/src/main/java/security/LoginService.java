@@ -68,6 +68,7 @@ public class LoginService implements UserDetailsService {
 		principal = authentication.getPrincipal();
 		Assert.isTrue(principal instanceof UserAccount);
 		result = (UserAccount) principal;
+		Assert.isTrue(result.isEnabled());
 		Assert.notNull(result);
 		Assert.isTrue(result.getId() != 0);
 

@@ -12,7 +12,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import security.LoginService;
 import services.SponsorService;
-import utilities.Utiles;
 import domain.Sponsor;
 
 @Controller
@@ -28,11 +27,11 @@ public class SponsorController {
 		super();
 	}
 	// Create ---------------------------------------------------------------		
-	@RequestMapping(value = "/createSponsor", method = RequestMethod.GET)
+	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public ModelAndView create() {
 		ModelAndView model;
 
-		model = this.createEditModelAndView(Utiles.createSponsor());
+		model = this.createEditModelAndView(this.sponsorService.createSponsor());
 
 		return model;
 	}
@@ -66,7 +65,7 @@ public class SponsorController {
 
 		Sponsor find;
 
-		find = this.sponsorService.findOne(LoginService.getPrincipal().getId());
+		find = this.sponsorService.findByUserAccount(LoginService.getPrincipal().getId());
 
 		model = this.createEditModelAndView(find);
 

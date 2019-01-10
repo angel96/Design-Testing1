@@ -1,6 +1,7 @@
 
 package services;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,16 @@ public class CategoryService {
 
 	public Category findOne(final int id) {
 		return this.categoryRepository.findOne(id);
+	}
+	public Category createCategory() {
+		Category c;
+		c = new Category();
+
+		c.setName("");
+		c.setOtherlanguages(new ArrayList<String>());
+		c.setCategories(new ArrayList<Category>());
+
+		return c;
 	}
 
 	public Category saveParent(final Category c) {

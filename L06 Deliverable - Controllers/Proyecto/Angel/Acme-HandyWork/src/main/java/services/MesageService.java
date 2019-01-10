@@ -1,7 +1,9 @@
 
 package services;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 
 import javax.transaction.Transactional;
 
@@ -33,6 +35,22 @@ public class MesageService {
 	public Mesage findOne(final int id) {
 		return this.messageRepository.findOne(id);
 	}
+	public Mesage createMessage(final Actor a) {
+		Mesage message;
+		message = new Mesage();
+
+		message.setSender(a);
+		message.setBody("");
+		message.setMoment(new Date());
+		message.setTags(new ArrayList<String>());
+		message.setSubject("");
+
+		message.setPriority("NEUTRAL");
+		message.setBox(new ArrayList<Box>());
+		message.setReceiver(new ArrayList<Actor>());
+
+		return message;
+	}
 
 	public Mesage sendMessage(final Mesage message) {
 
@@ -44,7 +62,10 @@ public class MesageService {
 		final Actor sender = result.getSender();
 
 		Box outBox;
-		outBox = this.boxService.getActorSendedBox(sender.getId());
+		if (message.getTags().contains("Application"))
+			outBox = this.boxService.getActorEntryBox(sender.getId());
+		else
+			outBox = this.boxService.getActorSendedBox(sender.getId());
 
 		Collection<Mesage> messagesInSendedBox;
 		messagesInSendedBox = outBox.getMessage();
@@ -55,71 +76,92 @@ public class MesageService {
 		boxesMessage = result.getBox();
 		boxesMessage.add(outBox);
 		result.setBox(boxesMessage);
-
-		this.received(result, Utiles.spamWord(Utiles.limpiaString(result.getSubject())) && Utiles.spamWord(Utiles.limpiaString(result.getBody())));
-
+		final boolean spam = Utiles.spamWord(Utiles.limpiaString(result.getSubject())) && Utiles.spamWord(Utiles.limpiaString(result.getBody()));
+		this.received(result, spam);
+		sender.setSuspicious(spam);
 		return result;
 	}
 	public void received(final Mesage result, final Boolean spam) {
-		Box box;
+
 		final Collection<Actor> recipients = result.getReceiver();
-		for (final Actor actor : recipients) {
-			if (spam)
-				box = this.boxService.getActorSpamBox(actor.getId());
-			else
-				box = this.boxService.getActorEntryBox(actor.getId());
 
-			Collection<Box> boxesMessage;
-			boxesMessage = result.getBox();
-			boxesMessage.add(box);
-			result.setBox(boxesMessage);
+		final int userlogged = LoginService.getPrincipal().getId();
 
-			Collection<Mesage> messagesInSpamBox;
-			messagesInSpamBox = box.getMessage();
-			messagesInSpamBox.add(result);
-			box.setMessage(messagesInSpamBox);
+		Collection<Box> boxes;
+
+		if (spam)
+			boxes = this.messageRepository.getBoxesFromActors("Spam Box", recipients, userlogged);
+		else
+			boxes = this.messageRepository.getBoxesFromActors("In Box", recipients, userlogged);
+
+		Collection<Box> boxesMessage;
+		boxesMessage = result.getBox();
+		boxesMessage.addAll(boxes);
+		result.setBox(boxesMessage);
+
+		for (final Box box : boxesMessage) {
+
+			Collection<Mesage> messagesInBox;
+			messagesInBox = box.getMessage();
+			messagesInBox.add(result);
+			box.setMessage(messagesInBox);
 		}
 
 	}
 
-	//In case a mesage wants to be moved from SpamBox to InBox
-	public void moveToInBox(final Mesage mesage) {
-		final Collection<Box> currentBox = mesage.getBox();
-		currentBox.clear();
+	public Integer moveTo(final String boxCase, final Mesage mesage) {
 
-		final Box entryBox = this.boxService.getActorEntryBox(LoginService.getPrincipal().getId());
+		final Actor a = this.boxService.findActorByUserAccount(LoginService.getPrincipal().getId());
 
-		final Collection<Mesage> messFromEntryBox = entryBox.getMessage();
+		Collection<Box> mesageBoxes;
+		mesageBoxes = mesage.getBox();
 
-		messFromEntryBox.add(mesage);
+		Collection<Box> currentBoxes;
+		currentBoxes = this.messageRepository.getMesageBoxesFromActor(mesage.getId(), a.getId());
+		Box box = null;
 
-		entryBox.setMessage(messFromEntryBox);
+		if (boxCase.equals("In Box")) {
+			box = this.boxService.getActorEntryBox(a.getId());
+			mesageBoxes.removeAll(currentBoxes);
+		} else if (boxCase.equals("Trash Box")) {
+			box = this.boxService.getActorTrashBox(a.getId());
+			mesageBoxes.removeAll(currentBoxes);
+		} else
+			box = this.boxService.getActorOtherBox(a.getId(), Integer.valueOf(boxCase));
 
-		currentBox.add(entryBox);
-
-		mesage.setBox(currentBox);
-
-	}
-
-	public void moveToTrash(final Mesage mesage) {
-
-		final Collection<Box> currentBoxes = mesage.getBox();
-		currentBoxes.clear();
-
-		final Box trashBoxFromUser = this.boxService.getActorTrashBox(LoginService.getPrincipal().getId());
-		final Collection<Mesage> mess = trashBoxFromUser.getMessage();
+		Collection<Mesage> mess;
+		mess = box.getMessage();
 
 		mess.add(mesage);
-		trashBoxFromUser.setMessage(mess);
+		box.setMessage(mess);
 
-		currentBoxes.add(trashBoxFromUser);
+		mesageBoxes.add(box);
+		mesage.setBox(mesageBoxes);
 
-		mesage.setBox(currentBoxes);
+		this.messageRepository.save(mesage);
+
+		return box.getId();
 	}
-	public void moveToOtherBox(final Box boxToBeMoved, final Mesage mesage) {
 
-	}
-	public void deleteFromSystem(final Mesage message) {
-		this.messageRepository.delete(message);
+	public void deleteFromSystem(final Mesage mesage) {
+		final Actor a = this.boxService.findActorByUserAccount(LoginService.getPrincipal().getId());
+
+		Box b;
+		b = this.boxService.getActorTrashBox(a.getId());
+
+		Collection<Mesage> mess;
+		mess = b.getMessage();
+
+		Collection<Box> boxesMesage;
+		boxesMesage = mesage.getBox();
+
+		if (mess.contains(mesage)) {
+			mess.remove(mesage);
+			b.setMessage(mess);
+
+			boxesMesage.remove(b);
+			mesage.setBox(boxesMesage);
+		}
+
 	}
 }

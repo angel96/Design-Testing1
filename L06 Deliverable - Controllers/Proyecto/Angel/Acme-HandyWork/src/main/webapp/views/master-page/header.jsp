@@ -15,8 +15,8 @@
 <%@taglib prefix="security"
 	uri="http://www.springframework.org/security/tags"%>
 <div>
-	<a href="#"><img src="${banner}"
-		alt="${systemName}" height="150" width="850" /></a>
+	<a href="#"><img src="${banner}" alt="${systemName}" height="150"
+		width="850" /></a>
 </div>
 
 <div>
@@ -45,25 +45,19 @@
 						code="master.page.administrator.systemusers" /></a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href=""><spring:message
-								code="master.page.administrator.systemusers.show" /></a></li>
-					<li><a href=""><spring:message
+					<li><a href="customisation/administrator/suspicious.do"><spring:message
+								code="master.page.administrator.systemusers.showsuspicious" /></a></li>
+					<li><a href="customisation/administrator/noenabled.do"><spring:message
 								code="master.page.administrator.systemusers.show.ban" /></a></li>
 					<li><a href="administrator/create.do"><spring:message
 								code="master.page.administrator.systemusers.create" /></a></li>
-								<li><a href="administrator/personal.do">Personal data</a></li>
+					<li><a href="administrator/personal.do">Personal data</a></li>
 				</ul></li>
-			<li><a class="fNiv"><spring:message
-						code="master.page.administrator.dashboard" /></a>
-				<ul>
-					<li class="arrow"></li>
-					<li><a href=""><spring:message
-								code="master.page.administrator.dashboard.termscomplaints" /></a></li>
-					<li><a href=""><spring:message
-								code="master.page.administrator.dashboard.tops" /></a></li>
-					<li><a href=""><spring:message
-								code="master.page.administrator.dashboard.general" /></a></li>
-				</ul></li>
+			<li><a href="customisation/administrator/dashboard.do"
+				class="fNiv"><spring:message
+						code="master.page.administrator.dashboard" /></a></li>
+			<li><a class="fNiv" href="referee/create.do"><spring:message
+						code="master.page.createReferee" /></a></li>
 		</security:authorize>
 
 		<security:authorize access="hasRole('CUSTOMER')">
@@ -72,34 +66,52 @@
 				<ul>
 					<li class="arrow"></li>
 					<li><a href="fixuptask/customer/list.do"><spring:message
-								code="master.page.customer.action.1" /></a></li>
-					<li><a href="fixuptask/customer/edit.do"><spring:message
-								code="master.page.customer.action.2" /></a></li>
+								code="master.page.customer.list" /></a></li>
+					<li><a href="fixuptask/customer/create.do"><spring:message
+								code="master.page.customer.create" /></a></li>
 				</ul></li>
+			<li><a class="fNiv"><spring:message
+						code="master.page.customer.endorsement" /></a>
+				<ul>
+					<li class="arrow"></li>
+					<li><a href="endorsement/customer/list.do"><spring:message
+								code="master.page.customer.endorsement.list" /></a></li>
+					<li><a href="endorsement/customer/list.do?own=true"><spring:message
+								code="master.page.customer.endorsement.listyour" /></a></li>
+				</ul></li>
+
 			<li><a class="fNiv"><spring:message
 						code="master.page.customer.complaint" /></a>
 				<ul>
 					<li class="arrow"></li>
 					<li><a href="complaint/customer/list.do"><spring:message
-								code="master.page.customer.action.1" /></a></li>
-					<li><a href="complaint/customer/edit.do"><spring:message
-								code="master.page.customer.action.2" /></a></li>
+								code="master.page.customer.list" /></a></li>
 				</ul></li>
 			<li><a class="fNiv"><spring:message
-						code="master.page.customer.profile" /></a>
+						code="master.page.referee.report" /></a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="profile/customer/list.do"><spring:message
-								code="master.page.customer.action.1" /></a></li>
+					<li><a href="report/customer/list.do"><spring:message
+								code="master.page.referee.report.list" /></a></li>
 				</ul></li>
 			<li><a class="fNiv"><spring:message
-						code="master.page.customer.message" /></a>
+						code="master.page.referee.note" /></a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="message/customer/list.do"><spring:message
-								code="master.page.customer.action.1" /></a></li>
+					<li><a href="note/customer/list.do"><spring:message
+								code="master.page.referee.note.list" /></a></li>
 				</ul></li>
+
+			<li><a class="fNiv"><spring:message
+						code="master.page.personalData" /></a>
+				<ul>
+					<li class="arrow"></li>
+					<li><a href="customer/personal.do"><spring:message
+								code="master.page.editPersonal" /></a></li>
+				</ul></li>
+
 		</security:authorize>
+
 
 
 		<security:authorize access="hasRole('HANDY_WORKER')">
@@ -118,6 +130,16 @@
 								code="master.page.handyworker.application.view" /></a></li>
 				</ul></li>
 			<li><a class="fNiv"><spring:message
+						code="master.page.customer.endorsement" /></a>
+				<ul>
+					<li class="arrow"></li>
+					<li><a href="endorsement/handyworker/list.do"><spring:message
+								code="master.page.customer.endorsement.list" /></a></li>
+					<li><a href="endorsement/handyworker/list.do?own=true"><spring:message
+								code="master.page.customer.endorsement.listyour" /></a></li>
+				</ul></li>
+
+			<li><a class="fNiv"><spring:message
 						code="master.page.handyworker.curriculum" /></a>
 				<ul>
 					<li class="arrow"></li>
@@ -130,62 +152,106 @@
 					<li class="arrow"></li>
 					<li><a href="tutorial/handyworker/list.do"><spring:message
 								code="master.page.handyworker.tutorial.list" /></a></li>
-					<li><a href="tutorial/handyworker/edit.do"><spring:message
+					<li><a href="tutorial/handyworker/create.do"><spring:message
 								code="master.page.handyworker.tutorial.create" /></a></li>
 				</ul></li>
-			<li><a class="fNiv"><spring:message
-						code="master.page.handyworker.endorsement" /></a>
-				<ul>
-					<li class="arrow"></li>
-					<li><a href="endorsement/handyworker/list.do"><spring:message
-								code="master.page.handyworker.endorsement.list" /></a></li>
-				</ul></li>
-<%-- 			<li><a class="fNiv"><spring:message
-						code="master.page.handyworker.profile" /></a>
-				<ul>
-					<li class="arrow"></li>
-					<li><a href="profile/handyworker/list.do"><spring:message
-								code="master.page.handyworker.profile.list" /></a></li>
-					<li><a href="profile/handyworker/edit.do"><spring:message
-								code="master.page.handyworker.profile.create" /></a></li>
-				</ul></li> --%>
+
 			<li><a class="fNiv"><spring:message
 						code="master.page.handyworker.filter" /></a>
 				<ul>
 					<li class="arrow"></li>
 					<li><a href="fixuptask/handyworker/finder.do"><spring:message
 								code="master.page.handyworker.filter.search" /></a></li>
+								<li><a href="fixuptask/handyworker/finderAjax.do"><spring:message
+								code="master.page.handyworker.filter.searchAPlus" /></a></li>
 				</ul></li>
+			<li><a class="fNiv"><spring:message
+						code="master.page.handyworker.personalData" /></a>
+				<ul>
+					<li class="arrow"></li>
+					<li><a href="handyworker/personal.do"><spring:message
+								code="master.page.handyworker.updatePersonalData" /></a></li>
+				</ul></li>
+			<li><a class="fNiv"><spring:message
+						code="master.page.referee.report" /></a>
+				<ul>
+					<li class="arrow"></li>
+					<li><a href="report/handyworker/list.do"><spring:message
+								code="master.page.referee.report.list" /></a></li>
+				</ul></li>
+			<li><a class="fNiv"><spring:message
+						code="master.page.referee.note" /></a>
+				<ul>
+					<li class="arrow"></li>
+					<li><a href="note/handyworker/list.do"><spring:message
+								code="master.page.referee.note.list" /></a></li>
+				</ul></li>
+
 		</security:authorize>
 		<security:authorize access="hasRole('REFEREE')">
 			<li><a class="fNiv"><spring:message
-						code="master.page.referee" /></a>
+						code="master.page.customer.complaint" /></a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="customer/action-1.do"><spring:message
-								code="master.page.customer.action.1" /></a></li>
-					<li><a href="customer/action-2.do"><spring:message
-								code="master.page.customer.action.2" /></a></li>
+					<li><a href="complaint/referee/list.do?ref=true"><spring:message
+								code="master.page.referee.compliant.listAssigned" /></a></li>
+					<li><a href="complaint/referee/list.do?"><spring:message
+								code="master.page.referee.compliant.listNoAssigned" /></a></li>
+				</ul></li>
+			<li><a class="fNiv"><spring:message
+						code="master.page.referee.report" /></a>
+				<ul>
+					<li class="arrow"></li>
+					<li><a href="report/referee/list.do"><spring:message
+								code="master.page.referee.report.list" /></a></li>
+				</ul></li>
+			<li><a class="fNiv"><spring:message
+						code="master.page.referee.note" /></a>
+				<ul>
+					<li class="arrow"></li>
+					<li><a href="note/referee/list.do"><spring:message
+								code="master.page.referee.note.list" /></a></li>
+				</ul></li>
+
+			<li><a class="fNiv"><spring:message
+						code="master.page.personalData" /></a>
+				<ul>
+					<li class="arrow"></li>
+					<li><a href="referee/personal.do"><spring:message
+								code="master.page.editPersonal" /></a></li>
 				</ul></li>
 		</security:authorize>
 
 		<security:authorize access="hasRole('SPONSOR')">
 			<li><a class="fNiv"><spring:message
-						code="master.page.sponsor" /></a>
+						code="master.page.sponsor.sponsorships" /></a>
+				<ul>
+					<li><a href="sponsorship/sponsor/list.do?tutorial=0"><spring:message
+								code="master.page.sponsor.sponsorships.list" /></a></li>
+				</ul></li>
+			<li><a class="fNiv" href="tutorial/list.do"><spring:message
+						code="master.page.tutorials" /></a></li>
+			<li><a class="fNiv"><spring:message
+						code="master.page.personalData" /></a>
 				<ul>
 					<li class="arrow"></li>
-					<li><a href="customer/action-1.do"><spring:message
-								code="master.page.customer.action.1" /></a></li>
-					<li><a href="customer/action-2.do"><spring:message
-								code="master.page.customer.action.2" /></a></li>
+					<li><a href="sponsor/personal.do"><spring:message
+								code="master.page.editPersonal" /></a></li>
 				</ul></li>
 		</security:authorize>
 
 		<security:authorize access="isAnonymous()">
 			<li><a class="fNiv" href="security/login.do"><spring:message
 						code="master.page.login" /></a></li>
-					<li><a href="handyWorker/createHandy.do"><spring:message
-								code="master.page.createHandy" /></a></li>
+			<li><a href="handyworker/create.do"><spring:message
+						code="master.page.createHandy" /></a></li>
+			<li><a class="fNiv" href="customer/create.do"><spring:message
+						code="master.page.createCustomer" /></a></li>
+			<li><a class="fNiv" href="sponsor/create.do"><spring:message
+						code="master.page.createSponsor" /></a></li>
+			<li><a class="fNiv" href="tutorial/list.do"><spring:message
+						code="master.page.tutorials" /></a></li>
+
 		</security:authorize>
 
 		<security:authorize access="isAuthenticated()">
@@ -197,10 +263,10 @@
 					<li class="arrow"></li>
 					<li><a href="box/list.do"><spring:message
 								code="master.page.box" /></a></li>
-					<li><a href="profile/action-2.do"><spring:message
-								code="master.page.profile.action.2" /></a></li>
-					<li><a href="profile/action-3.do"><spring:message
-								code="master.page.profile.action.3" /></a></li>
+					<li><a href="profile/list.do"><spring:message
+								code="master.page.profile.list" /></a></li>
+					<li><a href="box/mess/create.do"><spring:message
+								code="master.page.sendmessage" /></a></li>
 					<li><a href="j_spring_security_logout"><spring:message
 								code="master.page.logout" /> </a></li>
 				</ul></li>

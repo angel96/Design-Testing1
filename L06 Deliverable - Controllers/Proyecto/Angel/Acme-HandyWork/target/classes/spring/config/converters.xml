@@ -81,6 +81,13 @@
 		<!-- EducationRecord Converter -->
 		<bean class="converters.StringToEducationRecordConverter" />
 		<bean class="converters.EducationRecordToStringConverter" />
+		<!-- Sponsor Converter -->
+		<bean class="converters.StringToSponsorConverter" />
+		<bean class="converters.SponsorToStringConverter" />
+		<!-- Endorsable Converter -->
+		<bean class="converters.StringToEndorsableConverter" />
+		<bean class="converters.EndorsableToStringConverter" />
+		
 	</util:list>
 
 </beans>

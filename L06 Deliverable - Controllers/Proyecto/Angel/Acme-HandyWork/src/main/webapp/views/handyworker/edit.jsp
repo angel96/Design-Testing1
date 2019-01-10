@@ -17,13 +17,22 @@
 	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<form:form action="handyWorker/edit.do" modelAttribute="handyWorker">
+<form:form id="form" action="handyworker/edit.do"
+	modelAttribute="handyworker">
 
 	<form:hidden path="id" />
 	<form:hidden path="version" />
-	<jstl:if test="${handyWorker.id != 0}">
+
+	<jstl:if test="${handyworker.id != 0 }">
+		<form:hidden path="notes" />
+		<form:hidden path="curriculum" />
+		<form:hidden path="application" />
+		<form:hidden path="tutorials" />
 		<form:hidden path="finder" />
+		<form:hidden path="boxes" />
+		<form:hidden path="profiles" />
 	</jstl:if>
+	<form:hidden path="account.enabled" />
 	<form:hidden path="account.id" />
 	<form:hidden path="account.authorities" />
 	<form:hidden path="score" />
@@ -80,11 +89,11 @@
 	<br>
 
 	<jstl:choose>
-		<jstl:when test="${handyWorker.id == 0}">
+		<jstl:when test="${handyworker.id == 0}">
 			<form:hidden path="make"
-				value="${handyWorker.name} + ' ' + ${handyWorker.surname}" />
+				value="${handyworker.name} + ${handyworker.surname}" />
 		</jstl:when>
-		<jstl:when test="${handyWorker.id != 0}">
+		<jstl:when test="${handyworker.id != 0}">
 			<form:label path="make">
 				<spring:message code="handy.make"></spring:message>
 			</form:label>
@@ -118,4 +127,4 @@
 
 <input type="button" name="cancel"
 	value="<spring:message code="handy.cancel"/>"
-	onclick="javascript:relativeRedir('/welcome/index.jsp');" />
+	onclick="javascript:relativeRedir('/welcome/index.do');" />

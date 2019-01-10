@@ -9,10 +9,13 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import repositories.SponsorshipRepository;
+import security.Authority;
 import security.LoginService;
 import security.UserAccount;
+import utilities.Utiles;
 import domain.Sponsor;
 import domain.Sponsorship;
+import domain.Tutorial;
 
 @Service
 @Transactional
@@ -32,28 +35,46 @@ public class SponsorshipService {
 	public Sponsorship findOne(final int id) {
 		return this.sponsorshipRepository.findOne(id);
 	}
+	public Sponsorship createSponsorship(final Sponsor sponsor, final Tutorial tutorial) {
+		Sponsorship result;
+		result = new Sponsorship();
 
-	public Sponsorship add(final Sponsorship sponsorship) {
+		result.setUrlBanner("");
+		result.setCreditCard(Utiles.createFakeCreditCard());
+		result.setLinkTPage("");
+		result.setSponsor(sponsor);
+		result.setTutorial(tutorial);
+
+		return result;
+	}
+
+	public Sponsorship save(final Sponsorship sponsorship) {
 
 		UserAccount login;
 		login = LoginService.getPrincipal();
 
 		Sponsor logged;
-		logged = this.serviceSponsor.findByUserAccount(login);
+		logged = this.serviceSponsor.findByUserAccount(login.getId());
 
 		Assert.notNull(logged);
 
 		Sponsorship saved;
 
 		saved = this.sponsorshipRepository.save(sponsorship);
-		System.out.println(saved.getLinkTPage());
 
 		return saved;
 	}
 
 	public void delete(final int id) {
-		Assert.notNull(this.findOne(id));
+		final UserAccount user = LoginService.getPrincipal();
+		Assert.isTrue(Utiles.findAuthority(user.getAuthorities(), Authority.HANDY_WORKER) || Utiles.findAuthority(user.getAuthorities(), Authority.SPONSOR));
 		this.sponsorshipRepository.delete(id);
+	}
+
+	public void delete(final Collection<Sponsorship> sponsorships) {
+		final UserAccount user = LoginService.getPrincipal();
+		Assert.isTrue(Utiles.findAuthority(user.getAuthorities(), Authority.HANDY_WORKER) || Utiles.findAuthority(user.getAuthorities(), Authority.SPONSOR));
+		this.sponsorshipRepository.delete(sponsorships);
 	}
 
 }

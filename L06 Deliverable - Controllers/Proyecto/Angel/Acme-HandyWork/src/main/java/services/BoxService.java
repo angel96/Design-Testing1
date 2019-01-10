@@ -13,6 +13,7 @@ import repositories.BoxRepository;
 import security.LoginService;
 import domain.Actor;
 import domain.Box;
+import domain.Mesage;
 
 @Service
 @Transactional
@@ -54,11 +55,6 @@ public class BoxService {
 		return this.boxRepository.save(boxes);
 	}
 
-	public void deleteBox(final Box box) {
-		if (box.getFromSystem() == false)
-			this.boxRepository.delete(box);
-	}
-
 	public Box getActorEntryBox(final int actorId) {
 		return this.boxRepository.getActorEntryBox(actorId);
 	}
@@ -72,10 +68,40 @@ public class BoxService {
 		return this.boxRepository.getActorTrashBox(actorId);
 	}
 
-	public Box getActorOtherBox(final int actorId, final String other) {
-		return this.boxRepository.getActorOtherBox(actorId, other);
+	public Box getActorOtherBox(final int actorId, final int box) {
+		return this.boxRepository.getActorOtherBox(actorId, box);
 	}
 	public Collection<Box> getBoxesFromActor(final int userAccount) {
 		return this.boxRepository.getBoxesFromActor(userAccount);
 	}
+	public Collection<Box> getBoxesFromActorNoSystem(final int userAccount) {
+		return this.boxRepository.getBoxesFromActorNoSystem(userAccount);
+	}
+
+	public void deleteBox(final Box box) {
+		Assert.isTrue(!box.getFromSystem());
+
+		final Actor a = this.boxRepository.getActorByUserAccount(LoginService.getPrincipal().getId());
+
+		Collection<Mesage> messBox;
+		messBox = box.getMessage();
+
+		for (final Mesage m : messBox)
+			if (m.getBox().contains(box)) {
+				final Collection<Box> boxes = m.getBox();
+				boxes.remove(box);
+				m.setBox(boxes);
+			}
+
+		messBox.clear();
+		box.setMessage(messBox);
+
+		Collection<Box> boxesActor;
+		boxesActor = a.getBoxes();
+		boxesActor.remove(box);
+		a.setBoxes(boxesActor);
+
+		this.boxRepository.delete(box);
+	}
+
 }

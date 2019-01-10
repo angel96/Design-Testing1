@@ -11,6 +11,7 @@ import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.Range;
+import org.springframework.format.annotation.DateTimeFormat;
 
 @Embeddable
 @Access(AccessType.PROPERTY)
@@ -18,7 +19,7 @@ public class CreditCard {
 
 	private String	holderName;
 	private String	brandName;
-	private int		number;
+	private String	number;
 	private Date	expiration;
 	private Integer	codeCVV;
 	private String	type;
@@ -41,14 +42,21 @@ public class CreditCard {
 		this.brandName = brandName;
 	}
 	@Length(min = 1, max = 16)
-	public int getNumber() {
+	public String getNumber() {
 		return this.number;
 	}
 
-	public void setNumber(final int number) {
-		this.number = number;
+	public void setNumber(final String number) {
+		String s;
+		s = number.replaceAll("[^a-zA-Z0-9]", "");
+		if (Long.valueOf(s) instanceof Long)
+			this.number = number;
+		else
+			throw new IllegalArgumentException("Invalid Number");
+
 	}
 	@NotNull
+	@DateTimeFormat(pattern = "yyyy/MM/dd")
 	public Date getExpiration() {
 		return this.expiration;
 	}

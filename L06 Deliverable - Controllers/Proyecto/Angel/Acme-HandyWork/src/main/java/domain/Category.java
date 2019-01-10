@@ -6,6 +6,7 @@ import java.util.Collection;
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.CascadeType;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -19,7 +20,7 @@ import org.hibernate.validator.constraints.NotBlank;
 public class Category extends DomainEntity {
 
 	private String					name;
-
+	private Collection<String>		otherlanguages;
 	private Collection<Category>	categories;
 
 
@@ -39,6 +40,16 @@ public class Category extends DomainEntity {
 
 	public void setCategories(final Collection<Category> categories) {
 		this.categories = categories;
+	}
+
+	//Position 0 is for spanish
+	@ElementCollection
+	public Collection<String> getOtherlanguages() {
+		return this.otherlanguages;
+	}
+
+	public void setOtherlanguages(final Collection<String> otherlanguages) {
+		this.otherlanguages = otherlanguages;
 	}
 
 }

@@ -22,13 +22,5 @@
 		<put-attribute name="body" value="/views/referee/edit.jsp" />
 	</definition>
 	
-	<definition name="referee/messages" extends="master.page">	
-		<put-attribute name="title" value="Árbitro: Mensajes " />
-		<put-attribute name="body" value="/views/referee/messages.jsp" />
-	</definition>
 	
-	<definition name="referee/boxes" extends="master.page">	
-		<put-attribute name="title" value="Árbitro: Buzones " />
-		<put-attribute name="body" value="/views/referee/boxes.jsp" />
-	</definition>
 </tiles-definitions>

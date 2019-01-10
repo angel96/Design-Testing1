@@ -18,25 +18,52 @@
 	">
 
 	<util:list id="messages">
-		<value>/views/master-page/messages</value>
-		<value>/views/misc/messages</value>
-		<value>/views/security/messages</value>		
+		<value>/views/master-page/messages</value>		
+		<value>/views/misc/messages</value>		
+		<value>/views/security/messages</value>
 		<value>/views/welcome/messages</value>
 		
+		<!-- Actors -->
 		<value>/views/actor/messages</value>
 		<value>/views/administrator/messages</value>
-		<value>/views/box/messages</value>
 		<value>/views/handyworker/messages</value>
-		<value>/views/fixuptask/messages</value>
-		<value>/views/note/messages</value>
 		<value>/views/customer/messages</value>
+		<value>/views/sponsor/messages</value>
+		<value>/views/referee/messages</value>
+		
 		<value>/views/profile/messages</value>
+		<value>/views/box/messages</value>
 		<value>/views/mess/messages</value>
+		
+		<!-- FixUpTask -->
+		<value>/views/fixuptask/messages</value>
+		<value>/views/application/messages</value>
+		<value>/views/phase/messages</value>
+		
+		<!-- Complaint -->
+		<value>/views/complaint/messages</value>
+		<value>/views/note/messages</value>
+		<value>/views/report/messages</value>
+		
+		<!-- Admin Configuration -->
 		<value>/views/custom/messages</value>
 		<value>/views/category/messages</value>
 		<value>/views/warranty/messages</value>
-		<value>/views/customer/messages</value>
-		<value>/views/profile/messages</value>
+		
+		<!-- Tutorial -->
+		<value>/views/tutorial/messages</value>
+		<value>/views/section/messages</value>
+		<value>/views/sponsorship/messages</value>
+		
+		<!-- Curriculum -->
+		<value>/views/curriculum/messages</value>
+		<value>/views/educationrecord/messages</value>
+		<value>/views/professionalrecord/messages</value>
+		<value>/views/endorserrecord/messages</value>
+		<value>/views/miscellaneousrecord/messages</value>
+		
+		<!-- Endorsement -->
+		<value>/views/endorsement/messages</value>
 	</util:list>
 
 </beans>

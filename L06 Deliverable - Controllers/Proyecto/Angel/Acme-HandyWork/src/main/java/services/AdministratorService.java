@@ -3,8 +3,6 @@ package services;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,11 +14,9 @@ import security.Authority;
 import security.LoginService;
 import security.UserAccount;
 import utilities.Utiles;
-import domain.Actor;
 import domain.Administrator;
 import domain.Box;
-import domain.Customer;
-import domain.HandyWorker;
+import domain.Profile;
 
 @Service
 @Transactional
@@ -47,6 +43,34 @@ public class AdministratorService {
 		Assert.notNull(saved);
 		return saved;
 	}
+	public Administrator createAdministrator() {
+		Assert.isTrue(Utiles.findAuthority(LoginService.getPrincipal().getAuthorities(), Authority.ADMIN));
+		Administrator administrator;
+		administrator = new Administrator();
+
+		UserAccount user;
+		user = new UserAccount();
+		user.setUsername("");
+		user.setPassword("");
+		user.setEnabled(true);
+		Authority authority;
+		authority = new Authority();
+		authority.setAuthority(Authority.ADMIN);
+		user.addAuthority(authority);
+
+		administrator.setAccount(user);
+		administrator.setProfiles(new ArrayList<Profile>());
+		administrator.setAdress("");
+		administrator.setBoxes(new ArrayList<Box>());
+		administrator.setEmail("");
+		administrator.setMiddleName("");
+		administrator.setName("");
+		administrator.setPhone("");
+		administrator.setPhoto("");
+		administrator.setSurname("");
+
+		return administrator;
+	}
 
 	public Administrator save(final Administrator admin) {
 
@@ -67,32 +91,6 @@ public class AdministratorService {
 		modify = this.adminRepository.saveAndFlush(admin);
 
 		return modify;
-	}
-
-	//Admin dashboard
-
-	public Map<String, Collection<? extends Actor>> dashboardActors() {
-		Assert.isTrue(Utiles.findAuthority(LoginService.getPrincipal().getAuthorities(), Authority.ADMIN));
-
-		Map<String, Collection<? extends Actor>> result;
-
-		result = new HashMap<String, Collection<? extends Actor>>();
-
-		result.put("customersWith10PerCentMoreFixUpPublishedThanAvgOrderApps", this.adminRepository.findCustomers10PerCentMoreFixUpThanAvgOrderApplication());
-		result.put("HandyWorkersWith10PerCentMoreAppsPublishedThanAvgOrderApps", this.adminRepository.findHandyWorkers10PerCentMoreAppsThanAvgAcepptedOrderApplication());
-		result.put("topThreeCustomerOrderByComplaints", new ArrayList<Customer>(this.adminRepository.topTreeCustomerOrderByComplaints()).subList(0, 3));
-		result.put("topThreeHandyWorkerOrderByComplaints", new ArrayList<HandyWorker>(this.adminRepository.topTreeHandyWorkerOrderByComplaints()).subList(0, 3));
-
-		return result;
-	}
-
-	public boolean unbanActor(final Actor a) {
-		a.setBan(false);
-		return a.isBan();
-	}
-	public boolean banActor(final Actor a) {
-		a.setBan(true);
-		return a.isBan();
 	}
 
 }

@@ -6,8 +6,6 @@ import java.util.Date;
 import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Temporal;
@@ -31,7 +29,6 @@ public class Phase extends DomainEntity {
 
 
 	@Min(1)
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	public int getNumber() {
 		return this.number;
 	}

@@ -13,8 +13,17 @@
 	<display:column property="name" titleKey="box.name" />
 	<display:column property="fromSystem" titleKey="box.fromSystem" />
 	<display:column titleKey="box.messages">
-		<a href="box/mess/list.do?boxId=${row.id}">Ver mensajes</a>
+		<a href="box/mess/list.do?boxId=${row.id}"><spring:message
+				code="box.messages" /></a>
+	</display:column>
+	<display:column titleKey="box.delete" >
+		<jstl:if test="${not row.fromSystem}">
+
+			<a href="box/delete.do?id=${row.id}"><spring:message
+					code="box.delete" /></a>
+
+		</jstl:if>
 	</display:column>
 </display:table>
 
-<a href="box/create.do">Crear caja</a>
+<a href="box/create.do"><spring:message code="box.create" /></a>

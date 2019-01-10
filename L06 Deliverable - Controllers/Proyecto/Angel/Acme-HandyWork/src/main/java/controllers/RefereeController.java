@@ -12,7 +12,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import security.LoginService;
 import services.RefereeService;
-import utilities.Utiles;
 import domain.Referee;
 
 @Controller
@@ -29,11 +28,11 @@ public class RefereeController {
 	}
 
 	// Create ---------------------------------------------------------------		
-	@RequestMapping(value = "/createReferee", method = RequestMethod.GET)
+	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public ModelAndView create() {
 		ModelAndView model;
 
-		model = this.createEditModelAndView(Utiles.createReferee());
+		model = this.createEditModelAndView(this.refereeService.createReferee());
 
 		return model;
 	}
@@ -67,7 +66,7 @@ public class RefereeController {
 
 		Referee find;
 
-		find = this.refereeService.findOne(LoginService.getPrincipal().getId());
+		find = this.refereeService.findByUserAccount(LoginService.getPrincipal().getId());
 
 		model = this.createEditModelAndView(find);
 

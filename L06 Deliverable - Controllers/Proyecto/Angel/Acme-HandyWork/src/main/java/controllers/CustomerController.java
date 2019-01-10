@@ -21,7 +21,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import security.LoginService;
 import services.CustomerService;
-import utilities.Utiles;
 import domain.Customer;
 
 @Controller
@@ -40,11 +39,11 @@ public class CustomerController extends AbstractController {
 
 	// Create ---------------------------------------------------------------		
 
-	@RequestMapping(value = "/createCustomer", method = RequestMethod.GET)
+	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public ModelAndView create() {
 		ModelAndView model;
 
-		model = this.createEditModelAndView(Utiles.createCustomer());
+		model = this.createEditModelAndView(this.customerService.createCustomer());
 
 		return model;
 	}
@@ -63,7 +62,7 @@ public class CustomerController extends AbstractController {
 				this.customerService.save(customer);
 				model = new ModelAndView("redirect:../security/login.do");
 			} catch (final Throwable oops) {
-				model = this.createEditModelAndView(customer, "cust.commit.error");
+				model = this.createEditModelAndView(customer, "customer.commit.error");
 				model.addObject("oops", oops.getMessage());
 				model.addObject("errors", binding.getAllErrors());
 			}
@@ -79,7 +78,7 @@ public class CustomerController extends AbstractController {
 
 		Customer find;
 
-		find = this.customerService.findOne(LoginService.getPrincipal().getId());
+		find = this.customerService.findByUserAccount(LoginService.getPrincipal().getId());
 
 		model = this.createEditModelAndView(find);
 

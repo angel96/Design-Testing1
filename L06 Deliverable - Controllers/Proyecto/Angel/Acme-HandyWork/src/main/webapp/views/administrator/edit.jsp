@@ -20,8 +20,10 @@
 <form:form action="administrator/edit.do" modelAttribute="administrator">
 	<form:hidden path="id" />
 	<form:hidden path="version" />
-	<!--<form:hidden path="profiles" /> -->
-	<form:hidden path="boxes" />
+	<jstl:if test="${administrator.id != 0}">
+		<form:hidden path="boxes" />
+	</jstl:if>
+	<form:hidden path="account.enabled" />
 	<form:hidden path="account.id" />
 	<form:hidden path="account.authorities" />
 
@@ -93,7 +95,7 @@
 		<jstl:out value="${error}" />
 	</jstl:forEach>
 	<jstl:out value="${oops}" />
-	
+
 	<jstl:out value="${message}" />
 	<input type="submit" name="save"
 		value="<spring:message code="admin.save"/>" />

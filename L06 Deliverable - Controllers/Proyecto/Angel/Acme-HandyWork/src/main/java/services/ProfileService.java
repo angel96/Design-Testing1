@@ -20,6 +20,9 @@ public class ProfileService {
 	private ProfileRepository	profileRepository;
 
 
+	//	@Autowired
+	//	private AdministratorService	adminSerivice;
+
 	public Collection<Profile> findAll() {
 		return this.profileRepository.findAll();
 	}
@@ -28,21 +31,42 @@ public class ProfileService {
 		return this.profileRepository.findOne(id);
 	}
 
+	public Actor getActorByUser(final int id) {
+		return this.profileRepository.findActorByUserAccountId(id);
+	}
+
+	public Profile createProfile() {
+		Profile result;
+		result = new Profile();
+		result.setNick("");
+		result.setLink("");
+		result.setSocialNetworkName("");
+		return result;
+	}
+
 	public Profile save(final Profile p) {
 
 		Profile modify;
 		modify = this.profileRepository.save(p);
-
-		final Actor a = this.profileRepository.findActorByUserAccountId(LoginService.getPrincipal().getId());
-
+		Actor a;
+		a = this.profileRepository.findActorByUserAccountId(LoginService.getPrincipal().getId());
 		Collection<Profile> profiles;
-
 		profiles = a.getProfiles();
-
 		profiles.add(modify);
-
 		a.setProfiles(profiles);
-
 		return modify;
+	}
+
+	public void deleteProfile(final int id) {
+		Profile p;
+		p = this.findOne(id);
+		this.profileRepository.delete(p);
+		Collection<Profile> pro;
+		Actor a;
+		a = this.profileRepository.findActorByUserAccountId(LoginService.getPrincipal().getId());
+		pro = a.getProfiles();
+		pro.remove(p);
+		a.setProfiles(pro);
+
 	}
 }

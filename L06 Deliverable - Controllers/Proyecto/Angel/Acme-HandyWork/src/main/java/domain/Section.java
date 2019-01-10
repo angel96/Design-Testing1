@@ -7,8 +7,6 @@ import javax.persistence.Access;
 import javax.persistence.AccessType;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.validation.constraints.Min;
@@ -49,7 +47,6 @@ public class Section extends DomainEntity {
 		this.picture = picture;
 	}
 	@Min(1)
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	public Integer getNumber() {
 		return this.number;
 	}

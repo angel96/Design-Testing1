@@ -34,6 +34,18 @@ public class WarrantyService {
 	public Warranty findOne(final int id) {
 		return this.repositoryWarranty.findOne(id);
 	}
+	public Warranty createWarranty() {
+
+		Warranty w;
+		w = new Warranty();
+
+		w.setTitle("");
+		w.setLaws("");
+		w.setTerms("");
+		w.setDraftMode(true);
+
+		return w;
+	}
 
 	public Warranty save(final Warranty w) {
 		UserAccount user;

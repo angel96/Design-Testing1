@@ -22,29 +22,45 @@
 	<spring:message code="application.action.1" />
 </p>
 
-<display:table name="applications" id="row"
-	requestURI="${requestURI}" pagesize="3"
-	class="displaytag">
+<display:table name="applications" id="row" requestURI="${requestURI}"
+	pagesize="5" class="displaytag">
 
-	<display:column property="moment" titleKey="application.moment"/>
-	<display:column property="status" titleKey="application.status"/>
-	<display:column property="offeredPrice" titleKey="application.offeredPrice">$</display:column>
-	<display:column titleKey="application.comments">
-		<a href="comments/handyworker/list.do?applicationId=${row.id}">
-			<img src="images/comments.png">
-		</a>
-	</display:column>
-	<security:authorize access="hasRole('HANDY_WORKER')">	
-	<display:column>
-		<a href="application/handyworker/edit.do?applicationId=${row.id}">
-			<img src="images/update.png">
-		</a>
-	</display:column>
-	</security:authorize><security:authorize access="hasRole('CUSTOMER')">	
-	<display:column titleKey="application.updateStatus">
-		<a href="application/handyworker/edit.do?applicationId=${row.id}">
-			<img src="images/update.png">
-		</a>
-	</display:column>
+	<display:column property="moment" titleKey="application.moment" />
+	<display:column property="status" titleKey="application.status" />
+	<display:column property="fixUpTask.ticker"
+		titleKey="application.fixUpTask" />
+	<display:column property="offeredPrice"
+		titleKey="application.offeredPrice">$</display:column>
+	<security:authorize access="hasRole('HANDY_WORKER')">
+		<display:column>
+			<a href="application/handyworker/edit.do?id=${row.id}"> <img
+				src="images/update.png">
+			</a>
+		</display:column>
+	</security:authorize>
+	<security:authorize access="hasRole('CUSTOMER')">
+		<display:column titleKey="application.updateStatus">
+			<a href="application/customer/edit.do?id=${row.id}"> <img
+				src="images/update.png">
+			</a>
+		</display:column>
 	</security:authorize>
 </display:table>
+
+<script>
+	var table = document.getElementById("row");
+	var tbody = table.getElementsByTagName("tbody")[0];
+	var row = tbody.getElementsByTagName("tr");
+
+	for (i = 0; i < row.length; i++) {
+		var value = row[i].getElementsByTagName("td")[1].firstChild.nodeValue;
+		if (value == 'accepted') {
+			row[i].style.backgroundColor = "#00FF80";
+		} else if (value == 'rejected') {
+			row[i].style.backgroundColor = "#FF8000";
+		} else if (value == 'pending') {
+		} else {
+			row[i].style.backgroundColor = "#BDBDBD";
+		}
+	}
+</script>

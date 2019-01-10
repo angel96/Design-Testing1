@@ -2,8 +2,9 @@
 package services;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
+import java.util.Date;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -16,16 +17,19 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import repositories.FixUpTaskRepository;
-import repositories.PhasesRepository;
 import security.Authority;
 import security.LoginService;
 import security.UserAccount;
+import utilities.DatabaseConfig;
 import utilities.Utiles;
 import domain.Application;
+import domain.Category;
+import domain.Complaint;
 import domain.Customer;
 import domain.Finder;
 import domain.FixUpTask;
 import domain.Phase;
+import domain.Warranty;
 
 @Service
 @Transactional
@@ -37,9 +41,10 @@ public class FixUpTaskService {
 	@Autowired
 	private CustomerService		serviceCustomer;
 
-	@Autowired
-	private PhasesRepository	repositoryPhase;
 
+	public Collection<FixUpTask> getFixUpTasksByHandyWorker(final int id) {
+		return this.fixUpTaskRepository.getFixUpTasksByHandyWorker(id);
+	}
 
 	public Collection<FixUpTask> findAll() {
 		return this.fixUpTaskRepository.findAll();
@@ -47,9 +52,34 @@ public class FixUpTaskService {
 	public FixUpTask findOne(final int id) {
 		return this.fixUpTaskRepository.findOne(id);
 	}
+	public Collection<FixUpTask> findAllByUser(final int userAccountId) {
+		Collection<FixUpTask> res;
+		Assert.isTrue(Utiles.findAuthority(LoginService.getPrincipal().getAuthorities(), Authority.CUSTOMER));
+		res = this.fixUpTaskRepository.findAllByUser(userAccountId);
+		Assert.notNull(res);
+		return res;
+	}
+
+	public FixUpTask createFixUpTask() {
+
+		FixUpTask fut;
+		fut = new FixUpTask();
+		fut.setAddress("");
+		fut.setApplication(new ArrayList<Application>());
+		fut.setCategory(new Category());
+		fut.setComplaint(new ArrayList<Complaint>());
+		fut.setDescription("");
+		fut.setEnd(new Date());
+		fut.setMaximumPrice(0.0);
+		fut.setMoment(new Date());
+		fut.setPhases(new ArrayList<Phase>());
+		fut.setWarranty(new Warranty());
+		fut.setTicker(Utiles.generateTicker());
+		return fut;
+	}
 
 	public FixUpTask save(final FixUpTask f) {
-
+		Assert.notNull(f);
 		UserAccount user;
 		user = LoginService.getPrincipal();
 		Assert.notNull(user);
@@ -61,40 +91,10 @@ public class FixUpTaskService {
 		fixUpTaskCustomer = c.getFixUpTask();
 
 		FixUpTask saved;
-		Assert.notNull(f);
 		saved = this.fixUpTaskRepository.save(f);
-
 		fixUpTaskCustomer.add(saved);
-
 		c.setFixUpTask(fixUpTaskCustomer);
 
-		return saved;
-	}
-	public FixUpTask updateApplications(final FixUpTask newer) {
-		FixUpTask saved;
-
-		UserAccount user;
-		user = LoginService.getPrincipal();
-
-		Assert.isTrue(Utiles.findAuthority(user.getAuthorities(), Authority.HANDY_WORKER));
-
-		saved = this.fixUpTaskRepository.save(newer);
-
-		Assert.notNull(saved);
-		return saved;
-	}
-	public FixUpTask update(final FixUpTask newer) {
-		FixUpTask saved;
-
-		UserAccount userLogged;
-		userLogged = LoginService.getPrincipal();
-
-		if (userLogged.equals(this.fixUpTaskRepository.findCustomerByFixUpTask(newer.getId()).getAccount()))
-			saved = this.fixUpTaskRepository.save(newer);
-		else
-			throw new IllegalAccessError("A task which doesn´t belong to the customer logged can not be modified");
-
-		Assert.notNull(saved);
 		return saved;
 	}
 	public void delete(final int id) {
@@ -105,28 +105,15 @@ public class FixUpTaskService {
 		Customer c;
 		c = this.serviceCustomer.findByUserAccount(user.getId());
 
-		if (c.equals(this.fixUpTaskRepository.findCustomerByFixUpTask(id)))
+		if (c.equals(this.fixUpTaskRepository.findCustomerByFixUpTask(id))) {
+			Collection<FixUpTask> collect;
+			collect = c.getFixUpTask();
+			collect.remove(this.fixUpTaskRepository.findOne(id));
+			c.setFixUpTask(collect);
 			this.fixUpTaskRepository.delete(id);
-		else
+		} else
 			throw new IllegalAccessError("A task which doesn´t belong to the customer logged can not be deleted");
 
-	}
-	public boolean createWorkPlan(final Collection<Phase> planPhases, final Application a) {
-		System.out.println(a);
-		Assert.isTrue(a.getStatus().equals("accepted"));
-		UserAccount userLogged;
-		userLogged = LoginService.getPrincipal();
-		Assert.isTrue(Utiles.findAuthority(userLogged.getAuthorities(), Authority.HANDY_WORKER));
-
-		final List<Phase> phases = this.repositoryPhase.save(planPhases);
-		FixUpTask fixup;
-		fixup = a.getFixUpTask();
-		fixup.setPhases(phases);
-
-		FixUpTask update;
-		update = this.fixUpTaskRepository.save(fixup);
-		System.out.println(update);
-		return update != null;
 	}
 
 	public Collection<FixUpTask> findAllByFinder(final Finder finder) {
@@ -135,7 +122,7 @@ public class FixUpTaskService {
 		builder = new StringBuilder();
 		builder.append("select f from FixUpTask f where ");
 
-		final EntityManagerFactory emFactory = Persistence.createEntityManagerFactory("Acme-HandyWork");
+		final EntityManagerFactory emFactory = Persistence.createEntityManagerFactory(DatabaseConfig.PersistenceUnit);
 		final EntityManager entityManager = emFactory.createEntityManager();
 
 		if (finder.getSingleKey() != null && !finder.getSingleKey().equals(" ") && !finder.getSingleKey().equals(""))
@@ -159,6 +146,7 @@ public class FixUpTaskService {
 
 		if (finder.getPrice2() != null || finder.getPrice2() > 0.0)
 			builder.append(" f.maximumPrice <= " + finder.getPrice2());
+
 		System.out.println("===========\nQUERY:" + builder.toString() + " ============ \n\n");
 
 		final TypedQuery<FixUpTask> query = entityManager.createQuery(builder.toString(), FixUpTask.class);

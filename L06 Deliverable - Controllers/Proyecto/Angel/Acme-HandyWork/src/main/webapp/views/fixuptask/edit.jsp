@@ -20,6 +20,7 @@
 
 <p>
 	<spring:message code="fixUpTask.action.2" />
+	<jstl:set var="lang" value="${lang}" />
 </p>
 
 <form:form action="fixuptask/customer/edit.do"
@@ -65,45 +66,60 @@
 	<form:errors cssClass='error' path="end" />
 	<br />
 
+
 	<form:select path="category">
 		<form:option value="0" label="---" />
-		<form:options items="${categories}" itemValue = "id" itemLabel = "name"/>
+		<jstl:if test="${lang eq 'en'}">
+			<form:options items="${categories}" itemValue="id" itemLabel="name" />
+		</jstl:if>
+		<jstl:if test="${lang eq 'es'}">
+			<form:options items="${categories}" itemValue="id"
+				itemLabel="otherlanguages[0]" />
+		</jstl:if>
 	</form:select>
+	<br />
 
 	<form:select path="warranty">
 		<option value="0" label="---" />
-		<form:options items="${warranties}" itemValue = "id" itemLabel = "title"/>
+		<form:options items="${warranties}" itemValue="id" itemLabel="title" />
 	</form:select>
 
 	<security:authorize access="hasRole('HANDY_WORKER')">
-		<form:label path="customer">
-			<spring:message code="fixuptask.customer" />
-		</form:label>
-		<a href="profile/handyworker/edit.do?customerId=${row.id}"> <jstl:out
-				value="${fixpask.customer.name}"></jstl:out>
-		</a>
-		<form:errors cssClass='error' path="customer" />
-	</security:authorize>
-
-	<security:authorize access="hasRole('HANDY_WORKER')">
 		<form:label path="application">
+			<spring:message code="fixuptask.application" />
 		</form:label>
-		<input type="submit" name="addApplication"
+		<input type="submit"
 			value="<spring:message code="fixuptask.application" />"
-			onclick="javascript: relativeRedir('handyworker/application/edit.do');" />
+			onclick="javascript: relativeRedir('application/handyworker/create.do');" />
 		<form:errors cssClass='error' path="application" />
 	</security:authorize>
+
+
+	<security:authorize access="hasRole('CUSTOMER')">
+		<input type="submit" name="save"
+			value="<spring:message code="fixuptask.save" />" />
+
+		<input type="submit" name="delete"
+			value="<spring:message code="fixuptask.delete" />" />
+	</security:authorize>
+
+	<h2>
+		<spring:message code="phase.title" />
+	</h2>
+
+	<jstl:if test="${fixuptask.id != 0}">
+		<display:table name="phases" id="row" requestURI="${requestURI}"
+			pagesize="5" class="displaytag">
+
+			<display:column property="number" titleKey="phase.number" />
+			<display:column property="title" titleKey="phase.title" />
+			<display:column property="description" titleKey="phase.description" />
+			<display:column property="startMoment" titleKey="phase.startMoment" />
+			<display:column property="endMoment" titleKey="phase.endMoment" />
+
+		</display:table>
+	</jstl:if>
 </form:form>
-
-<security:authorize access="hasRole('CUSTOMER')">
-	<input type="submit" name="save"
-		value="<spring:message code="fixuptask.save" />"
-		onclick="javascript: relativeRedir('fixuptask/customer/edit.do');" />
-
-	<input type="submit" name="delete"
-		value="<spring:message code="fixuptask.delete" />" /> 
-
-	<input type="submit" name="cancel"
-		value="<spring:message code ="fixuptask.cancel"/>"
-		onclick="javascript: relativeRedir('fixuptask/customer/list.do');" />
-</security:authorize>
+<input type="submit" name="cancel"
+	value="<spring:message code ="fixuptask.cancel"/>"
+	onclick="javascript: relativeRedir('fixuptask/customer/list.do');" />

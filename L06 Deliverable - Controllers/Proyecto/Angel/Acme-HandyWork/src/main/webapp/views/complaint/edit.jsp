@@ -18,17 +18,17 @@
 
 <p><spring:message code="complaint.action.2" /></p>
 
-<form:form action="complaint/customer/edit.do"
-modelAttribute="complaintObject">
-
+<form:form action="complaint/customer/edit.do?idFix=${idFix}"
+modelAttribute="complaint">
+  
 <form:hidden path="id" />
 <form:hidden path="version" />
 
-<form:label path="tickers">
+<form:label path="ticker">
 	<spring:message code="complaint.tickers" />
 </form:label>
-<form:input path="tickers" readonly="true" />
-<form:errors cssClass='error' path="tickers" />
+<form:input path="ticker" readonly="true" />
+<form:errors cssClass='error' path="ticker" />
 <br />
 
 <form:label path="moment">
@@ -41,31 +41,76 @@ modelAttribute="complaintObject">
 <form:label path="description">
 	<spring:message code="complaint.description" />
 </form:label>
-<form:input path="description"  />
+<form:input path="description"  readonly="${view}"/>
 <form:errors cssClass='error' path="description" />
 <br />
 
-<form:label path="attachment">
+ <form:label path="attachment">
 	<spring:message code="complaint.attachment" />
 </form:label>
-
+<form:input path="attachment" readonly="${view}" />
 <form:errors cssClass='error' path="attachment" />
 <br />
+<%--
 <display:table name="attachment" id="row" requestURI="${requestURI}" pagesize="10" class="displaytag">
 		<display:column property="attachment"/>
 	</display:table>
 <input type="submit" name="add attachment"
 	value="<spring:message code ="complaint.addattachment"/>"
 	onclick="javascript: relativeRedir('attachment/customer/list.do');" />
+	--%>
+ 
+ <jstl:forEach items="${errors}" var="error">
+		<jstl:out value="${error}" />
+	</jstl:forEach>
+	<jstl:out value="${oops}" />
+	<jstl:out value="${message}" />
 	
-</form:form>
-
+<jstl:if test="${not view}">
 <security:authorize access="hasRole('CUSTOMER')">
 <input type="submit" name="save"
 			value="<spring:message code="complaint.save" />" 
 			onclick="javascript: confirm('<spring:message code="complaint.sure" />')"/>
 </security:authorize>
+</jstl:if>
 
+</form:form>
+
+<jstl:if test="${not view}">
 <input type="submit" name="cancel"
 	value="<spring:message code ="complaint.cancel"/>"
-	onclick="javascript: relativeRedir('customer/complaint/list.do');" />
+	onclick="javascript: relativeRedir('fixuptask/customer/list.do');" />
+	</jstl:if>
+
+<security:authorize access="hasRole('CUSTOMER')">
+	<jstl:if test="${view}">
+<input type="submit" name="cancel"
+	value="<spring:message code ="complaint.cancel"/>"
+	onclick="javascript: relativeRedir('complaint/customer/list.do');" />
+	</jstl:if>
+</security:authorize>
+<security:authorize access="hasRole('HANDY_WORKER')">
+	<jstl:if test="${view}">
+<input type="submit" name="cancel"
+	value="<spring:message code ="complaint.cancel"/>"
+	onclick="javascript: relativeRedir('complaint/handyworker/list.do');" />
+	</jstl:if>
+</security:authorize>
+<security:authorize access="hasRole('REFEREE')">
+	<jstl:if test="${view}">
+	<jstl:if test="${ref}">
+<input type="submit" name="cancel"
+	value="<spring:message code ="complaint.cancel"/>"
+	onclick="javascript: window.history.back();" />
+	</jstl:if>
+	</jstl:if>
+</security:authorize>
+<security:authorize access="hasRole('REFEREE')">
+	<jstl:if test="${view}">
+	<jstl:if test="${not ref}">
+<input type="submit" name="cancel"
+	value="<spring:message code ="complaint.cancel"/>"
+	onclick="javascript: window.history.back();" />
+	</jstl:if>
+	</jstl:if>
+</security:authorize>
