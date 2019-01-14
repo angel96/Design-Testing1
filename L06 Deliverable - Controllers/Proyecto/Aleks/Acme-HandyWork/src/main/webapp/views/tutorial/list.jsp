@@ -22,28 +22,41 @@
 	<spring:message code="tutorial.action.1" />
 </p>
 
-<display:table name="tutorials" id="row"
-	requestURI="${requestURI}" pagesize="3"
-	class="displaytag">
+<display:table name="tutorials" id="row" requestURI="${requestURI}"
+	pagesize="5" class="displaytag">
 
-	<display:column property="title" titleKey="tutorial.title"/>
-	<display:column property="lastUpdate" titleKey="tutorial.lastUpdate"/>
-	<display:column property="summary" titleKey="application.summary"/>
-	<display:column>
-		<a href="tutorial/handyworker/edit.do?tutorialId=${row.id}">
-			<img src="images/viewmore.png">
+	<display:column property="title" titleKey="tutorial.title" />
+	<display:column property="lastUpdate" titleKey="tutorial.lastUpdate" />
+	<display:column property="summary" titleKey="tutorial.summary" />
+	<display:column titleKey="tutorial.viewmore">
+		<a href="tutorial/show.do?id=${row.id}"> <spring:message
+				code="tutorial.viewmore" />
+		</a>
+	</display:column>
+	<display:column titleKey="tutorial.section">
+		<a href="section/list.do?tutorial=${row.id}"> <spring:message
+				code="tutorial.section" />
 		</a>
 	</display:column>
 	<security:authorize access="hasRole('HANDY_WORKER')">
-	<display:column>
-		<a href="tutorial/handyworker/edit.do?tutorialId=${row.id}">
-			<img src="images/update.png">
-		</a>
-		<a href="tutorial/handyworker/list.do?tutorialId=${row.id}">
-			<img src="images/trash.png">
-		</a>
-		
-<!-- El create va en el desplegable -->
-	</display:column>
+		<display:column titleKey="tutorial.edit">
+			<a href="tutorial/handyworker/edit.do?id=${row.id}"> <spring:message
+					code="tutorial.edit" />
+			</a>
+		</display:column>
+	</security:authorize>
+	<security:authorize access="hasRole('HANDY_WORKER')">
+		<display:column titleKey="tutorial.sponsorships">
+			<a href="sponsorship/handyworker/list.do?tutorial=${row.id}"> <spring:message
+					code="tutorial.sponsorships" />
+			</a>
+		</display:column>
+	</security:authorize>
+	<security:authorize access="hasRole('SPONSOR')">
+		<display:column titleKey="tutorial.sponsorships">
+			<a href="sponsorship/sponsor/create.do?tutorial=${row.id}"> <spring:message
+					code="tutorial.sponsor" />
+			</a>
+		</display:column>
 	</security:authorize>
 </display:table>

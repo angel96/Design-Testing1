@@ -9,7 +9,7 @@ import javax.persistence.AccessType;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -32,7 +32,7 @@ public class Finder extends DomainEntity {
 	private Date					creationDate;
 
 
-	@OneToMany
+	@ManyToMany
 	public Collection<FixUpTask> getFixUpTask() {
 		return this.fixUpTask;
 	}
@@ -98,8 +98,8 @@ public class Finder extends DomainEntity {
 	public void setPrice2(final Double price2) {
 		this.price2 = price2;
 	}
-	@Temporal(TemporalType.DATE)
-	@DateTimeFormat(pattern = "yyyy/MM/dd")
+	@Temporal(TemporalType.TIMESTAMP)
+	@DateTimeFormat(pattern = "yyyy/MM/dd HH:mm:ss")
 	public Date getCreationDate() {
 		return this.creationDate;
 	}

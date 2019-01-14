@@ -29,13 +29,22 @@
 			<spring:message code="category.name" />
 		</form:label>
 		<form:input path="name" />
+		<form:errors cssClass="error" path="name"></form:errors>
+		<br />
+		<form:label path="otherlanguages">
+			<spring:message code="category.otherlanguages" />
+		</form:label>
+		<form:textarea path="otherlanguages" />
+		<form:errors cssClass="error" path="otherlanguages"></form:errors>
 		<br />
 
-		<input type="submit" name="save"
-			value="<spring:message code="category.save" />" />
-			
-		<input type="submit" name="delete"
-			value="<spring:message code="category.delete" />" />
+		
+			<input type="submit" name="save"
+				value="<spring:message code="category.save" />" />
+				<jstl:if test="${category.id != 0}">
+			<input type="submit" name="delete"
+				value="<spring:message code="category.delete" />" />
+		</jstl:if>
 	</form:form>
 
 	<input type="submit" name="cancel"

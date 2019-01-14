@@ -17,13 +17,39 @@
 	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
-<form:form action="handyWorker/edit.do" modelAttribute="handyWorker">
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#form").submit(function(event) {
+			var make = $("#make").val();
+			if (make == "" || make == " " || make == null) {
+				var name = $("#name").val();
+				var surname = $("#surname").val();
+				var make = name.concat(" ", surname);
+				$("#make").val(make);
+			}
+		});
+	});
+	
+	
+</script>
+
+<form:form id="form" action="handyworker/edit.do"
+	modelAttribute="handyWorker">
 
 	<form:hidden path="id" />
 	<form:hidden path="version" />
+
+	<jstl:if test="${handyWorker.id != 0 }">
+		<form:hidden path="notes" />
+		<form:hidden path="curriculum" />
+		<form:hidden path="application" />
+		<form:hidden path="tutorials" />
+		<form:hidden path="finder" />
+		<form:hidden path="boxes" />
+	</jstl:if>
+	<form:hidden path="account.enabled" />
 	<form:hidden path="account.id" />
 	<form:hidden path="account.authorities" />
-	<form:hidden path="finder" />
 	<form:hidden path="score" />
 
 
@@ -32,14 +58,14 @@
 
 	</form:label>
 	<form:input path="name" />
-	<form:errors cssClass="error" path="name" />
+	<form:errors cssClass="error" path="name" id="name" />
 	<br />
 
 	<form:label path="surname">
 		<spring:message code="handy.surname"></spring:message>
 	</form:label>
 	<form:input path="surname" />
-	<form:errors cssClass="error" path="surname"></form:errors>
+	<form:errors cssClass="error" path="surname" id="surname"></form:errors>
 	<br>
 
 	<form:label path="middleName">
@@ -77,19 +103,18 @@
 	<form:errors cssClass="error" path="photo"></form:errors>
 	<br>
 
-<jstl:choose>
-    <jstl:when test="${handyWorker.id == 0}">
-      <form:hidden path="make"
-        value="${handyWorker.name} '+' ${handyWorker.surname}" />
-    </jstl:when>
-    <jstl:when test="${handyWorker.id != 0}">
-      <form:label path="make">
-        <spring:message code="handy.make"></spring:message>
-      </form:label>
-      <form:input path="make" />
-      <form:errors cssClass="error" path="make"></form:errors>
-    </jstl:when>
-  </jstl:choose>
+	<jstl:choose>
+		<jstl:when test="${handyWorker.id == 0}">
+			<form:hidden path="make" id="make" />
+		</jstl:when>
+		<jstl:when test="${handyWorker.id != 0}">
+			<form:label path="make">
+				<spring:message code="handy.make"></spring:message>
+			</form:label>
+			<form:input path="make" />
+			<form:errors cssClass="error" path="make"></form:errors>
+		</jstl:when>
+	</jstl:choose>
 
 	<form:label path="account.username">
 		<spring:message code="handy.user"></spring:message>
@@ -105,17 +130,10 @@
 	<form:errors cssClass="error" path="account.password"></form:errors>
 	<br>
 
-	<jstl:out value="${handyWorker.make}" />
-
-	<jstl:forEach items="${errors}" var="error">
-		<jstl:out value="${error}" />
-	</jstl:forEach>
-	<jstl:out value="${oops}" />
-	<jstl:out value="${message}" />
 	<input type="submit" name="save"
 		value="<spring:message code="handy.save"/>" />
 </form:form>
 
 <input type="button" name="cancel"
 	value="<spring:message code="handy.cancel"/>"
-	onclick="javascript:relativeRedir('/welcome/index.jsp');" />
+	onclick="javascript:relativeRedir('/welcome/index.do');" />

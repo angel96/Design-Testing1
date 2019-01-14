@@ -73,6 +73,7 @@ public class CreditCard {
 	public void setCodeCVV(final Integer codeCVV) {
 		this.codeCVV = codeCVV;
 	}
+
 	@NotBlank
 	public String getType() {
 		return this.type;

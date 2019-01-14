@@ -19,9 +19,6 @@
 <form:form action="profile/edit.do" modelAttribute="profile">
 <form:hidden path="id"/>
 <form:hidden path="version"/>
-<%-- <form:hidden path="actor.account.id" />
-<form:hidden path="actor.account.authorities" /> --%>
-
 
 <form:label path="nick">
 <spring:message code="user.nick"></spring:message> 
@@ -40,7 +37,7 @@
 <form:label path="link">
 <spring:message code="user.link"></spring:message> 
 </form:label>
-<form:input path="link"/>
+<form:input path="link" placeholder="http://....." />
 <form:errors cssClass="error" path="link"></form:errors>
 <br>
 
@@ -53,6 +50,7 @@
 		value="<spring:message code="user.save"/>" />
 </form:form>
  
-<input type="button" name="cancel" value="<spring:message code="user.cancel"/>"
-onclick="javascript:relativeRedir('/welcome/index.jsp');"/> 
+<input type="button" name="cancel"
+	value="<spring:message code="user.cancel"/>"
+	onclick="javascript:relativeRedir('/welcome/index.do');" />
 

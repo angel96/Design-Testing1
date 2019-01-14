@@ -3,7 +3,6 @@ package sample;
 
 import org.junit.Test;
 
-import utilities.Utiles;
 import utilities.internal.ConsoleReader;
 
 public class Prueba {
@@ -12,7 +11,7 @@ public class Prueba {
 	public void L03_A_Plus_Full_Text_Search() throws Throwable {
 		System.out.println("Full-Text Search: Test");
 		final ConsoleReader r = new ConsoleReader();
-		Utiles.fullTextSearch(r.readLine());
+		//Utiles.fullTextSearch(r.readLine());
 	}
 
 	/*

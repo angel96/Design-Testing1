@@ -1,8 +1,6 @@
 
 package controllers;
 
-import java.util.Arrays;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,8 +59,9 @@ public class ApplicationController {
 		FixUpTask fut;
 		fut = this.fixUpService.findOne(fixUpId);
 		result = new ModelAndView("application/edit");
-		result.addObject("application", Utiles.createApplication(fut));
-		result.addObject("status", Arrays.asList("pending", "accepted", "rejected"));
+		result.addObject("application", this.appService.createApplication(fut));
+		result.addObject("status", Utiles.status());
+
 		if (Utiles.findAuthority(LoginService.getPrincipal().getAuthorities(), Authority.CUSTOMER))
 			result.addObject("requestURI", "application/customer/edit.do");
 		else if (Utiles.findAuthority(LoginService.getPrincipal().getAuthorities(), Authority.HANDY_WORKER))
@@ -70,64 +69,57 @@ public class ApplicationController {
 		return result;
 	}
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
-	public ModelAndView submit(@Valid final Application app, final BindingResult bind) {
+	public ModelAndView submit(@Valid final Application application, final BindingResult bind) {
 		ModelAndView result;
+		result = new ModelAndView();
 		FixUpTask fut;
 		if (bind.hasErrors()) {
-			result = this.createEditModelAndView(app);
+			result = this.createEditModelAndView(application);
 			result.addObject("errors", bind.getAllErrors());
 		} else
 			try {
-				fut = this.fixUpService.findOne(app.getFixUpTask().getId());
-				this.appService.save(fut, app);
-				result = new ModelAndView("redirect:/fixuptask/customer/list.do");
+				if (Boolean.valueOf(Utiles.checkCreditCard(application.getCreditCard().getNumber())[1])) {
+					fut = this.fixUpService.findOne(application.getFixUpTask().getId());
+					this.appService.save(fut, application);
+					if (Utiles.findAuthority(LoginService.getPrincipal().getAuthorities(), Authority.CUSTOMER))
+						result = new ModelAndView("redirect:/fixuptask/customer/list.do");
+					else if (Utiles.findAuthority(LoginService.getPrincipal().getAuthorities(), Authority.HANDY_WORKER))
+						result = new ModelAndView("redirect:/fixuptask/handyworker/list.do");
+				} else
+					result = this.createEditModelAndView(application, "app.commit.tarjeta.error");
+
 			} catch (final Throwable oops) {
-				result = this.createEditModelAndView(app, "app.commit.error");
+				result = this.createEditModelAndView(application, "app.commit.error");
 				result.addObject("oops", oops.getMessage());
 			}
 		return result;
 	}
 
-	/*
-	 * @RequestMapping(value = "/edit", method = RequestMethod.POST, params = "addApplication")
-	 * public ModelAndView addApp(@Valid final Application app, final BindingResult bind) {
-	 * ModelAndView result;
-	 * FixUpTask fut;
-	 * if (bind.hasErrors())
-	 * result = this.createEditModelAndView(app);
-	 * else
-	 * try {
-	 * fut = this.fixUpService.findOne(app.getFixUpTask().getId());
-	 * this.appService.save(fut, app);
-	 * result = new ModelAndView("redirect:list.do");
-	 * } catch (final Throwable oops) {
-	 * result = this.createEditModelAndView(app, "fixuptask.commit.error");
-	 * }
-	 * return result;
-	 * }
-	 */
 	@RequestMapping(value = "/edit", method = RequestMethod.GET)
 	public ModelAndView edit(@RequestParam final int id) {
 		ModelAndView result;
 		Application a;
 		a = this.appService.findOne(id);
+		Utiles.statusTEMP = a.getStatus();
 		Assert.notNull(a);
 		result = this.createEditModelAndView(a);
+		result.addObject("vat", a.getOfferedPrice() + " with " + Utiles.vat + " = " + Utiles.priceWithVat(a.getOfferedPrice()));
 		return result;
 	}
 
-	protected ModelAndView createEditModelAndView(final Application app) {
+	protected ModelAndView createEditModelAndView(final Application application) {
 		ModelAndView result;
-		result = this.createEditModelAndView(app, null);
+		result = this.createEditModelAndView(application, null);
 
 		return result;
 	}
 
-	protected ModelAndView createEditModelAndView(final Application app, final String message) {
+	protected ModelAndView createEditModelAndView(final Application application, final String message) {
 		ModelAndView result;
 		result = new ModelAndView("application/edit");
-		result.addObject("application", app);
-		result.addObject("status", Arrays.asList("pending", "accepted", "rejected"));
+		result.addObject("types", Utiles.cards());
+		result.addObject("application", application);
+		result.addObject("status", Utiles.status());
 		if (Utiles.findAuthority(LoginService.getPrincipal().getAuthorities(), Authority.CUSTOMER)) {
 			result.addObject("requestURI", "application/customer/edit.do");
 			result.addObject("URI", "/fixuptask/customer/list.do");

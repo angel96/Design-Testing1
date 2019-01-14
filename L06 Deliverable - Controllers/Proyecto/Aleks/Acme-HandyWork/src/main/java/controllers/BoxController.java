@@ -1,11 +1,14 @@
 
 package controllers;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import security.LoginService;
@@ -32,29 +35,29 @@ public class BoxController {
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public ModelAndView create() {
 		ModelAndView result;
-		result = this.editAndCreateModelAndView(Utiles.createBox(false, ""));
+		result = this.createEditModelAndView(Utiles.createBox(false, ""));
 		return result;
 	}
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
-	public ModelAndView edit(final Box box, final BindingResult binding) {
+	public ModelAndView edit(@Valid final Box box, final BindingResult binding) {
 		ModelAndView result;
 		if (binding.hasErrors())
-			result = this.editAndCreateModelAndView(box);
+			result = this.createEditModelAndView(box);
 		else
 			try {
 				this.serviceBox.save(box);
 				result = new ModelAndView("redirect:list.do");
 			} catch (final Throwable oops) {
-				result = this.editAndCreateModelAndView(box, "box.commit.error");
+				result = this.createEditModelAndView(box, "box.commit.error");
 			}
 		return result;
 	}
 
-	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "delete")
-	public ModelAndView delete(final Box box) {
+	@RequestMapping(value = "/delete", method = RequestMethod.GET)
+	public ModelAndView delete(@RequestParam final int id) {
 
 		ModelAndView result;
-
+		final Box box = this.serviceBox.findOne(id);
 		if (box.getFromSystem()) {
 			result = new ModelAndView("redirect:list.do");
 			result.addObject("message", "box.commit.fromsystem");
@@ -66,13 +69,13 @@ public class BoxController {
 		return result;
 	}
 
-	protected ModelAndView editAndCreateModelAndView(final Box box) {
+	protected ModelAndView createEditModelAndView(final Box box) {
 		ModelAndView result;
-		result = this.editAndCreateModelAndView(box, null);
+		result = this.createEditModelAndView(box, null);
 		return result;
 	}
 
-	protected ModelAndView editAndCreateModelAndView(final Box box, final String message) {
+	protected ModelAndView createEditModelAndView(final Box box, final String message) {
 		ModelAndView result;
 		result = new ModelAndView("box/edit");
 		result.addObject("box", box);

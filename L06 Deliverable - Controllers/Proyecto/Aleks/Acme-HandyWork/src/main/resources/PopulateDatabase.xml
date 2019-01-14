@@ -18,6 +18,7 @@
 	<bean id="userAccount1" class="security.UserAccount">
 		<property name="username" value="admin1" />
 		<property name="password" value="21232f297a57a5a743894a0e4a801fc3" />
+		<property name="enabled" value="true" />
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">
@@ -29,6 +30,7 @@
 	<bean id="userAccount2" class="security.UserAccount">
 		<property name="username" value="admin2" />
 		<property name="password" value="21232f297a57a5a743894a0e4a801fc3" />
+		<property name="enabled" value="true" />
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">
@@ -40,6 +42,7 @@
 	<bean id="userAccount3" class="security.UserAccount">
 		<property name="username" value="admin3" />
 		<property name="password" value="21232f297a57a5a743894a0e4a801fc3" />
+		<property name="enabled" value="true" />
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">
@@ -51,6 +54,7 @@
 	<bean id="userAccount4" class="security.UserAccount">
 		<property name="username" value="admin4" />
 		<property name="password" value="21232f297a57a5a743894a0e4a801fc3" />
+		<property name="enabled" value="true" />
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">
@@ -62,6 +66,7 @@
 	<bean id="userAccount5" class="security.UserAccount">
 		<property name="username" value="admin5" />
 		<property name="password" value="21232f297a57a5a743894a0e4a801fc3" />
+		<property name="enabled" value="true" />
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">
@@ -73,6 +78,7 @@
 	<bean id="userAccount6" class="security.UserAccount">
 		<property name="username" value="customer1" />
 		<property name="password" value="21232f297a57a5a743894a0e4a801fc3" />
+		<property name="enabled" value="true" />
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">
@@ -84,6 +90,7 @@
 	<bean id="userAccount7" class="security.UserAccount">
 		<property name="username" value="customer2" />
 		<property name="password" value="21232f297a57a5a743894a0e4a801fc3" />
+		<property name="enabled" value="true" />
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">
@@ -95,6 +102,7 @@
 	<bean id="userAccount8" class="security.UserAccount">
 		<property name="username" value="customer3" />
 		<property name="password" value="21232f297a57a5a743894a0e4a801fc3" />
+		<property name="enabled" value="true" />
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">
@@ -106,6 +114,7 @@
 	<bean id="userAccount9" class="security.UserAccount">
 		<property name="username" value="customer4" />
 		<property name="password" value="21232f297a57a5a743894a0e4a801fc3" />
+		<property name="enabled" value="true" />
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">
@@ -117,6 +126,7 @@
 	<bean id="userAccount10" class="security.UserAccount">
 		<property name="username" value="customer5" />
 		<property name="password" value="21232f297a57a5a743894a0e4a801fc3" />
+		<property name="enabled" value="true" />
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">
@@ -128,6 +138,7 @@
 	<bean id="userAccount11" class="security.UserAccount">
 		<property name="username" value="handyworker1" />
 		<property name="password" value="21232f297a57a5a743894a0e4a801fc3" />
+		<property name="enabled" value="true" />
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">
@@ -139,6 +150,7 @@
 	<bean id="userAccount12" class="security.UserAccount">
 		<property name="username" value="handyworker2" />
 		<property name="password" value="21232f297a57a5a743894a0e4a801fc3" />
+		<property name="enabled" value="true" />
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">
@@ -150,6 +162,7 @@
 	<bean id="userAccount13" class="security.UserAccount">
 		<property name="username" value="handyworker3" />
 		<property name="password" value="21232f297a57a5a743894a0e4a801fc3" />
+		<property name="enabled" value="true" />
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">
@@ -161,6 +174,7 @@
 	<bean id="userAccount14" class="security.UserAccount">
 		<property name="username" value="handyworker4" />
 		<property name="password" value="21232f297a57a5a743894a0e4a801fc3" />
+		<property name="enabled" value="true" />
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">
@@ -172,6 +186,7 @@
 	<bean id="userAccount15" class="security.UserAccount">
 		<property name="username" value="handyworker5" />
 		<property name="password" value="21232f297a57a5a743894a0e4a801fc3" />
+		<property name="enabled" value="true" />
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">
@@ -183,6 +198,7 @@
 	<bean id="userAccount16" class="security.UserAccount">
 		<property name="username" value="referee1" />
 		<property name="password" value="21232f297a57a5a743894a0e4a801fc3" />
+		<property name="enabled" value="true" />
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">
@@ -194,6 +210,7 @@
 	<bean id="userAccount17" class="security.UserAccount">
 		<property name="username" value="referee2" />
 		<property name="password" value="21232f297a57a5a743894a0e4a801fc3" />
+		<property name="enabled" value="true" />
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">
@@ -205,6 +222,7 @@
 	<bean id="userAccount18" class="security.UserAccount">
 		<property name="username" value="referee3" />
 		<property name="password" value="21232f297a57a5a743894a0e4a801fc3" />
+		<property name="enabled" value="true" />
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">
@@ -216,6 +234,7 @@
 	<bean id="userAccount19" class="security.UserAccount">
 		<property name="username" value="referee4" />
 		<property name="password" value="21232f297a57a5a743894a0e4a801fc3" />
+		<property name="enabled" value="true" />
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">
@@ -227,6 +246,7 @@
 	<bean id="userAccount20" class="security.UserAccount">
 		<property name="username" value="referee5" />
 		<property name="password" value="21232f297a57a5a743894a0e4a801fc3" />
+		<property name="enabled" value="true" />
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">
@@ -238,6 +258,7 @@
 	<bean id="userAccount21" class="security.UserAccount">
 		<property name="username" value="sponsor1" />
 		<property name="password" value="21232f297a57a5a743894a0e4a801fc3" />
+		<property name="enabled" value="true" />
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">
@@ -249,6 +270,7 @@
 	<bean id="userAccount22" class="security.UserAccount">
 		<property name="username" value="sponsor2" />
 		<property name="password" value="21232f297a57a5a743894a0e4a801fc3" />
+		<property name="enabled" value="true" />
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">
@@ -260,6 +282,7 @@
 	<bean id="userAccount23" class="security.UserAccount">
 		<property name="username" value="sponsor3" />
 		<property name="password" value="21232f297a57a5a743894a0e4a801fc3" />
+		<property name="enabled" value="true" />
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">
@@ -271,6 +294,7 @@
 	<bean id="userAccount24" class="security.UserAccount">
 		<property name="username" value="sponsor4" />
 		<property name="password" value="21232f297a57a5a743894a0e4a801fc3" />
+		<property name="enabled" value="true" />
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">
@@ -282,6 +306,7 @@
 	<bean id="userAccount25" class="security.UserAccount">
 		<property name="username" value="sponsor5" />
 		<property name="password" value="21232f297a57a5a743894a0e4a801fc3" />
+		<property name="enabled" value="true" />
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">
@@ -525,7 +550,11 @@
 	<!-- bean category -->
 	<bean id="category1" class="domain.Category">
 		<property name="name" value="Carprenty" />
-		
+		<property name="otherlanguages">
+			<list>
+				<value>Carpinteria</value>
+			</list>
+		</property>
 		<property name="categories">
 			<list>
 			</list>
@@ -533,7 +562,11 @@
 	</bean>
 	<bean id="category2" class="domain.Category">
 		<property name="name" value="Ceiling repairs" />
-		
+		<property name="otherlanguages">
+			<list>
+				<value>Reparación de techos</value>
+			</list>
+		</property>
 		<property name="categories">
 			<list>
 			</list>
@@ -542,7 +575,11 @@
 	</bean>
 	<bean id="category3" class="domain.Category">
 		<property name="name" value="Cleaning" />
-		
+		<property name="otherlanguages">
+			<list>
+				<value>Limpieza</value>
+			</list>
+		</property>
 		<property name="categories">
 			<list>
 			</list>
@@ -550,7 +587,11 @@
 	</bean>
 	<bean id="category4" class="domain.Category">
 		<property name="name" value="Concrete Work" />
-		
+		<property name="otherlanguages">
+			<list>
+				<value>Trabajo de hormigón</value>
+			</list>
+		</property>
 		<property name="categories">
 			<list>
 			</list>
@@ -558,7 +599,11 @@
 	</bean>
 	<bean id="category5" class="domain.Category">
 		<property name="name" value="Doors" />
-		
+		<property name="otherlanguages">
+			<list>
+				<value>Puertas</value>
+			</list>
+		</property>
 		<property name="categories">
 			<list>
 			</list>
@@ -566,7 +611,11 @@
 	</bean>
 	<bean id="category6" class="domain.Category">
 		<property name="name" value="Electrical wiring" />
-		
+		<property name="otherlanguages">
+			<list>
+				<value>Cableado electrico</value>
+			</list>
+		</property>
 		<property name="categories">
 			<list>
 			</list>
@@ -574,7 +623,11 @@
 	</bean>
 	<bean id="category7" class="domain.Category">
 		<property name="name" value="Fan installation" />
-		
+		<property name="otherlanguages">
+			<list>
+				<value>Instalación de aire acondicionado</value>
+			</list>
+		</property>
 		<property name="categories">
 			<list>
 			</list>
@@ -582,7 +635,11 @@
 	</bean>
 	<bean id="category8" class="domain.Category">
 		<property name="name" value="Fence Fixing" />
-		
+		<property name="otherlanguages">
+			<list>
+				<value>Reparación de vallas</value>
+			</list>
+		</property>
 		<property name="categories">
 			<list>
 			</list>
@@ -590,7 +647,11 @@
 	</bean>
 	<bean id="category9" class="domain.Category">
 		<property name="name" value="Home security systems" />
-		
+		<property name="otherlanguages">
+			<list>
+				<value>Sistemas de seguridad</value>
+			</list>
+		</property>
 		<property name="categories">
 			<list>
 			</list>
@@ -598,6 +659,11 @@
 	</bean>
 	<bean id="category10" class="domain.Category">
 		<property name="name" value="Insulation installation" />
+		<property name="otherlanguages">
+			<list>
+				<value>Trabajo de aislamiento</value>
+			</list>
+		</property>
 		<property name="categories">
 			<list>
 			</list>
@@ -605,6 +671,11 @@
 	</bean>
 	<bean id="category11" class="domain.Category">
 		<property name="name" value="Lamp repairs" />
+		<property name="otherlanguages">
+			<list>
+				<value>Reparación de lamparas</value>
+			</list>
+		</property>
 		<property name="categories">
 			<list>
 			</list>
@@ -612,6 +683,11 @@
 	</bean>
 	<bean id="category12" class="domain.Category">
 		<property name="name" value="Moving" />
+		<property name="otherlanguages">
+			<list>
+				<value>Reparación de motores</value>
+			</list>
+		</property>
 		<property name="categories">
 			<list>
 			</list>
@@ -619,6 +695,11 @@
 	</bean>
 	<bean id="category13" class="domain.Category">
 		<property name="name" value="Painting" />
+		<property name="otherlanguages">
+			<list>
+				<value>Pintura</value>
+			</list>
+		</property>
 		<property name="categories">
 			<list>
 			</list>
@@ -626,6 +707,11 @@
 	</bean>
 	<bean id="category14" class="domain.Category">
 		<property name="name" value="Pest control" />
+		<property name="otherlanguages">
+			<list>
+				<value>Control de plagas</value>
+			</list>
+		</property>
 		<property name="categories">
 			<list>
 			</list>
@@ -633,6 +719,11 @@
 	</bean>
 	<bean id="category15" class="domain.Category">
 		<property name="name" value="Plumbing repairs" />
+		<property name="otherlanguages">
+			<list>
+				<value>Fontaneria</value>
+			</list>
+		</property>
 		<property name="categories">
 			<list>
 			</list>
@@ -640,6 +731,11 @@
 	</bean>
 	<bean id="category16" class="domain.Category">
 		<property name="name" value="Roofing" />
+		<property name="otherlanguages">
+			<list>
+				<value>Trabajo de techos</value>
+			</list>
+		</property>
 		<property name="categories">
 			<list>
 			</list>
@@ -647,6 +743,11 @@
 	</bean>
 	<bean id="category17" class="domain.Category">
 		<property name="name" value="Shelf installation" />
+		<property name="otherlanguages">
+			<list>
+				<value>Instalación de estanterias</value>
+			</list>
+		</property>
 		<property name="categories">
 			<list>
 			</list>
@@ -654,6 +755,11 @@
 	</bean>
 	<bean id="category18" class="domain.Category">
 		<property name="name" value="Solar panels" />
+		<property name="otherlanguages">
+			<list>
+				<value>Paneles solares</value>
+			</list>
+		</property>
 		<property name="categories">
 			<list>
 			</list>
@@ -661,6 +767,11 @@
 	</bean>
 	<bean id="category19" class="domain.Category">
 		<property name="name" value="Soundproofing" />
+		<property name="otherlanguages">
+			<list>
+				<value>Aislamiento de sonido</value>
+			</list>
+		</property>
 		<property name="categories">
 			<list>
 			</list>
@@ -668,6 +779,11 @@
 	</bean>
 	<bean id="category20" class="domain.Category">
 		<property name="name" value="Sprinkler repair" />
+		<property name="otherlanguages">
+			<list>
+				<value>Reparación de aspersores</value>
+			</list>
+		</property>
 		<property name="categories">
 			<list>
 			</list>
@@ -676,6 +792,11 @@
 
 	<bean id="category21" class="domain.Category">
 		<property name="name" value="Window repair" />
+		<property name="otherlanguages">
+			<list>
+				<value>Reparación de ventanas</value>
+			</list>
+		</property>
 		<property name="categories">
 			<list>
 			</list>
@@ -726,8 +847,9 @@
 	<!-- beans customitationsSystem -->
 	<bean id="customisationsys1" class="domain.CustomisationSystem">
 		<property name="systemName" value="Acme-HandyWorker" />
-		<property name="banner" value="https://www.dropbox.com/s/ej4ijwpauvkkbrm/header.png?raw=1" />
-		<property name="message" value="Welcome to Acme Handy Worker! Price, quality, and trust in a single place. &lt;br&gt; ¡Bienvenidos a Acme Handy Worker! Precio, calidad y confianza en el mismo sitio." />
+		<property name="banner" value="https://i.imgur.com/Xu6aiSe.png" />
+		<property name="message"
+			value="Welcome to Acme Handy Worker! Price, quality, and trust in a single place. &lt;br&gt; ¡Bienvenidos a Acme Handy Worker! Precio, calidad y confianza en el mismo sitio." />
 		<property name="vat" value="0.21" />
 		<property name="phonePrefix" value="34" />
 		<property name="spamWords">
@@ -2462,14 +2584,10 @@
 				<constructor-arg value="2018/11/18" />
 			</bean>
 		</property>
-		<property name="comment" value="Notita simple">
-		</property>
-		<property name="otherComments">
-			<list>
-				<value>Comentario opcional 1</value>
-				<value>Comentario opcional 2</value>
-			</list>
-		</property>
+
+		<property name="customerComment" value="customer comment" />
+		<property name="handyWorkerComment" value="hw comment" />
+		<property name="refereeComment" value="referee comment" />
 	</bean>
 
 	<bean id="note2" class="domain.Note">
@@ -2478,13 +2596,10 @@
 				<constructor-arg value="2018/11/18" />
 			</bean>
 		</property>
-		<property name="comment" value="What a note!">
-		</property>
-		<property name="otherComments">
-			<list>
-				<value>Comentario opcional 3</value>
-			</list>
-		</property>
+
+		<property name="customerComment" value="customer comment" />
+		<property name="handyWorkerComment" value="hw comment" />
+		<property name="refereeComment" value="referee comment" />
 	</bean>
 
 	<bean id="note3" class="domain.Note">
@@ -2493,14 +2608,10 @@
 				<constructor-arg value="2018/10/18" />
 			</bean>
 		</property>
-		<property name="comment" value="Notita simple">
-		</property>
-		<property name="otherComments">
-			<list>
-				<value>Comentario opcional 1</value>
-				<value>Comentario opcional 4</value>
-			</list>
-		</property>
+
+		<property name="customerComment" value="customer comment" />
+		<property name="handyWorkerComment" value="hw comment" />
+		<property name="refereeComment" value="referee comment" />
 	</bean>
 
 	<bean id="note4" class="domain.Note">
@@ -2509,14 +2620,9 @@
 				<constructor-arg value="2018/11/13" />
 			</bean>
 		</property>
-		<property name="comment" value="Notita simple">
-		</property>
-		<property name="otherComments">
-			<list>
-				<value>Comentario opcional 1</value>
-				<value>Comentario opcional 2</value>
-			</list>
-		</property>
+		<property name="customerComment" value="customer comment" />
+		<property name="handyWorkerComment" value="hw comment" />
+		<property name="refereeComment" value="referee comment" />
 	</bean>
 
 	<bean id="note5" class="domain.Note">
@@ -2525,13 +2631,9 @@
 				<constructor-arg value="2018/11/18" />
 			</bean>
 		</property>
-		<property name="comment" value="Notita simple">
-		</property>
-		<property name="otherComments">
-			<list>
-				<value>Comentario opcional 2</value>
-			</list>
-		</property>
+		<property name="customerComment" value="customer comment" />
+		<property name="handyWorkerComment" value="hw comment" />
+		<property name="refereeComment" value="referee comment" />
 	</bean>
 
 	<bean id="note6" class="domain.Note">
@@ -2540,14 +2642,9 @@
 				<constructor-arg value="2018/11/18" />
 			</bean>
 		</property>
-		<property name="comment" value="Note">
-		</property>
-		<property name="otherComments">
-			<list>
-				<value>Comentario opcional 1</value>
-				<value>Comentario opcional 2</value>
-			</list>
-		</property>
+		<property name="customerComment" value="customer comment" />
+		<property name="handyWorkerComment" value="hw comment" />
+		<property name="refereeComment" value="referee comment" />
 	</bean>
 
 	<bean id="note7" class="domain.Note">
@@ -2556,14 +2653,9 @@
 				<constructor-arg value="2018/12/18" />
 			</bean>
 		</property>
-		<property name="comment" value="Note">
-		</property>
-		<property name="otherComments">
-			<list>
-				<value>Comentario opcional 4</value>
-				<value>Comentario opcional 2</value>
-			</list>
-		</property>
+		<property name="customerComment" value="customer comment" />
+		<property name="handyWorkerComment" value="hw comment" />
+		<property name="refereeComment" value="referee comment" />
 	</bean>
 	<!-- beans section -->
 	<bean id="section1" class="domain.Section">
@@ -2929,7 +3021,7 @@
 				<ref bean="profile21" />
 			</list>
 		</property>
-		<property name="ban" value="false" />
+
 		<property name="sponsorship">
 			<list>
 				<ref bean="sponsorship1" />
@@ -2962,7 +3054,7 @@
 				<ref bean="profile22" />
 			</list>
 		</property>
-		<property name="ban" value="false" />
+
 		<property name="sponsorship">
 			<list>
 
@@ -2997,7 +3089,7 @@
 				<ref bean="profile23" />
 			</list>
 		</property>
-		<property name="ban" value="false" />
+
 		<property name="sponsorship">
 			<list>
 				<ref bean="sponsorship3" />
@@ -3030,7 +3122,7 @@
 				<ref bean="profile24" />
 			</list>
 		</property>
-		<property name="ban" value="false" />
+
 		<property name="sponsorship">
 			<list>
 				<ref bean="sponsorship4" />
@@ -3064,7 +3156,7 @@
 				<ref bean="profile25" />
 			</list>
 		</property>
-		<property name="ban" value="false" />
+
 		<property name="sponsorship">
 			<list>
 				<ref bean="sponsorship5" />
@@ -3098,7 +3190,7 @@
 				<ref bean="box24" />
 			</list>
 		</property>
-		<property name="ban" value="false" />
+
 	</bean>
 
 	<bean id="administrator2" class="domain.Administrator">
@@ -3127,7 +3219,7 @@
 				<ref bean="box28" />
 			</list>
 		</property>
-		<property name="ban" value="false" />
+
 	</bean>
 
 	<bean id="administrator3" class="domain.Administrator">
@@ -3156,7 +3248,7 @@
 				<ref bean="box32" />
 			</list>
 		</property>
-		<property name="ban" value="false" />
+
 	</bean>
 
 	<bean id="administrator4" class="domain.Administrator">
@@ -3185,7 +3277,7 @@
 				<ref bean="box36" />
 			</list>
 		</property>
-		<property name="ban" value="false" />
+
 	</bean>
 
 	<bean id="administrator5" class="domain.Administrator">
@@ -3214,7 +3306,7 @@
 				<ref bean="box40" />
 			</list>
 		</property>
-		<property name="ban" value="false" />
+
 	</bean>	<!-- beans report -->
 	<bean id="report1" class="domain.Report">
 		<property name="moment">
@@ -3447,7 +3539,7 @@
 				<ref bean="profile11" />
 			</list>
 		</property>
-		<property name="ban" value="false" />
+
 
 		<property name="complaints">
 			<list>
@@ -3485,7 +3577,7 @@
 				<ref bean="profile12" />
 			</list>
 		</property>
-		<property name="ban" value="false" />
+
 
 		<property name="complaints">
 			<list>
@@ -3522,7 +3614,7 @@
 				<ref bean="profile13" />
 			</list>
 		</property>
-		<property name="ban" value="false" />
+
 
 		<property name="complaints">
 			<list>
@@ -3560,7 +3652,7 @@
 				<ref bean="profile14" />
 			</list>
 		</property>
-		<property name="ban" value="false" />
+
 
 		<property name="complaints">
 			<list>
@@ -3597,7 +3689,7 @@
 				<ref bean="profile15" />
 			</list>
 		</property>
-		<property name="ban" value="false" />
+
 
 		<property name="complaints">
 			<list>
@@ -4916,7 +5008,7 @@
 				<ref bean="profile6" />
 			</list>
 		</property>
-		<property name="ban" value="false" />
+
 		<property name="fixUpTask">
 			<list>
 				<ref bean="fixuptask1" />
@@ -4957,7 +5049,7 @@
 				<ref bean="profile7" />
 			</list>
 		</property>
-		<property name="ban" value="false" />
+
 		<property name="fixUpTask">
 			<list>
 				<ref bean="fixuptask5" />
@@ -4998,7 +5090,7 @@
 				<ref bean="profile8" />
 			</list>
 		</property>
-		<property name="ban" value="false" />
+
 		<property name="fixUpTask">
 			<list>
 				<ref bean="fixuptask9" />
@@ -5040,7 +5132,7 @@
 				<ref bean="profile9" />
 			</list>
 		</property>
-		<property name="ban" value="false" />
+
 		<property name="fixUpTask">
 			<list>
 				<ref bean="fixuptask13" />
@@ -5080,7 +5172,7 @@
 				<ref bean="profile10" />
 			</list>
 		</property>
-		<property name="ban" value="false" />
+
 		<property name="fixUpTask">
 			<list>
 				<ref bean="fixuptask15" />
@@ -5122,7 +5214,7 @@
 				<ref bean="profile1" />
 			</list>
 		</property>
-		<property name="ban" value="false" />
+
 		<property name="application">
 			<list>
 				<ref bean="application1" />
@@ -5131,7 +5223,7 @@
 			</list>
 		</property>
 
-		<property name="tutoriales">
+		<property name="tutorials">
 			<list>
 				<ref bean="tutorial1" />
 				<ref bean="tutorial2" />
@@ -5191,7 +5283,7 @@
 				<ref bean="profile2" />
 			</list>
 		</property>
-		<property name="ban" value="false" />
+
 		<property name="application">
 			<list>
 
@@ -5247,7 +5339,7 @@
 				<ref bean="profile3" />
 			</list>
 		</property>
-		<property name="ban" value="false" />
+
 		<property name="application">
 			<list>
 				<ref bean="application4" />
@@ -5259,7 +5351,7 @@
 			</list>
 		</property>
 
-		<property name="tutoriales">
+		<property name="tutorials">
 			<list>
 				<ref bean="tutorial3" />
 			</list>
@@ -5314,7 +5406,7 @@
 				<ref bean="profile4" />
 			</list>
 		</property>
-		<property name="ban" value="false" />
+
 		<property name="application">
 			<list>
 				<ref bean="application10" />
@@ -5326,7 +5418,7 @@
 			</list>
 		</property>
 
-		<property name="tutoriales">
+		<property name="tutorials">
 			<list>
 				<ref bean="tutorial4" />
 			</list>
@@ -5381,7 +5473,7 @@
 				<ref bean="profile5" />
 			</list>
 		</property>
-		<property name="ban" value="false" />
+
 		<property name="application">
 			<list>
 				<ref bean="application16" />
@@ -5391,7 +5483,7 @@
 			</list>
 		</property>
 
-		<property name="tutoriales">
+		<property name="tutorials">
 			<list>
 				<ref bean="tutorial5" />
 			</list>

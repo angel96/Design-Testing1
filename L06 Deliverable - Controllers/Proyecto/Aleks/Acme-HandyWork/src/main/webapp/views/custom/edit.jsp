@@ -26,43 +26,53 @@
 		<spring:message code="custom.system" />
 	</form:label>
 	<form:input path="systemName" />
-	</br>
+	<form:errors cssClass="error" path="systemName"></form:errors>
+	<br>
 	<form:label path="banner">
 		<spring:message code="custom.banner" />
 	</form:label>
 	<form:input path="banner" />
-	</br>
+	<form:errors cssClass="error" path="banner"></form:errors>
+	<br>
 	<form:label path="message">
 		<spring:message code="custom.message" />
 	</form:label>
 	<form:textarea path="message" />
-	</br>
+	<form:errors cssClass="error" path="message"></form:errors>
+	<br>
 	<form:label path="hoursFinder">
 		<spring:message code="custom.hoursFinder" />
 	</form:label>
 	<form:input path="hoursFinder" />
-	</br>
+	<form:errors cssClass="error" path="hoursFinder"></form:errors>
+	<br>
 	<form:label path="resultFinder">
 		<spring:message code="custom.resultFinder" />
 	</form:label>
 	<form:input path="resultFinder" />
-	</br>
+	<form:errors cssClass="error" path="resultFinder"></form:errors>
+	<br>
 	<form:label path="goodWords">
 		<spring:message code="custom.goodWords" />
 	</form:label>
-
 	<form:textarea path="goodWords" />
-	</br>
+	<form:errors cssClass="error" path="goodWords"></form:errors>
+	<br>
 	<form:label path="badWords">
 		<spring:message code="custom.badWords" />
 	</form:label>
 	<form:textarea path="badWords" />
-	</br>
+	<form:errors cssClass="error" path="badWords"></form:errors>
+	<br>
 	<form:label path="spamWords">
 		<spring:message code="custom.spamWords" />
 	</form:label>
 	<form:textarea path="spamWords" />
-	</br>
+	<form:errors cssClass="error" path="spamWords"></form:errors>
+	<br>
 	<input type="submit" name="save"
 		value="<spring:message code="custom.save"/>" />
 </form:form>
+<input type="button" name="cancel"
+  value="<spring:message code="cust.cancel"/>"
+  onclick="javascript:relativeRedir('/welcome/index.do');" />

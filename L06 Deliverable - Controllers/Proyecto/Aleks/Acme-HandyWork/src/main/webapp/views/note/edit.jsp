@@ -19,27 +19,75 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
 
-<form:form action="note/customer/edit.do"
+<form:form action="${requestURI}?idRep=${idRep}"
 modelAttribute="note">
 
 	<form:hidden path="id" />
 	<form:hidden path="version" />
-	<form:hidden path="moment"/>
-
-	<form:label path="comment">
-		<spring:message code="note.comment" />
+	<security:authorize access="hasRole('CUSTOMER')">
+	<form:hidden path="refereeComment"/>
+	<form:hidden path="handyWorkerComment"/>
+	</security:authorize>
+	<security:authorize access="hasRole('HANDY_WORKER')">
+	<form:hidden path="refereeComment"/>
+	<form:hidden path="customerComment"/>
+	</security:authorize>
+	<security:authorize access="hasRole('REFEREE')">
+	<form:hidden path="handyWorkerComment"/>
+	<form:hidden path="customerComment"/>
+	</security:authorize>
+	
+	<form:label path="moment">
+		<spring:message code="note.moment" />
 	</form:label>
-	<form:textarea path="comment"/>
+	<form:input path="moment" readonly="true"/>
 	<br>
-	<form:label path="otherComments">
-		<spring:message code="note.otherComments" />
+	<security:authorize access="hasRole('CUSTOMER')">
+	<form:label path="customerComment">
+		<spring:message code="note.customerComment" />
 	</form:label>
-	<form:textarea path="comment"/>
+	<form:textarea path="customerComment"/>
+	<form:errors cssClass="error" path="customerComment" />
 	<br>
+	</security:authorize>
+	<security:authorize access="hasRole('REFEREE')">
+	<form:label path="refereeComment">
+		<spring:message code="note.refereeComment" />
+	</form:label>
+	<form:textarea path="refereeComment"/>
+	<form:errors cssClass="error" path="refereeComment" />
+	<br>
+	</security:authorize>
+	<security:authorize access="hasRole('HANDY_WORKER')">
+	<form:label path="handyWorkerComment">
+		<spring:message code="note.handyWorkerComment" />
+	</form:label>
+	<form:textarea path="handyWorkerComment"/>
+	<form:errors cssClass="error" path="hndyWorkerComment" />
+	<br>
+	</security:authorize>
+	
+	<jstl:forEach items="${errors}" var="error">
+		<jstl:out value="${error}" />
+	</jstl:forEach>
+	<jstl:out value="${oops}" />
+	<jstl:out value="${message}" />
 
 <input type="submit" name="save"
 			value="<spring:message code="note.save" />" />
 </form:form>	
+<security:authorize access="hasRole('CUSTOMER')">
 <input type="submit" name="cancel"
 	value="<spring:message code ="note.cancel"/>"
-	onclick="javascript: relativeRedir('note/customer/list.do');" />
+	onclick="javascript: relativeRedir('report/customer/list.do');" />
+</security:authorize>
+<security:authorize access="hasRole('HANDY_WORKER')">
+<input type="submit" name="cancel"
+	value="<spring:message code ="note.cancel"/>"
+	onclick="javascript: relativeRedir('report/handyworker/list.do');" />
+</security:authorize>
+<security:authorize access="hasRole('REFEREE')">
+<input type="submit" name="cancel"
+	value="<spring:message code ="note.cancel"/>"
+	onclick="javascript: relativeRedir('report/referee/list.do');" />
+</security:authorize>

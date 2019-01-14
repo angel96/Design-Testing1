@@ -14,6 +14,10 @@
 		<put-attribute name="title" value="Customisation System" />
 		<put-attribute name="body" value="/views/custom/edit.jsp" />
 	</definition>
+	<definition name="custom/dashboard" extends="master.page">
+		<put-attribute name="title" value="Dashboard" />
+		<put-attribute name="body" value="/views/custom/dashboard.jsp" />
+	</definition>
 
 
 </tiles-definitions>

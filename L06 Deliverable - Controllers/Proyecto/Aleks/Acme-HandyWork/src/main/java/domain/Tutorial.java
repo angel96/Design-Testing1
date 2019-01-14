@@ -39,7 +39,7 @@ public class Tutorial extends DomainEntity {
 		this.title = title;
 	}
 
-	@Temporal(TemporalType.TIMESTAMP)
+	@Temporal(TemporalType.DATE)
 	@DateTimeFormat(pattern = "yyyy/MM/dd")
 	public Date getLastUpdate() {
 		return this.lastUpdate;

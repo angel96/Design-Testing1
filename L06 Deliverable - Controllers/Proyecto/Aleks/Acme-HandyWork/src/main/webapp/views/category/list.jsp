@@ -20,16 +20,33 @@
 
 <p>
 	<spring:message code="category.action.1" />
+	<jstl:set var="lang" value="${lang}" />
 </p>
 
 <display:table name="categories" id="row" requestURI="${requestURI}"
 	pagesize="5" class="displaytag">
 
-	<display:column property="name" titleKey="category.name" />
+	<jstl:if test="${lang eq 'en'}">
+		<display:column property="name" titleKey="category.name" />
+	</jstl:if>
+	<jstl:if test="${lang eq 'es'}">
+		<display:column property="otherlanguages[0]" titleKey="category.name" />
+	</jstl:if>
 	<display:column titleKey="category.categories">
 		<jstl:forEach items="${row.categories}" var="cat">
-			<jstl:out value="${cat.name}" />
+			<jstl:if test="${lang eq 'en'}">
+				<jstl:out value="${cat.name}" />
+			</jstl:if>
+			<jstl:if test="${lang eq 'es'}">
+				<jstl:out value="${cat.otherlanguages[0]}" />
+			</jstl:if>
 		</jstl:forEach>
+	</display:column>
+	<display:column titleKey="category.delete">
+
+		<a href="category/administrator/delete.do?cat=${row.id}"><spring:message
+				code="category.delete" /></a>
+
 	</display:column>
 
 	<security:authorize access="hasRole('ADMIN')">

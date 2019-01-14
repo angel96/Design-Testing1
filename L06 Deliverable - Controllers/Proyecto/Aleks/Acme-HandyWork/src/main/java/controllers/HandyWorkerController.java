@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import security.LoginService;
 import services.HandyWorkerService;
-import utilities.Utiles;
 import domain.HandyWorker;
 
 @Controller
-@RequestMapping("/handyWorker")
+@RequestMapping("/handyworker")
 public class HandyWorkerController extends AbstractController {
 
 	@Autowired
@@ -28,13 +28,12 @@ public class HandyWorkerController extends AbstractController {
 		super();
 	}
 	//Create HandyWorker
-	@RequestMapping(value = "/createHandy", method = RequestMethod.GET)
+	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public ModelAndView create() {
 
 		ModelAndView model;
 
-		model = this.createEditModelAndView(Utiles.createHandyWorker());
-		System.out.println(Utiles.createHandyWorker());
+		model = this.createEditModelAndView(this.serviceHandyWorker.createHandyWorker());
 
 		return model;
 
@@ -48,10 +47,9 @@ public class HandyWorkerController extends AbstractController {
 			result.addObject("errors", binding.getAllErrors());
 		} else
 			try {
-				System.out.println(handyWorker);
 				this.serviceHandyWorker.save(handyWorker);
 
-				result = new ModelAndView("redirect:../security/login.do");
+				result = new ModelAndView("redirect:../welcome/index.do");
 			} catch (final Throwable oops) {
 				result = this.createEditModelAndView(handyWorker, "handy.commit.error");
 				result.addObject("oops", oops.getMessage());
@@ -60,17 +58,31 @@ public class HandyWorkerController extends AbstractController {
 		return result;
 
 	}
+	// Update personal data
+	@RequestMapping(value = "/personal", method = RequestMethod.GET)
+	public ModelAndView editPersonalData() {
+		ModelAndView result;
+
+		HandyWorker find;
+
+		find = this.serviceHandyWorker.findByUserAccount(LoginService.getPrincipal().getId());
+
+		result = this.createEditModelAndView(find);
+
+		return result;
+	}
 	// Create edit model and view
-	protected ModelAndView createEditModelAndView(final HandyWorker handyWorker) {
+	protected ModelAndView createEditModelAndView(final HandyWorker handyworker) {
 		ModelAndView model;
-		model = this.createEditModelAndView(handyWorker, null);
+		model = this.createEditModelAndView(handyworker, null);
 		return model;
 	}
 
-	protected ModelAndView createEditModelAndView(final HandyWorker handyWorker, final String message) {
+	protected ModelAndView createEditModelAndView(final HandyWorker handyworker, final String message) {
 		ModelAndView result;
-		result = new ModelAndView("handyWorker/edit");
-		result.addObject("handyWorker", handyWorker);
+		result = new ModelAndView("handyworker/edit");
+
+		result.addObject("handyWorker", handyworker);
 		result.addObject("message", message);
 		return result;
 	}

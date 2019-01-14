@@ -7,6 +7,17 @@
  * TDG Licence, a copy of which you may download from 
  * http://www.tdg-seville.info/License.html
  --%>
+<link
+	href="https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css"
+	rel="stylesheet">
+<script>
+	$(function() {
+		$("#datepicker-1").datepicker({
+			appendText : "(yy/mm/dd)",
+			dateFormat : "yy/MM/dd"
+		});
+	});
+</script>
 
 <%@page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
@@ -25,7 +36,7 @@
 			document.getElementById("holdername").reset();
 			document.getElementById("brandname").reset();
 			document.getElementById("name").reset();
-			} else {
+		} else {
 			document.getElementById("creditcard").style.display = 'none';
 		}
 	}
@@ -41,7 +52,8 @@
 	<form:hidden path="fixUpTask" />
 
 	<spring:message code="application.fixUpTask" />
-	<jstl:out value=" :${application.fixUpTask.description}" />
+	<jstl:out value=" : ${application.fixUpTask.description}" /> - <jstl:out
+		value=" ${application.fixUpTask.ticker}" />
 	<br>
 
 	<security:authorize access="hasRole('HANDY_WORKER')">
@@ -57,42 +69,62 @@
 	<security:authorize access="hasRole('CUSTOMER')">
 		<form:label path="status">
 			<spring:message code="application.status" />
-		</form:label>
-		<form:select path="status" onchange="change(this);">
-			<form:option value="0" label="---" />
-			<form:options items="${status}" />
-		</form:select>
+		</form:label> : 
+		<jstl:if test="${application.status != 'pending'}">
+			<jstl:out value="${application.status}" />
+		</jstl:if>
+		<jstl:if test="${application.status == 'pending'}">
+			<form:select path="status" onchange="change(this);">
+				<form:option value="0" label="---" />
+				<form:options items="${status}" />
+			</form:select>
+		</jstl:if>
 	</security:authorize>
 	<br>
 	<form:label path="comments">
 		<spring:message code="application.comments" />
 	</form:label>
 	<form:textarea path="comments" />
+	<form:errors cssClass="error" path="comments" />
 	<br>
 
 	<div id="creditcard" style="display: none">
-	
-	<h4><spring:message code="creditCard.alert"/></h4>
+
+		<h4>
+			<spring:message code="creditCard.alert" />
+		</h4>
 		<form:label path="creditCard.holderName">
 			<spring:message code="application.creditcard.holdername" />
 		</form:label>
-		<form:input path="creditCard.holderName" id="holdername"/>
+		<form:input path="creditCard.holderName" id="holdername" />
+		<form:errors cssClass="error" path="creditCard.holderName" />
 		<br>
 		<form:label path="creditCard.brandName">
 			<spring:message code="application.creditcard.brandname" />
 		</form:label>
-		<form:input path="creditCard.brandName" id="brandname"/>
+		<form:input path="creditCard.brandName" id="brandname" />
+		<form:errors cssClass="error" path="creditCard.brandName" />
 		<br>
+		<form:label path="creditCard.type">
+			<spring:message code="application.creditcard.type" />
+		</form:label>
+		<form:select path="creditCard.type">
 
+			<form:option value="0" label="----------------------" />
+			<jstl:forEach items="${types}" var="var">
+				<form:option value="${var}" label="${var}" />
+			</jstl:forEach>
+		</form:select>
 		<form:label path="creditCard.number">
 			<spring:message code="application.creditcard.number" />
 		</form:label>
-		<form:input path="creditCard.number" id="number"/>
+		<form:input path="creditCard.number" id="number" />
+		<form:errors cssClass="error" path="creditCard.number" />
 		<br>
 		<form:label path="creditCard.expiration">
 			<spring:message code="application.creditcard.expiration" />
 		</form:label>
-		<form:input path="creditCard.expiration" />
+		<form:input path="creditCard.expiration" id="datepicker-1" />
 	</div>
 
 	<br />
@@ -101,6 +133,9 @@
 			<spring:message code="application.offeredPrice" />
 		</form:label>
 		<form:input path="offeredPrice" />
+		<spring:message code="application.vat" />
+		<jstl:out value="${vat}" />
+		<form:errors cssClass="error" path="offeredPrice"></form:errors>
 		<br>
 
 	</security:authorize>
@@ -111,8 +146,8 @@
 		<form:input path="offeredPrice" readonly="${true}" />
 		<br>
 	</security:authorize>
-	<jstl:forEach items = "${errors}" var = "error">
-	<jstl:out value = "${error}" />
+	<jstl:forEach items="${errors}" var="error">
+		<jstl:out value="${error}" />
 	</jstl:forEach>
 	<jstl:out value="${oops}" />
 	<input type="submit" name="save"

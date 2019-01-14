@@ -59,7 +59,7 @@ public class WelcomeController extends AbstractController {
 		Utiles.goodWords.addAll(custom.getGoodWords());
 		Utiles.badWords.addAll(custom.getBadWords());
 		Utiles.spamWords.addAll(custom.getSpamWords());
-		Utiles.setParametersFinder(custom.getHoursFinder(), custom.getResultFinder(), custom.getVat(), custom.getPhonePrefix());
+		Utiles.setParameters(custom.getHoursFinder(), custom.getResultFinder(), custom.getVat(), custom.getPhonePrefix());
 
 		return result;
 	}

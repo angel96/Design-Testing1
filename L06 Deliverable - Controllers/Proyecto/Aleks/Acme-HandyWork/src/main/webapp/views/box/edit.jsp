@@ -18,6 +18,8 @@
 		<spring:message code="box.name" />
 	</form:label>
 	<form:input path="name" />
+	<form:errors cssClass="error" path="name"></form:errors>
+	
 	<input type="submit" name="save"
 		value="Save" />
 </form:form>

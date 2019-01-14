@@ -36,7 +36,7 @@ public class CreditCardToStringConverter implements Converter<CreditCard, String
 				builder.append("/");
 				builder.append(URLEncoder.encode(String.valueOf(source.getExpiration().getDay()), "UTF-8"));
 				builder.append("|");
-				builder.append(URLEncoder.encode(String.valueOf(source.getNumber()), "UTF-8"));
+				builder.append(URLEncoder.encode(source.getNumber(), "UTF-8"));
 				result = builder.toString();
 			} catch (final Throwable oops) {
 				throw new RuntimeException(oops);

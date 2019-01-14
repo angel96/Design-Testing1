@@ -21,7 +21,7 @@ public class HandyWorker extends Endorsable {
 	private Collection<Application>	application;
 	private Finder					finder;
 	private Curriculum				curriculum;
-	private Collection<Tutorial>	tutoriales;
+	private Collection<Tutorial>	tutorials;
 	private Collection<Note>		notes;
 	private String					make;
 
@@ -54,12 +54,12 @@ public class HandyWorker extends Endorsable {
 		this.curriculum = curriculum;
 	}
 	@OneToMany
-	public Collection<Tutorial> getTutoriales() {
-		return this.tutoriales;
+	public Collection<Tutorial> getTutorials() {
+		return this.tutorials;
 	}
 
-	public void setTutoriales(final Collection<Tutorial> tutoriales) {
-		this.tutoriales = tutoriales;
+	public void setTutorials(final Collection<Tutorial> tutorials) {
+		this.tutorials = tutorials;
 	}
 	@OneToMany
 	public Collection<Note> getNotes() {

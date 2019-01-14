@@ -28,16 +28,19 @@
 		<spring:message code="warranty.title" />
 	</form:label>
 	<form:input path="title" readonly="${not warranty.draftMode}" />
+	<form:errors cssClass="error" path="title"></form:errors>
 	<br />
 	<form:label path="terms">
 		<spring:message code="warranty.terms" />
 	</form:label>
 	<form:textarea path="terms" readonly="${not warranty.draftMode}" />
+	<form:errors cssClass="error" path="terms"></form:errors>
 	<br />
 	<form:label path="laws">
 		<spring:message code="warranty.laws" />
 	</form:label>
 	<form:textarea path="laws" readonly="${not warranty.draftMode}" />
+	<form:errors cssClass="error" path="laws"></form:errors>
 	<br />
 
 	<security:authorize access="hasRole('ADMIN')">

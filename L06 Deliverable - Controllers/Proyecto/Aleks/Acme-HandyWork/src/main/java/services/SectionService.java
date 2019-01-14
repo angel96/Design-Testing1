@@ -1,6 +1,7 @@
 
 package services;
 
+import java.util.ArrayList;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,10 +10,12 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import repositories.SectionRepository;
+import security.Authority;
 import security.LoginService;
 import security.UserAccount;
-import domain.HandyWorker;
+import utilities.Utiles;
 import domain.Section;
+import domain.Tutorial;
 
 @Service
 @Transactional
@@ -31,37 +34,64 @@ public class SectionService {
 	public Collection<Section> findAll() {
 		return this.sectionRepository.findAll();
 	}
-	public Section findById(final int id) {
+	public Section findOne(final int id) {
 		return this.sectionRepository.findOne(id);
 	}
+	public Section createSection() {
 
-	public Section save(final Section s) {
+		Section s;
+
+		s = new Section();
+
+		s.setTitle("");
+		s.setText("");
+		s.setNumber(1);
+		s.setPicture(new ArrayList<String>());
+
+		return s;
+	}
+
+	public Tutorial findBySection(final int section) {
+		return this.sectionRepository.findTutorialBySection(section);
+	}
+
+	public Section save(final Tutorial t, final Section s) {
 
 		UserAccount user;
 		user = LoginService.getPrincipal();
 
-		HandyWorker w;
-		w = this.serviceHandyWorker.findByUserAccount(user.getId());
-
-		Assert.notNull(w);
+		Assert.isTrue(Utiles.findAuthority(user.getAuthorities(), Authority.HANDY_WORKER));
 
 		Section result;
-		Assert.notNull(s);
 		result = this.sectionRepository.save(s);
-		Assert.notNull(result);
+
+		if (s.getId() == 0) {
+			Collection<Section> sections;
+
+			sections = t.getSection();
+
+			sections.add(result);
+
+			t.setSection(sections);
+
+		}
 
 		return result;
 	}
 
-	public void deleteSection(final Section s) {
+	public void delete(final Tutorial t, final Section s) {
 		UserAccount user;
 		user = LoginService.getPrincipal();
+		Assert.isTrue(Utiles.findAuthority(user.getAuthorities(), Authority.HANDY_WORKER));
 
-		HandyWorker w;
-		w = this.serviceHandyWorker.findByUserAccount(user.getId());
+		Collection<Section> sections;
 
-		Assert.notNull(w);
-		Assert.notNull(s);
+		sections = t.getSection();
+
+		sections.remove(s);
+
+		t.setSection(sections);
+
 		this.sectionRepository.delete(s.getId());
 	}
 }

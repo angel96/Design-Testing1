@@ -17,12 +17,10 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.Pattern;
 
-import org.hibernate.search.annotations.Field;
-import org.hibernate.search.annotations.Indexed;
 import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.format.annotation.DateTimeFormat;
 
-@Indexed
+// @Indexed
 @Entity
 @Access(AccessType.PROPERTY)
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
@@ -45,7 +43,7 @@ public class FixUpTask extends DomainEntity {
 	@NotBlank
 	@Column(unique = true)
 	@Pattern(regexp = "^\\d{4}(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])-[\\w]{6}$")
-	@Field
+	//	@Field
 	public String getTicker() {
 		return this.ticker;
 	}
@@ -64,7 +62,7 @@ public class FixUpTask extends DomainEntity {
 		this.moment = moment;
 	}
 	@NotBlank
-	@Field
+	//	@Field
 	public String getDescription() {
 		return this.description;
 	}
@@ -73,7 +71,7 @@ public class FixUpTask extends DomainEntity {
 		this.description = description;
 	}
 	@NotBlank
-	@Field
+	//	@Field
 	public String getAddress() {
 		return this.address;
 	}

@@ -22,29 +22,63 @@
 	<spring:message code="fixUpTask.action.1" />
 </p>
 
-<display:table name="fixuptasks" id="row" requestURI="${requestURI}" pagesize="5" class="displaytag">
+<display:table name="fixuptasks" id="row" requestURI="${requestURI}"
+	pagesize="5" class="displaytag">
+	
 	<security:authorize access="hasRole('CUSTOMER')">
-		<display:column>
-			<a href="${URI}edit.do?id=${row.id}"> <img
-				src="images/viewmore.png" />
-			</a>
-		</display:column>
+	<display:column>
+		<a href="fixuptask/customer/view.do?id=${row.id}&view=true"> <img
+			src="images/viewmore.png" />
+		</a>
+	</display:column>
+	</security:authorize>
+	
+	<security:authorize access="hasRole('HANDY_WORKER')">
+	<display:column>
+		<a href="fixuptask/handyworker/view.do?id=${row.id}&view=true"> <img
+			src="images/viewmore.png" />
+		</a>
+	</display:column>
 	</security:authorize>
 
 	<display:column property="ticker" titleKey="fixuptask.tickers" />
 	<display:column property="moment" titleKey="fixuptask.moment" />
 	<display:column property="description" titleKey="fixuptask.description" />
-	<display:column property="maximumPrice"	titleKey="fixuptask.maximunPrice" />
+	<display:column property="maximumPrice"
+		titleKey="fixuptask.maximunPrice" />
 	<display:column property="category.name" titleKey="fixuptask.category" />
-	
 	<security:authorize access="hasRole('CUSTOMER')">
-	<display:column titleKey="fixuptask.applications">
-	<a href="application/customer/listByFixUp.do?fixUpId=${row.id}">Applications </a>
-	</display:column>
-	</security:authorize>
-	<security:authorize access="hasRole('HANDY_WORKER')">
-		<display:column titleKey="fixuptask.application">
-			<a href="application/handyworker/create.do?fixUpId=${row.id}">Apply this FixUpTask</a>
+		<display:column>
+			<a href="${URI}edit.do?id=${row.id}"> <spring:message code="fixuptask.edit" />
+			</a>
 		</display:column>
-	</security:authorize> 
+	</security:authorize>
+
+	<security:authorize access="hasRole('CUSTOMER')">
+		<display:column titleKey="fixuptask.applications">
+			<a href="application/customer/listByFixUp.do?fixUpId=${row.id}"><spring:message
+					code="fixuptask.applications" /> </a>
+		</display:column>
+	</security:authorize>
+
+
+	<security:authorize access="hasRole('CUSTOMER')">
+		<display:column titleKey="fixuptask.phases">
+			<a href="phase/customer/list.do?fixuptask=${row.id}"><spring:message
+					code="fixuptask.phases" /></a>
+		</display:column>
+		<display:column>
+		
+		<a href="complaint/customer/create.do?idFix=${row.id}"><spring:message
+					code="fixuptask.complaints" /></a>
+		</display:column>
+	</security:authorize>
+
+	<security:authorize access="hasRole('HANDY_WORKER')">
+		<display:column titleKey="fixuptask.phases">
+			<a href="phase/handyworker/list.do?fixuptask=${row.id}"><spring:message
+					code="fixuptask.phases" /></a>
+		</display:column>
+	</security:authorize>
+
 </display:table>

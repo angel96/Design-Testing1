@@ -22,14 +22,24 @@
 	<spring:message code="report.intro" />
 </p>
 
-<form:form action="report/referee/edit.do"
+<form:form action="report/referee/edit.do?idComp=${idComp}"
 	modelAttribute="report">
 
 	<form:hidden path="id" />
 	<form:hidden path="version" />
 	<form:hidden path="moment" />
 	<form:hidden path="complaint"/>
+	<jstl:if test="${report.id == 0}">
+	<form:hidden path="finalMode"/>
+	</jstl:if>
 
+	<form:label path="moment">
+		<spring:message code="report.moment" />
+	</form:label>
+	<form:input path="moment" readonly="true"/>
+	<form:errors cssClass="error" path="moment" />
+	<br />
+	
 	<form:label path="description">
 		<spring:message code="report.description" />
 	</form:label>
@@ -43,21 +53,15 @@
 	<form:input path="attachments" />
 	<form:errors cssClass="error" path="attachments" />
 	<br />
-<!-- 
-	<form:label path="notes"> //boton que redirija a una vista con las notas de x report?
-		<spring:message code="report.notes" />
-	</form:label>
-	<form:input path="notes" />
-	<form:errors cssClass="error" path="notes" />
-	<br />
-	-->
-
+	
+<jstl:if test="${report.id != 0}">
 	<form:label path="finalMode">
 		<spring:message code="report.finalMode" />
 	</form:label>
-	<form:input path="finalMode" />
-	<form:errors cssClass='error' path="finalMode" />
-	<br />
+
+	<form:checkbox path="finalMode" />
+</jstl:if>
+<br />
 	<input type="submit" name="save"
 			value="<spring:message code="report.save" />" />
 </form:form>

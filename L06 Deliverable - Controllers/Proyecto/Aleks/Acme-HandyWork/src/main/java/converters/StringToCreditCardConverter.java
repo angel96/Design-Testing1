@@ -28,10 +28,8 @@ public class StringToCreditCardConverter implements Converter<String, CreditCard
 				result.setBrandName(URLDecoder.decode(parts[0], "UTF-8"));
 				result.setHolderName(URLDecoder.decode(parts[1], "UTF-8"));
 				result.setType(URLDecoder.decode(parts[2], "UTF-8"));
-
 				result.setCodeCVV(Integer.valueOf(URLDecoder.decode(parts[3], "UTF-8")));
 				result.setExpiration(new SimpleDateFormat("yyyy/MM/dd").parse(URLDecoder.decode(parts[4], "UTF-8")));
-				//				result.setExpiration(Date.valueOf(URLDecoder.decode(parts[4], "UTF-8")));
 				result.setNumber(URLDecoder.decode(parts[5], "UTF-8"));
 
 			} catch (final Throwable oops) {

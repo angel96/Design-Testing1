@@ -11,11 +11,14 @@ import domain.Actor;
 import domain.Application;
 import domain.Customer;
 import domain.FixUpTask;
+import domain.HandyWorker;
 
 @Repository
 public interface ApplicationRepository extends JpaRepository<Application, Integer> {
 
-	//10.2
+	@Query("select hw from HandyWorker hw join hw.application a where a.id = ?1")
+	HandyWorker getHandyWorkerByApplication(int app);
+
 	@Query("select a from HandyWorker hw join hw.application a where hw.account.id = ?1")
 	Collection<Application> getApplicationsByHandyWorker(int userAccountId);
 

@@ -1,16 +1,18 @@
 
 package controllers;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.CategoryService;
-import utilities.Utiles;
 import domain.Category;
 
 @Controller
@@ -26,10 +28,13 @@ public class CategoryController extends AbstractController {
 	}
 
 	@RequestMapping(value = "/list", method = RequestMethod.GET)
-	public ModelAndView list() {
+	public ModelAndView list(@CookieValue(value = "language", required = false) String lang) {
 		ModelAndView result;
 		result = new ModelAndView("category/list");
 		result.addObject("categories", this.serviceCategory.findAll());
+		if (lang == null || lang == "")
+			lang = "en";
+		result.addObject("lang", lang);
 		result.addObject("requestURI", "category/administrator/list.do");
 		return result;
 	}
@@ -38,13 +43,13 @@ public class CategoryController extends AbstractController {
 		ModelAndView result;
 
 		result = new ModelAndView("category/edit");
-		result.addObject("category", Utiles.createCategory());
+		result.addObject("category", this.serviceCategory.createCategory());
 		result.addObject("parent", parent);
 		return result;
 	}
 
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
-	public ModelAndView edit(@RequestParam final int parent, final Category category, final BindingResult binding) {
+	public ModelAndView edit(@RequestParam final int parent, @Valid final Category category, final BindingResult binding) {
 		ModelAndView result;
 
 		if (binding.hasErrors())
@@ -64,11 +69,12 @@ public class CategoryController extends AbstractController {
 	}
 
 	//Delete a category
-	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "delete")
-	public ModelAndView delete(final Category category) {
+	@RequestMapping(value = "/delete", method = RequestMethod.GET)
+	public ModelAndView delete(final int cat) {
 		ModelAndView result;
-
+		Category category = null;
 		try {
+			category = this.serviceCategory.findOne(cat);
 			this.serviceCategory.deleteCategory(category.getId());
 			result = new ModelAndView("redirect:list.do");
 		} catch (final Throwable oops) {
@@ -77,7 +83,6 @@ public class CategoryController extends AbstractController {
 
 		return result;
 	}
-
 	protected ModelAndView createEditModelAndView(final Category category) {
 		ModelAndView result;
 		result = this.createEditModelAndView(category, null);

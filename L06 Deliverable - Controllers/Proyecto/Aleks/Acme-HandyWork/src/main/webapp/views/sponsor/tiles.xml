@@ -15,19 +15,8 @@
        "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
        
 <tiles-definitions>
-
 	<definition name="sponsor/edit" extends="master.page">	
 		<put-attribute name="title" value="Register Sponsor"/>
 		<put-attribute name="body" value="/views/sponsor/edit.jsp" />
-	</definition>
-	
-	<definition name="sponsor/messages" extends="master.page">	
-		<put-attribute name="title" value="Sponsor: Messages " />
-		<put-attribute name="body" value="/views/sponsor/messages.jsp" />
-	</definition>
-	
-	<definition name="sponsor/boxes" extends="master.page">	
-		<put-attribute name="title" value="Sponsor: Boxes " />
-		<put-attribute name="body" value="/views/sponsor/boxes.jsp" />
 	</definition>
 </tiles-definitions>

@@ -16,7 +16,9 @@
 <%@taglib prefix="security"
 	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
-
+<p>
+<h2>${boxName}</h2>
+</p>
 <display:table name="messages" id="row" requestURI="${requestURI}"
 	pagesize="5" class="displaytag">
 
@@ -29,5 +31,26 @@
 	</display:column>
 	<display:column property="priority" titleKey="message.priority" />
 	<display:column property="moment" titleKey="message.date" />
+
+	<display:column>
+		<a href="box/mess/create.do?id=${row.id}"><spring:message
+				code="message.viewmore" /></a>
+	</display:column>
+	<jstl:if test="${boxName == 'Spam Box' or boxName == 'Trash Box'}">
+		<display:column>
+
+			<a href="box/mess/inbox.do?id=${row.id}"><spring:message
+					code="message.inbox" /></a>
+
+		</display:column>
+	</jstl:if>
+	<jstl:if test="${boxName == 'Trash Box'}">
+		<display:column>
+
+			<a href="box/mess/delete.do?id=${row.id}"><spring:message
+					code="message.delete" /></a>
+
+		</display:column>
+	</jstl:if>
 
 </display:table>

@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.WarrantyService;
-import utilities.Utiles;
 import domain.Warranty;
 
 @Controller
@@ -43,8 +42,7 @@ public class WarrantyController extends AbstractController {
 	@RequestMapping(value = "/create", method = RequestMethod.GET)
 	public ModelAndView create() {
 		ModelAndView result;
-		result = new ModelAndView("warranty/edit");
-		result.addObject("warranty", Utiles.createWarranty());
+		result = this.createEditModelAndView(this.serviceWarranty.createWarranty());
 		result.addObject("requestURI", "warranty/administrator/create.do");
 
 		return result;
@@ -62,7 +60,6 @@ public class WarrantyController extends AbstractController {
 				model = new ModelAndView("redirect:list.do");
 			} catch (final Throwable oops) {
 				model = this.createEditModelAndView(warranty, "warranty.commit.error");
-				;
 			}
 
 		return model;

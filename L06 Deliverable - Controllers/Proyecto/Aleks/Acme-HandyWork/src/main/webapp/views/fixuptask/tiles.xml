@@ -20,7 +20,8 @@
 		<put-attribute name="body" value="/views/fixuptask/list.jsp" />
 	</definition>
 	<definition name="fixuptask/find" extends="master.page">
-		<put-attribute name="title" value="Finder: Buscador" />
+		<put-attribute name="title" value="Finder" />
 		<put-attribute name="body" value="/views/fixuptask/find.jsp" />
 	</definition>
+	
 </tiles-definitions>

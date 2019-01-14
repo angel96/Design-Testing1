@@ -21,7 +21,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import security.LoginService;
 import services.AdministratorService;
-import utilities.Utiles;
 import domain.Administrator;
 
 @Controller
@@ -43,7 +42,7 @@ public class AdministratorController extends AbstractController {
 
 		ModelAndView model;
 
-		model = this.createEditModelAndView(Utiles.createAdministrator());
+		model = this.createEditModelAndView(this.serviceAdministrator.createAdministrator());
 
 		return model;
 	}

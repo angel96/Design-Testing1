@@ -9,9 +9,9 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import repositories.WarrantyRepository;
+import security.Authority;
 import security.LoginService;
-import security.UserAccount;
-import domain.Administrator;
+import utilities.Utiles;
 import domain.Warranty;
 
 @Service
@@ -34,30 +34,32 @@ public class WarrantyService {
 	public Warranty findOne(final int id) {
 		return this.repositoryWarranty.findOne(id);
 	}
+	public Warranty createWarranty() {
 
-	public Warranty save(final Warranty w) {
-		UserAccount user;
-		user = LoginService.getPrincipal();
-		Administrator admin;
-		admin = this.serviceAdministrator.findOne(user.getId());
-		Assert.notNull(admin);
-		Warranty result = null;
-		if (w.isDraftMode()) {
-			Assert.notNull(w);
-			result = this.repositoryWarranty.save(w);
-		}
-		Assert.notNull(result);
-		return result;
+		Warranty w;
+		w = new Warranty();
+
+		w.setTitle("");
+		w.setLaws("");
+		w.setTerms("");
+		w.setDraftMode(true);
+
+		return w;
 	}
 
+	public Warranty save(final Warranty w) {
+		Assert.isTrue(Utiles.findAuthority(LoginService.getPrincipal().getAuthorities(), Authority.ADMIN));
+		Warranty result = null;
+		result = this.repositoryWarranty.save(w);
+		return result;
+	}
 	public void deleteWarranty(final int id) {
+		Assert.isTrue(Utiles.findAuthority(LoginService.getPrincipal().getAuthorities(), Authority.ADMIN));
 		Warranty w;
-		w = this.findOne(id);
+		w = this.repositoryWarranty.findOne(id);
 
 		if (w.isDraftMode())
 			this.repositoryWarranty.delete(w);
-		else
-			throw new IllegalAccessError();
 	}
 
 }
