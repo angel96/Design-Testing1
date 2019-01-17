@@ -5,10 +5,10 @@ import java.util.Date;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
+import javax.persistence.Column;
 import javax.persistence.Embeddable;
 import javax.validation.constraints.NotNull;
 
-import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.Range;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -41,18 +41,13 @@ public class CreditCard {
 	public void setBrandName(final String brandName) {
 		this.brandName = brandName;
 	}
-	@Length(min = 1, max = 16)
+	@Column(length = 16)
 	public String getNumber() {
 		return this.number;
 	}
 
 	public void setNumber(final String number) {
-		String s;
-		s = number.replaceAll("[^a-zA-Z0-9]", "");
-		if (Long.valueOf(s) instanceof Long)
-			this.number = number;
-		else
-			throw new IllegalArgumentException("Invalid Number");
+		this.number = number;
 
 	}
 	@NotNull
@@ -64,7 +59,7 @@ public class CreditCard {
 	public void setExpiration(final Date expiration) {
 		this.expiration = expiration;
 	}
-	@NotBlank
+
 	@Range(min = 100, max = 999)
 	public Integer getCodeCVV() {
 		return this.codeCVV;

@@ -18,7 +18,7 @@
 
 <p><spring:message code="miscellaneous.edit" /></p>
 
-<form:form modelAttribute="miscellaneousrecord" action="miscellaneousrecord/handyworker/edit.do">
+<form:form modelAttribute="miscellaneousRecord" action="miscellaneousrecord/handyworker/edit.do">
 
 <form:hidden path="id" />
 <form:hidden path="version" />
@@ -33,7 +33,7 @@
 <form:label path="attachment">
 	<spring:message code="miscellaneous.attachment" />
 </form:label>
-<form:input path="attachment"  />
+<form:input path="attachment"  placeholder="http://..."/>
 <form:errors cssClass="error" path="attachment" />
 <br />
 

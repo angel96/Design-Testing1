@@ -94,7 +94,6 @@ public class FixUpTaskController extends AbstractController {
 		ModelAndView result;
 		if (bind.hasErrors()) {
 			result = this.createEditModelAndView(fixUpTask);
-			//			result.addObject("error", bind.getAllErrors());
 			result.addObject("errors", bind.getAllErrors());
 			if (lang == null)
 				result.addObject("lang", "en");
@@ -105,7 +104,7 @@ public class FixUpTaskController extends AbstractController {
 				this.fixUpService.save(fixUpTask);
 				result = new ModelAndView("redirect:list.do");
 			} catch (final Throwable oops) {
-				result = this.createEditModelAndView(fixUpTask, "fixUpTask.commit.error");
+				result = this.createEditModelAndView(fixUpTask, "fixuptask.commit.error");
 				result.addObject("oops", oops.getMessage());
 				result.addObject("errors", bind.getAllErrors());
 			}
@@ -138,7 +137,10 @@ public class FixUpTaskController extends AbstractController {
 		find = this.fixUpService.findOne(id);
 		result = this.createEditModelAndView(find);
 		result.addObject("view", view);
-		result.addObject("lang", lang);
+		if (lang == null)
+			result.addObject("lang", "en");
+		else
+			result.addObject("lang", lang);
 		result.addObject("res", res);
 		return result;
 	}

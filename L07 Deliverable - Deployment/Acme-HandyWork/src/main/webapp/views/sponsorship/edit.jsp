@@ -21,6 +21,7 @@
 			$("#holdername").val("");
 			$("#brandname").val("");
 			$("#number").val("");
+			$("#cvv").val("");
 		}
 
 	});
@@ -45,14 +46,14 @@
 	<form:label path="urlBanner">
 		<spring:message code="sponsorship.urlBanner" />
 	</form:label>
-	<form:input path="urlBanner" readonly="${view}" />
+	<form:input path="urlBanner" readonly="${view}" placeholder="http://..."/>
 	<form:errors cssClass="error" path="urlBanner" />
 	<br />
 
 	<form:label path="linkTPage">
 		<spring:message code="sponsorship.linkTPage" />
 	</form:label>
-	<form:input path="linkTPage" readonly="${view}" />
+	<form:input path="linkTPage" readonly="${view}" placeholder="http://..."/>
 	<form:errors cssClass="error" path="linkTPage" />
 
 	<br />
@@ -79,15 +80,17 @@
 				<spring:message code="application.creditcard.expiration" />
 			</form:label>
 			<form:input path="creditCard.expiration" id="datepicker-1" />
+			<form:errors cssClass="error" path="creditCard.expiration" />
+			<form:label path="creditCard.codeCVV">
+				<spring:message code="application.creditcard.codeCVV" />
+			</form:label>
+			<form:input path="creditCard.codeCVV" id = "cvv"/>
+			<form:errors cssClass="error" path="creditCard.codeCVV" />
 		</div>
 	</security:authorize>
 
 	<br />
-	<jstl:forEach items="${errors}" var="error">
-		<jstl:out value="${error}" />
-	</jstl:forEach>
-	<jstl:out value="${oops}" />
-	<jstl:out value="${message}" />
+
 	<security:authorize access="hasRole('SPONSOR')">
 		<input type="submit" name="save"
 			value="<spring:message code ="sponsorship.save"/>" />

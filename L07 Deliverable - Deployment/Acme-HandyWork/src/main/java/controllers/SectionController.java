@@ -52,7 +52,8 @@ public class SectionController extends AbstractController {
 	public ModelAndView edit(@RequestParam final int id) {
 		ModelAndView result;
 		final UserAccount user = LoginService.getPrincipal();
-		result = this.createEditModelAndView(this.serviceSection.findOne(id));
+		result = new ModelAndView("section/edit");
+		result.addObject("section", this.serviceSection.findOne(id));
 		if (Utiles.findAuthority(user.getAuthorities(), Authority.HANDY_WORKER))
 			result.addObject("view", false);
 
@@ -80,9 +81,9 @@ public class SectionController extends AbstractController {
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "delete")
 	public ModelAndView edit(final Section section) {
 		ModelAndView result;
-
+		final Tutorial t = this.serviceSection.findBySection(section.getId());
 		try {
-			final Tutorial t = this.serviceSection.findBySection(section.getId());
+
 			this.serviceSection.delete(t, section);
 			result = new ModelAndView("redirect:list.do?tutorial=" + t.getId());
 		} catch (final Throwable oops) {
@@ -101,7 +102,8 @@ public class SectionController extends AbstractController {
 		result = new ModelAndView("section/edit");
 		result.addObject("section", section);
 		result.addObject("message", message);
-		result.addObject("requestURI", "section/edit.do?tutorial=" + this.serviceSection.findBySection(section.getId()).getId());
+		if (section.getId() > 0)
+			result.addObject("requestURI", "section/edit.do?tutorial=" + this.serviceSection.findBySection(section.getId()));
 		return result;
 	}
 }

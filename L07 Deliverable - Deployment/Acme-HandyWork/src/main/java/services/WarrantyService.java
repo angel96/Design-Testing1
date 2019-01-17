@@ -36,6 +36,8 @@ public class WarrantyService {
 	}
 	public Warranty createWarranty() {
 
+		Assert.isTrue(Utiles.findAuthority(LoginService.getPrincipal().getAuthorities(), Authority.ADMIN));
+
 		Warranty w;
 		w = new Warranty();
 

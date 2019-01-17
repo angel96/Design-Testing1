@@ -80,6 +80,7 @@ public class PhaseController extends AbstractController {
 		result.addObject("start", d.format(t.getStart()));
 		result.addObject("end", d.format(t.getEnd()));
 		result.addObject("phase", p);
+		result.addObject("requestURI", "phase/handyworker/edit.do?fixuptask=" + t.getId());
 		if (Utiles.findAuthority(LoginService.getPrincipal().getAuthorities(), Authority.CUSTOMER))
 			result.addObject("view", true);
 		return result;

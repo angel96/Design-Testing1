@@ -46,11 +46,7 @@
 	<form:input path="number" readonly="${view}" />
 	<form:errors cssClass="error" path="number" />
 	<br />
-	<jstl:forEach items="${errors}" var="error">
-		<jstl:out value="${error}" />
-	</jstl:forEach>
-	<jstl:out value="${oops}" />
-	<jstl:out value="${message}" />
+
 	<security:authorize access="hasRole('HANDY_WORKER')">
 		<input type="submit" name="save"
 			value="<spring:message code="section.save" />" />

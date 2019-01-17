@@ -56,15 +56,15 @@ public class Utiles {
 		for (final Endorsement e : endorsements) {
 			double p = 0.;
 			double n = 0.;
-			for (final String s : Utiles.limpiaString(e.getComments().toString())) {
-				System.out.println(s);
+			final Collection<String> cleanedString = Utiles.limpiaString(e.getComments().toString());
+			for (final String s : cleanedString) {
 				if (Utiles.goodWords.contains(s))
 					p++;
 				if (Utiles.badWords.contains(s))
 					n++;
 			}
-			good.add(p);
-			bad.add(n);
+			good.add(p / cleanedString.size());
+			bad.add(n / cleanedString.size());
 		}
 
 		if (Double.isNaN(Utiles.compute(good)) || Double.isNaN(Utiles.compute(bad)))
@@ -113,7 +113,6 @@ public class Utiles {
 		Utiles.resultsFinder = results;
 		Utiles.vat = vat;
 		Utiles.phonePrefix = phonePrefix;
-		System.setProperty("hoursFinder", String.valueOf(hours * 60 * 60 * 1000));
 	}
 
 	public static Collection<String> limpiaString(String s) {
@@ -321,6 +320,21 @@ public class Utiles {
 
 		return c;
 	}
+
+	public static CreditCard createCreditCard() {
+		CreditCard c;
+		c = new CreditCard();
+		c.setBrandName("");
+		c.setCodeCVV(100);
+
+		c.setExpiration(new Date());
+		c.setHolderName("");
+		c.setNumber("");
+		c.setType("");
+
+		return c;
+	}
+
 	public static String[] status() {
 		String[] status;
 		status = new String[3];

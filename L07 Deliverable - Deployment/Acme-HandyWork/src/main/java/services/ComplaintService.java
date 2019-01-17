@@ -37,6 +37,10 @@ public class ComplaintService {
 	private FixUpTaskService	serviceFix;
 
 
+	public FixUpTask getFixUpTaskByComplaint(final int id) {
+		return this.complaintRepository.getFixUpTaskByComplaint(id);
+	}
+
 	public Collection<Complaint> findAll() {
 		UserAccount user;
 		user = LoginService.getPrincipal();

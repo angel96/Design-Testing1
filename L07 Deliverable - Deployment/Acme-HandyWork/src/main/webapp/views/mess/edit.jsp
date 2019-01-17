@@ -138,11 +138,6 @@
 			value="<spring:message code="message.trash" />" />
 	</jstl:if>
 	<br>
-	<jstl:forEach items="${errors}" var="error">
-		<jstl:out value="${error}" />
-	</jstl:forEach>
-	<jstl:out value="${message}"></jstl:out>
-	<jstl:out value="${oops}" />
 
 	<jstl:if test="${view}">
 		<br>

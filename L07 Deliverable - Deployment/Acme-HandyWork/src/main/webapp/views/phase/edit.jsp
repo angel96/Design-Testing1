@@ -84,11 +84,7 @@
 				value="<spring:message code="phase.delete" />" />
 		</jstl:if>
 	</security:authorize>
-	<jstl:forEach items="${errors}" var="error">
-		<jstl:out value="${error}" />
-	</jstl:forEach>
-	<jstl:out value="${oops}" />
-	<jstl:out value="${message}" />
+
 </form:form>
 
 <input type="button" name="cancel"

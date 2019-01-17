@@ -36,38 +36,36 @@ public class ProfessionalRecordController extends AbstractController {
 	}
 
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
-	public ModelAndView submit(@Valid final ProfessionalRecord professional, final BindingResult binding) {
+	public ModelAndView submit(@Valid final ProfessionalRecord professionalRecord, final BindingResult binding) {
 		ModelAndView model;
 
 		if (binding.hasErrors()) {
-			model = this.createEditModelAndView(professional);
-			System.out.println(professional);
-			System.out.println(professional.getId());
+			model = this.createEditModelAndView(professionalRecord);
 			model.addObject("errors", binding.getAllErrors());
 			model.addObject("errores", binding);
 		} else
 			try {
-				this.professionalService.save(professional);
+				this.professionalService.save(professionalRecord);
 				model = new ModelAndView("redirect:/curriculum/handyworker/list.do");
 			} catch (final Throwable oops) {
-				model = this.createEditModelAndView(professional, "professional.commit.error");
+				model = this.createEditModelAndView(professionalRecord, "professional.commit.error");
 				model.addObject("oops", oops.getMessage());
 				model.addObject("errors", binding.getAllErrors());
 			}
 		return model;
 	}
 
-	protected ModelAndView createEditModelAndView(final ProfessionalRecord professional) {
+	protected ModelAndView createEditModelAndView(final ProfessionalRecord professionalRecord) {
 		ModelAndView result;
-		result = this.createEditModelAndView(professional, null);
+		result = this.createEditModelAndView(professionalRecord, null);
 
 		return result;
 	}
 
-	protected ModelAndView createEditModelAndView(final ProfessionalRecord professional, final String message) {
+	protected ModelAndView createEditModelAndView(final ProfessionalRecord professionalRecord, final String message) {
 		ModelAndView result;
 		result = new ModelAndView("professionalrecord/edit");
-		result.addObject("professionalrecord", professional);
+		result.addObject("professionalRecord", professionalRecord);
 		result.addObject("message", message);
 		return result;
 	}

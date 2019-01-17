@@ -276,12 +276,6 @@
 								code="master.page.sendmessage" /></a></li>
 					<li><a href="tutorial/list.do"><spring:message
 								code="master.page.tutorials" /></a></li>
-					<li><a href="handyworker/create.do"><spring:message
-								code="master.page.createHandy" /></a></li>
-					<li><a href="customer/create.do"><spring:message
-								code="master.page.createCustomer" /></a></li>
-					<li><a href="sponsor/create.do"><spring:message
-								code="master.page.createSponsor" /></a></li>
 					<li><a href="j_spring_security_logout"><spring:message
 								code="master.page.logout" /> </a></li>
 				</ul></li>

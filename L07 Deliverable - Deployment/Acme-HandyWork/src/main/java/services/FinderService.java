@@ -87,8 +87,8 @@ public class FinderService {
 
 		if (finder.getId() != 0) {
 			final Collection<FixUpTask> fixuptasks = this.serviceFixUptask.findAllByFinder(finder);
-			modify.setFixUpTask(fixuptasks);
-			modify.setCreationDate(new Date());
+			finder.setFixUpTask(fixuptasks);
+			finder.setCreationDate(new Date());
 		}
 
 		return modify;

@@ -119,18 +119,14 @@
 		<form:label path="picture">
 			<spring:message code="tutorial.picture" />
 		</form:label>
-		<form:textarea path="picture" readonly="${view}" />
+		<form:textarea path="picture" readonly="${view}" placeholder="http://..."/>
 		<form:errors cssClass="error" path="picture"></form:errors>
 		<jstl:if test="${tutorial.id != 0}">
 			<br />
-			<a href="handyworker/show.do?tutorial=${tutorial.id}"><spring:message
+			<a href="handyworker/show.do?check=true&tutorial=${tutorial.id}"><spring:message
 					code="tutorial.handy" /></a>
 		</jstl:if>
-		<jstl:forEach items="${errors}" var="error">
-			<jstl:out value="${error}" />
-		</jstl:forEach>
-		<jstl:out value="${oops}" />
-		<jstl:out value="${message}" />
+		
 		<security:authorize access="hasRole('HANDY_WORKER')">
 			<input type="submit" name="save"
 				value="<spring:message code ="tutorial.save"/>" />

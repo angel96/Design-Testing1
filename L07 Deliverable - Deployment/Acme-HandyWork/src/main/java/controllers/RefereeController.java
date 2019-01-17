@@ -16,7 +16,7 @@ import domain.Referee;
 
 @Controller
 @RequestMapping("/referee")
-public class RefereeController {
+public class RefereeController extends AbstractController {
 
 	@Autowired
 	private RefereeService	refereeService;

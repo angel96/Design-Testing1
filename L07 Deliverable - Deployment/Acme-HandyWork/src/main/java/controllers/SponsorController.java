@@ -16,7 +16,7 @@ import domain.Sponsor;
 
 @Controller
 @RequestMapping("/sponsor")
-public class SponsorController {
+public class SponsorController extends AbstractController {
 
 	@Autowired
 	private SponsorService	sponsorService;

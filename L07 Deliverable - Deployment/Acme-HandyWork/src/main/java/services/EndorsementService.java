@@ -52,11 +52,13 @@ public class EndorsementService {
 	}
 
 	public Collection<Endorsement> findEndorsementsByActorReceived(final Endorsable endorsable) {
-		System.out.println(endorsable.getId());
 		Collection<Endorsement> result;
 		result = this.repositoryEndorsement.getEndorsementsByActorReceived(endorsable.getId());
 		System.out.println(result);
-		System.out.println(this.repositoryEndorsement.getEndorsementsByActorReceived(endorsable.getId()));
+		if (result == null || result.isEmpty()) {
+			result = new ArrayList<Endorsement>();
+			System.out.println(result);
+		}
 		return result;
 	}
 

@@ -36,37 +36,35 @@ public class MiscellaneousRecordController extends AbstractController {
 	}
 
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
-	public ModelAndView submit(@Valid final MiscellaneousRecord miscellaneous, final BindingResult binding) {
+	public ModelAndView submit(@Valid final MiscellaneousRecord miscellaneousRecord, final BindingResult binding) {
 		ModelAndView model;
 
 		if (binding.hasErrors()) {
-			model = this.createEditModelAndView(miscellaneous);
-			System.out.println(miscellaneous);
-			System.out.println(miscellaneous.getId());
+			model = this.createEditModelAndView(miscellaneousRecord);
 			model.addObject("errors", binding.getAllErrors());
 			model.addObject("errores", binding);
 		} else
 			try {
-				this.miscellaneousService.save(miscellaneous);
+				this.miscellaneousService.save(miscellaneousRecord);
 				model = new ModelAndView("redirect:/curriculum/handyworker/list.do");
 			} catch (final Throwable oops) {
-				model = this.createEditModelAndView(miscellaneous, "miscellaneous.commit.error");
+				model = this.createEditModelAndView(miscellaneousRecord, "miscellaneous.commit.error");
 				model.addObject("oops", oops.getMessage());
 				model.addObject("errors", binding.getAllErrors());
 			}
 		return model;
 	}
-	protected ModelAndView createEditModelAndView(final MiscellaneousRecord miscellaneous) {
+	protected ModelAndView createEditModelAndView(final MiscellaneousRecord miscellaneousRecord) {
 		ModelAndView result;
-		result = this.createEditModelAndView(miscellaneous, null);
+		result = this.createEditModelAndView(miscellaneousRecord, null);
 
 		return result;
 	}
 
-	protected ModelAndView createEditModelAndView(final MiscellaneousRecord miscellaneous, final String message) {
+	protected ModelAndView createEditModelAndView(final MiscellaneousRecord miscellaneousRecord, final String message) {
 		ModelAndView result;
 		result = new ModelAndView("miscellaneousrecord/edit");
-		result.addObject("miscellaneousrecord", miscellaneous);
+		result.addObject("miscellaneousRecord", miscellaneousRecord);
 		result.addObject("message", message);
 		return result;
 	}

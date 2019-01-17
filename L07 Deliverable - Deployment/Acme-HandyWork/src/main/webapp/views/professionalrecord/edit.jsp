@@ -29,7 +29,7 @@ $(function() {
 </script>
 <p><spring:message code="professional.edit" /></p>
 
-<form:form modelAttribute="professionalrecord" action="professionalrecord/handyworker/edit.do">
+<form:form modelAttribute="professionalRecord" action="professionalrecord/handyworker/edit.do">
 
 <form:hidden path="id" />
 <form:hidden path="version" />
@@ -65,7 +65,7 @@ $(function() {
 <form:label path="attachment">
 	<spring:message code="professional.attachment" />
 </form:label>
-<form:input path="attachment"  />
+<form:input path="attachment"  placeholder="http://..."/>
 <form:errors cssClass="error" path="attachment" />
 <br />
 
@@ -76,12 +76,6 @@ $(function() {
 <form:errors cssClass="error" path="comments" />
 <spring:message code="professional.comments.place" />
 <br />
-
-<jstl:forEach items="${errors}" var="error">
-		<jstl:out value="${error}" />
-	</jstl:forEach>
-	<jstl:out value="${oops}" />
-	<jstl:out value="${message}" />
 
 <security:authorize access="hasRole('HANDY_WORKER')">
 <input type="submit" name="save"

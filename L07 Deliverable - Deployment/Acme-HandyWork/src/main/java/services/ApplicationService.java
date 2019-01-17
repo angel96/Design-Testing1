@@ -67,11 +67,16 @@ public class ApplicationService {
 	}
 
 	public Application findOne(final int id) {
+		UserAccount user;
+		user = LoginService.getPrincipal();
+		if (Utiles.findAuthority(user.getAuthorities(), Authority.HANDY_WORKER))
+			Assert.isTrue(this.applicationRepository.getApplicationsByHandyWorker(user.getId()).contains(this.applicationRepository.findOne(id)));
+		else if (Utiles.findAuthority(user.getAuthorities(), Authority.CUSTOMER))
+			Assert.isTrue(this.applicationRepository.getApplicationsByCustomer(user.getId()).contains(this.applicationRepository.findOne(id)));
 		Application a;
 		a = this.applicationRepository.findOne(id);
 		return a;
 	}
-
 	public Collection<Application> findAll() {
 		return this.applicationRepository.findAll();
 	}
@@ -80,7 +85,7 @@ public class ApplicationService {
 		a = new Application();
 		a.setFixUpTask(f);
 		a.setMoment(new Date());
-		a.setMomentElapsed(new Date());
+		a.setMomentElapsed(f.getEnd());
 		a.setOfferedPrice(0.0);
 		a.setStatus("pending");
 		a.setCreditCard(Utiles.createFakeCreditCard());
@@ -112,10 +117,11 @@ public class ApplicationService {
 
 		if (saved.getStatus().equals("accepted"))
 			for (final Application app : f.getApplication())
-				if (app != saved)
+				if (app != saved && !app.getStatus().equals("elapsed"))
 					app.setStatus("rejected");
 
 		if (Utiles.findAuthority(user.getAuthorities(), Authority.HANDY_WORKER)) {
+
 			HandyWorker h;
 			h = this.serviceHWorker.findByUserAccount(user.getId());
 

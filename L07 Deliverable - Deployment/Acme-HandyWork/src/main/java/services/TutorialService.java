@@ -67,6 +67,18 @@ public class TutorialService {
 		Assert.isTrue(Utiles.findAuthority(LoginService.getPrincipal().getAuthorities(), Authority.HANDY_WORKER));
 		Tutorial saved;
 		saved = this.repositoryTutorial.save(t);
+
+		final HandyWorker w = (HandyWorker) this.repositoryTutorial.findActorByUserAccount(LoginService.getPrincipal().getId());
+
+		Collection<Tutorial> tutorials;
+
+		tutorials = w.getTutorials();
+
+		if (!tutorials.contains(saved)) {
+			tutorials.add(saved);
+			w.setTutorials(tutorials);
+		}
+
 		return saved;
 	}
 

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 import domain.Actor;
 import domain.Complaint;
 import domain.Customer;
+import domain.FixUpTask;
 import domain.Referee;
 
 @Repository
@@ -39,16 +40,7 @@ public interface ComplaintRepository extends JpaRepository<Complaint, Integer> {
 	@Query("select c.complaint from Actor c where c.id = ?1")
 	Collection<Complaint> findComplaintByCustomerId(int customerId);
 
-	@Query("select min(f.complaint.size) from FixUpTask f")
-	double findMinimumOfComplaintsPerFixUpTask();
-
-	@Query("select max(f.complaint.size) from FixUpTask f")
-	double findMaximumOfComplaintsPerFixUpTask();
-
-	@Query("select stddev(f.complaint.size) from FixUpTask f")
-	double findStandartDeviationOfComplaintsPerFixUpTask();
-
-	@Query("select avg(f.complaint.size) from FixUpTask f")
-	double findAverageOfComplaintsPerFixUpTask();
+	@Query("select f from FixUpTask f join f.complaint c where c.id = ?1")
+	FixUpTask getFixUpTaskByComplaint(int id);
 
 }

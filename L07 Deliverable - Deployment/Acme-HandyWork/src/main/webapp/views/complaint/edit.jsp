@@ -32,7 +32,7 @@
 	<spring:message code="complaint.action.2" />
 </p>
 
-<form:form action="complaint/customer/edit.do?idFix=${idFix}"
+<form:form action="${requestURI}"
 	modelAttribute="complaint" onsubmit="return checkConfirm(this);">
 
 	<form:hidden path="id" />
@@ -62,7 +62,7 @@
 	<form:label path="attachment">
 		<spring:message code="complaint.attachment" />
 	</form:label>
-	<form:textarea path="attachment" readonly="${view}" />
+	<form:textarea path="attachment" readonly="${view}" placeholder="http://...,"/>
 	<form:errors cssClass="error" path="attachment" />
 	<br />
 

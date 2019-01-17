@@ -94,11 +94,7 @@
 	</form:label>
 	<form:input path="endDate" type="text" id="datepicker-2" />
 	<br>
-	<jstl:forEach items="${errors}" var="er">
-		<jstl:out value="${er}" />
-	</jstl:forEach>
-	<jstl:out value="${error}" />
-	<jstl:out value="${oops}" />
+	
 	<input type="submit" name="search"
 		value="<spring:message code="finder.find" />" />
 	<a href="fixuptask/handyworker/searchList.do?id=${finder.id}"><spring:message code = "finder.previous" /></a>

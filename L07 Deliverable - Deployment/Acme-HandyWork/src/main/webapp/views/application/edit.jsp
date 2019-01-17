@@ -36,6 +36,7 @@
 			$("#holdername").val("");
 			$("#brandname").val("");
 			$("#number").val("");
+			$("#cvv").val("");
 		} else {
 			document.getElementById("creditcard").style.display = 'none';
 		}
@@ -72,7 +73,9 @@
 		</form:label> : 
 		<jstl:if test="${application.status != 'pending'}">
 			<jstl:out value="${application.status}" />
+			<form:hidden path="status" />
 		</jstl:if>
+		
 		<jstl:if test="${application.status == 'pending'}">
 			<form:select path="status" onchange="change(this);">
 				<form:option value="0" label="---" />
@@ -87,7 +90,6 @@
 	<form:textarea path="comments" />
 	<form:errors cssClass="error" path="comments" />
 	<br>
-
 	<div id="creditcard" style="display: none">
 
 		<h4>
@@ -115,6 +117,7 @@
 				<form:option value="${var}" label="${var}" />
 			</jstl:forEach>
 		</form:select>
+		<form:errors cssClass="error" path="creditCard.type" />
 		<form:label path="creditCard.number">
 			<spring:message code="application.creditcard.number" />
 		</form:label>
@@ -125,8 +128,13 @@
 			<spring:message code="application.creditcard.expiration" />
 		</form:label>
 		<form:input path="creditCard.expiration" id="datepicker-1" />
+		<form:errors cssClass="error" path="creditCard.expiration" />
+		<form:label path="creditCard.codeCVV">
+			<spring:message code="application.creditcard.codeCVV" />
+		</form:label>
+		<form:input path="creditCard.codeCVV" id="cvv" />
+		<form:errors cssClass="error" path="creditCard.codeCVV" />
 	</div>
-
 	<br />
 	<security:authorize access="hasRole('HANDY_WORKER')">
 		<form:label path="offeredPrice">
@@ -149,10 +157,7 @@
 		<jstl:out value="${vat}" />
 		<br>
 	</security:authorize>
-	<jstl:forEach items="${errors}" var="error">
-		<jstl:out value="${error}" />
-	</jstl:forEach>
-	<jstl:out value="${oops}" />
+
 	<input type="submit" name="save"
 		value="<spring:message code ="application.save"/>" />
 </form:form>

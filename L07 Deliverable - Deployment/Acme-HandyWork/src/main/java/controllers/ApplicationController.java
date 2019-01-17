@@ -24,7 +24,7 @@ import domain.FixUpTask;
 @RequestMapping(value = {
 	"application/customer", "application/handyworker"
 })
-public class ApplicationController {
+public class ApplicationController extends AbstractController {
 
 	@Autowired
 	private ApplicationService	appService;
@@ -68,6 +68,7 @@ public class ApplicationController {
 			result.addObject("requestURI", "application/customer/edit.do");
 		else if (Utiles.findAuthority(LoginService.getPrincipal().getAuthorities(), Authority.HANDY_WORKER))
 			result.addObject("requestURI", "application/handyworker/edit.do");
+
 		return result;
 	}
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")

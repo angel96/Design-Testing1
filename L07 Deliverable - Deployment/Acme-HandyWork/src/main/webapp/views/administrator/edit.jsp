@@ -67,14 +67,14 @@
 	<form:label path="phone">
 		<spring:message code="admin.phone" />
 	</form:label>
-	<form:input path="phone" id="phone" />
+	<form:input path="phone" id="phone" placeholder="XXXXXXXXX"/>
 	<form:errors cssClass="error" path="phone" />
 	<br />
 
 	<form:label path="email">
 		<spring:message code="admin.email" />
 	</form:label>
-	<form:input path="email" />
+	<form:input path="email" placeholder="example@example.com"/>
 	<form:errors cssClass="error" path="email" />
 	<br />
 
@@ -88,7 +88,7 @@
 	<form:label path="photo">
 		<spring:message code="admin.photo" />
 	</form:label>
-	<form:input path="photo" />
+	<form:input path="photo" placeholder="http://..."/>
 	<form:errors cssClass="error" path="photo" />
 	<br />
 
