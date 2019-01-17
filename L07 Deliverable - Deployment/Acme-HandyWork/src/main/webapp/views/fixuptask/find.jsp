@@ -69,26 +69,26 @@
 		<form:option value="0" label="-----------" />
 		<form:options items="${warranties}" itemValue="id" itemLabel="title" />
 	</form:select>
-<br>
+	<br>
 	<form:label path="price1">
 		<spring:message code="finder.min" />
 	</form:label>
 	<form:input path="price1" placeholder="0.0" type="text" />
 	(<spring:message code="finder.set" />)
 	<form:errors cssClass='error' path="price1" />
-<br>
+	<br>
 	<form:label path="price2">
 		<spring:message code="finder.max" />
 	</form:label>
 	<form:input path="price2" placeholder="10.0" type="text" />
 	(<spring:message code="finder.set" />)
 	<form:errors cssClass='error' path="price2" />
-<br>
+	<br>
 	<form:label path="startDate">
 		<spring:message code="finder.date1" />
 	</form:label>
 	<form:input path="startDate" type="text" id="datepicker-1" />
-<br>
+	<br>
 	<form:label path="endDate">
 		<spring:message code="finder.date2" />
 	</form:label>
@@ -101,8 +101,9 @@
 	<jstl:out value="${oops}" />
 	<input type="submit" name="search"
 		value="<spring:message code="finder.find" />" />
+	<a href="fixuptask/handyworker/searchList.do?id=${finder.id}"><spring:message code = "finder.previous" /></a>
 </form:form>
-
+<a href="fixuptask/handyworker/searchList.do?id="></a>
 <input type="button" name="cancel"
 	value="<spring:message code="cust.cancel"/>"
 	onclick="javascript:relativeRedir('/welcome/index.do');" />

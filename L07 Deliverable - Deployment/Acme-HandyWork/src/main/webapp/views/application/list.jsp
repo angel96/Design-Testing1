@@ -59,8 +59,8 @@
 		} else if (value == 'rejected') {
 			row[i].style.backgroundColor = "#FF8000";
 		} else if (value == 'pending') {
-		} else {
-			row[i].style.backgroundColor = "#BDBDBD";
+		} else if (value == 'elapsed') {
+			row[i].style.backgroundColor = "#9C9C9C";
 		}
 	}
 </script>

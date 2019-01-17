@@ -37,6 +37,19 @@ public class ApplicationService {
 	private MesageService			serviceMesage;
 
 
+	public void elapsedApplications(final int id) {
+		Collection<Application> result;
+		result = this.applicationRepository.elapsedApplications(id);
+		for (final Application app : result)
+			app.setStatus("elapsed");
+	}
+
+	public void elapsedApplicationsByFixUpTask(final int idCustomer, final int fixuptask) {
+		Collection<Application> result;
+		result = this.applicationRepository.getApplicationsByFixUpTaskElapsed(idCustomer, fixuptask);
+		for (final Application app : result)
+			app.setStatus("elapsed");
+	}
 	public Collection<Application> getApplicationsByHandyWorker(final int accountId) {
 		return this.applicationRepository.getApplicationsByHandyWorker(accountId);
 	}

@@ -35,7 +35,6 @@
 	<form:hidden path="id" />
 	<form:hidden path="version" />
 	<jstl:if test="${sponsor.id != 0}">
-		<form:hidden path="profiles" />
 		<form:hidden path="sponsorship" />
 		<form:hidden path="boxes" />
 	</jstl:if>
@@ -120,4 +119,4 @@
 
 <input type="button" name="cancel"
 	value="<spring:message code="spons.cancel"/>"
-	onclick="javascript:relativeRedir('/welcome/index.jsp');" />
+	onclick="javascript:relativeRedir('/welcome/index.do');" />

@@ -67,7 +67,7 @@ public class HandyWorkerService {
 	}
 
 	public HandyWorker findOne(final int handy) {
-		Assert.isTrue(Utiles.findAuthority(LoginService.getPrincipal().getAuthorities(), Authority.HANDY_WORKER));
+		Assert.isTrue(Utiles.findAuthority(LoginService.getPrincipal().getAuthorities(), Authority.HANDY_WORKER) || Utiles.findAuthority(LoginService.getPrincipal().getAuthorities(), Authority.CUSTOMER));
 		HandyWorker saved;
 		saved = this.repositoryHandyWorker.findOne(handy);
 		Assert.notNull(saved);

@@ -34,8 +34,14 @@ public interface ApplicationRepository extends JpaRepository<Application, Intege
 	@Query("select a from Application a join a.fixUpTask f join f.phases p where p.id = ?1 and a.status = 'accepted'")
 	Application getApplicationAceptedByPhase(int id);
 
+	@Query("select a from HandyWorker w join w.application a where w.id = ?1 and current_date() > a.momentElapsed and a.status = 'pending'")
+	Collection<Application> elapsedApplications(int id);
+
 	@Query("select a.fixUpTask from Application a where a.id = ?1")
 	FixUpTask getFixUpTaskByApplication(int id);
+
+	@Query("select a from Customer c join c.fixUpTask f join f.application a where c.account.id = ?1 and f.id = ?2 and current_date() > a.momentElapsed and a.status = 'pending'")
+	Collection<Application> getApplicationsByFixUpTaskElapsed(int customerAccountId, int fixUpId);
 
 	@Query("select a from Customer c join c.fixUpTask f join f.application a where c.account.id = ?1 and f.id = ?2")
 	Collection<Application> getApplicationsByFixUpTask(int customerAccountId, int fixUpId);

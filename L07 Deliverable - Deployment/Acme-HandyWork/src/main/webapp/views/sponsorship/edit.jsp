@@ -14,6 +14,16 @@
 			dateFormat : "yy/mm/dd"
 		});
 	});
+	$(document).ready(function() {
+
+		var s = $("#sponsorshipId").val();
+		if (parseInt(s) == 0) {
+			$("#holdername").val("");
+			$("#brandname").val("");
+			$("#number").val("");
+		}
+
+	});
 </script>
 <%@page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
@@ -27,7 +37,7 @@
 
 <form:form name="form" action="${requestURI}"
 	modelAttribute="sponsorship">
-	<form:hidden path="id" />
+	<form:hidden path="id" id="sponsorshipId" />
 	<form:hidden path="version" />
 	<form:hidden path="sponsor" />
 	<form:hidden path="tutorial" />
@@ -52,26 +62,23 @@
 			<form:label path="creditCard.holderName">
 				<spring:message code="application.creditcard.holdername" />
 			</form:label>
-			<form:input path="creditCard.holderName" />
-			<form:errors cssClass="error" path="holderName" />
+			<form:input path="creditCard.holderName" id="holdername" />
 			<br>
 			<form:label path="creditCard.brandName">
 				<spring:message code="application.creditcard.brandname" />
 			</form:label>
-			<form:input path="creditCard.brandName" />
-			<form:errors cssClass="error" path="brandName" />
+			<form:input path="creditCard.brandName" id="brandname" />
 			<br>
 
 			<form:label path="creditCard.number">
 				<spring:message code="application.creditcard.number" />
 			</form:label>
-			<form:input path="creditCard.number" />
-			<form:errors cssClass="error" path="comments" />
+			<form:input path="creditCard.number" id="number" />
 			<br>
 			<form:label path="creditCard.expiration">
 				<spring:message code="application.creditcard.expiration" />
 			</form:label>
-			<form:input path="creditCard.expiration" id="datepicker-1"/>
+			<form:input path="creditCard.expiration" id="datepicker-1" />
 		</div>
 	</security:authorize>
 

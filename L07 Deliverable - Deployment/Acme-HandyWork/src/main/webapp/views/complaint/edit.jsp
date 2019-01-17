@@ -62,7 +62,7 @@
 	<form:label path="attachment">
 		<spring:message code="complaint.attachment" />
 	</form:label>
-	<form:input path="attachment" readonly="${view}" />
+	<form:textarea path="attachment" readonly="${view}" />
 	<form:errors cssClass="error" path="attachment" />
 	<br />
 

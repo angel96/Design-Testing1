@@ -94,7 +94,8 @@
 	<form:label path="phone">
 		<spring:message code="handy.phone"></spring:message>
 	</form:label>
-	<form:input path="phone" placeholder="XXXXXXXXX" readonly="${view}" id = "phone"/>
+	<form:input path="phone" placeholder="XXXXXXXXX" readonly="${view}"
+		id="phone" />
 	<form:errors cssClass="error" path="phone"></form:errors>
 	<br>
 
@@ -148,9 +149,24 @@
 		<form:errors cssClass="error" path="account.password"></form:errors>
 		<br>
 	</jstl:if>
+
 	<jstl:if test="${view eq false}">
 		<input type="submit" name="save"
 			value="<spring:message code="handy.save"/>" />
+	</jstl:if>
+	<h1><spring:message code = "handy.tutorials" /></h1>
+	<jstl:if test="${view eq true}">
+		<display:table name="handyWorker.tutorials" id="row" pagesize="5"
+			class="displaytag">
+			<display:column property="title" titleKey="tutorial.title" />
+			<display:column property="lastUpdate" titleKey="tutorial.lastUpdate" />
+			<display:column property="summary" titleKey="tutorial.summary" />
+			<display:column titleKey="tutorial.viewmore">
+				<a href="tutorial/show.do?id=${row.id}"> <spring:message
+						code="tutorial.viewmore" />
+				</a>
+			</display:column>
+		</display:table>
 	</jstl:if>
 </form:form>
 

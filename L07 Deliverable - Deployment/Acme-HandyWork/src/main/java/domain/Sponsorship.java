@@ -8,7 +8,7 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
 
-
+import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.URL;
 
 @Entity
@@ -24,6 +24,7 @@ public class Sponsorship extends DomainEntity {
 
 
 	@URL
+	@NotBlank
 	public String getUrlBanner() {
 		return this.urlBanner;
 	}
@@ -33,6 +34,7 @@ public class Sponsorship extends DomainEntity {
 	}
 
 	@URL
+	@NotBlank
 	public String getLinkTPage() {
 		return this.linkTPage;
 	}

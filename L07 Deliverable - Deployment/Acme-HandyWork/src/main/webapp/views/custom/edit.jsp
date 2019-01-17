@@ -27,6 +27,7 @@
 	</form:label>
 	<form:input path="systemName" />
 	<form:errors cssClass="error" path="systemName"></form:errors>
+	<spring:message code="custom.bannerInfo" />
 	<br>
 	<form:label path="banner">
 		<spring:message code="custom.banner" />
@@ -50,6 +51,7 @@
 		</jstl:forEach>
 
 	</form:select>
+	<spring:message code = "custom.hours" />
 	<form:errors cssClass="error" path="hoursFinder"></form:errors>
 	<br>
 	<form:label path="resultFinder">
@@ -68,18 +70,21 @@
 		<spring:message code="custom.goodWords" />
 	</form:label>
 	<form:textarea path="goodWords" />
+	<spring:message code = "custom.instructions.spam" />
 	<form:errors cssClass="error" path="goodWords"></form:errors>
 	<br>
 	<form:label path="badWords">
 		<spring:message code="custom.badWords" />
 	</form:label>
 	<form:textarea path="badWords" />
+	<spring:message code = "custom.instructions.spam" />
 	<form:errors cssClass="error" path="badWords"></form:errors>
 	<br>
 	<form:label path="spamWords">
 		<spring:message code="custom.spamWords" />
 	</form:label>
 	<form:textarea path="spamWords" />
+	<spring:message code = "custom.instructions.spam" />
 	<form:errors cssClass="error" path="spamWords"></form:errors>
 	<br>
 	<input type="submit" name="save"

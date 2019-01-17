@@ -35,6 +35,7 @@ public class HandyWorkerController extends AbstractController {
 		ModelAndView model;
 
 		model = this.createEditModelAndView(this.serviceHandyWorker.createHandyWorker());
+		model.addObject("view", false);
 
 		return model;
 
@@ -81,7 +82,7 @@ public class HandyWorkerController extends AbstractController {
 		find = this.serviceHandyWorker.findByUserAccount(LoginService.getPrincipal().getId());
 
 		result = this.createEditModelAndView(find);
-
+		result.addObject("view", false);
 		return result;
 	}
 	// Create edit model and view

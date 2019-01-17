@@ -72,7 +72,7 @@
 			<spring:message code="note.handyWorkerComment" />
 		</form:label>
 		<form:textarea path="handyWorkerComment" />
-		<form:errors cssClass="error" path="hndyWorkerComment" />
+		<form:errors cssClass="error" path="handyWorkerComment" />
 		<br>
 	</security:authorize>
 

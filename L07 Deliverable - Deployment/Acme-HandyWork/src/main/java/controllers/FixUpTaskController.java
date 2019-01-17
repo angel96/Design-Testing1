@@ -52,7 +52,7 @@ public class FixUpTaskController extends AbstractController {
 		if (Utiles.findAuthority(LoginService.getPrincipal().getAuthorities(), Authority.CUSTOMER)) {
 			result.addObject("fixuptasks", this.fixUpService.findAllByUser(LoginService.getPrincipal().getId()));
 			result.addObject("requestURI", "fixuptask/customer/list.do");
-			result.addObject("URI", "fixUpTask/customer/");
+			result.addObject("URI", "fixuptask/customer/");
 		} else if (Utiles.findAuthority(LoginService.getPrincipal().getAuthorities(), Authority.HANDY_WORKER)) {
 			result.addObject("fixuptasks", this.fixUpService.findAll());
 			result.addObject("requestURI", "fixuptask/handyworker/list.do");
@@ -130,7 +130,7 @@ public class FixUpTaskController extends AbstractController {
 		ModelAndView result;
 		FixUpTask find;
 		boolean res;
-		if (this.fixUpService.getAcceptedAppsByFixUp(id).size() == 0)
+		if (this.fixUpService.getAcceptedAppsByFixUp(id) == null)
 			res = true;
 		else
 			res = false;
@@ -180,7 +180,7 @@ public class FixUpTaskController extends AbstractController {
 			try {
 				final Finder aux = this.serviceFinder.save(finder);
 				result = new ModelAndView("fixuptask/list");
-				result.addObject("requestURI", "fixUpTask/handyworker/searchList.do?id=" + aux.getId());
+				result.addObject("requestURI", "fixuptask/handyworker/searchList.do?id=" + aux.getId());
 				result.addObject("fixuptasks", this.fixUpService.findAllByFinder(aux));
 			} catch (final Throwable oops) {
 				result = this.editAndCreateFinderModelAndView(finder, "finder.commit.error");

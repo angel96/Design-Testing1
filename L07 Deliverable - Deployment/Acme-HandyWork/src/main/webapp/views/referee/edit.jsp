@@ -111,5 +111,5 @@
 </form:form>
 <input type="button" name="cancel"
 	value="<spring:message code="refe.cancel"/>"
-	onclick="javascript:relativeRedir('/welcome/index.jsp');" />
+	onclick="javascript:relativeRedir('/welcome/index.do');" />
 

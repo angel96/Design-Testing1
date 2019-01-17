@@ -17,7 +17,7 @@
 <tiles-definitions>
 
 	<definition name="educationrecord/edit" extends="master.page">	
-		<put-attribute name="title" value="Handy Worker: Education Record" />
+		<put-attribute name="title" value="Education Record" />
 		<put-attribute name="body" value="/views/educationrecord/edit.jsp" />
 	</definition>
 	

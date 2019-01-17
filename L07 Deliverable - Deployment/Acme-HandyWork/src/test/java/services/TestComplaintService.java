@@ -65,7 +65,6 @@ public class TestComplaintService extends AbstractTest {
 		super.authenticate("customer2");
 		Complaint c;
 		c = new Complaint();
-		c.setAttachment(12);
 		c.setDescription("description");
 		c.setMoment(new Date());
 		c.setReport(new ArrayList<Report>());

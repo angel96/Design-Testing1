@@ -31,7 +31,8 @@
 
 	}
 </script>
-<form:form modelAttribute="customer" action="customer/edit.do" onsubmit="return checkPhone(this);">
+<form:form modelAttribute="customer" action="customer/edit.do"
+	onsubmit="return checkPhone(this);">
 	<form:hidden path="id" />
 	<form:hidden path="version" />
 	<jstl:if test="${customer.id != 0}">
@@ -42,7 +43,7 @@
 		<form:label path="score">
 			<spring:message code="cust.score"></spring:message>
 		</form:label>
-		: <jstl:out value = "${customer.score}" />
+		: <jstl:out value="${customer.score}" />
 		<br>
 	</jstl:if>
 	<form:hidden path="account.id" />
@@ -73,7 +74,7 @@
 	<form:label path="phone">
 		<spring:message code="cust.phone"></spring:message>
 	</form:label>
-	<form:input path="phone" readonly="${view}" id = "phone"/>
+	<form:input path="phone" readonly="${view}" id="phone" />
 	<form:errors cssClass="error" path="phone"></form:errors>
 	<br>
 
@@ -114,6 +115,28 @@
 		<input type="submit" name="save"
 			value="<spring:message code="cust.save"/>" />
 	</jstl:if>
+	<h1>
+		<spring:message code="cust.fixuptask" />
+	</h1>
+	<security:authorize access="hasRole('HANDY_WORKER')">
+		<display:table name="customer.fixUpTask" id="row" pagesize="5"
+			class="displaytag">
+
+			<display:column property="ticker" titleKey="fixuptask.tickers" />
+			<display:column property="moment" titleKey="fixuptask.moment" />
+			<display:column property="description"
+				titleKey="fixuptask.description" />
+			<display:column property="maximumPrice"
+				titleKey="fixuptask.maximunPrice" />
+			<display:column property="category.name"
+				titleKey="fixuptask.category" />
+			<display:column titleKey="fixuptask.phases">
+				<a href="phase/handyworker/list.do?fixuptask=${row.id}"><spring:message
+						code="fixuptask.phases" /></a>
+			</display:column>
+
+		</display:table>
+	</security:authorize>
 </form:form>
 <input type="button" name="cancel"
 	value="<spring:message code="cust.cancel"/>"

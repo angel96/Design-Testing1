@@ -17,12 +17,12 @@
 <tiles-definitions>
 
 	<definition name="category/list" extends="master.page">	
-		<put-attribute name="title" value="Administrator: Categories" />
+		<put-attribute name="title" value="Categories" />
 		<put-attribute name="body" value="/views/category/list.jsp" />
 	</definition>
 	
 	<definition name="category/edit" extends="master.page">	
-		<put-attribute name="title" value="Administrator: Edit a category" />
+		<put-attribute name="title" value="Edit a category" />
 		<put-attribute name="body" value="/views/category/edit.jsp" />
 	</definition>
 	

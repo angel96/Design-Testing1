@@ -33,9 +33,9 @@
 	function change(o) {
 		if (o.value == 'accepted') {
 			document.getElementById("creditcard").style.display = 'block';
-			document.getElementById("holdername").reset();
-			document.getElementById("brandname").reset();
-			document.getElementById("name").reset();
+			$("#holdername").val("");
+			$("#brandname").val("");
+			$("#number").val("");
 		} else {
 			document.getElementById("creditcard").style.display = 'none';
 		}
@@ -132,7 +132,8 @@
 		<form:label path="offeredPrice">
 			<spring:message code="application.offeredPrice" />
 		</form:label>
-		<form:input path="offeredPrice" />
+		<form:input path="offeredPrice"
+			readonly="${application.status == 'rejected' or 'accepted'}" />
 		<spring:message code="application.vat" />
 		<jstl:out value="${vat}" />
 		<form:errors cssClass="error" path="offeredPrice"></form:errors>
@@ -144,6 +145,8 @@
 			<spring:message code="application.offeredPrice" />
 		</form:label>
 		<form:input path="offeredPrice" readonly="${true}" />
+		<spring:message code="application.vat" />
+		<jstl:out value="${vat}" />
 		<br>
 	</security:authorize>
 	<jstl:forEach items="${errors}" var="error">

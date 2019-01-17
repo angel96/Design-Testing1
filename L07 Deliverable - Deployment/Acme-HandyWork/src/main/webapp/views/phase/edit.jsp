@@ -17,16 +17,28 @@
 <%@taglib prefix="security"
 	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
-
+<link
+	href="https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css"
+	rel="stylesheet" />
 <script>
-	$(function() {
+	$(document).ready(function() {
+		var start = "${start}";
+		var end = "${end}";
+		
+		$('#datepicker-1').datepicker('destroy');
+		$('#datepicker-2').datepicker('destroy');
+		
 		$("#datepicker-1").datepicker({
 			appendText : "(yy/mm/dd)",
-			dateFormat : "yy/mm/dd"
+			dateFormat : "yy/mm/dd",
+			minDate : new Date(start),
+			maxDate : new Date(end)
 		});
 		$("#datepicker-2").datepicker({
 			appendText : "(yy/mm/dd)",
-			dateFormat : "yy/mm/dd"
+			dateFormat : "yy/mm/dd",
+			minDate : new Date(start),
+			maxDate : new Date(end)
 		});
 	});
 </script>
@@ -57,12 +69,12 @@
 	<form:label path="startMoment">
 		<spring:message code="phase.startMoment" />
 	</form:label>
-	<form:input path="startMoment" readonly="${view}" id = "datepicker-1"/>
+	<form:input path="startMoment" readonly="${view}" id="datepicker-1" />
 
 	<form:label path="endMoment">
 		<spring:message code="phase.endMoment" />
 	</form:label>
-	<form:input path="endMoment" readonly="${view}" id = "datepicker-2"/>
+	<form:input path="endMoment" readonly="${view}" id="datepicker-2" />
 	<br />
 	<security:authorize access="hasRole('HANDY_WORKER')">
 		<input type="submit" name="save"

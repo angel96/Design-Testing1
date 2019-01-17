@@ -27,7 +27,26 @@ public class FinderService {
 
 
 	public Finder findOne(final int id) {
-		return this.finderRepository.findOne(id);
+		Finder finder;
+		finder = this.finderRepository.findOne(id);
+		if (finder.getFixUpTask().size() > 0) {
+			System.out.println("Fecha del finder: " + finder.getCreationDate());
+			System.out.println("Fecha: " + new Date());
+			final Date creationFinder = finder.getCreationDate();
+			final Date now = new Date();
+
+			final long diff = now.getTime() - creationFinder.getTime();
+
+			final long diffMinutes = diff / (60 * 1000);
+
+			if (diffMinutes >= Utiles.hoursFinder * 60) {
+				Collection<FixUpTask> fcol;
+				fcol = finder.getFixUpTask();
+				finder.setFixUpTask(new ArrayList<FixUpTask>());
+				System.out.println("Seteo la collection vacia");
+			}
+		}
+		return finder;
 	}
 
 	public Actor findByUserAccount(final int id) {
@@ -65,15 +84,11 @@ public class FinderService {
 			modify.setCategory(null);
 			modify.setWarranty(null);
 		}
-		if ((finder.getCreationDate().getMinutes() + 1) + ((new Date()).getMinutes() + 1) >= Utiles.hoursFinder * 60) {
-			final Collection<FixUpTask> fcol = finder.getFixUpTask();
-			fcol.clear();
-			modify.setFixUpTask(fcol);
-		}
+
 		if (finder.getId() != 0) {
 			final Collection<FixUpTask> fixuptasks = this.serviceFixUptask.findAllByFinder(finder);
 			modify.setFixUpTask(fixuptasks);
-			finder.setCreationDate(new Date());
+			modify.setCreationDate(new Date());
 		}
 
 		return modify;

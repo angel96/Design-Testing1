@@ -121,8 +121,11 @@
 		</form:label>
 		<form:textarea path="picture" readonly="${view}" />
 		<form:errors cssClass="error" path="picture"></form:errors>
-		<br /> <a href="handyworker/show.do?tutorial=${tutorial.id}"><spring:message
-				code="tutorial.handy" /></a>
+		<jstl:if test="${tutorial.id != 0}">
+			<br />
+			<a href="handyworker/show.do?tutorial=${tutorial.id}"><spring:message
+					code="tutorial.handy" /></a>
+		</jstl:if>
 		<jstl:forEach items="${errors}" var="error">
 			<jstl:out value="${error}" />
 		</jstl:forEach>
@@ -138,13 +141,15 @@
 		</security:authorize>
 		</br>
 	</div>
-	<div id="slider">
-		<ul>
-			<jstl:forEach items="${tutorial.sponsorship}" var="s">
-				<li><img src="${s.urlBanner}" height="150" width="200" /></li>
-			</jstl:forEach>
-		</ul>
-	</div>
+	<jstl:if test="${tutorial.id != 0}">
+		<div id="slider">
+			<ul>
+				<jstl:forEach items="${tutorial.sponsorship}" var="s">
+					<li><img src="${s.urlBanner}" height="150" width="200" /></li>
+				</jstl:forEach>
+			</ul>
+		</div>
+	</jstl:if>
 </form:form>
 
 <input type="submit" name="cancel"

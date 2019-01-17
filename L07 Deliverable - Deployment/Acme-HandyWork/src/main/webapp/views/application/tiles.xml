@@ -17,12 +17,12 @@
 <tiles-definitions>
 
 	<definition name="application/list" extends="master.page">	
-		<put-attribute name="title" value="Handy Worker: Applications" />
+		<put-attribute name="title" value="Applications" />
 		<put-attribute name="body" value="/views/application/list.jsp" />
 	</definition>
 	
 	<definition name="application/edit" extends="master.page">	
-		<put-attribute name="title" value="Handy Worker: Edit an application" />
+		<put-attribute name="title" value="Edit an application" />
 		<put-attribute name="body" value="/views/application/edit.jsp" />
 	</definition>
 	

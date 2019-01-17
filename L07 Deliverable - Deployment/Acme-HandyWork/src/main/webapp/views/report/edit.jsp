@@ -28,22 +28,22 @@
 	<form:hidden path="id" />
 	<form:hidden path="version" />
 	<form:hidden path="moment" />
-	<form:hidden path="complaint"/>
+	<form:hidden path="complaint" />
 	<jstl:if test="${report.id == 0}">
-	<form:hidden path="finalMode"/>
+		<form:hidden path="finalMode" />
 	</jstl:if>
 
 	<form:label path="moment">
 		<spring:message code="report.moment" />
 	</form:label>
-	<form:input path="moment" readonly="true"/>
+	<form:input path="moment" readonly="true" />
 	<form:errors cssClass="error" path="moment" />
 	<br />
-	
+
 	<form:label path="description">
 		<spring:message code="report.description" />
 	</form:label>
-	<form:input path="description" />
+	<form:textarea path="description" />
 	<form:errors cssClass="error" path="description" />
 	<br />
 
@@ -53,17 +53,17 @@
 	<form:input path="attachments" />
 	<form:errors cssClass="error" path="attachments" />
 	<br />
-	
-<jstl:if test="${report.id != 0}">
-	<form:label path="finalMode">
-		<spring:message code="report.finalMode" />
-	</form:label>
 
-	<form:checkbox path="finalMode" />
-</jstl:if>
-<br />
+	<jstl:if test="${report.id != 0}">
+		<form:label path="finalMode">
+			<spring:message code="report.finalMode" />
+		</form:label>
+
+		<form:checkbox path="finalMode" />
+	</jstl:if>
+	<br />
 	<input type="submit" name="save"
-			value="<spring:message code="report.save" />" />
+		value="<spring:message code="report.save" />" />
 </form:form>
 
 <input type="submit" name="cancel"

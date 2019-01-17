@@ -24,5 +24,5 @@ public interface FixUpTaskRepository extends JpaRepository<FixUpTask, Integer> {
 	Collection<FixUpTask> getFixUpTasksByHandyWorker(int id);
 
 	@Query("select a from FixUpTask f join f.application a where f.id=?1 and a.status='accepted'")
-	Collection<Application> getAcceptedAppsByFixUp(int fixUpId);
+	Application getAcceptedAppsByFixUp(int fixUpId);
 }
