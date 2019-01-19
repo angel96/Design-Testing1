@@ -48,7 +48,12 @@
 				code="category.delete" /></a>
 
 	</display:column>
+	<display:column titleKey="category.edit">
 
+		<a href="category/administrator/edit.do?parent=${row.id}"><spring:message
+				code="category.edit" /></a>
+
+	</display:column>
 	<security:authorize access="hasRole('ADMIN')">
 		<display:column>
 			<a href="category/administrator/create.do?parent=${row.id}"><spring:message

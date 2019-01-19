@@ -2,8 +2,6 @@
 drop database if exists `Acme-HandyWork`;
 create database `Acme-HandyWork`;
 use `Acme-HandyWork`;
-drop user 'acme-user'@'%';
-drop user 'acme-manager'@'%';
 create user 'acme-user'@'%'identified by 'ACME-Us3r-P@ssw0rd';
 create user 'acme-manager'@'%' identified by 'ACME-M@n@ger-6874';
 grant select, insert, update, delete on `Acme-HandyWork`.* to 'acme-user'@'%';

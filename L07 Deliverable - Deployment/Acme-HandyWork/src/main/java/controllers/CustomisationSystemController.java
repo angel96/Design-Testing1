@@ -16,7 +16,7 @@ import domain.CustomisationSystem;
 
 @Controller
 @RequestMapping("/customisation/administrator")
-public class CustomisationSystemController {
+public class CustomisationSystemController extends AbstractController {
 
 	@Autowired
 	private CustomisationSystemService	serviceCustom;

@@ -36,36 +36,36 @@ public class EndorserRecordController extends AbstractController {
 	}
 
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
-	public ModelAndView submit(@Valid final EndorserRecord endorser, final BindingResult binding) {
+	public ModelAndView submit(@Valid final EndorserRecord endorserRecord, final BindingResult binding) {
 		ModelAndView model;
 
 		if (binding.hasErrors()) {
-			model = this.createEditModelAndView(endorser);
+			model = this.createEditModelAndView(endorserRecord);
 			model.addObject("errors", binding.getAllErrors());
 			model.addObject("errores", binding);
 		} else
 			try {
-				this.endorserService.save(endorser);
+				this.endorserService.save(endorserRecord);
 				model = new ModelAndView("redirect:/curriculum/handyworker/list.do");
 			} catch (final Throwable oops) {
-				model = this.createEditModelAndView(endorser, "endorser.commit.error");
+				model = this.createEditModelAndView(endorserRecord, "endorser.commit.error");
 				model.addObject("oops", oops.getMessage());
 				model.addObject("errors", binding.getAllErrors());
 			}
 		return model;
 	}
 
-	protected ModelAndView createEditModelAndView(final EndorserRecord endorser) {
+	protected ModelAndView createEditModelAndView(final EndorserRecord endorserRecord) {
 		ModelAndView result;
-		result = this.createEditModelAndView(endorser, null);
+		result = this.createEditModelAndView(endorserRecord, null);
 
 		return result;
 	}
 
-	protected ModelAndView createEditModelAndView(final EndorserRecord endorser, final String message) {
+	protected ModelAndView createEditModelAndView(final EndorserRecord endorserRecord, final String message) {
 		ModelAndView result;
 		result = new ModelAndView("endorserrecord/edit");
-		result.addObject("endorserrecord", endorser);
+		result.addObject("endorserRecord", endorserRecord);
 		result.addObject("message", message);
 		return result;
 	}

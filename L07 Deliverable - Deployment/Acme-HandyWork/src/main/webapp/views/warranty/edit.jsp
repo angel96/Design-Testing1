@@ -57,8 +57,10 @@
 	<jstl:if test="${warranty.draftMode}">
 		<input type="submit" name="save"
 			value="<spring:message code="warranty.save" />" />
-		<input type="submit" name="delete"
-			value="<spring:message code="warranty.delete" />" />
+		<jstl:if test="${warranty.id != 0}">
+			<input type="submit" name="delete"
+				value="<spring:message code="warranty.delete" />" />
+		</jstl:if>
 	</jstl:if>
 
 

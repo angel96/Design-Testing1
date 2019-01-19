@@ -24,7 +24,7 @@ import domain.FixUpTask;
 @RequestMapping(value = {
 	"application/customer", "application/handyworker"
 })
-public class ApplicationController {
+public class ApplicationController extends AbstractController {
 
 	@Autowired
 	private ApplicationService	appService;
@@ -36,6 +36,7 @@ public class ApplicationController {
 	public ModelAndView list() {
 		ModelAndView result;
 		result = new ModelAndView("application/list");
+		this.appService.elapsedApplications(LoginService.getPrincipal().getId());
 		result.addObject("applications", this.appService.getApplicationsByHandyWorker(LoginService.getPrincipal().getId()));
 		if (Utiles.findAuthority(LoginService.getPrincipal().getAuthorities(), Authority.CUSTOMER))
 			result.addObject("requestURI", "application/customer/list.do");
@@ -48,6 +49,7 @@ public class ApplicationController {
 	public ModelAndView listByFixUp(@RequestParam final int fixUpId) {
 		ModelAndView result;
 		result = new ModelAndView("application/list");
+		this.appService.elapsedApplicationsByFixUpTask(LoginService.getPrincipal().getId(), fixUpId);
 		result.addObject("applications", this.appService.getApplicationsByFixUp(LoginService.getPrincipal().getId(), fixUpId));
 		result.addObject("requestURI", "application/customer/listByFixUp.do");
 		return result;
@@ -66,6 +68,7 @@ public class ApplicationController {
 			result.addObject("requestURI", "application/customer/edit.do");
 		else if (Utiles.findAuthority(LoginService.getPrincipal().getAuthorities(), Authority.HANDY_WORKER))
 			result.addObject("requestURI", "application/handyworker/edit.do");
+
 		return result;
 	}
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")

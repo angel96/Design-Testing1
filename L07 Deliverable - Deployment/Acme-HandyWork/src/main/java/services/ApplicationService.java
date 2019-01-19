@@ -37,6 +37,19 @@ public class ApplicationService {
 	private MesageService			serviceMesage;
 
 
+	public void elapsedApplications(final int id) {
+		Collection<Application> result;
+		result = this.applicationRepository.elapsedApplications(id);
+		for (final Application app : result)
+			app.setStatus("elapsed");
+	}
+
+	public void elapsedApplicationsByFixUpTask(final int idCustomer, final int fixuptask) {
+		Collection<Application> result;
+		result = this.applicationRepository.getApplicationsByFixUpTaskElapsed(idCustomer, fixuptask);
+		for (final Application app : result)
+			app.setStatus("elapsed");
+	}
 	public Collection<Application> getApplicationsByHandyWorker(final int accountId) {
 		return this.applicationRepository.getApplicationsByHandyWorker(accountId);
 	}
@@ -54,11 +67,16 @@ public class ApplicationService {
 	}
 
 	public Application findOne(final int id) {
+		UserAccount user;
+		user = LoginService.getPrincipal();
+		if (Utiles.findAuthority(user.getAuthorities(), Authority.HANDY_WORKER))
+			Assert.isTrue(this.applicationRepository.getApplicationsByHandyWorker(user.getId()).contains(this.applicationRepository.findOne(id)));
+		else if (Utiles.findAuthority(user.getAuthorities(), Authority.CUSTOMER))
+			Assert.isTrue(this.applicationRepository.getApplicationsByCustomer(user.getId()).contains(this.applicationRepository.findOne(id)));
 		Application a;
 		a = this.applicationRepository.findOne(id);
 		return a;
 	}
-
 	public Collection<Application> findAll() {
 		return this.applicationRepository.findAll();
 	}
@@ -67,7 +85,7 @@ public class ApplicationService {
 		a = new Application();
 		a.setFixUpTask(f);
 		a.setMoment(new Date());
-		a.setMomentElapsed(new Date());
+		a.setMomentElapsed(f.getEnd());
 		a.setOfferedPrice(0.0);
 		a.setStatus("pending");
 		a.setCreditCard(Utiles.createFakeCreditCard());
@@ -99,10 +117,11 @@ public class ApplicationService {
 
 		if (saved.getStatus().equals("accepted"))
 			for (final Application app : f.getApplication())
-				if (app != saved)
+				if (app != saved && !app.getStatus().equals("elapsed"))
 					app.setStatus("rejected");
 
 		if (Utiles.findAuthority(user.getAuthorities(), Authority.HANDY_WORKER)) {
+
 			HandyWorker h;
 			h = this.serviceHWorker.findByUserAccount(user.getId());
 

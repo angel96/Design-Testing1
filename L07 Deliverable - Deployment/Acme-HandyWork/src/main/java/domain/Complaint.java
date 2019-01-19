@@ -6,6 +6,8 @@ import java.util.Date;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -13,7 +15,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.Pattern;
 
 import org.hibernate.validator.constraints.NotBlank;
@@ -27,13 +28,14 @@ public class Complaint extends DomainEntity {
 	private String				ticker;
 	private Date				moment;
 	private String				description;
-	private Integer				attachment;
+	private Collection<String>	attachment;
 	private Collection<Report>	report;
 	private Referee				referee;
 
 
 	@Pattern(regexp = "^\\d{4}(0[1-9]|1[012])(0[1-9]|[12][0-9]|3[01])-[\\w]{6}$")
 	@NotBlank
+	@Column(unique = true)
 	public String getTicker() {
 		return this.ticker;
 	}
@@ -58,12 +60,13 @@ public class Complaint extends DomainEntity {
 	public void setDescription(final String description) {
 		this.description = description;
 	}
-	@Min(value = 0)
-	public Integer getAttachment() {
+
+	@ElementCollection
+	public Collection<String> getAttachment() {
 		return this.attachment;
 	}
 
-	public void setAttachment(final Integer attachment) {
+	public void setAttachment(final Collection<String> attachment) {
 		this.attachment = attachment;
 	}
 	@OneToMany(mappedBy = "complaint")

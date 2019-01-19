@@ -44,12 +44,6 @@
 <input type="submit" name="save"
 			value="<spring:message code="endorsement.save" />" />
 
- <jstl:forEach items="${errors}" var="error">
-		<jstl:out value="${error}" />
-	</jstl:forEach>
-	<jstl:out value="${oops}" />
-	<jstl:out value="${message}" />
-
 </form:form>
 <input type="submit" name="cancel" value="<spring:message code ="endorsement.cancel"/>"
 	onclick="javascript: relativeRedir('endorsement/${role}/list.do');" />

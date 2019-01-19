@@ -68,7 +68,7 @@
 <form:label path="attachment">
 	<spring:message code="education.attachment" />
 </form:label>
-<form:input path="attachment"  />
+<form:input path="attachment"  placeholder="http://..."/>
 <form:errors cssClass="error" path="attachment" />
 <br />
 
@@ -80,13 +80,6 @@
 <spring:message code="education.comments.place" />
 <form:errors cssClass="error" path="comments" />
 <br />
-
-
-<jstl:forEach items="${errors}" var="error">
-		<jstl:out value="${error}" />
-	</jstl:forEach>
-	<jstl:out value="${oops}" />
-	<jstl:out value="${message}" />
 
 <security:authorize access="hasRole('HANDY_WORKER')">
 <input type="submit" name="save"

@@ -18,7 +18,7 @@ import domain.Box;
 
 @Controller
 @RequestMapping("/box")
-public class BoxController {
+public class BoxController extends AbstractController {
 
 	@Autowired
 	private BoxService	serviceBox;

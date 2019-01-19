@@ -36,7 +36,6 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
 <p>
-	<spring:message code="fixUpTask.action.2" />
 	<jstl:set var="lang" value="${lang}" />
 </p>
 
@@ -47,7 +46,11 @@
 	<form:hidden path="version" />
 	<form:hidden path="ticker" />
 	<form:hidden path="moment" />
-
+	<form:label path="ticker">
+		<spring:message code="fixuptask.tickers" />
+	</form:label>
+	: <jstl:out value="${fixUpTask.ticker}" />
+	<br>
 	<form:label path="description">
 		<spring:message code="fixuptask.description" />
 	</form:label>
@@ -101,11 +104,11 @@
 	</form:select>
 
 	<security:authorize access="hasRole('HANDY_WORKER')">
-		<jstl:if test="${res}">
+		<jstl:if test="${res eq true}">
 			<form:label path="application">
 				<spring:message code="fixuptask.application" />
 			</form:label>
-			<a href="application/handyworker/create.do?fixUpId=${fixuptask.id}"><spring:message
+			<a href="application/handyworker/create.do?fixUpId=${fixUpTask.id}"><spring:message
 					code="fixuptask.apply" /></a>
 		</jstl:if>
 	</security:authorize>
@@ -119,26 +122,11 @@
 				value="<spring:message code="fixuptask.delete" />" />
 		</jstl:if>
 	</security:authorize>
+	<security:authorize access="hasRole('HANDY_WORKER')">
+		<a href="customer/handyworker/show.do?fixup=${fixUpTask.id}"><spring:message
+				code="fixuptask.customer" /></a>
+	</security:authorize>
 
-	<a href="customer/handyworker/show.do?fixup=${fixUpTask.id}"><spring:message
-			code="fixuptask.customer" /></a>
-
-	<h2>
-		<spring:message code="phase.title" />
-	</h2>
-
-	<jstl:if test="${fixuptask.id != 0}">
-		<display:table name="phases" id="row" requestURI="${requestURI}"
-			pagesize="5" class="displaytag">
-
-			<display:column property="number" titleKey="phase.number" />
-			<display:column property="title" titleKey="phase.title" />
-			<display:column property="description" titleKey="phase.description" />
-			<display:column property="startMoment" titleKey="phase.startMoment" />
-			<display:column property="endMoment" titleKey="phase.endMoment" />
-
-		</display:table>
-	</jstl:if>
 </form:form>
 
 <security:authorize access="hasRole('CUSTOMER')">

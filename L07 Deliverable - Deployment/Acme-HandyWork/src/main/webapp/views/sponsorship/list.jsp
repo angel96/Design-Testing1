@@ -25,6 +25,7 @@
 <display:table name="sponsorships" id="row" requestURI="${requestURI}"
 	pagesize="5" class="displaytag">
 
+
 	<display:column titleKey="sponsorship.urlBanner">
 		<img src="${row.urlBanner}" height="50" width="75" />
 	</display:column>

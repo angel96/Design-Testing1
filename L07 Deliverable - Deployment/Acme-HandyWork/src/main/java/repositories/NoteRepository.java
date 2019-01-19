@@ -37,7 +37,7 @@ public interface NoteRepository extends JpaRepository<Note, Integer> {
 	@Query("select a from Referee a where a.account.id = ?1")
 	Referee findRefereeByUserAccountId(int id);
 	//find de los tres actores referenciados
-	@Query("select distinct n from HandyWorker h join h.application a join a.fixUpTask f join f.complaint c join c.report r join r.notes n where r.finalMode = true and h.id = ?1 and a.status = 'accepted'")
+	@Query("select distinct n from HandyWorker h join h.application a join a.fixUpTask f join f.complaint c join c.report r join r.notes n where r.finalMode = true and h.id = ?1")
 	Collection<Note> selectNoteReferenceHandy(int id);
 
 	@Query("select distinct n from Customer c join c.complaint g join g.report r join r.notes n where r.finalMode = true and c.id = ?1")

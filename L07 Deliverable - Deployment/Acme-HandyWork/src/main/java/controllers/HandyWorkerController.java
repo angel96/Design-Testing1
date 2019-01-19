@@ -35,17 +35,18 @@ public class HandyWorkerController extends AbstractController {
 		ModelAndView model;
 
 		model = this.createEditModelAndView(this.serviceHandyWorker.createHandyWorker());
+		model.addObject("view", false);
 
 		return model;
 
 	}
 	@RequestMapping(value = "/show", method = RequestMethod.GET)
-	public ModelAndView show(@RequestParam final int tutorial) {
+	public ModelAndView show(@RequestParam(defaultValue = "false") final boolean check, @RequestParam final int tutorial) {
 		ModelAndView result;
 
 		result = new ModelAndView("handyworker/edit");
 		result.addObject("view", true);
-		final HandyWorker hw = this.serviceHandyWorker.findHandyWorkerByTutorial(tutorial);
+		final HandyWorker hw = this.serviceHandyWorker.findHandyWorkerByTutorial(check, tutorial);
 
 		result.addObject("handyWorker", hw);
 
@@ -81,22 +82,25 @@ public class HandyWorkerController extends AbstractController {
 		find = this.serviceHandyWorker.findByUserAccount(LoginService.getPrincipal().getId());
 
 		result = this.createEditModelAndView(find);
-
+		result.addObject("view", false);
 		return result;
 	}
 	// Create edit model and view
-	protected ModelAndView createEditModelAndView(final HandyWorker handyworker) {
+	protected ModelAndView createEditModelAndView(final HandyWorker handyWorker) {
 		ModelAndView model;
-		model = this.createEditModelAndView(handyworker, null);
+		model = this.createEditModelAndView(handyWorker, null);
 		return model;
 	}
 
-	protected ModelAndView createEditModelAndView(final HandyWorker handyworker, final String message) {
+	protected ModelAndView createEditModelAndView(final HandyWorker handyWorker, final String message) {
 		ModelAndView result;
 		result = new ModelAndView("handyworker/edit");
 
-		result.addObject("handyWorker", handyworker);
+		result.addObject("handyWorker", handyWorker);
 		result.addObject("message", message);
+		if (handyWorker.getId() == 0)
+			result.addObject("view", false);
+
 		return result;
 	}
 }

@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 import security.LoginService;
 import services.ComplaintService;
 import domain.Complaint;
+import domain.FixUpTask;
 
 @Controller
 @RequestMapping(value = {
@@ -58,9 +59,7 @@ public class ComplaintController extends AbstractController {
 		ModelAndView result;
 		result = this.createEditModelAndView(this.serviceComplaint.createComplaint());
 		result.addObject("view", view);
-		result.addObject("idFix", idFix);
-		System.out.println(result);
-		result.addObject("requestURI", "complaint/customer/edit.do");
+		result.addObject("requestURI", "complaint/customer/edit.do?idFix=" + idFix);
 		return result;
 	}
 
@@ -70,6 +69,7 @@ public class ComplaintController extends AbstractController {
 
 		if (binding.hasErrors()) {
 			model = this.createEditModelAndView(complaint);
+			model.addObject("requestURI", "complaint/customer/edit.do?idFix=" + idFix);
 			model.addObject("errores", binding.getAllErrors());
 			model.addObject("errores", binding);
 		} else
@@ -79,6 +79,7 @@ public class ComplaintController extends AbstractController {
 				model = new ModelAndView("redirect:list.do");
 			} catch (final Throwable oops) {
 				model = this.createEditModelAndView(complaint, "complaint.commit.error");
+				model.addObject("requestURI", "complaint/customer/edit.do?idFix=" + idFix);
 				model.addObject("oops", oops.getMessage());
 				model.addObject("errors", binding.getAllErrors());
 			}
@@ -89,6 +90,7 @@ public class ComplaintController extends AbstractController {
 	public ModelAndView updateComplaint(@RequestParam final int id) {
 		ModelAndView result;
 		this.serviceComplaint.update(id);
+
 		result = new ModelAndView("redirect:list.do");
 		return result;
 	}
@@ -99,6 +101,8 @@ public class ComplaintController extends AbstractController {
 		Complaint find;
 		find = this.serviceComplaint.findOne(id);
 		result = this.createEditModelAndView(find);
+		final FixUpTask t = this.serviceComplaint.getFixUpTaskByComplaint(id);
+		result.addObject("requestURI", "complaint/customer/edit.do?idFix=" + t.getId());
 		result.addObject("view", view);
 		return result;
 	}

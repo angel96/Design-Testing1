@@ -63,10 +63,10 @@ public class CustomisationSystemService {
 		return this.repositoryCustomisationSystem.save(custom);
 	}
 
-	public Map<String, Double> dashboardRatioApplications() {
+	public Map<String, Long> dashboardRatioApplications() {
 		Assert.isTrue(Utiles.findAuthority(LoginService.getPrincipal().getAuthorities(), Authority.ADMIN));
-		Map<String, Double> result;
-		result = new HashMap<String, Double>();
+		Map<String, Long> result;
+		result = new HashMap<String, Long>();
 
 		result.put("RatioPendingApplications", this.repositoryCustomisationSystem.findRatioOfPendingApplications());
 		result.put("RatioAcceptedApplications", this.repositoryCustomisationSystem.findRationOfAcceptedAplications());
@@ -80,8 +80,7 @@ public class CustomisationSystemService {
 		Assert.isTrue(Utiles.findAuthority(LoginService.getPrincipal().getAuthorities(), Authority.ADMIN));
 		Map<String, double[]> result;
 		result = new HashMap<String, double[]>();
-		//		final String s = this.repositoryCustomisationSystem.findFixUpTaskPerUser();
-		//		System.out.println(s);
+
 		result.put("FixUpTaskPerUser", Utiles.convertToArrayDoubleFromString(this.repositoryCustomisationSystem.findFixUpTaskPerUser()));
 		result.put("ApplicationsPerFixUpTask", Utiles.convertToArrayDoubleFromString(this.repositoryCustomisationSystem.findApplicationPerFixUpTask()));
 		result.put("MaximumPriceFixUpTask", Utiles.convertToArrayDoubleFromString(this.repositoryCustomisationSystem.findMaximumPricePerFixUpTask()));
@@ -98,10 +97,18 @@ public class CustomisationSystemService {
 
 		result = new HashMap<String, Collection<? extends Actor>>();
 
+		Collection<Customer> customers = this.repositoryCustomisationSystem.topTreeCustomerOrderByComplaints();
+		Collection<HandyWorker> handyWorkers = this.repositoryCustomisationSystem.topTreeHandyWorkerOrderByComplaints();
+
+		if (!customers.isEmpty())
+			customers = new ArrayList<Customer>(this.repositoryCustomisationSystem.topTreeCustomerOrderByComplaints()).subList(0, 3);
+		if (!handyWorkers.isEmpty())
+			handyWorkers = new ArrayList<HandyWorker>(this.repositoryCustomisationSystem.topTreeHandyWorkerOrderByComplaints()).subList(0, 3);
+
 		result.put("customersWith10PerCentMoreFixUpPublishedThanAvgOrderApps", this.repositoryCustomisationSystem.findCustomers10PerCentMoreFixUpThanAvgOrderApplication());
 		result.put("HandyWorkersWith10PerCentMoreAppsPublishedThanAvgOrderApps", this.repositoryCustomisationSystem.findHandyWorkers10PerCentMoreAppsThanAvgAcepptedOrderApplication());
-		result.put("topThreeCustomerOrderByComplaints", new ArrayList<Customer>(this.repositoryCustomisationSystem.topTreeCustomerOrderByComplaints()).subList(0, 3));
-		result.put("topThreeHandyWorkerOrderByComplaints", new ArrayList<HandyWorker>(this.repositoryCustomisationSystem.topTreeHandyWorkerOrderByComplaints()).subList(0, 3));
+		result.put("topThreeCustomerOrderByComplaints", customers.isEmpty() ? new ArrayList<Customer>() : customers);
+		result.put("topThreeHandyWorkerOrderByComplaints", handyWorkers.isEmpty() ? new ArrayList<HandyWorker>() : handyWorkers);
 
 		return result;
 	}

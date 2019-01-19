@@ -119,15 +119,14 @@
 		<form:label path="picture">
 			<spring:message code="tutorial.picture" />
 		</form:label>
-		<form:textarea path="picture" readonly="${view}" />
+		<form:textarea path="picture" readonly="${view}" placeholder="http://..."/>
 		<form:errors cssClass="error" path="picture"></form:errors>
-		<br /> <a href="handyworker/show.do?tutorial=${tutorial.id}"><spring:message
-				code="tutorial.handy" /></a>
-		<jstl:forEach items="${errors}" var="error">
-			<jstl:out value="${error}" />
-		</jstl:forEach>
-		<jstl:out value="${oops}" />
-		<jstl:out value="${message}" />
+		<jstl:if test="${tutorial.id != 0}">
+			<br />
+			<a href="handyworker/show.do?check=true&tutorial=${tutorial.id}"><spring:message
+					code="tutorial.handy" /></a>
+		</jstl:if>
+		
 		<security:authorize access="hasRole('HANDY_WORKER')">
 			<input type="submit" name="save"
 				value="<spring:message code ="tutorial.save"/>" />
@@ -138,13 +137,15 @@
 		</security:authorize>
 		</br>
 	</div>
-	<div id="slider">
-		<ul>
-			<jstl:forEach items="${tutorial.sponsorship}" var="s">
-				<li><img src="${s.urlBanner}" height="150" width="200" /></li>
-			</jstl:forEach>
-		</ul>
-	</div>
+	<jstl:if test="${tutorial.id != 0}">
+		<div id="slider">
+			<ul>
+				<jstl:forEach items="${tutorial.sponsorship}" var="s">
+					<li><img src="${s.urlBanner}" height="150" width="200" /></li>
+				</jstl:forEach>
+			</ul>
+		</div>
+	</jstl:if>
 </form:form>
 
 <input type="submit" name="cancel"

@@ -19,12 +19,14 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
 <security:authorize access="hasRole('ADMIN')">
-	<form:form action="category/administrator/edit.do?parent=${parent}"
+	<form:form action="${requestURI}"
 		modelAttribute="category">
 
 		<form:hidden path="id" />
 		<form:hidden path="version" />
-
+		<jstl:if test="${category.id != 0}">
+			<form:hidden path="categories" />
+		</jstl:if>
 		<form:label path="name">
 			<spring:message code="category.name" />
 		</form:label>
@@ -36,12 +38,13 @@
 		</form:label>
 		<form:textarea path="otherlanguages" />
 		<form:errors cssClass="error" path="otherlanguages"></form:errors>
+		<spring:message code="category.other.note" />
 		<br />
 
-		
-			<input type="submit" name="save"
-				value="<spring:message code="category.save" />" />
-				<jstl:if test="${category.id != 0}">
+
+		<input type="submit" name="save"
+			value="<spring:message code="category.save" />" />
+		<jstl:if test="${category.id != 0}">
 			<input type="submit" name="delete"
 				value="<spring:message code="category.delete" />" />
 		</jstl:if>

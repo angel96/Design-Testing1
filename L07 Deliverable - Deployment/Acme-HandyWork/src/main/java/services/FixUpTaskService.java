@@ -47,10 +47,9 @@ public class FixUpTaskService {
 		return this.fixUpTaskRepository.getFixUpTasksByHandyWorker(id);
 	}
 
-	public Collection<Application> getAcceptedAppsByFixUp(final int fixUpId) {
-		Collection<Application> apps;
+	public Application getAcceptedAppsByFixUp(final int fixUpId) {
+		Application apps;
 		apps = this.fixUpTaskRepository.getAcceptedAppsByFixUp(fixUpId);
-		Assert.notNull(apps);
 		return apps;
 	}
 	public Collection<FixUpTask> findAll() {

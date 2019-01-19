@@ -14,6 +14,17 @@
 			dateFormat : "yy/mm/dd"
 		});
 	});
+	$(document).ready(function() {
+
+		var s = $("#sponsorshipId").val();
+		if (parseInt(s) == 0) {
+			$("#holdername").val("");
+			$("#brandname").val("");
+			$("#number").val("");
+			$("#cvv").val("");
+		}
+
+	});
 </script>
 <%@page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
@@ -27,7 +38,7 @@
 
 <form:form name="form" action="${requestURI}"
 	modelAttribute="sponsorship">
-	<form:hidden path="id" />
+	<form:hidden path="id" id="sponsorshipId" />
 	<form:hidden path="version" />
 	<form:hidden path="sponsor" />
 	<form:hidden path="tutorial" />
@@ -35,14 +46,14 @@
 	<form:label path="urlBanner">
 		<spring:message code="sponsorship.urlBanner" />
 	</form:label>
-	<form:input path="urlBanner" readonly="${view}" />
+	<form:input path="urlBanner" readonly="${view}" placeholder="http://..."/>
 	<form:errors cssClass="error" path="urlBanner" />
 	<br />
 
 	<form:label path="linkTPage">
 		<spring:message code="sponsorship.linkTPage" />
 	</form:label>
-	<form:input path="linkTPage" readonly="${view}" />
+	<form:input path="linkTPage" readonly="${view}" placeholder="http://..."/>
 	<form:errors cssClass="error" path="linkTPage" />
 
 	<br />
@@ -52,35 +63,34 @@
 			<form:label path="creditCard.holderName">
 				<spring:message code="application.creditcard.holdername" />
 			</form:label>
-			<form:input path="creditCard.holderName" />
-			<form:errors cssClass="error" path="holderName" />
+			<form:input path="creditCard.holderName" id="holdername" />
 			<br>
 			<form:label path="creditCard.brandName">
 				<spring:message code="application.creditcard.brandname" />
 			</form:label>
-			<form:input path="creditCard.brandName" />
-			<form:errors cssClass="error" path="brandName" />
+			<form:input path="creditCard.brandName" id="brandname" />
 			<br>
 
 			<form:label path="creditCard.number">
 				<spring:message code="application.creditcard.number" />
 			</form:label>
-			<form:input path="creditCard.number" />
-			<form:errors cssClass="error" path="comments" />
+			<form:input path="creditCard.number" id="number" />
 			<br>
 			<form:label path="creditCard.expiration">
 				<spring:message code="application.creditcard.expiration" />
 			</form:label>
-			<form:input path="creditCard.expiration" id="datepicker-1"/>
+			<form:input path="creditCard.expiration" id="datepicker-1" />
+			<form:errors cssClass="error" path="creditCard.expiration" />
+			<form:label path="creditCard.codeCVV">
+				<spring:message code="application.creditcard.codeCVV" />
+			</form:label>
+			<form:input path="creditCard.codeCVV" id = "cvv"/>
+			<form:errors cssClass="error" path="creditCard.codeCVV" />
 		</div>
 	</security:authorize>
 
 	<br />
-	<jstl:forEach items="${errors}" var="error">
-		<jstl:out value="${error}" />
-	</jstl:forEach>
-	<jstl:out value="${oops}" />
-	<jstl:out value="${message}" />
+
 	<security:authorize access="hasRole('SPONSOR')">
 		<input type="submit" name="save"
 			value="<spring:message code ="sponsorship.save"/>" />

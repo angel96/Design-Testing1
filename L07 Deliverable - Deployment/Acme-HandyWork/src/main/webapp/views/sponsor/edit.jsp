@@ -35,7 +35,6 @@
 	<form:hidden path="id" />
 	<form:hidden path="version" />
 	<jstl:if test="${sponsor.id != 0}">
-		<form:hidden path="profiles" />
 		<form:hidden path="sponsorship" />
 		<form:hidden path="boxes" />
 	</jstl:if>
@@ -68,14 +67,14 @@
 	<form:label path="phone">
 		<spring:message code="spons.phone"></spring:message>
 	</form:label>
-	<form:input path="phone" id = "phone"/>
+	<form:input path="phone" id = "phone" placeholder="XXXXXXXXX"/>
 	<form:errors cssClass="error" path="phone" />
 	<br>
 
 	<form:label path="email">
 		<spring:message code="spons.email"></spring:message>
 	</form:label>
-	<form:input path="email" />
+	<form:input path="email" placeholder="example@example.com"/>
 	<form:errors cssClass="error" path="email"></form:errors>
 	<br>
 
@@ -89,7 +88,7 @@
 	<form:label path="photo">
 		<spring:message code="spons.photo"></spring:message>
 	</form:label>
-	<form:input path="photo" />
+	<form:input path="photo" placeholder="http://..."/>
 	<form:errors cssClass="error" path="photo" />
 	<br>
 
@@ -107,12 +106,6 @@
 	<form:errors cssClass="error" path="account.password"></form:errors>
 	<br>
 
-	<jstl:forEach items="${errors}" var="error">
-		<jstl:out value="${error}" />
-	</jstl:forEach>
-	<jstl:out value="${oops}" />
-	<jstl:out value="${message}" />
-
 	<input type="submit" name="save"
 		value="<spring:message code="spons.save"/>" />
 
@@ -120,4 +113,4 @@
 
 <input type="button" name="cancel"
 	value="<spring:message code="spons.cancel"/>"
-	onclick="javascript:relativeRedir('/welcome/index.jsp');" />
+	onclick="javascript:relativeRedir('/welcome/index.do');" />

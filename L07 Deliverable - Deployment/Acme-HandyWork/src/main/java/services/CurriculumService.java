@@ -2,7 +2,6 @@
 package services;
 
 import java.util.ArrayList;
-import java.util.Collection;
 
 import javax.transaction.Transactional;
 
@@ -32,19 +31,22 @@ public class CurriculumService {
 
 
 	public HandyWorker getHandyByUserAccount(final int id) {
+		Assert.isTrue(Utiles.findAuthority(LoginService.getPrincipal().getAuthorities(), Authority.HANDY_WORKER));
 		return this.curriculumRepository.findHandyByUserAccountId(id);
 	}
 
 	public Profile getLinkedInProfile(final int id) {
-		return this.curriculumRepository.findLinkedInByHandyWorkerId(id);
-	}
-
-	public Collection<Curriculum> findAll() {
-		return this.curriculumRepository.findAll();
+		final Profile p = this.curriculumRepository.findLinkedInByHandyWorkerId(id);
+		final HandyWorker w = this.getHandyByUserAccount(LoginService.getPrincipal().getId());
+		Assert.isTrue(Utiles.findAuthority(w.getAccount().getAuthorities(), Authority.HANDY_WORKER));
+		return p;
 	}
 
 	public Curriculum findOne(final int idCurriculum) {
-		return this.curriculumRepository.findOne(idCurriculum);
+		final Curriculum c = this.curriculumRepository.findOne(idCurriculum);
+		final HandyWorker w = this.getHandyByUserAccount(LoginService.getPrincipal().getId());
+		Assert.isTrue(Utiles.findAuthority(w.getAccount().getAuthorities(), Authority.HANDY_WORKER) && w.getCurriculum().equals(c));
+		return c;
 	}
 
 	public Curriculum createCurriculum() {

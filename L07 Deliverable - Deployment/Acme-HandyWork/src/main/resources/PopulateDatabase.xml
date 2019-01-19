@@ -3416,7 +3416,9 @@
 			</bean>
 		</property>
 		<property name="description" value="Queja numelo 1"></property>
-		<property name="attachment" value="1"></property>
+		<property name="attachment">
+			<list></list>
+		</property>
 		<property name="referee">
 			<ref bean="referee1"></ref>
 		</property>
@@ -3434,7 +3436,9 @@
 			</bean>
 		</property>
 		<property name="description" value="Queja numero 2"></property>
-		<property name="attachment" value="2"></property>
+		<property name="attachment">
+			<list></list>
+		</property>
 		<property name="referee">
 			<ref bean="referee2"></ref>
 		</property>
@@ -3445,14 +3449,16 @@
 		</property>
 	</bean>
 	<bean id="complaint3" class="domain.Complaint">
-		<property name="ticker" value="20181111-A32581"></property>
+		<property name="ticker" value="20181111-A32582"></property>
 		<property name="moment">
 			<bean factory-bean="dateFormat" factory-method="parse">
 				<constructor-arg value="2018/11/29" />
 			</bean>
 		</property>
 		<property name="description" value="Queja numero 3"></property>
-		<property name="attachment" value="3"></property>
+		<property name="attachment">
+			<list></list>
+		</property>
 		<property name="referee">
 			<ref bean="referee3"></ref>
 		</property>
@@ -3470,7 +3476,9 @@
 			</bean>
 		</property>
 		<property name="description" value="Queja numero 4"></property>
-		<property name="attachment" value="4"></property>
+		<property name="attachment">
+			<list></list>
+		</property>
 		<property name="referee">
 			<ref bean="referee4"></ref>
 		</property>
@@ -3488,7 +3496,9 @@
 			</bean>
 		</property>
 		<property name="description" value="Queja numero 5"></property>
-		<property name="attachment" value="6"></property>
+		<property name="attachment">
+			<list></list>
+		</property>
 		<property name="referee">
 			<ref bean="referee5"></ref>
 		</property>
@@ -3506,7 +3516,9 @@
 			</bean>
 		</property>
 		<property name="description" value="Queja numero 6"></property>
-		<property name="attachment" value="6"></property>
+		<property name="attachment">
+			<list></list>
+		</property>
 		<property name="report">
 			<list>
 				<!-- <ref bean="report1" /> -->

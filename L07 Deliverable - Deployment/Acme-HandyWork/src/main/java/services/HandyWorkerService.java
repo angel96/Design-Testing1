@@ -54,20 +54,24 @@ public class HandyWorkerService {
 		return this.repositoryHandyWorker.findHandyWorkersByCustomerId(id);
 	}
 
-	public HandyWorker findHandyWorkerByTutorial(final int id) {
+	public HandyWorker findHandyWorkerByTutorial(final boolean check, final int id) {
 		HandyWorker w;
 		w = this.repositoryHandyWorker.findHandyWorkerByTutorial(id);
-		final Collection<Endorsement> endorsements = this.serviceEndorsement.findEndorsementsByActorReceived(w);
-		if (endorsements.size() > 0)
-			w.setScore(Utiles.homotheticalTransformation(this.serviceEndorsement.findEndorsementsByActorReceived(w)));
-		else
-			w.setScore(0.0);
 
+		if (!check) {
+			final Collection<Endorsement> endorsements = this.serviceEndorsement.findEndorsementsByActorReceived(w);
+
+			if (!endorsements.isEmpty() || endorsements != null)
+				w.setScore(Utiles.homotheticalTransformation(this.serviceEndorsement.findEndorsementsByActorReceived(w)));
+			else
+				w.setScore(0.0);
+		}
+		System.out.println(w.getId());
 		return w;
 	}
 
 	public HandyWorker findOne(final int handy) {
-		Assert.isTrue(Utiles.findAuthority(LoginService.getPrincipal().getAuthorities(), Authority.HANDY_WORKER));
+		Assert.isTrue(Utiles.findAuthority(LoginService.getPrincipal().getAuthorities(), Authority.HANDY_WORKER) || Utiles.findAuthority(LoginService.getPrincipal().getAuthorities(), Authority.CUSTOMER));
 		HandyWorker saved;
 		saved = this.repositoryHandyWorker.findOne(handy);
 		Assert.notNull(saved);

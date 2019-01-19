@@ -171,7 +171,7 @@
 					<li class="arrow"></li>
 					<li><a href="fixuptask/handyworker/finder.do"><spring:message
 								code="master.page.handyworker.filter.search" /></a></li>
-								
+
 				</ul></li>
 			<li><a class="fNiv"><spring:message
 						code="master.page.handyworker.personalData" /></a>
@@ -268,7 +268,6 @@
 						property="principal.username" />)
 			</a>
 				<ul>
-					<li class="arrow"></li>
 					<li><a href="box/list.do"><spring:message
 								code="master.page.box" /></a></li>
 					<li><a href="profile/list.do"><spring:message
@@ -276,7 +275,7 @@
 					<li><a href="box/mess/create.do"><spring:message
 								code="master.page.sendmessage" /></a></li>
 					<li><a href="tutorial/list.do"><spring:message
-						code="master.page.tutorials" /></a></li>
+								code="master.page.tutorials" /></a></li>
 					<li><a href="j_spring_security_logout"><spring:message
 								code="master.page.logout" /> </a></li>
 				</ul></li>

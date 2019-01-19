@@ -5,6 +5,7 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.Assert;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -45,21 +46,26 @@ public class CategoryController extends AbstractController {
 		result = new ModelAndView("category/edit");
 		result.addObject("category", this.serviceCategory.createCategory());
 		result.addObject("parent", parent);
+		result.addObject("requestURI", "category/administrator/edit.do?parent=" + parent + "&check=true");
 		return result;
 	}
 
 	@RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
-	public ModelAndView edit(@RequestParam final int parent, @Valid final Category category, final BindingResult binding) {
+	public ModelAndView edit(@RequestParam final boolean check, @RequestParam final int parent, @Valid final Category category, final BindingResult binding) {
 		ModelAndView result;
 
 		if (binding.hasErrors())
 			result = this.createEditModelAndView(category);
 		else
 			try {
-				if (parent == 0)
+				if (check) {
+					if (parent == 0)
+						this.serviceCategory.saveParent(category);
+					else
+						this.serviceCategory.saveSubCategory(parent, category);
+
+				} else
 					this.serviceCategory.saveParent(category);
-				else
-					this.serviceCategory.saveSubCategory(parent, category);
 
 				result = new ModelAndView("redirect:list.do");
 			} catch (final Throwable oops) {
@@ -67,7 +73,17 @@ public class CategoryController extends AbstractController {
 			}
 		return result;
 	}
-
+	//Updating a warranty
+	@RequestMapping(value = "/edit", method = RequestMethod.GET)
+	public ModelAndView edit(@RequestParam final int parent) {
+		ModelAndView result;
+		Category aux;
+		aux = this.serviceCategory.findOne(parent);
+		Assert.notNull(aux);
+		result = this.createEditModelAndView(aux);
+		result.addObject("requestURI", "category/administrator/edit.do?parent=" + parent + "&check=false");
+		return result;
+	}
 	//Delete a category
 	@RequestMapping(value = "/delete", method = RequestMethod.GET)
 	public ModelAndView delete(final int cat) {

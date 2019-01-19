@@ -52,7 +52,7 @@ public class FixUpTaskController extends AbstractController {
 		if (Utiles.findAuthority(LoginService.getPrincipal().getAuthorities(), Authority.CUSTOMER)) {
 			result.addObject("fixuptasks", this.fixUpService.findAllByUser(LoginService.getPrincipal().getId()));
 			result.addObject("requestURI", "fixuptask/customer/list.do");
-			result.addObject("URI", "fixUpTask/customer/");
+			result.addObject("URI", "fixuptask/customer/");
 		} else if (Utiles.findAuthority(LoginService.getPrincipal().getAuthorities(), Authority.HANDY_WORKER)) {
 			result.addObject("fixuptasks", this.fixUpService.findAll());
 			result.addObject("requestURI", "fixuptask/handyworker/list.do");
@@ -94,7 +94,6 @@ public class FixUpTaskController extends AbstractController {
 		ModelAndView result;
 		if (bind.hasErrors()) {
 			result = this.createEditModelAndView(fixUpTask);
-			//			result.addObject("error", bind.getAllErrors());
 			result.addObject("errors", bind.getAllErrors());
 			if (lang == null)
 				result.addObject("lang", "en");
@@ -105,7 +104,7 @@ public class FixUpTaskController extends AbstractController {
 				this.fixUpService.save(fixUpTask);
 				result = new ModelAndView("redirect:list.do");
 			} catch (final Throwable oops) {
-				result = this.createEditModelAndView(fixUpTask, "fixUpTask.commit.error");
+				result = this.createEditModelAndView(fixUpTask, "fixuptask.commit.error");
 				result.addObject("oops", oops.getMessage());
 				result.addObject("errors", bind.getAllErrors());
 			}
@@ -130,7 +129,7 @@ public class FixUpTaskController extends AbstractController {
 		ModelAndView result;
 		FixUpTask find;
 		boolean res;
-		if (this.fixUpService.getAcceptedAppsByFixUp(id).size() == 0)
+		if (this.fixUpService.getAcceptedAppsByFixUp(id) == null)
 			res = true;
 		else
 			res = false;
@@ -138,7 +137,10 @@ public class FixUpTaskController extends AbstractController {
 		find = this.fixUpService.findOne(id);
 		result = this.createEditModelAndView(find);
 		result.addObject("view", view);
-		result.addObject("lang", lang);
+		if (lang == null)
+			result.addObject("lang", "en");
+		else
+			result.addObject("lang", lang);
 		result.addObject("res", res);
 		return result;
 	}
@@ -180,7 +182,7 @@ public class FixUpTaskController extends AbstractController {
 			try {
 				final Finder aux = this.serviceFinder.save(finder);
 				result = new ModelAndView("fixuptask/list");
-				result.addObject("requestURI", "fixUpTask/handyworker/searchList.do?id=" + aux.getId());
+				result.addObject("requestURI", "fixuptask/handyworker/searchList.do?id=" + aux.getId());
 				result.addObject("fixuptasks", this.fixUpService.findAllByFinder(aux));
 			} catch (final Throwable oops) {
 				result = this.editAndCreateFinderModelAndView(finder, "finder.commit.error");

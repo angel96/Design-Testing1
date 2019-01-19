@@ -66,7 +66,7 @@ public class SponsorshipController extends AbstractController {
 			try {
 				if (Boolean.valueOf(Utiles.checkCreditCard(sponsorship.getCreditCard().getNumber())[1])) {
 					this.serviceSponsorship.save(sponsorship);
-					result = new ModelAndView("redirect:list.do");
+					result = new ModelAndView("redirect:list.do?tutorial=0");
 				} else
 					result = this.createEditModelAndView(sponsorship, "sponsorship.error.creditcard");
 			} catch (final Throwable oops) {

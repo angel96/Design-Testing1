@@ -66,22 +66,22 @@
 	<form:hidden path="account.enabled" />
 	<form:hidden path="account.id" />
 	<form:hidden path="account.authorities" />
-	<form:hidden path="score" />
+	<%-- <form:hidden path="score" /> --%>
 
 
 	<form:label path="name">
 		<spring:message code="handy.name"></spring:message>
 
 	</form:label>
-	<form:input path="name" readonly="${view}" />
-	<form:errors cssClass="error" path="name" id="name" />
+	<form:input path="name" readonly="${view}" id="name" />
+	<form:errors cssClass="error" path="name" />
 	<br />
 
 	<form:label path="surname">
 		<spring:message code="handy.surname"></spring:message>
 	</form:label>
-	<form:input path="surname" readonly="${view}" />
-	<form:errors cssClass="error" path="surname" id="surname"></form:errors>
+	<form:input path="surname" readonly="${view}" id="surname"/>
+	<form:errors cssClass="error" path="surname" ></form:errors>
 	<br>
 
 	<form:label path="middleName">
@@ -94,7 +94,8 @@
 	<form:label path="phone">
 		<spring:message code="handy.phone"></spring:message>
 	</form:label>
-	<form:input path="phone" placeholder="XXXXXXXXX" readonly="${view}" id = "phone"/>
+	<form:input path="phone" placeholder="XXXXXXXXX" readonly="${view}"
+		id="phone" />
 	<form:errors cssClass="error" path="phone"></form:errors>
 	<br>
 
@@ -148,9 +149,27 @@
 		<form:errors cssClass="error" path="account.password"></form:errors>
 		<br>
 	</jstl:if>
+
 	<jstl:if test="${view eq false}">
 		<input type="submit" name="save"
 			value="<spring:message code="handy.save"/>" />
+	</jstl:if>
+
+	<jstl:if test="${view eq true}">
+		<h1>
+			<spring:message code="handy.tutorials" />
+		</h1>
+		<display:table name="handyWorker.tutorials" id="row" pagesize="5"
+			class="displaytag">
+			<display:column property="title" titleKey="tutorial.title" />
+			<display:column property="lastUpdate" titleKey="tutorial.lastUpdate" />
+			<display:column property="summary" titleKey="tutorial.summary" />
+			<display:column titleKey="tutorial.viewmore">
+				<a href="tutorial/show.do?id=${row.id}"> <spring:message
+						code="tutorial.viewmore" />
+				</a>
+			</display:column>
+		</display:table>
 	</jstl:if>
 </form:form>
 

@@ -1,7 +1,7 @@
 ﻿start transaction;
-drop database if exists `bt8ccpmj7armvdinitqk`;
-create database `bt8ccpmj7armvdinitqk`;
-use `bt8ccpmj7armvdinitqk`;
+drop database if exists `bjwngyuu427lzrgncsts`;
+create database `bjwngyuu427lzrgncsts`;
+use `bjwngyuu427lzrgncsts`;
 
 -- MySQL dump 10.13  Distrib 5.5.29, for Win64 (x86)
 --
@@ -41,7 +41,7 @@ CREATE TABLE `actor_boxes` (
 
 LOCK TABLES `actor_boxes` WRITE;
 /*!40000 ALTER TABLE `actor_boxes` DISABLE KEYS */;
-INSERT INTO `actor_boxes` VALUES (32,33),(32,34),(32,35),(32,36);
+INSERT INTO `actor_boxes` VALUES (33,34),(33,35),(33,36),(33,37);
 /*!40000 ALTER TABLE `actor_boxes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -66,7 +66,7 @@ CREATE TABLE `actor_profiles` (
 
 LOCK TABLES `actor_profiles` WRITE;
 /*!40000 ALTER TABLE `actor_profiles` DISABLE KEYS */;
-INSERT INTO `actor_profiles` VALUES (32,31);
+INSERT INTO `actor_profiles` VALUES (33,32);
 /*!40000 ALTER TABLE `actor_profiles` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -101,7 +101,7 @@ CREATE TABLE `administrator` (
 
 LOCK TABLES `administrator` WRITE;
 /*!40000 ALTER TABLE `administrator` DISABLE KEYS */;
-INSERT INTO `administrator` VALUES (32,0,'C/Reina Mercedes','administrator@us.es','Administrator1Middle','Administrator1','954152635','https://www.photo.com','Administrator1Surname','\0',30);
+INSERT INTO `administrator` VALUES (33,0,'C/Reina Mercedes','administrator@us.es','Administrator1Middle','Administrator1','954152635','https://www.photo.com','Administrator1Surname','\0',31);
 /*!40000 ALTER TABLE `administrator` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -187,7 +187,7 @@ CREATE TABLE `box` (
 
 LOCK TABLES `box` WRITE;
 /*!40000 ALTER TABLE `box` DISABLE KEYS */;
-INSERT INTO `box` VALUES (33,0,'','In Box'),(34,0,'','Out Box'),(35,0,'','Spam Box'),(36,0,'','Trash Box');
+INSERT INTO `box` VALUES (34,0,'','In Box'),(35,0,'','Out Box'),(36,0,'','Spam Box'),(37,0,'','Trash Box');
 /*!40000 ALTER TABLE `box` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -212,7 +212,7 @@ CREATE TABLE `category` (
 
 LOCK TABLES `category` WRITE;
 /*!40000 ALTER TABLE `category` DISABLE KEYS */;
-INSERT INTO `category` VALUES (37,0,'Carprenty'),(38,0,'Ceiling repairs'),(39,0,'Cleaning'),(40,0,'Concrete Work'),(41,0,'Doors'),(42,0,'Electrical wiring'),(43,0,'Fan installation'),(44,0,'Fence Fixing'),(45,0,'Home security systems'),(46,0,'Insulation installation'),(47,0,'Lamp repairs'),(48,0,'Moving'),(49,0,'Painting'),(50,0,'Pest control'),(51,0,'Plumbing repairs'),(52,0,'Roofing'),(53,0,'Shelf installation'),(54,0,'Solar panels'),(55,0,'Soundproofing'),(56,0,'Sprinkler repair'),(57,0,'Window repair');
+INSERT INTO `category` VALUES (38,0,'Carprenty'),(39,0,'Ceiling repairs'),(40,0,'Cleaning'),(41,0,'Concrete Work'),(42,0,'Doors'),(43,0,'Electrical wiring'),(44,0,'Fan installation'),(45,0,'Fence Fixing'),(46,0,'Home security systems'),(47,0,'Insulation installation'),(48,0,'Lamp repairs'),(49,0,'Moving'),(50,0,'Painting'),(51,0,'Pest control'),(52,0,'Plumbing repairs'),(53,0,'Roofing'),(54,0,'Shelf installation'),(55,0,'Solar panels'),(56,0,'Soundproofing'),(57,0,'Sprinkler repair'),(58,0,'Window repair');
 /*!40000 ALTER TABLE `category` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -263,7 +263,7 @@ CREATE TABLE `category_otherlanguages` (
 
 LOCK TABLES `category_otherlanguages` WRITE;
 /*!40000 ALTER TABLE `category_otherlanguages` DISABLE KEYS */;
-INSERT INTO `category_otherlanguages` VALUES (37,'Carpinteria'),(38,'Reparación de techos'),(39,'Limpieza'),(40,'Trabajo de hormigón'),(41,'Puertas'),(42,'Cableado electrico'),(43,'Instalación de aire acondicionado'),(44,'Reparación de vallas'),(45,'Sistemas de seguridad'),(46,'Trabajo de aislamiento'),(47,'Reparación de lamparas'),(48,'Reparación de motores'),(49,'Pintura'),(50,'Control de plagas'),(51,'Fontaneria'),(52,'Trabajo de techos'),(53,'Instalación de estanterias'),(54,'Paneles solares'),(55,'Aislamiento de sonido'),(56,'Reparación de aspersores'),(57,'Reparación de ventanas');
+INSERT INTO `category_otherlanguages` VALUES (38,'Carpinteria'),(39,'Reparación de techos'),(40,'Limpieza'),(41,'Trabajo de hormigón'),(42,'Puertas'),(43,'Cableado electrico'),(44,'Instalación de aire acondicionado'),(45,'Reparación de vallas'),(46,'Sistemas de seguridad'),(47,'Trabajo de aislamiento'),(48,'Reparación de lamparas'),(49,'Reparación de motores'),(50,'Pintura'),(51,'Control de plagas'),(52,'Fontaneria'),(53,'Trabajo de techos'),(54,'Instalación de estanterias'),(55,'Paneles solares'),(56,'Aislamiento de sonido'),(57,'Reparación de aspersores'),(58,'Reparación de ventanas');
 /*!40000 ALTER TABLE `category_otherlanguages` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -277,12 +277,12 @@ DROP TABLE IF EXISTS `complaint`;
 CREATE TABLE `complaint` (
   `id` int(11) NOT NULL,
   `version` int(11) NOT NULL,
-  `attachment` int(11) DEFAULT NULL,
   `description` varchar(255) DEFAULT NULL,
   `moment` date DEFAULT NULL,
   `ticker` varchar(255) DEFAULT NULL,
   `referee` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`),
+  UNIQUE KEY `UK_jlpo668tu0b8mmsjsg8g13inu` (`ticker`),
   KEY `FK_n7kqs8a7c2q1jwjcc44oticll` (`referee`),
   CONSTRAINT `FK_n7kqs8a7c2q1jwjcc44oticll` FOREIGN KEY (`referee`) REFERENCES `referee` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -295,6 +295,30 @@ CREATE TABLE `complaint` (
 LOCK TABLES `complaint` WRITE;
 /*!40000 ALTER TABLE `complaint` DISABLE KEYS */;
 /*!40000 ALTER TABLE `complaint` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `complaint_attachment`
+--
+
+DROP TABLE IF EXISTS `complaint_attachment`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `complaint_attachment` (
+  `complaint` int(11) NOT NULL,
+  `attachment` varchar(255) DEFAULT NULL,
+  KEY `FK_gf1y3fnhbb27v294jickim98o` (`complaint`),
+  CONSTRAINT `FK_gf1y3fnhbb27v294jickim98o` FOREIGN KEY (`complaint`) REFERENCES `complaint` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `complaint_attachment`
+--
+
+LOCK TABLES `complaint_attachment` WRITE;
+/*!40000 ALTER TABLE `complaint_attachment` DISABLE KEYS */;
+/*!40000 ALTER TABLE `complaint_attachment` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -566,7 +590,7 @@ CREATE TABLE `customisation_system` (
 
 LOCK TABLES `customisation_system` WRITE;
 /*!40000 ALTER TABLE `customisation_system` DISABLE KEYS */;
-INSERT INTO `customisation_system` VALUES (58,0,'https://i.imgur.com/Xu6aiSe.png',2,'Welcome to Acme Handy Worker! Price, quality, and trust in a single place. <br> ¡Bienvenidos a Acme Handy Worker! Precio, calidad y confianza en el mismo sitio.',34,15,'Acme-HandyWorker',0.21);
+INSERT INTO `customisation_system` VALUES (59,0,'https://i.imgur.com/Xu6aiSe.png',2,'Welcome to Acme Handy Worker! Price, quality, and trust in a single place. <br> ¡Bienvenidos a Acme Handy Worker! Precio, calidad y confianza en el mismo sitio.',34,15,'Acme-HandyWorker',0.21);
 /*!40000 ALTER TABLE `customisation_system` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -591,7 +615,7 @@ CREATE TABLE `customisation_system_bad_words` (
 
 LOCK TABLES `customisation_system_bad_words` WRITE;
 /*!40000 ALTER TABLE `customisation_system_bad_words` DISABLE KEYS */;
-INSERT INTO `customisation_system_bad_words` VALUES (58,'not'),(58,'bad'),(58,'horrible'),(58,'average'),(58,'disaster'),(58,'no'),(58,'malo'),(58,'horrible'),(58,'media'),(58,'desstre');
+INSERT INTO `customisation_system_bad_words` VALUES (59,'not'),(59,'bad'),(59,'horrible'),(59,'average'),(59,'disaster'),(59,'no'),(59,'malo'),(59,'horrible'),(59,'media'),(59,'desstre');
 /*!40000 ALTER TABLE `customisation_system_bad_words` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -616,7 +640,7 @@ CREATE TABLE `customisation_system_good_words` (
 
 LOCK TABLES `customisation_system_good_words` WRITE;
 /*!40000 ALTER TABLE `customisation_system_good_words` DISABLE KEYS */;
-INSERT INTO `customisation_system_good_words` VALUES (58,'good'),(58,'fantastic'),(58,'excellent'),(58,'great'),(58,'amazing'),(58,'terrific'),(58,'beatiful'),(58,'bueno'),(58,'fantastico'),(58,'excelente'),(58,'genial'),(58,'asombroso'),(58,'estupendo'),(58,'bonito');
+INSERT INTO `customisation_system_good_words` VALUES (59,'good'),(59,'fantastic'),(59,'excellent'),(59,'great'),(59,'amazing'),(59,'terrific'),(59,'beatiful'),(59,'bueno'),(59,'fantastico'),(59,'excelente'),(59,'genial'),(59,'asombroso'),(59,'estupendo'),(59,'bonito');
 /*!40000 ALTER TABLE `customisation_system_good_words` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -641,7 +665,7 @@ CREATE TABLE `customisation_system_spam_words` (
 
 LOCK TABLES `customisation_system_spam_words` WRITE;
 /*!40000 ALTER TABLE `customisation_system_spam_words` DISABLE KEYS */;
-INSERT INTO `customisation_system_spam_words` VALUES (58,'sex'),(58,'viagra'),(58,'cialis'),(58,'one millon'),(58,'you\'ve been selected'),(58,'Nigeria'),(58,'sexo'),(58,'un millón'),(58,'ha sido seleccionado');
+INSERT INTO `customisation_system_spam_words` VALUES (59,'sex'),(59,'viagra'),(59,'cialis'),(59,'one millon'),(59,'you\'ve been selected'),(59,'Nigeria'),(59,'sexo'),(59,'un millón'),(59,'ha sido seleccionado');
 /*!40000 ALTER TABLE `customisation_system_spam_words` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1372,7 +1396,7 @@ CREATE TABLE `profile` (
 
 LOCK TABLES `profile` WRITE;
 /*!40000 ALTER TABLE `profile` DISABLE KEYS */;
-INSERT INTO `profile` VALUES (31,0,'https://www.linkedin/DP1819','DP1819','LinkedIn');
+INSERT INTO `profile` VALUES (32,0,'https://www.linkedin/DP1819','DP1819','LinkedIn');
 /*!40000 ALTER TABLE `profile` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1736,7 +1760,7 @@ CREATE TABLE `user_account` (
 
 LOCK TABLES `user_account` WRITE;
 /*!40000 ALTER TABLE `user_account` DISABLE KEYS */;
-INSERT INTO `user_account` VALUES (30,0,'','e00cf25ad42683b3df678c61f42c6bda','admin1');
+INSERT INTO `user_account` VALUES (31,0,'','e00cf25ad42683b3df678c61f42c6bda','admin1');
 /*!40000 ALTER TABLE `user_account` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1761,7 +1785,7 @@ CREATE TABLE `user_account_authorities` (
 
 LOCK TABLES `user_account_authorities` WRITE;
 /*!40000 ALTER TABLE `user_account_authorities` DISABLE KEYS */;
-INSERT INTO `user_account_authorities` VALUES (30,'ADMIN');
+INSERT INTO `user_account_authorities` VALUES (31,'ADMIN');
 /*!40000 ALTER TABLE `user_account_authorities` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1789,6 +1813,7 @@ CREATE TABLE `warranty` (
 
 LOCK TABLES `warranty` WRITE;
 /*!40000 ALTER TABLE `warranty` DISABLE KEYS */;
+INSERT INTO `warranty` VALUES (60,0,'\0','Lorem Ipsum is simply dummy text of the printing and typesetting industry.','TerminosPredeterminadosFP123456','Decreto Ley 2014/13');
 /*!40000 ALTER TABLE `warranty` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -1801,5 +1826,5 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-01-15 20:02:11
+-- Dump completed on 2019-01-17 22:08:00
 commit;
