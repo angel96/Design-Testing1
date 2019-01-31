@@ -1,0 +1,14 @@
+Instructions to succeed the Control Check
+
+0. Model
+*Montaje de Querys|1. Repository
+*Las llamadas a repository van con @Autowired|2. Service
+*Las llamadas a servicios van con @Autowired|3. Controller
+4. Views
+   Resources/Spring/config
+	- converters.xml
+	- security.xml
+	- i18n-i10n.xml
+	- tiles.xml
+5. PopulateDatabase & InitializeDatabase
+6. Clean Tomcat
