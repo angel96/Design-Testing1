@@ -1,0 +1,38 @@
+PARA PÁRRAFO 1:
+1. Clase
+  * Relacionar con clase correspondiente (posible FixUpTask)
+2. Populate
+  * Poner las horas a 00:00 porque es lo que se muestra
+3. Repositorio
+4. Servicio - No olvidar @Autowired
+  * Asserts
+5. Vista
+  * Escribrir el botón de crear coso dónde sea, un list seguramente
+  * Añadir demás botones en master page, header
+	Resources/Spring/config
+	- converters.xml
+	- security.xml
+	- i18n-i10n.xml
+	- tiles.xml
+6. Converter
+7. Controlador - No olvidar @Autowired
+8. Clean Tomcat and Run
+9. Modelo
+
+CONSEJOS
+PARA PÁRRAFO 2:
+	Mirar script, adaptado a fechas y horas. Mirar sobre todo el list, para el pattern
+	En caso de que no sea quolet, hay que cambiar el formato del Date correspondiente,
+	en su clase domain, con el TIMESTAP y el pattern correspondiente en un DateFormatter
+	Tener el cuenta el lang SIEMPRE.
+
+CONSEJOS
+PARA PÁRRAFO 3:
+
+	//Querys 1 --> Control Check
+	@Query("select avg (c.fixUpTask.size), 'null', 'null', stddev(c.fixUpTask.size) from Customer c")
+	String findCHFixUpTaskPerUser();
+	
+	PASO 1: Colocar lo de arriba en el CustomisationRepository
+	PASO 2: Añadir al metodo <dashboardStatistics> de CustomisationService tal y como estan colocados los demas
+	PASO 3: Ir a la vista de dashboard.jsp y añadirlo como esta en los demas 
