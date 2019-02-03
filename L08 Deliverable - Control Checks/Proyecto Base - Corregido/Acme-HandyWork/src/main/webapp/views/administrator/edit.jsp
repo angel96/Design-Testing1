@@ -18,22 +18,32 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
 <script>
-	function checkPhone(form) {
-		var phone = document.getElementById("phone").value;
-		var e = new RegExp(
-				"/^(\\+([1-9]|[1-9][0-9]|[1-9][0-9][0-9])\\s\\(([1-9]|[1-9][0-9]|[1-9][0-9][0-9])\\)\\s\\d{4,9})|(\\+([1-9]|[1-9][0-9]|[1-9][0-9][0-9])\\s\\d{4,9})|(\\d{4,9})$/");
-		if (e.test(phone) == false) {
-			if (confirm("<spring:message code = 'phone.confirm1' />")) {
-				res = confirm("<spring:message code = 'phone.confirm2' />");
-			} else {
-				return false;
-			}
-		}
+	$(document).ready(
+			function() {
+				$("#form").submit(
+						function(event) {
+							var phone = $("#phone").val();
+							var regex = new RegExp(
+									"(((\\+){0,1}\\s{0,1}([1-9]|[1-9][0-9]|[1-9][0-9][0-9])){0,1}\\s{0,1}(\\(([1-9]|[1-9][0-9]|[1-9][0-9][0-9])\\)){0,1}\\s{0,1}([1-9]{4,9}$))",
+									"m");
+							if (regex.test(phone) == false) {
+								if (confirm("<spring:message code = 'phone.confirm1' />")) {
+									var res = confirm("<spring:message code = 'phone.confirm2' />");
+								} else {
+									return false;
+								}
+							}
+							if (phone.startsWith("+") == false) {
+								var pref = "${prefix}";
+								var res = "+".concat(pref + " ", phone);
+								$("#phone").val(res);
+							}
 
-	}
+						});
+			});
 </script>
 <form:form action="administrator/edit.do" modelAttribute="administrator"
-	onsubmit="return checkPhone(this);">
+	id="form">
 	<form:hidden path="id" />
 	<form:hidden path="version" />
 	<jstl:if test="${administrator.id != 0}">
@@ -67,14 +77,14 @@
 	<form:label path="phone">
 		<spring:message code="admin.phone" />
 	</form:label>
-	<form:input path="phone" id="phone" placeholder="XXXXXXXXX"/>
+	<form:input path="phone" id="phone" placeholder="XXXXXXXXX" />
 	<form:errors cssClass="error" path="phone" />
 	<br />
 
 	<form:label path="email">
 		<spring:message code="admin.email" />
 	</form:label>
-	<form:input path="email" placeholder="example@example.com"/>
+	<form:input path="email" placeholder="example@example.com" />
 	<form:errors cssClass="error" path="email" />
 	<br />
 
@@ -88,7 +98,7 @@
 	<form:label path="photo">
 		<spring:message code="admin.photo" />
 	</form:label>
-	<form:input path="photo" placeholder="http://..."/>
+	<form:input path="photo" placeholder="http://..." />
 	<form:errors cssClass="error" path="photo" />
 	<br />
 

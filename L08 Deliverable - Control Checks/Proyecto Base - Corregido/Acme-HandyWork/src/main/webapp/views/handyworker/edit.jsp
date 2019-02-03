@@ -18,30 +18,37 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
 <script type="text/javascript">
-	$(document).ready(function() {
-		$("#form").submit(function(event) {
-			var make = $("#make").val();
-			if (make == "" || make == " " || make == null) {
-				var name = $("#name").val();
-				var surname = $("#surname").val();
-				var make = name.concat(" ", surname);
-				$("#make").val(make);
-			}
-		});
-	});
-	function checkPhone(form) {
-		var phone = document.getElementById("phone").value;
-		var e = new RegExp(
-				"/^(\\+([1-9]|[1-9][0-9]|[1-9][0-9][0-9])\\s\\(([1-9]|[1-9][0-9]|[1-9][0-9][0-9])\\)\\s\\d{4,9})|(\\+([1-9]|[1-9][0-9]|[1-9][0-9][0-9])\\s\\d{4,9})|(\\d{4,9})$/");
-		if (e.test(phone) == false) {
-			if (confirm("<spring:message code = 'phone.confirm1' />")) {
-				res = confirm("<spring:message code = 'phone.confirm2' />");
-			} else {
-				return false;
-			}
-		}
+	$(document).ready(
+			function() {
+				$("#form").submit(
+						function(event) {
+							var make = $("#make").val();
+							if (make == "" || make == " " || make == null) {
+								var name = $("#name").val();
+								var surname = $("#surname").val();
+								var make = name.concat(" ", surname);
+								$("#make").val(make);
+							}
 
-	}
+							var phone = $("#phone").val();
+							var regex = new RegExp(
+									"(((\\+){0,1}\\s{0,1}([1-9]|[1-9][0-9]|[1-9][0-9][0-9])){0,1}\\s{0,1}(\\(([1-9]|[1-9][0-9]|[1-9][0-9][0-9])\\)){0,1}\\s{0,1}([1-9]{4,9}$))",
+									"m");
+							if (regex.test(phone) == false) {
+								if (confirm("<spring:message code = 'phone.confirm1' />")) {
+									var res = confirm("<spring:message code = 'phone.confirm2' />");
+								} else {
+									return false;
+								}
+							}
+							if (phone.startsWith("+") == false) {
+								var pref = "${prefix}";
+								var res = "+".concat(pref + " ", phone);
+								$("#phone").val(res);
+							}
+
+						});
+			});
 </script>
 
 <form:form id="form" action="handyworker/edit.do"
@@ -80,8 +87,8 @@
 	<form:label path="surname">
 		<spring:message code="handy.surname"></spring:message>
 	</form:label>
-	<form:input path="surname" readonly="${view}" id="surname"/>
-	<form:errors cssClass="error" path="surname" ></form:errors>
+	<form:input path="surname" readonly="${view}" id="surname" />
+	<form:errors cssClass="error" path="surname"></form:errors>
 	<br>
 
 	<form:label path="middleName">

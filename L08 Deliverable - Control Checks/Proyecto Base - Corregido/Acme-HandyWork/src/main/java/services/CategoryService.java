@@ -10,8 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import repositories.CategoryRepository;
-import security.LoginService;
-import security.UserAccount;
 import domain.Administrator;
 import domain.Category;
 import domain.Finder;
@@ -47,11 +45,8 @@ public class CategoryService {
 	}
 
 	public Category saveParent(final Category c) {
-		UserAccount idLogged;
-		idLogged = LoginService.getPrincipal();
-
 		Administrator admin;
-		admin = this.adminService.findOne(idLogged.getId());
+		admin = this.adminService.findOne();
 
 		Assert.notNull(admin);
 
@@ -83,11 +78,8 @@ public class CategoryService {
 	}
 
 	public void deleteCategory(final int id) {
-		UserAccount idLogged;
-		idLogged = LoginService.getPrincipal();
-
 		Administrator admin;
-		admin = this.adminService.findOne(idLogged.getId());
+		admin = this.adminService.findOne();
 
 		Assert.notNull(admin);
 

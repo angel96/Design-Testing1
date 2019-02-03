@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import security.LoginService;
 import services.HandyWorkerService;
+import utilities.Utiles;
 import domain.HandyWorker;
 
 @Controller
@@ -36,7 +37,7 @@ public class HandyWorkerController extends AbstractController {
 
 		model = this.createEditModelAndView(this.serviceHandyWorker.createHandyWorker());
 		model.addObject("view", false);
-
+		model.addObject("prefix", Utiles.phonePrefix);
 		return model;
 
 	}
@@ -83,6 +84,7 @@ public class HandyWorkerController extends AbstractController {
 
 		result = this.createEditModelAndView(find);
 		result.addObject("view", false);
+		result.addObject("prefix", Utiles.phonePrefix);
 		return result;
 	}
 	// Create edit model and view

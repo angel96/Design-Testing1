@@ -40,8 +40,6 @@ public class FinderService {
 			final long diffMinutes = diff / (60 * 1000);
 
 			if (diffMinutes >= Utiles.hoursFinder * 60) {
-				Collection<FixUpTask> fcol;
-				fcol = finder.getFixUpTask();
 				finder.setFixUpTask(new ArrayList<FixUpTask>());
 				System.out.println("Seteo la collection vacia");
 			}

@@ -22,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import security.LoginService;
 import services.CustomerService;
+import utilities.Utiles;
 import domain.Customer;
 
 @Controller
@@ -47,6 +48,8 @@ public class CustomerController extends AbstractController {
 		ModelAndView model;
 
 		model = this.createEditModelAndView(this.customerService.createCustomer());
+
+		model.addObject("prefix", Utiles.phonePrefix);
 
 		return model;
 	}
@@ -96,7 +99,7 @@ public class CustomerController extends AbstractController {
 
 		find = this.customerService.findByUserAccount(LoginService.getPrincipal().getId());
 		model = this.createEditModelAndView(find);
-
+		model.addObject("prefix", Utiles.phonePrefix);
 		return model;
 	}
 

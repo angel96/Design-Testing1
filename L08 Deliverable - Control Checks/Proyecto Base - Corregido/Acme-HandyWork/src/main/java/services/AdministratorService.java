@@ -29,7 +29,7 @@ public class AdministratorService {
 	private BoxService				boxService;
 
 
-	public Administrator findOne(final int userAccount) {
+	public Administrator findOne() {
 		Assert.isTrue(Utiles.findAuthority(LoginService.getPrincipal().getAuthorities(), Authority.ADMIN));
 		Administrator saved;
 		saved = this.adminRepository.findAdministratorByUserAccountId(LoginService.getPrincipal().getId());

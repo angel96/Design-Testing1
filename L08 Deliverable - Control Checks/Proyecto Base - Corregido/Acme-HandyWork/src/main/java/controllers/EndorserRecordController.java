@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import services.EndorserRecordService;
+import utilities.Utiles;
 import domain.EndorserRecord;
 
 @Controller
@@ -31,7 +32,7 @@ public class EndorserRecordController extends AbstractController {
 
 		result = this.createEditModelAndView(this.endorserService.createEndorserRecord());
 		result.addObject("requestURI", "endorserrecord/handyworker/create.do");
-
+		result.addObject("prefix", Utiles.phonePrefix);
 		return result;
 	}
 

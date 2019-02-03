@@ -18,25 +18,36 @@
 	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <script>
-	function checkPhone(form) {
-		var phone = document.getElementById("phone").value;
-		var e = new RegExp(
-				"/^(\\+([1-9]|[1-9][0-9]|[1-9][0-9][0-9])\\s\\(([1-9]|[1-9][0-9]|[1-9][0-9][0-9])\\)\\s\\d{4,9})|(\\+([1-9]|[1-9][0-9]|[1-9][0-9][0-9])\\s\\d{4,9})|(\\d{4,9})$/");
-		if (e.test(phone) == false) {
-			if (confirm("<spring:message code = 'phone.confirm1' />")) {
-				res = confirm("<spring:message code = 'phone.confirm2' />");
-			} else {
-				return false;
-			}
-		}
+$(document).ready(
+		function() {
+			$("#form").submit(
+					function(event) {
+						var phone = $("#phone").val();
+						var regex = new RegExp(
+								"(((\\+){0,1}\\s{0,1}([1-9]|[1-9][0-9]|[1-9][0-9][0-9])){0,1}\\s{0,1}(\\(([1-9]|[1-9][0-9]|[1-9][0-9][0-9])\\)){0,1}\\s{0,1}([1-9]{4,9}$))",
+								"m");
+						if (regex.test(phone) == false) {
+							if (confirm("<spring:message code = 'phone.confirm1' />")) {
+								var res = confirm("<spring:message code = 'phone.confirm2' />");
+							} else {
+								return false;
+							}
+						}
+						if (phone.startsWith("+") == false) {
+							var pref = "${prefix}";
+							var res = "+".concat(pref + " ", phone);
+							$("#phone").val(res);
+						}
 
-	}
+					});
+		});
+
 </script>
 <p>
 	<spring:message code="endorser.edit" />
 </p>
 
-<form:form modelAttribute="endorserRecord"
+<form:form modelAttribute="endorserRecord" id = "form"
 	action="endorserrecord/handyworker/edit.do">
 
 	<form:hidden path="id" />

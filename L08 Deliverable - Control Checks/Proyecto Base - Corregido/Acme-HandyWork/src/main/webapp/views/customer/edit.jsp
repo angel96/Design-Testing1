@@ -17,22 +17,33 @@
 	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <script>
-	function checkPhone(form) {
-		var phone = document.getElementById("phone").value;
-		var e = new RegExp(
-				"/^(\\+([1-9]|[1-9][0-9]|[1-9][0-9][0-9])\\s\\(([1-9]|[1-9][0-9]|[1-9][0-9][0-9])\\)\\s\\d{4,9})|(\\+([1-9]|[1-9][0-9]|[1-9][0-9][0-9])\\s\\d{4,9})|(\\d{4,9})$/");
-		if (e.test(phone) == false) {
-			if (confirm("<spring:message code = 'phone.confirm1' />")) {
-				res = confirm("<spring:message code = 'phone.confirm2' />");
-			} else {
-				return false;
-			}
-		}
+	
+	$(document).ready(
+			function() {
+				$("#form").submit(
+						function(event) {
+							var phone = $("#phone").val();
+							var regex = new RegExp(
+									"(((\\+){0,1}\\s{0,1}([1-9]|[1-9][0-9]|[1-9][0-9][0-9])){0,1}\\s{0,1}(\\(([1-9]|[1-9][0-9]|[1-9][0-9][0-9])\\)){0,1}\\s{0,1}([1-9]{4,9}$))",
+									"m");
+							if (regex.test(phone) == false) {
+								if (confirm("<spring:message code = 'phone.confirm1' />")) {
+									var res = confirm("<spring:message code = 'phone.confirm2' />");
+								} else {
+									return false;
+								}
+							}
+							if (phone.startsWith("+") == false) {
+								var pref = "${prefix}";
+								var res = "+".concat(pref + " ", phone);
+								$("#phone").val(res);
+							}
 
-	}
+						});
+			});
 </script>
-<form:form modelAttribute="customer" action="customer/edit.do"
-	onsubmit="return checkPhone(this);">
+
+<form:form modelAttribute="customer" action="customer/edit.do" id="form">
 	<form:hidden path="id" />
 	<form:hidden path="version" />
 	<jstl:if test="${customer.id != 0}">
@@ -74,14 +85,16 @@
 	<form:label path="phone">
 		<spring:message code="cust.phone"></spring:message>
 	</form:label>
-	<form:input path="phone" readonly="${view}" id="phone" placeholder="XXXXXXXXX"/>
+	<form:input path="phone" readonly="${view}" id="phone"
+		placeholder="XXXXXXXXX" />
 	<form:errors cssClass="error" path="phone"></form:errors>
 	<br>
 
 	<form:label path="email">
 		<spring:message code="cust.email"></spring:message>
 	</form:label>
-	<form:input path="email" readonly="${view}" placeholder="example@example.com"/>
+	<form:input path="email" readonly="${view}"
+		placeholder="example@example.com" />
 	<form:errors cssClass="error" path="email"></form:errors>
 	<br>
 
@@ -95,7 +108,7 @@
 	<form:label path="photo">
 		<spring:message code="cust.photo"></spring:message>
 	</form:label>
-	<form:input path="photo" readonly="${view}" placeholder="http://..."/>
+	<form:input path="photo" readonly="${view}" placeholder="http://..." />
 	<form:errors cssClass="error" path="photo"></form:errors>
 	<br>
 	<jstl:if test="${not view}">

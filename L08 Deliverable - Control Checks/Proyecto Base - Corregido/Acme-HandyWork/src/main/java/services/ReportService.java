@@ -34,9 +34,6 @@ public class ReportService {
 	@Autowired
 	private ComplaintRepository	complaintRepository;
 
-	@Autowired
-	private RefereeService		refereeService;
-
 
 	public Collection<Report> findReportsByReferee(final Actor r) {
 		return this.reportRepository.findReportsByRefereeId(r.getId());

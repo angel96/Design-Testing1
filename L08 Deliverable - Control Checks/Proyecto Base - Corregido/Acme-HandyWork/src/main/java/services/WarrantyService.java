@@ -19,10 +19,7 @@ import domain.Warranty;
 public class WarrantyService {
 
 	@Autowired
-	private WarrantyRepository		repositoryWarranty;
-
-	@Autowired
-	private AdministratorService	serviceAdministrator;
+	private WarrantyRepository	repositoryWarranty;
 
 
 	public Collection<Warranty> findAll() {

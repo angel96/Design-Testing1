@@ -25,9 +25,6 @@ public class SectionService {
 	@Autowired
 	private SectionRepository	sectionRepository;
 
-	@Autowired
-	private HandyWorkerService	serviceHandyWorker;
-
 
 	// 2. CRUD
 

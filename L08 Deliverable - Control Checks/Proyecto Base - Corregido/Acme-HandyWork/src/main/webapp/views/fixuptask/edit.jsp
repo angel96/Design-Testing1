@@ -85,7 +85,6 @@
 	<form:input path="end" readonly="${view}" id="datepicker-2" />
 	<br />
 
-
 	<form:select path="category" disabled="${view}">
 		<form:option value="0" label="---" />
 		<jstl:if test="${lang eq 'en'}">
@@ -97,7 +96,6 @@
 		</jstl:if>
 	</form:select>
 	<br />
-
 	<form:select path="warranty" disabled="${view}">
 		<option value="0" label="---" />
 		<form:options items="${warranties}" itemValue="id" itemLabel="title" />
@@ -117,11 +115,13 @@
 		<jstl:if test="${not view}">
 			<input type="submit" name="save"
 				value="<spring:message code="fixuptask.save" />" />
-
-			<input type="submit" name="delete"
-				value="<spring:message code="fixuptask.delete" />" />
+			<jstl:if test="${fixUpTask.id != 0}">
+				<input type="submit" name="delete"
+					value="<spring:message code="fixuptask.delete" />" />
+			</jstl:if>
 		</jstl:if>
 	</security:authorize>
+
 	<security:authorize access="hasRole('HANDY_WORKER')">
 		<a href="customer/handyworker/show.do?fixup=${fixUpTask.id}"><spring:message
 				code="fixuptask.customer" /></a>

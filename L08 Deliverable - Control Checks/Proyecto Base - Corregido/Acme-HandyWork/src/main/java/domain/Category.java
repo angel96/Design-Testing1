@@ -33,7 +33,9 @@ public class Category extends DomainEntity {
 		this.name = name;
 	}
 
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(cascade = {
+		CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH
+	})
 	public Collection<Category> getCategories() {
 		return this.categories;
 	}
