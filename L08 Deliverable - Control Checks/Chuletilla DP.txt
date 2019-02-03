@@ -30,9 +30,19 @@ CONSEJOS
 PARA PÁRRAFO 3:
 
 	//Querys 1 --> Control Check
-	@Query("select avg (c.fixUpTask.size), 'null', 'null', stddev(c.fixUpTask.size) from Customer c")
-	String findCHFixUpTaskPerUser();
+	//a) the avg and standard deviation of published xxxx per xxxxx
+		@Query("select avg (c.fixUpTask.size), 'null', 'null', stddev(c.fixUpTask.size) from Customer c")
+		String findCHFixUpTaskPerUser();
+	// b) the ratio of published xxxx vs total
+		@Query("select (count(q)*1.0/(select count(q)*1.0 from Quolet q)) from Quolet q where q.finalMode = '1'")
+		Long findRatioPublishQuoletPerQuolet();
+	// c) the ratio of unpublished xxxx vs total
+		@Query("select (count(q)*1.0/(select count(q)*1.0 from Quolet q)) from Quolet q where q.finalMode = '0'")
+		Long findRatioNotPublishQuoletPerQuolet();
 	
+
 	PASO 1: Colocar lo de arriba en el CustomisationRepository
 	PASO 2: Añadir al metodo <dashboardStatistics> de CustomisationService tal y como estan colocados los demas
 	PASO 3: Ir a la vista de dashboard.jsp y añadirlo como esta en los demas 
+	
+	
