@@ -24,6 +24,10 @@ public interface CustomisationSystemRepository extends JpaRepository<Customisati
 	@Query("select a from Actor a where a.id = ?1")
 	Actor findActor(int id);
 
+	//	//Querys 1 --> Control Check
+	//	@Query("select avg (c.fixUpTask.size), 'null', 'null', stddev(c.fixUpTask.size) from Customer c")
+	//	String findCHFixUpTaskPerUser();
+
 	//Querys --> FixUpTask per User 12.5.1
 	@Query("select avg (c.fixUpTask.size), min(c.fixUpTask.size), max(c.fixUpTask.size), stddev(c.fixUpTask.size) from Customer c")
 	String findFixUpTaskPerUser();
@@ -42,16 +46,16 @@ public interface CustomisationSystemRepository extends JpaRepository<Customisati
 
 	//Querys --> Ratio of applications 12.5.5
 	@Query("select (select count(a) from Application a where a.status = 'pending')*1.0/count(ap) from Application ap")
-	Long findRatioOfPendingApplications();
+	double findRatioOfPendingApplications();
 	//Querys --> Ratio of applications 12.5.6
 	@Query("select count(f.status)*1.0/(select count(t)*1.0 from Application t) from Application f where f.status = 'accepted'")
-	Long findRationOfAcceptedAplications();
+	double findRationOfAcceptedAplications();
 	//Querys --> Ratio of applications 12.5.7
 	@Query("select count(f.status)*1.0/(select count(t)*1.0 from Application t) from Application f where f.status = 'rejected'")
-	Long findRationOfRejectedApplications();
+	double findRationOfRejectedApplications();
 	//Querys --> Ratio of applications 12.5.8
 	@Query("select (count(a)*1.0/(select count(ap) from Application ap)) from Application a where current_date() > a.momentElapsed and a.status = 'pending'")
-	Long findRationOfPendingApplicationCannotChangeItsStatus();
+	double findRationOfPendingApplicationCannotChangeItsStatus();
 
 	//Querys --> Complaints Per FixUpTasks --> NO DASHBOARD
 	@Query("select avg(f.complaint.size), min(f.complaint.size), max(f.complaint.size), stddev(f.complaint.size) from FixUpTask f")
@@ -63,7 +67,7 @@ public interface CustomisationSystemRepository extends JpaRepository<Customisati
 
 	//The ratio of fix-up-tasks with a complaint
 	@Query("select count(a)*1.0/(select count(t)*1.0 from FixUpTask t) from FixUpTask a where a.complaint.size > 0")
-	Long ratioOfFixUpTasksWithComplaint();
+	double ratioOfFixUpTasksWithComplaint();
 
 	//Querys --> 10% above the average 12.5.9
 	@Query("select f from Customer f join f.fixUpTask t where f.fixUpTask.size > (select avg(f.fixUpTask.size)+(avg(f.fixUpTask.size)/10)*1.0 from Customer f) order by t.application.size")

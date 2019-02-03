@@ -63,12 +63,13 @@ public class CustomisationSystemService {
 		return this.repositoryCustomisationSystem.save(custom);
 	}
 
-	public Map<String, Long> dashboardRatioApplications() {
+	public Map<String, Double> dashboardRatioApplications() {
 		Assert.isTrue(Utiles.findAuthority(LoginService.getPrincipal().getAuthorities(), Authority.ADMIN));
-		Map<String, Long> result;
-		result = new HashMap<String, Long>();
+		Map<String, Double> result;
+		result = new HashMap<String, Double>();
 
 		result.put("RatioPendingApplications", this.repositoryCustomisationSystem.findRatioOfPendingApplications());
+		System.out.println("\n RATIO ============ \n" + this.repositoryCustomisationSystem.findRatioOfPendingApplications());
 		result.put("RatioAcceptedApplications", this.repositoryCustomisationSystem.findRationOfAcceptedAplications());
 		result.put("RatioRejectedApplications", this.repositoryCustomisationSystem.findRationOfRejectedApplications());
 		result.put("RatioApplicationsItsStatusCannotbechanged", this.repositoryCustomisationSystem.findRationOfPendingApplicationCannotChangeItsStatus());
@@ -81,6 +82,7 @@ public class CustomisationSystemService {
 		Map<String, double[]> result;
 		result = new HashMap<String, double[]>();
 
+		//result.put("CHFixUpTaskPerUser", Utiles.convertToArrayDoubleFromString(this.repositoryCustomisationSystem.findCHFixUpTaskPerUser()));
 		result.put("FixUpTaskPerUser", Utiles.convertToArrayDoubleFromString(this.repositoryCustomisationSystem.findFixUpTaskPerUser()));
 		result.put("ApplicationsPerFixUpTask", Utiles.convertToArrayDoubleFromString(this.repositoryCustomisationSystem.findApplicationPerFixUpTask()));
 		result.put("MaximumPriceFixUpTask", Utiles.convertToArrayDoubleFromString(this.repositoryCustomisationSystem.findMaximumPricePerFixUpTask()));

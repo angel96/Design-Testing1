@@ -29,6 +29,13 @@
 		<th><spring:message code="custom.max" /></th>
 		<th><spring:message code="custom.stddev" /></th>
 	</tr>
+	<%-- <tr>
+		<td><spring:message code="custom.fixupperuser" /></td>
+		<td>${statistics.get("CHFixUpTaskPerUser")[0]}</td>
+		<td>${statistics.get("CHFixUpTaskPerUser")[1]}</td>
+		<td>${statistics.get("CHFixUpTaskPerUser")[2]}</td>
+		<td>${statistics.get("CHFixUpTaskPerUser")[3]}</td>
+	</tr> --%>
 	<tr>
 		<td><spring:message code="custom.fixupperuser" /></td>
 		<td>${statistics.get("FixUpTaskPerUser")[0]}</td>
