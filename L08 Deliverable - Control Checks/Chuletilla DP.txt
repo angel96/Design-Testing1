@@ -21,10 +21,112 @@ PARA PÁRRAFO 1:
 
 CONSEJOS
 PARA PÁRRAFO 2:
-	Mirar script, adaptado a fechas y horas. Mirar sobre todo el list, para el pattern
+
+	Para trabajar con el pattern, se busca en la página web, o se copia el del Ticker de FixUpTask.
+	Para que el ticker se cree automáticamente, existe un método getTickerQuolet:
+		public static String generateTickerQuolet() {
+			SimpleDateFormat formato;
+			//Aquí habría que cambiar el pattern
+			formato = new SimpleDateFormat("yyMMdd");
+
+			String formated;
+
+			formated = formato.format(new Date());
+
+			//Adaptar pattern
+			final Character[] ch = {
+				'0', '1', '2', '3', '4', '5', '6', '7', '8', '9'
+			};
+
+			String c = "";
+
+			final Random random;
+
+			random = new Random();
+
+			for (int i = 0; i < Utiles.getRandomNumberInRange(1, 3); i++)
+				c += ch[random.nextInt(ch.length)];
+
+			return formated + "#" + c;
+		}
+
+	Para que la fecha tenga un formato u otro, según el idioma (internacionalización):
+		- Añadir @CookieValue(value = "language", required = false) final String lang en el Controller, en "/list" o el método que te lleve a la lista
+		- A continuación, se usa un if, que te envía el lenguaje a la vista en una variable "lang":
+			
+			if (lang == null)
+				result.addObject("lang", "en");
+			else
+				result.addObject("lang", lang);
+		
+		- Después, en la vista, solo habría que añadir un if por cada idioma y la variable lang correspondiente a true, y poner la propiedad format con el patrón que se quiera:
+		
+			<jstl:if test="${lang eq 'en' }">
+				<display:column property="publicationMoment" titleKey="quolet.publicationMoment" format="{0,date,yy/MM/dd HH:mm}"/>
+			</jstl:if>
+			<jstl:if test="${lang eq 'es' }">
+				<display:column property="publicationMoment" titleKey="quolet.publicationMoment" format="{0,date,dd-MM-yy HH:mm}"/>
+			</jstl:if>
+	Para el tema de los colores, se siguen las instrucciones del siguiente script:
+	<script>
+  		var table = document.getElementById("row");
+ 		 var tbody = table.getElementsByTagName("tbody")[0];
+  		var row = tbody.getElementsByTagName("tr");
+ 		// Guardamos la fecha actual
+  		var actualDate = new Date();
+  
+  		// Llamamos a la variable lang del controlador
+  		var lang = '${lang}';
+
+  		for (i = 0; i < row.length; i++) {
+			// Según el idioma, parseamos una fecha u otra, pues cada una posee un patrón único
+    			if(lang == 'en') {
+      				var value = row[i].getElementsByTagName("td")[1].firstChild.nodeValue.split("/");
+      				value = new Date("20"+value[0]+"-"+value[1]+"-"+value[2].substring(0,2));
+    			}else if(lang == 'es') {
+      				var value = row[i].getElementsByTagName("td")[1].firstChild.nodeValue.split("-");
+      				value = new Date("20"+value[2].substring(0,2)+"-"+value[1]+"-"+value[0]);
+    		}
+	
+	// Creamos dos variables, una que guarde la fecha de hace un mes y otra que guarde la fecha de hace dos meses
+     		var beforeOneMonth = new Date();
+    		var beforeTwoMonths = new Date();
+     
+     		if(actualDate.getMonth()+1 == 1) {
+    	 	// Si el mes actual es enero, seteamos la fecha hace un mes, sumándole 11 meses y la fecha hace dos meses, sumándole 10 meses
+    			beforeOneMonth.setFullYear(actualDate.getFullYear()-1, actualDate.getMonth()+11, actualDate.getDate());
+    	 		beforeTwoMonths.setFullYear(actualDate.getFullYear()-1, actualDate.getMonth()+10, actualDate.getDate());
+     
+     		}else if(actualDate.getMonth()+1 == 2){
+    	 	// Si el mes actual es febrero, seteamos la fecha hace dos meses, sumándole 10 meses
+    			beforeOneMonth.setFullYear(actualDate.getFullYear(), actualDate.getMonth()-1, actualDate.getDate());
+    	 		beforeTwoMonths.setFullYear(actualDate.getFullYear()-1, actualDate.getMonth()+10, actualDate.getDate());
+     
+    	 	}else{
+    	 	// Para el resto de fechas "no especiales", tan solo hay que restar 1 mes para obtener la fecha hace un mes y 2 para obtener la fecha hace dos meses
+    	 		beforeOneMonth.setFullYear(fecha_actual.getFullYear(), fecha_actual.getMonth()-1, fecha_actual.getDate());
+    	 		beforeTwoMonths.setFullYear(fecha_actual.getFullYear(), fecha_actual.getMonth()-2, fecha_actual.getDate());
+    		}
+
+     // A continuación, colocamos las condiciones descritas utilizando las variables creadas anteriormente
+     
+     // Si la fecha de publicación tiene menos de un mes de antigüedad
+     	if(value <= actualDate && value > beforeOneMonth) {
+       		row[i].getElementsByTagName("td")[1].style.color = "#00FF80";
+     // Si la fecha de publicación tiene entre uno (incluido) y dos meses (no incluido) de antigüedad
+     	}else if (value <= beforeOneMonth && value > beforeTwoMonths) {
+       		row[i].getElementsByTagName("td")[1].style.color = "blue";
+     // Si la fecha de publicación tiene más de dos meses (incluido) de antigüedad
+     	}else{
+       		row[i].getElementsByTagName("td")[1].style.color = "#9C9C9C";
+     }
+  }
+</script>
+	
 	En caso de que no sea quolet, hay que cambiar el formato del Date correspondiente,
 	en su clase domain, con el TIMESTAP y el pattern correspondiente en un DateFormatter
-	Tener el cuenta el lang SIEMPRE.
+
+	**Página web con la mayoría de pattern sobre fechas: http://regexlib.com/DisplayPatterns.aspx?cattabindex=5&categoryId=5&AspxAutoDetectCookieSupport=1
 
 CONSEJOS
 PARA PÁRRAFO 3:
