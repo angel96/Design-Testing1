@@ -284,3 +284,8 @@ PARA EL CONTROL CHECK:
 		$ git add
 		$ git commit (con otro nombre)
 		$ git push clever master
+
+SI NO DESPLIEGA EN CLEVER CLOUD:
+		$ git remote -v
+		$ git remote rm clever
+	Después de esto, se ha borrado todo, entonces se vuelve a empezar a partir del git add
