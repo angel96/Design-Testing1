@@ -133,10 +133,11 @@ PARA PÁRRAFO 3:
 
 	//Querys 1 --> Control Check
 	//a) the avg and standard deviation of published xxxx per xxxxx
-		select (select count(q)*1.0 from Quolet q where q.finalMode = true)/count(f), 'null', 'null',sqrt((sum((select count(q
-		)*1.0 from Quolet q where q.finalMode = true)*(select count(q)*1.0 from Quolet q where q.finalMode = true))/count(f)) - 
-		((select count(q)*1.0 from Quolet q where q.finalMode = true)/count(f) * (select count(q)*1.0 from Quolet q where q.fina
-		lMode = true)/count(f)))  from FixUpTask f;
+		@Query("select (select count(q)*1.0 from Quolet q where q.finalMode = true)/count(f), 'null', 'null', 
+		sqrt((sum((select count(q)*1.0 from f.quolet q where q.finalMode = true)*(select count(q)*1.0 from f.quolet 
+		q where q.finalMode = true))/count(f)) - ((select count(q)*1.0 from Quolet q where q.finalMode = true)/count(f)
+		 * (select count(q)*1.0 from Quolet q where q.finalMode = true)/count(f)))  from FixUpTask f")
+	
 	
 	PASO 1: Colocar lo de arriba en el CustomisationRepository
 	PASO 2: Añadir al metodo <dashboardStatistics> de CustomisationService tal y como estan colocados los demas
