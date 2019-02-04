@@ -67,14 +67,33 @@ public class CustomisationSystemService {
 		Assert.isTrue(Utiles.findAuthority(LoginService.getPrincipal().getAuthorities(), Authority.ADMIN));
 		Map<String, Double> result;
 		result = new HashMap<String, Double>();
+		final Double pendingApp = this.repositoryCustomisationSystem.findRatioOfPendingApplications();
+		final Double acceptedApp = this.repositoryCustomisationSystem.findRationOfAcceptedAplications();
+		final Double rejectedApp = this.repositoryCustomisationSystem.findRationOfRejectedApplications();
+		final Double elapsedApp = this.repositoryCustomisationSystem.findRationOfPendingApplicationCannotChangeItsStatus();
+		final Double fixUpComp = this.repositoryCustomisationSystem.ratioOfFixUpTasksWithComplaint();
 
-		result.put("RatioPendingApplications", this.repositoryCustomisationSystem.findRatioOfPendingApplications());
-		System.out.println("\n RATIO ============ \n" + this.repositoryCustomisationSystem.findRatioOfPendingApplications());
-		result.put("RatioAcceptedApplications", this.repositoryCustomisationSystem.findRationOfAcceptedAplications());
-		result.put("RatioRejectedApplications", this.repositoryCustomisationSystem.findRationOfRejectedApplications());
-		result.put("RatioApplicationsItsStatusCannotbechanged", this.repositoryCustomisationSystem.findRationOfPendingApplicationCannotChangeItsStatus());
-		result.put("RatioFixUpTaskComplaint", this.repositoryCustomisationSystem.ratioOfFixUpTasksWithComplaint());
+		if (pendingApp == null || pendingApp == 0.0)
+			result.put("RatioPendingApplications", 0.0);
+		else
+			result.put("RatioPendingApplications", pendingApp);
 
+		if (acceptedApp == null || acceptedApp == 0.0)
+			result.put("RatioAcceptedApplications", 0.0);
+		else
+			result.put("RatioAcceptedApplications", acceptedApp);
+		if (rejectedApp == null || rejectedApp == 0.0)
+			result.put("RatioRejectedApplications", 0.0);
+		else
+			result.put("RatioRejectedApplications", rejectedApp);
+		if (elapsedApp == null || elapsedApp == 0.0)
+			result.put("RatioApplicationsItsStatusCannotbechanged", 0.0);
+		else
+			result.put("RatioApplicationsItsStatusCannotbechanged", elapsedApp);
+		if (fixUpComp == null || fixUpComp == 0.0)
+			result.put("RatioFixUpTaskComplaint", 0.0);
+		else
+			result.put("RatioFixUpTaskComplaint", fixUpComp);
 		return result;
 	}
 	public Map<String, double[]> dashboardStatistics() {
