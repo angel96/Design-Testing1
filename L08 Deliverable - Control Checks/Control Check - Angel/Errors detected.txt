@@ -1,0 +1,17 @@
+
+1. Dashboard
+	- Colocar Double[] en el metodo del CustomisationService
+	- Clase utiles hacer que devuelva Double[]
+
+(VIEW) 2. Form Errors del Edit.jsp de aolet
+(VIEW) 3. Color list aolets > row[i].style.backgroundColor = ""
+(VIEW) 4. ReadOnly en Edit.jsp > finalMode
+
+5. Save Controller
+	- Al modificar el estado en el edit.do, el aolet no coge la fixuptask idonea. Solucionado con if (Si el aolet es distinto de 0).
+
+6. EditOne (Añadir a RequestURI el Id)
+7. Create Controller
+	@Autowired
+	FixUpTaskService > Comprobar si la FixUpTask es mia.
+8. Script de SQL con Aolet incluido en produccion
