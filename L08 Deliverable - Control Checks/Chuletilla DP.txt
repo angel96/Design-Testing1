@@ -145,7 +145,7 @@ PARA PÁRRAFO 3:
 
 	// b) the ratio of published xxxx vs total
 		@Query("select (count(q)*1.0/(select count(q)*1.0 from Quolet q)) from Quolet q where q.finalMode = '1'")
-		Long findRatioPublishQuoletPerQuolet();
+		Double findRatioPublishQuoletPerQuolet();
 
 	PASO 1: Colocar lo de arriba en el CustomisationRepository
 	PASO 2: Añadir al metodo <dashboardRatioApplication> de CustomisationService tal y como estan colocados los demas
@@ -153,7 +153,7 @@ PARA PÁRRAFO 3:
 
 	// c) the ratio of unpublished xxxx vs total
 		@Query("select (count(q)*1.0/(select count(q)*1.0 from Quolet q)) from Quolet q where q.finalMode = '0'")
-		Long findRatioNotPublishQuoletPerQuolet();
+		Double findRatioNotPublishQuoletPerQuolet();
 
 	PASO 1: Colocar lo de arriba en el CustomisationRepository
 	PASO 2: Añadir al metodo <dashboardRatioApplication> de CustomisationService tal y como estan colocados los demas
