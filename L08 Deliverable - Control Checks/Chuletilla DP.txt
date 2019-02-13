@@ -273,7 +273,7 @@ DESPLIEGUE EN CLEVER CLOUD:
 		$ git commit -m "v1.0.0"
 	20) Vamos a Clever Cloud > Application > Information
 		*Deberían salir 3 líneas (2 líneas a Zeki)
-		- Se pega en Git Bush el chorizo. Ejemplo:
+		- Se pega en Git Bash el chorizo. Ejemplo:
 			git remote add clever git+ssh://git@push-par-clevercloud-customers.services.clever-
 			cloud.com/app_21c1256a-19a5-42f5-b746-14443729599a.git
 		$ git push clever master

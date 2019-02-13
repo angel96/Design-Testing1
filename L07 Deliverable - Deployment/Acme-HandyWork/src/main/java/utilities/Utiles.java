@@ -94,9 +94,9 @@ public class Utiles {
 		return Utiles.vat * d + d;
 	}
 
-	public static double[] convertToArrayDoubleFromString(final String s) {
+	public static Double[] convertToArrayDoubleFromString(final String s) {
 		final String[] partes = s.split(",");
-		final double[] result = new double[partes.length];
+		final Double[] result = new Double[partes.length];
 		for (int i = 0; i < partes.length; i++) {
 			final String aux = partes[i];
 			if (aux.equals("null"))

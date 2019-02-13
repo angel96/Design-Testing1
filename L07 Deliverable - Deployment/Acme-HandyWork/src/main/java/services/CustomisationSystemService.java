@@ -63,10 +63,10 @@ public class CustomisationSystemService {
 		return this.repositoryCustomisationSystem.save(custom);
 	}
 
-	public Map<String, Long> dashboardRatioApplications() {
+	public Map<String, Double> dashboardRatioApplications() {
 		Assert.isTrue(Utiles.findAuthority(LoginService.getPrincipal().getAuthorities(), Authority.ADMIN));
-		Map<String, Long> result;
-		result = new HashMap<String, Long>();
+		Map<String, Double> result;
+		result = new HashMap<String, Double>();
 
 		result.put("RatioPendingApplications", this.repositoryCustomisationSystem.findRatioOfPendingApplications());
 		result.put("RatioAcceptedApplications", this.repositoryCustomisationSystem.findRationOfAcceptedAplications());
@@ -76,10 +76,10 @@ public class CustomisationSystemService {
 
 		return result;
 	}
-	public Map<String, double[]> dashboardStatistics() {
+	public Map<String, Double[]> dashboardStatistics() {
 		Assert.isTrue(Utiles.findAuthority(LoginService.getPrincipal().getAuthorities(), Authority.ADMIN));
-		Map<String, double[]> result;
-		result = new HashMap<String, double[]>();
+		Map<String, Double[]> result;
+		result = new HashMap<String, Double[]>();
 
 		result.put("FixUpTaskPerUser", Utiles.convertToArrayDoubleFromString(this.repositoryCustomisationSystem.findFixUpTaskPerUser()));
 		result.put("ApplicationsPerFixUpTask", Utiles.convertToArrayDoubleFromString(this.repositoryCustomisationSystem.findApplicationPerFixUpTask()));
@@ -100,9 +100,9 @@ public class CustomisationSystemService {
 		Collection<Customer> customers = this.repositoryCustomisationSystem.topTreeCustomerOrderByComplaints();
 		Collection<HandyWorker> handyWorkers = this.repositoryCustomisationSystem.topTreeHandyWorkerOrderByComplaints();
 
-		if (!customers.isEmpty())
+		if (!customers.isEmpty() && customers.size() > 3)
 			customers = new ArrayList<Customer>(this.repositoryCustomisationSystem.topTreeCustomerOrderByComplaints()).subList(0, 3);
-		if (!handyWorkers.isEmpty())
+		if (!handyWorkers.isEmpty() && handyWorkers.size() > 3)
 			handyWorkers = new ArrayList<HandyWorker>(this.repositoryCustomisationSystem.topTreeHandyWorkerOrderByComplaints()).subList(0, 3);
 
 		result.put("customersWith10PerCentMoreFixUpPublishedThanAvgOrderApps", this.repositoryCustomisationSystem.findCustomers10PerCentMoreFixUpThanAvgOrderApplication());

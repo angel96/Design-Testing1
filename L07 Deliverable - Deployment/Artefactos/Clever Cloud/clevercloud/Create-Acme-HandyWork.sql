@@ -1,7 +1,7 @@
 ﻿start transaction;
-drop database if exists `bjwngyuu427lzrgncsts`;
-create database `bjwngyuu427lzrgncsts`;
-use `bjwngyuu427lzrgncsts`;
+drop database if exists `bbvscjgbdllenjrmuvzm`;
+create database `bbvscjgbdllenjrmuvzm`;
+use `bbvscjgbdllenjrmuvzm`;
 
 -- MySQL dump 10.13  Distrib 5.5.29, for Win64 (x86)
 --

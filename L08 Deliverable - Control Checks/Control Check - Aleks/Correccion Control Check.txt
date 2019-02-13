@@ -1,0 +1,45 @@
+-Panic del dashboard vacio, es porque no esta la tabla en mysql
+-Panic en "list of your wages", es porque no esta la tabla en mysql
+-Panic al haber solo un admin y un customer, arreglado con el if cambiado del dashboardActors()
+***********/
+
+
+/*******CORRECCIONES
++-En list.jsp de fixUp, "wage" en vez de "quolet" (el link de acceso)
++-Los messages cambiados de fixUp, de quolet a wage y borrar todos los "wages.blabla"
++-Borrar la linea "quolet.draftMode" de los message
++-El addObject(requestURI) del create() en WageController, borrado
++-Dashboard, CustomizationService -> dashboadActors():
+	if (!customers.isEmpty() && customers.size() > 3)
+      		customers = new ArrayList<Customer>(this.repositoryCustomisationSystem.topTreeCustomerOrderByComplaints()).subList(0, 3);
+    	if (!handyWorkers.isEmpty() && handyWorkers.size() > 3)
+      		handyWorkers = new ArrayList<HandyWorker>(this.repositoryCustomisationSystem.topTreeHandyWorkerOrderByComplaints()).subList(0, 3);
++-en edit.jsp de fixUp:
+	<jstl:if test="${fixUpTask.id !=0 }">
+	<display:table de los wages>
+	</jstl:if>
+	</form:form>
++-edit.jsp de fixUp, quitar los console.log del script
++-edit.jsp de wage(en el boton de delete):
+	<jstl:if test="${wage.id != 0 }">
+	y su respectivo cierre al final
++-header.jsp: borrar lo que hay de wage en customer y poner:
+	<li><a href="wage/customer/list.do"
+				class="fNiv"><spring:message
+						code="master.page.customer.wages" /></a></li>
++-messages de master-page, cambiado de "List of your wages" a "wages"
++-sponsor falla xxxx.commit.error -> messages property
+
++EL PATTERN
+	@Pattern(regexp = "^((\\d{2}((0[13578]|1[02])(0[1-9]|[12]\\d|3[01])|(0[13456789]|1[012])(0[1-9]|[12]\\d|30)|02(0[1-9]|1\\d|2[0-8])))|([02468][048]|[13579][26])0229):\\w{6}$")
+
++AL METODO GENERADOR CAMBIAR EL DATESIMPLEFORMATTER DE "yyyymmdd" por "yymmdd"
+
+BANNERS
+-https://i.imgur.com/VrQpD0U.png
+-https://i.imgur.com/BrAw5PK.png
+-https://i.imgur.com/awzpjVR.png
+dpprofesores
+@$DP1819_F133/G2			
+
+						
