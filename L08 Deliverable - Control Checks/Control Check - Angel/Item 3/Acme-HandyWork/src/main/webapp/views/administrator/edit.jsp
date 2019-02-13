@@ -1,0 +1,122 @@
+<%--
+ *
+ * Copyright (C) 2018 Universidad de Sevilla
+ * 
+ * The use of this project is hereby constrained to the conditions of the 
+ * TDG Licence, a copy of which you may download from 
+ * http://www.tdg-seville.info/License.html
+ --%>
+
+<%@page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+
+<%@taglib prefix="jstl" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@taglib prefix="security"
+	uri="http://www.springframework.org/security/tags"%>
+<%@taglib prefix="display" uri="http://displaytag.sf.net"%>
+
+<script>
+	$(document).ready(
+			function() {
+				$("#form").submit(
+						function(event) {
+							var phone = $("#phone").val();
+							var regex = new RegExp(
+									"(((\\+){0,1}\\s{0,1}([1-9]|[1-9][0-9]|[1-9][0-9][0-9])){0,1}\\s{0,1}(\\(([1-9]|[1-9][0-9]|[1-9][0-9][0-9])\\)){0,1}\\s{0,1}([1-9]{4,9}$))",
+									"m");
+							if (regex.test(phone) == false) {
+								if (confirm("<spring:message code = 'phone.confirm1' />")) {
+									var res = confirm("<spring:message code = 'phone.confirm2' />");
+								} else {
+									return false;
+								}
+							}
+							if (phone.startsWith("+") == false) {
+								var pref = "${prefix}";
+								var res = "+".concat(pref + " ", phone);
+								$("#phone").val(res);
+							}
+
+						});
+			});
+</script>
+<form:form action="administrator/edit.do" modelAttribute="administrator"
+	id="form">
+	<form:hidden path="id" />
+	<form:hidden path="version" />
+	<jstl:if test="${administrator.id != 0}">
+		<form:hidden path="boxes" />
+	</jstl:if>
+	<form:hidden path="account.enabled" />
+	<form:hidden path="account.id" />
+	<form:hidden path="account.authorities" />
+
+	<form:label path="name">
+		<spring:message code="admin.name" />
+	</form:label>
+	<form:input path="name" />
+	<form:errors cssClass="error" path="name" />
+	<br />
+
+	<form:label path="surname">
+		<spring:message code="admin.surname" />
+	</form:label>
+	<form:input path="surname" />
+	<form:errors cssClass="error" path="surname" />
+	<br />
+
+	<form:label path="middleName">
+		<spring:message code="admin.middlename" />
+	</form:label>
+	<form:input path="middleName" />
+	<form:errors cssClass="error" path="middleName" />
+	<br />
+
+	<form:label path="phone">
+		<spring:message code="admin.phone" />
+	</form:label>
+	<form:input path="phone" id="phone" placeholder="XXXXXXXXX" />
+	<form:errors cssClass="error" path="phone" />
+	<br />
+
+	<form:label path="email">
+		<spring:message code="admin.email" />
+	</form:label>
+	<form:input path="email" placeholder="example@example.com" />
+	<form:errors cssClass="error" path="email" />
+	<br />
+
+	<form:label path="adress">
+		<spring:message code="admin.adress" />
+	</form:label>
+	<form:input path="adress" />
+	<form:errors cssClass="error" path="adress" />
+	<br />
+
+	<form:label path="photo">
+		<spring:message code="admin.photo" />
+	</form:label>
+	<form:input path="photo" placeholder="http://..." />
+	<form:errors cssClass="error" path="photo" />
+	<br />
+
+	<form:label path="account.username">
+		<spring:message code="admin.user" />
+	</form:label>
+	<form:input path="account.username" />
+	<form:errors cssClass="error" path="account.username" />
+	<br />
+
+	<form:label path="account.password">
+		<spring:message code="admin.password" />
+	</form:label>
+	<form:password path="account.password" />
+	<form:errors cssClass="error" path="account.password" />
+	<br />
+	<br />
+
+	<input type="submit" name="save"
+		value="<spring:message code="admin.save"/>" />
+</form:form>

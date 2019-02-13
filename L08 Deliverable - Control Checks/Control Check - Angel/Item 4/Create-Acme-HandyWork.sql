@@ -111,6 +111,35 @@ INSERT INTO `administrator` VALUES (32,0,'C/Reina Mercedes','administrator@us.es
 UNLOCK TABLES;
 
 --
+-- Table structure for table `aolet`
+--
+
+DROP TABLE IF EXISTS `aolet`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `aolet` (
+  `id` int(11) NOT NULL,
+  `version` int(11) NOT NULL,
+  `body` varchar(255) DEFAULT NULL,
+  `final_mode` bit(1) NOT NULL,
+  `moment` date DEFAULT NULL,
+  `optional_picture` varchar(255) DEFAULT NULL,
+  `ticker` varchar(255) DEFAULT NULL,
+  `title` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `aolet`
+--
+
+LOCK TABLES `aolet` WRITE;
+/*!40000 ALTER TABLE `aolet` DISABLE KEYS */;
+/*!40000 ALTER TABLE `aolet` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `application`
 --
 
@@ -923,6 +952,32 @@ CREATE TABLE `fix_up_task` (
 LOCK TABLES `fix_up_task` WRITE;
 /*!40000 ALTER TABLE `fix_up_task` DISABLE KEYS */;
 /*!40000 ALTER TABLE `fix_up_task` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `fix_up_task_aolets`
+--
+
+DROP TABLE IF EXISTS `fix_up_task_aolets`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `fix_up_task_aolets` (
+  `fix_up_task` int(11) NOT NULL,
+  `aolets` int(11) NOT NULL,
+  UNIQUE KEY `UK_5a0i1o9vg06p4q3qjrj7oyfc` (`aolets`),
+  KEY `FK_qn4p34f4qp8hv5uxb0p092jnf` (`fix_up_task`),
+  CONSTRAINT `FK_qn4p34f4qp8hv5uxb0p092jnf` FOREIGN KEY (`fix_up_task`) REFERENCES `fix_up_task` (`id`),
+  CONSTRAINT `FK_5a0i1o9vg06p4q3qjrj7oyfc` FOREIGN KEY (`aolets`) REFERENCES `aolet` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `fix_up_task_aolets`
+--
+
+LOCK TABLES `fix_up_task_aolets` WRITE;
+/*!40000 ALTER TABLE `fix_up_task_aolets` DISABLE KEYS */;
+/*!40000 ALTER TABLE `fix_up_task_aolets` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -1830,4 +1885,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-02-03 17:56:37
+-- Dump completed on 2019-02-07  1:47:15

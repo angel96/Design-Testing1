@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- * converters.xml * * Copyright (C) 2018 Universidad de Sevilla * * The 
+	use of this project is hereby constrained to the conditions of the * TDG 
+	Licence, a copy of which you may download from * http://www.tdg-seville.info/License.html -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd		
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd		
+	">
+
+	<util:list id="converters">
+		<!-- Authority Converter -->
+		<bean class="converters.AuthorityToStringConverter" />
+		<bean class="converters.StringToAuthorityConverter" />
+		<!-- Box Converter -->
+		<bean class="converters.BoxToStringConverter" />
+		<bean class="converters.StringToBoxConverter" />
+		<!-- Actor Converter -->
+		<bean class="converters.StringToActorConverter" />
+		<bean class="converters.ActorToStringConverter" />
+		<!-- CreditCard Converter -->
+		<bean class="converters.StringToCreditCardConverter" />
+		<bean class="converters.CreditCardToStringConverter" />
+		<!-- Mesage Converter -->
+		<bean class="converters.StringToMesageConverter" />
+		<bean class="converters.MesageToStringConverter" />
+		<!-- Warranty Converter -->
+		<bean class="converters.StringToWarrantyConverter" />
+		<bean class="converters.WarrantyToStringConverter" />
+		<!-- Category Converter -->
+		<bean class="converters.StringToCategoryConverter" />
+		<bean class="converters.CategoryToStringConverter" />
+		<!-- Tutorial Converter -->
+		<bean class="converters.StringToTutorialConverter" />
+		<bean class="converters.TutorialToStringConverter" />
+		<!-- Phase Converter -->
+		<bean class="converters.StringToPhaseConverter" />
+		<bean class="converters.PhaseToStringConverter" />
+		<!-- Section Converter -->
+		<bean class="converters.StringToSectionConverter" />
+		<bean class="converters.SectionToStringConverter" />
+		<!-- Sponsorship Converter -->
+		<bean class="converters.StringToSponsorshipConverter" />
+		<bean class="converters.SponsorshipToStringConverter" />
+		<!-- Finder Converter -->
+		<bean class="converters.StringToFinderConverter" />
+		<bean class="converters.FinderToStringConverter" />
+		<!-- EndorserRecord Converter -->
+		<bean class="converters.StringToEndorserRecordConverter" />
+		<bean class="converters.EndorserRecordToStringConverter" />
+		<!-- MiscellaneousRecord Converter -->
+		<bean class="converters.StringToMiscellaneousRecordConverter" />
+		<bean class="converters.MiscellaneousRecordToStringConverter" />
+		<!-- ProfessionalRecord Converter -->
+		<bean class="converters.StringToProfessionalRecordConverter" />
+		<bean class="converters.ProfessionalRecordToStringConverter" />
+		<!-- Curriculum Converter -->
+		<bean class="converters.StringToCurriculumConverter" />
+		<bean class="converters.CurriculumToStringConverter" />
+		<!-- Application Converter -->
+		<bean class="converters.StringToApplicationConverter" />
+		<bean class="converters.ApplicationToStringConverter" />
+		<!-- Note Converter -->
+		<bean class="converters.StringToNoteConverter" />
+		<bean class="converters.NoteToStringConverter" />
+		<!-- FixUpTask Converter -->
+		<bean class="converters.StringToFixUpTaskConverter" />
+		<bean class="converters.FixUpTaskToStringConverter" />
+		<!-- Report Converter -->
+		<bean class="converters.StringToReportConverter" />
+		<bean class="converters.ReportToStringConverter" />
+		<!-- Endorsement Converter -->
+		<bean class="converters.StringToEndorsementConverter" />
+		<bean class="converters.EndorsementToStringConverter" />
+		<!-- Complaint Converter -->
+		<bean class="converters.StringToComplaintConverter" />
+		<bean class="converters.ComplaintToStringConverter" />
+		<!-- EducationRecord Converter -->
+		<bean class="converters.StringToEducationRecordConverter" />
+		<bean class="converters.EducationRecordToStringConverter" />
+		<!-- Sponsor Converter -->
+		<bean class="converters.StringToSponsorConverter" />
+		<bean class="converters.SponsorToStringConverter" />
+		<!-- Endorsable Converter -->
+		<bean class="converters.StringToEndorsableConverter" />
+		<bean class="converters.EndorsableToStringConverter" />
+		
+		<!-- Aolet Converter -->
+		<bean class="converters.StringToAoletConverter" />
+		<bean class="converters.AoletToStringConverter" />
+		
+	</util:list>
+
+</beans>
