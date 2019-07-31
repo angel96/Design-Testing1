@@ -1,4 +1,4 @@
-# Diseño y Pruebas 1. Acme-HandyWorker
+# Diseño y Pruebas 1 - Acme-HandyWorker
  
   ## Fecha de entregas
   * D01 - 19 de Octubre
@@ -27,7 +27,7 @@
   * Ezequiel Portillo Jurado
   * Alejandro Rodríguez Díaz
 
-# Design and Testing 1. Acme-HandyWorker
+# Design and Testing 1 - Acme-HandyWorker
   
   ## Submission Date
   * D01 - October 19th
