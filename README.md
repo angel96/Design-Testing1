@@ -1,6 +1,19 @@
-# Diseño y Pruebas 1 - Acme-HandyWorker
- 
-  ## Fecha de entregas
+# Design and Testing - Diseño y Pruebas 1<br>Acme-HandyWorker
+  
+  # Warning - Aviso
+  
+  ```
+  Todo el contenido de este repositorio es autoría única de los abajo mencionados como miembros del equipo.
+  Cualquier uso,sin previa autorización del conjunto del grupo, no será valido. 
+  Este repositorio esta como exposición del trabajo realizado por sus miembros.
+  
+  Everything contained on this repository is owned by the team member mentioned in the item.
+  Any use, without the previous team members permission, will not allowed. 
+  This repository is shown as an exposition of the job done by its members. 
+  
+  ```
+  
+  ## Submission Dates - Fecha de entregas
   * D01 - 19 de Octubre
   * D02 - 31 de Octubre
   * D03 - 15 de Noviembre
@@ -9,7 +22,7 @@
   * D06 - 10 de Enero
   * D07 - 17 de Enero
   
-  ## Tecnologías usadas
+  ## Technologies Used - Tecnologías usadas
   
   * Spring MVC 4.0.0
   * MySQL Server 5.2
@@ -20,36 +33,7 @@
   * Astah
   * Eclipse Indigo
   
-  ## Componentes del grupo
-  
-  * Ángel Delgado Luna
-  * Belén Garrido López
-  * Ezequiel Portillo Jurado
-  * Alejandro Rodríguez Díaz
-
-# Design and Testing 1 - Acme-HandyWorker
-  
-  ## Submission Date
-  * D01 - October 19th
-  * D02 - October 31st
-  * D03 - November 15st
-  * D04 - November 28st
-  * D05 - December 13st
-  * D06 - January 10th
-  * D07 - January 17th
-  
-  ## Technologies used
-  
-  * Spring MVC 4.0.0
-  * MySQL Server 5.2
-  * TomCat 7
-  * Hibernate 4
-  * Java Persistence Api (JPA)
-  * VirtualBox (Virtual O.S: Windows XP Professional x64)
-  * Astah
-  * Eclipse Indigo
-  
-  ## Members Team
+  ## Members Team - Componentes del grupo
   
   * Ángel Delgado Luna
   * Belén Garrido López
