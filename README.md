@@ -1,7 +1,5 @@
-# Diseño y Pruebas 1
-
-  Desarrollo del proyecto Acme-HandyWorker
-  
+# Diseño y Pruebas 1. Acme-HandyWorker
+ 
   ## Fecha de entregas
   * D01 - 19 de Octubre
   * D02 - 31 de Octubre
@@ -29,9 +27,7 @@
   * Ezequiel Portillo Jurado
   * Alejandro Rodríguez Díaz
 
-# Design and Testing
-
-  This repository is intended to be for projects´ development from Acme Bussiness.
+# Design and Testing 1. Acme-HandyWorker
   
   ## Submission Date
   * D01 - October 19th
