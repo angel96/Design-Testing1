@@ -1,6 +1,7 @@
-# Diseño y Pruebas
+# Diseño y Pruebas 1
 
-  Desarrollo de una serie de proyectos de la empresa Acme.
+  Desarrollo del proyecto Acme-HandyWorker
+  
   ## Fecha de entregas
   * D01 - 19 de Octubre
   * D02 - 31 de Octubre
